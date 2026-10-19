@@ -54,7 +54,7 @@ function label(slot: Slot): string {
 .slot { position: absolute; bottom: 0; height: 118vh; max-height: 118vh; display: flex; align-items: flex-end; transition: filter 0.2s, opacity 0.2s; pointer-events: none; }
 .slot.left { left: 4%; }
 .slot.right { right: 4%; }
-.slot img { height: 100%; width: auto; object-fit: contain; object-position: bottom; transform: translateY(14vh); }
+.slot img { height: 100%; width: auto; object-fit: contain; object-position: bottom; transform: translateY(24vh); }
 .slot.dim { filter: brightness(0.55); }
 .slot.active { filter: brightness(1.05); }
 .placeholder { align-self: center; margin-bottom: 40vh; padding: 14px 28px; background: #000b; color: #ddd; border: 2px solid #888; border-radius: 8px; font-size: 22px; }
