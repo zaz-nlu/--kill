@@ -8,7 +8,8 @@ export interface ActionDef {
   minHour?: number
   maxHour?: number
   requiresEvidence?: string[]
-  scene: string
+  scene?: string   // a story scene, or…
+  room?: string    // …a room to investigate
   costHours: number
   npc?: NpcId   // who the action talks to; a gift can be attached to it
 }

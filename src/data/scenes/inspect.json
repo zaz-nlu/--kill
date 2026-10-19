@@ -1,0 +1,29 @@
+{
+  "inspect_mb_projector": [
+    { "type": "say", "speaker": "narration", "text": "投影仪吊在天花板上。镜头旁边的挂钩上，原本该套着一只黑色防尘袋，现在空空的。" },
+    { "type": "say", "speaker": "lyc", "text": "防尘袋……去哪了？" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "E11" }] }
+  ],
+  "inspect_mb_laptop": [
+    { "type": "say", "speaker": "narration", "text": "会议桌上有一台公用笔记本，屏幕早就息了。" },
+    { "type": "say", "speaker": "lyc", "text": "那天晚上，这间屋子里亮着的就是这样一块屏幕。" }
+  ],
+  "inspect_mb_glass": [
+    { "type": "say", "speaker": "narration", "text": "磨砂玻璃墙。外面走廊的灯一灭，这里就像一只黑箱子。" },
+    { "type": "say", "speaker": "narration", "text": "从外面经过的人，只能看见里面一块发亮的屏幕。" }
+  ],
+  "inspect_mb_window": [
+    { "type": "say", "speaker": "narration", "text": "窗外是海河，天津之眼的灯在雨里一闪一闪。" }
+  ],
+  "inspect_of_hr": [
+    { "type": "say", "speaker": "narration", "text": "人事办公室的门上还贴着封条，磨砂玻璃后面黑着灯。" },
+    { "type": "say", "speaker": "lyc", "text": "她每天九点以后都会开台灯……可那晚，灯是灭的。" }
+  ],
+  "inspect_of_window": [
+    { "type": "say", "speaker": "narration", "text": "九点熄灯以后，这一整层只剩窗外的光。" }
+  ],
+  "inspect_of_limo": [
+    { "type": "say", "speaker": "narration", "text": "黎默的工位。屏幕锁着，桌上摆着一包拆开的鱼形小饼干。" },
+    { "type": "say", "speaker": "lyc", "text": "（想拿一块，想起他会拍你的手。）" }
+  ]
+}

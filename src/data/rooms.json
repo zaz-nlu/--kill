@@ -1,0 +1,23 @@
+[
+  {
+    "id": "meeting_b",
+    "label": "会议室 B",
+    "bg": "meeting_b",
+    "hotspots": [
+      { "id": "mb_projector", "label": "投影仪", "rect": [36, 5, 30, 9], "scene": "inspect_mb_projector" },
+      { "id": "mb_laptop", "label": "会议桌上的笔记本", "rect": [21, 43, 12, 9], "scene": "inspect_mb_laptop" },
+      { "id": "mb_glass", "label": "磨砂玻璃墙", "rect": [71, 6, 28, 62], "scene": "inspect_mb_glass" },
+      { "id": "mb_window", "label": "窗外", "rect": [0, 2, 22, 38], "scene": "inspect_mb_window" }
+    ]
+  },
+  {
+    "id": "office",
+    "label": "17 层办公区",
+    "bg": "office",
+    "hotspots": [
+      { "id": "of_hr", "label": "人事办公室", "rect": [3, 10, 16, 38], "scene": "inspect_of_hr" },
+      { "id": "of_window", "label": "窗外的河", "rect": [30, 14, 38, 28], "scene": "inspect_of_window" },
+      { "id": "of_limo", "label": "黎默的工位", "rect": [77, 36, 22, 30], "scene": "inspect_of_limo" }
+    ]
+  }
+]

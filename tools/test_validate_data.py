@@ -23,6 +23,9 @@ def base_data():
             {'id': 'tang', 'name': '唐经理', 'giftable': False},
         ],
         'backgrounds.json': [{'id': 'office', 'label': 'o'}],
+        'rooms.json': [{'id': 'r1', 'label': 'R', 'bg': 'office', 'hotspots': [
+            {'id': 'h1', 'label': 'H', 'rect': [10, 10, 20, 20], 'scene': 'b'}]}],
+        'actions.json': [{'id': 'x', 'label': 'X', 'days': [2], 'room': 'r1', 'costHours': 1}],
         'evidence.json': [{'id': 'E01', 'name': 'e', 'desc': 'd'}],
         'testimony.json': [{'id': 'T26', 'name': 't', 'desc': 'd', 'slice': True}],
         'scenes/a.json': {
@@ -112,6 +115,23 @@ class ValidateDataTest(unittest.TestCase):
         def bad(d):
             d['scenes/a.json']['a'].insert(0, {'type': 'bg', 'id': 'nowhere'})
         self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_room_hotspot_scene_must_exist(self):
+        self.assertNotEqual(self.run_with(lambda d: d['rooms.json'][0]['hotspots'][0].update(scene='nowhere')), 0)
+
+    def test_room_background_must_exist(self):
+        self.assertNotEqual(self.run_with(lambda d: d['rooms.json'][0].update(bg='nowhere')), 0)
+
+    def test_room_hotspot_rect_must_stay_inside_the_picture(self):
+        self.assertNotEqual(self.run_with(lambda d: d['rooms.json'][0]['hotspots'][0].update(rect=[90, 10, 20, 20])), 0)
+
+    def test_room_action_must_name_a_known_room(self):
+        self.assertNotEqual(self.run_with(lambda d: d['actions.json'][0].update(room='ghost')), 0)
+
+    def test_action_needs_a_scene_or_a_room(self):
+        def m(d):
+            del d['actions.json'][0]['room']
+        self.assertNotEqual(self.run_with(m), 0)
 
 
 if __name__ == '__main__':

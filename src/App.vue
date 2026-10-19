@@ -11,6 +11,7 @@ import ChoiceList from './ui/ChoiceList.vue'
 import BacklogPanel from './ui/BacklogPanel.vue'
 import HubScreen from './ui/HubScreen.vue'
 import ShopPanel from './ui/ShopPanel.vue'
+import InvestigateScreen from './ui/InvestigateScreen.vue'
 import ExamScreen from './ui/ExamScreen.vue'
 import EndScreen from './ui/EndScreen.vue'
 
@@ -66,6 +67,13 @@ function onNote(lineId: string) {
           <DialogueBox v-else-if="sayNode" :speaker="store.speakerName(sayNode.speaker)" :text="sayNode.text" @advance="store.advance()" />
           <p v-else class="done">（这一段结束了）</p>
         </template>
+        <InvestigateScreen
+          v-else-if="store.screen === 'investigate' && store.room"
+          :label="store.room.label"
+          :hotspots="store.hotspots"
+          @inspect="store.inspect($event)"
+          @leave="store.leaveRoom()"
+        />
         <div v-else class="panel">
           <HubScreen
             v-if="store.screen === 'hub'"

@@ -8,6 +8,7 @@ import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from
 import { advanceHour, availableActions, endDay } from './calendar'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
+import { markSeen, visibleHotspots } from './rooms'
 import type { TimeOfDay } from './backgrounds'
 import { loadSave, serializeState } from './save'
 import {
@@ -15,7 +16,7 @@ import {
   type ExamResult, type ExamState,
 } from './crossexam'
 
-export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'exam' | 'end'
+export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'investigate' | 'exam' | 'end'
 
 export interface StageSlot { id: string; expr: string }
 export interface StageState {
@@ -65,6 +66,12 @@ export const useGameStore = defineStore('game', () => {
     void tick.value
     return runner.value ? runner.value.current() : null
   })
+
+  // investigating a room
+  const roomId = ref<string | null>(null)
+  let roomCost = 0
+  const room = computed(() => data.rooms.find(r => r.id === roomId.value) ?? null)
+  const hotspots = computed(() => (room.value ? visibleHotspots(state, room.value) : []))
 
   const actions = computed(() => availableActions(state, data.actions))
   const canShop = computed(() => SHOP_HOURS.includes(state.hour))
@@ -163,12 +170,46 @@ export const useGameStore = defineStore('game', () => {
   function startAction(actionId: string, giftItemId?: string): void {
     const a = actions.value.find(x => x.id === actionId)
     if (!a) return
+    if (a.room) {
+      enterRoom(a.room, a.costHours)
+      return
+    }
+    if (!a.scene) return
     screen.value = 'scene'
     playScene(a.scene, () => {
       advanceHour(state, a.costHours)
       if (giftItemId && a.npc) gift(a.npc, giftItemId)
       toHub()
     })
+  }
+
+  function enterRoom(id: string, costHours: number): void {
+    const r = data.rooms.find(x => x.id === id)
+    if (!r) return
+    roomId.value = id
+    roomCost = costHours
+    screen.value = 'investigate'
+    clearActors()
+    setBackground(r.bg)
+  }
+
+  function inspect(hotspotId: string): void {
+    const r = room.value
+    const h = hotspots.value.find(x => x.id === hotspotId)
+    if (!r || !h) return
+    screen.value = 'scene'
+    playScene(h.scene, () => {
+      markSeen(state, h.id)
+      screen.value = 'investigate'
+      setBackground(r.bg)
+    })
+  }
+
+  function leaveRoom(): void {
+    advanceHour(state, roomCost)
+    roomId.value = null
+    roomCost = 0
+    toHub()
   }
 
   function goShop(): void {
@@ -336,7 +377,7 @@ export const useGameStore = defineStore('game', () => {
   return {
     data, state, screen, stage, currentNode, notice, actions, canShop,
     playScene, newGame, restart, advance, note, speakerName, itemName,
-    startAction, goShop, leaveShop, buy, gift, restAtHome,
+    startAction, room, hotspots, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,
     exam, examIndex, examFailed, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     startExamById, examGoto, examPresent, examPress, examChoose,

@@ -159,16 +159,19 @@ describe('day 2', () => {
 })
 
 describe('day 2 action pool', () => {
-  it('offers the three actions on day 2 morning and none on day 3', () => {
+  it('offers the five actions on day 2 morning and none on day 3', () => {
     const s = createInitialState()
     s.day = 2
     s.hour = 9
-    expect(availableActions(s, data.actions).map(a => a.id).sort()).toEqual(['2-3', '2-6', '2-9'])
+    expect(availableActions(s, data.actions).map(a => a.id).sort()).toEqual(['2-1', '2-2', '2-3', '2-6', '2-9'])
     s.day = 3
     expect(availableActions(s, data.actions)).toEqual([])
   })
 
-  it('every action points at a real scene', () => {
-    for (const a of data.actions) expect(data.scenes[a.scene]).toBeDefined()
+  it('every action points at a real scene or a real room', () => {
+    for (const a of data.actions) {
+      if (a.room) expect(data.rooms.some(r => r.id === a.room), a.id).toBe(true)
+      else expect(data.scenes[a.scene!], a.id).toBeDefined()
+    }
   })
 })

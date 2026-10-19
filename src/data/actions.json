@@ -1,5 +1,27 @@
 [
   {
+    "id": "2-1",
+    "label": "调查会议室 B",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "room": "meeting_b",
+    "costHours": 1
+  },
+  {
+    "id": "2-2",
+    "label": "在办公区转转",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "room": "office",
+    "costHours": 1
+  },
+  {
     "id": "2-3",
     "label": "帮邵晓阳修一个前端 bug",
     "location": "外包区",

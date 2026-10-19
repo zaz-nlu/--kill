@@ -115,6 +115,25 @@ def main(root):
                     if c['kind'] == 'hasTestimony' and c['id'] not in testimony:
                         errors.append(f"scene {sid}: condition on unknown testimony '{c['id']}'")
 
+    # rooms and actions
+    rooms = load(root, 'rooms.json', [])
+    room_ids = {r['id'] for r in rooms}
+    for r in rooms:
+        if r['bg'] not in backgrounds:
+            errors.append(f"room {r['id']}: unknown background '{r['bg']}'")
+        for h in r.get('hotspots', []):
+            if h['scene'] not in scenes:
+                errors.append(f"room {r['id']}/{h['id']}: scene '{h['scene']}' does not exist")
+            x, y, w, ht = h['rect']
+            if not (x >= 0 and y >= 0 and w > 0 and ht > 0 and x + w <= 100 and y + ht <= 100):
+                errors.append(f"room {r['id']}/{h['id']}: rect {h['rect']} is outside the picture")
+    for act in load(root, 'actions.json', []):
+        if act.get('room'):
+            if act['room'] not in room_ids:
+                errors.append(f"action {act['id']}: room '{act['room']}' does not exist")
+        elif act.get('scene') not in scenes:
+            errors.append(f"action {act['id']}: needs a scene or a room")
+
     # exams
     for ex in exams:
         if ex.get('onClear') and ex['onClear'] not in scenes:
