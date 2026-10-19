@@ -1,0 +1,113 @@
+{
+  "day2_desk": [
+    { "type": "say", "speaker": "narration", "text": "【9 月 16 日 09:20】黎默从斜后方探过头来，丢给林一程一个包子。" },
+    { "type": "say", "speaker": "limo", "text": "吃了没。" },
+    { "type": "say", "speaker": "narration", "text": "路过人事办公室的封条，黎默嘟囔了一句。" },
+    { "type": "say", "speaker": "limo", "text": "封得真严。听说两年前出事的时候，也是这样封了好几天。", "tag": "G2" },
+    { "type": "say", "speaker": "lyc", "text": "两年前？" },
+    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。" },
+    { "type": "goto", "scene": "day2_pantry" }
+  ],
+  "day2_pantry": [
+    { "type": "say", "speaker": "narration", "text": "【09:40 茶水间】黎默递来一杯咖啡。" },
+    { "type": "say", "speaker": "limo", "text": "昨天没睡好吧？" },
+    {
+      "type": "branch",
+      "when": { "kind": "intelClean", "intel": "draft" },
+      "then": [
+        { "type": "say", "speaker": "limo", "text": "宋砚那台电脑，不是一直开着吗？她有没有什么来不及发出去的东西？我是说……万一和你的申诉有关呢。", "tag": "T27" }
+      ],
+      "else": [
+        { "type": "say", "speaker": "limo", "text": "你说有封没发完的邮件？会不会和你的申诉有关？" }
+      ]
+    },
+    { "type": "say", "speaker": "limo", "text": "要不要加糖？" },
+    { "type": "end" }
+  ],
+  "day2_lunch": [
+    { "type": "say", "speaker": "narration", "text": "【12:00 午饭】黎默端着餐盘坐过来。他解锁手机时，壁纸是一座海岛；背包拉链上挂着一个小银鱼铃铛。他的餐盘边放着一包鱼形小饼干，有人伸手他会拍开。" },
+    { "type": "say", "speaker": "limo", "text": "查到什么了？要不要我帮你一起想？" },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "全说了",
+          "effects": [
+            { "kind": "danger", "delta": 10 },
+            { "kind": "affinity", "npc": "limo", "delta": 5 }
+          ],
+          "leak": "lunchTellAll",
+          "goto": "day2_lunch_talk"
+        },
+        {
+          "text": "还没什么头绪。",
+          "effects": [{ "kind": "affinity", "npc": "limo", "delta": -3 }],
+          "goto": "day2_lunch_talk"
+        }
+      ]
+    }
+  ],
+  "day2_lunch_talk": [
+    { "type": "say", "speaker": "limo", "text": "行了，别绷着。" },
+    {
+      "type": "branch",
+      "when": { "kind": "intelClean", "intel": "phone" },
+      "then": [
+        { "type": "say", "speaker": "limo", "text": "手机别是已经沉海河了吧，那就真的什么都查不到了。", "tag": "T26" }
+      ],
+      "else": [
+        { "type": "say", "speaker": "limo", "text": "你说手机不见了？那肯定是凶手带走了。" }
+      ]
+    },
+    { "type": "say", "speaker": "limo", "text": "你黑眼圈好重，今晚早点睡。" },
+    { "type": "say", "speaker": "limo", "text": "有些公司死人不稀奇。稀奇的是死了人，还能什么事都没有。", "tag": "G3" },
+    { "type": "say", "speaker": "narration", "text": "然后他低头扒饭。" },
+    { "type": "end" }
+  ],
+  "act_2_3": [
+    { "type": "say", "speaker": "narration", "text": "你帮邵晓阳修了一个前端 bug。" },
+    { "type": "say", "speaker": "shaoxy", "text": "……谢了。" },
+    { "type": "say", "speaker": "narration", "text": "他的手机放在桌上，锁屏是一只橘猫。" },
+    { "type": "say", "speaker": "shaoxy", "text": "家里那位又在抓沙发。" },
+    { "type": "effect", "effects": [{ "kind": "affinity", "npc": "shaoxy", "delta": 15 }] },
+    { "type": "end" }
+  ],
+  "act_2_6": [
+    { "type": "say", "speaker": "narration", "text": "你去了 1 楼吸烟区，陆诚正靠着墙。" },
+    {
+      "type": "branch",
+      "when": { "kind": "affinityAtLeast", "npc": "lucheng", "value": 60 },
+      "then": [
+        { "type": "say", "speaker": "lucheng", "text": "九点灯一下全灭了，我们还以为跳闸了。磁铁是我贴的，抽烟的都知道。" }
+      ],
+      "else": [
+        { "type": "say", "speaker": "lucheng", "text": "九点灯一下全灭了，我们还以为跳闸了。" }
+      ]
+    },
+    { "type": "say", "speaker": "narration", "text": "陆诚摸了摸口袋。" },
+    { "type": "say", "speaker": "lucheng", "text": "烟瘾上来了，早上那包早抽完了。" },
+    { "type": "end" }
+  ],
+  "act_2_9": [
+    { "type": "say", "speaker": "narration", "text": "你找孟遥聊了聊。" },
+    {
+      "type": "branch",
+      "when": { "kind": "affinityAtLeast", "npc": "mengyao", "value": 40 },
+      "then": [
+        { "type": "say", "speaker": "mengyao", "text": "宋砚经理每天九点熄灯以后，都会开台灯接着干活。说灯是给你们关的，不是给她自己关的。" },
+        { "type": "effect", "effects": [{ "kind": "testimony", "id": "T05" }] },
+        { "type": "say", "speaker": "mengyao", "text": "宋砚经理发消息，给谁都要先叫一声“亲爱的”，对你也一样。那条 21:08 的消息里，一个“亲爱的”都没有。" },
+        { "type": "effect", "effects": [{ "kind": "testimony", "id": "T32" }] }
+      ],
+      "else": [
+        { "type": "say", "speaker": "mengyao", "text": "我……我不太想聊这个。" }
+      ]
+    },
+    { "type": "say", "speaker": "mengyao", "text": "我妈吃不下饭，就想吃点水果。" },
+    { "type": "end" }
+  ],
+  "day2_end": [
+    { "type": "say", "speaker": "narration", "text": "这一天结束了。" },
+    { "type": "end" }
+  ]
+}

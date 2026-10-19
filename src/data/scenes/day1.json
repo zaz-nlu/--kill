@@ -1,0 +1,62 @@
+{
+  "day1_wechat": [
+    { "type": "say", "speaker": "narration", "text": "【9 月 15 日 14:30】手机震了一下，是黎默的微信。" },
+    { "type": "say", "speaker": "limo", "text": "听说你被条子带走了？别被他们套话，嘴闭紧。……宋砚得罪的人多了，不止你一个。她手里攥着多少人的把柄，你想过没有？", "tag": "G1" },
+    { "type": "goto", "scene": "day1_coffee" }
+  ],
+  "day1_coffee": [
+    {
+      "type": "effect",
+      "effects": [
+        { "kind": "learnIntel", "intel": "phone" },
+        { "kind": "learnIntel", "intel": "draft" },
+        { "kind": "learnIntel", "intel": "trophy" },
+        { "kind": "evidence", "id": "E01" },
+        { "kind": "evidence", "id": "E02" },
+        { "kind": "evidence", "id": "E03" },
+        { "kind": "evidence", "id": "E04" },
+        { "kind": "evidence", "id": "E07" },
+        { "kind": "evidence", "id": "E30" }
+      ]
+    },
+    { "type": "say", "speaker": "narration", "text": "【19:00 地铁站旁的咖啡店】黎默约你见面。" },
+    { "type": "say", "speaker": "limo", "text": "你一个人闷着查，早晚被人当软柿子捏。" },
+    { "type": "say", "speaker": "limo", "text": "我在会议室 B 开会到九点多，什么都没听见。" },
+    { "type": "say", "speaker": "limo", "text": "走廊上有人影晃，郑岑那天走得挺急的。", "tag": "T06a" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T06a" }] },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "追问：你看见他往哪走了？", "goto": "day1_coffee_press" },
+        { "text": "不追问", "goto": "day1_coffee_tell" }
+      ]
+    }
+  ],
+  "day1_coffee_press": [
+    { "type": "say", "speaker": "lyc", "text": "你看见他往哪走了？" },
+    { "type": "say", "speaker": "limo", "text": "我 8 点 50 去洗手间，看见郑岑没坐电梯，往西楼梯那边走了。", "tag": "T06" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T06" }] },
+    { "type": "goto", "scene": "day1_coffee_tell" }
+  ],
+  "day1_coffee_tell": [
+    { "type": "say", "speaker": "narration", "text": "黎默盯着你，等你开口。" },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "把自己掌握的情况说出来",
+          "effects": [
+            { "kind": "danger", "delta": 10 },
+            { "kind": "affinity", "npc": "limo", "delta": 5 }
+          ],
+          "leak": "coffeeTellAll"
+        },
+        {
+          "text": "不多说",
+          "effects": [{ "kind": "affinity", "npc": "limo", "delta": 5 }]
+        }
+      ]
+    },
+    { "type": "end" }
+  ]
+}

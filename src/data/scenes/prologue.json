@@ -1,0 +1,45 @@
+{
+  "prologue": [
+    { "type": "say", "speaker": "narration", "text": "2026 年 9 月 14 日，周一，晚上。台风外围带来的雨，从七点一直下到现在。" },
+    { "type": "say", "speaker": "narration", "text": "【20:20】林一程盯着工资条截图：绩效奖金 0 元。备注一栏写着：“考勤异常（21:00 后打卡不计）”。" },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "去找宋砚理论", "goto": "prologue_office" },
+        { "text": "再忍忍", "goto": "prologue_wait" }
+      ]
+    }
+  ],
+  "prologue_wait": [
+    { "type": "say", "speaker": "narration", "text": "五分钟后，林一程还是站了起来。" },
+    { "type": "goto", "scene": "prologue_office" }
+  ],
+  "prologue_office": [
+    { "type": "say", "speaker": "narration", "text": "【20:25 宋砚办公室】" },
+    { "type": "say", "speaker": "songyan", "text": "亲爱的，扣你奖金，是因为你的考勤。九点以后的打卡，系统不认。" },
+    { "type": "say", "speaker": "lyc", "text": "我天天十一点才走！上线日期是你们定的！" },
+    { "type": "say", "speaker": "songyan", "text": "亲爱的，那是你效率低。公司让你加班了吗？" },
+    { "type": "say", "speaker": "narration", "text": "（宋砚用指节敲了敲桌上的玻璃奖杯）" },
+    { "type": "say", "speaker": "songyan", "text": "看见这个没有？“贝塔之星”，我拿的。我这人，最重要的东西都放在荣誉底下。你呢？你有什么？" },
+    { "type": "say", "speaker": "lyc", "text": "……你们迟早会遭报应的。" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T01" }] },
+    { "type": "say", "speaker": "narration", "text": "林一程摔门出来。外间的孟遥低着头，假装没听见。" },
+    { "type": "say", "speaker": "narration", "text": "【20:35】回到工位。远处外包区传来邵晓阳开站会的声音，黎默不在座位上。" },
+    { "type": "say", "speaker": "narration", "text": "【21:00】啪。整层的顶灯同时熄灭。" },
+    { "type": "say", "speaker": "narration", "text": "林一程在工作群里发了一句：“又熄灯了，资本家的灯。”（发送时间 21:00:40）" },
+    { "type": "say", "speaker": "lucheng", "text": "跳闸了？" },
+    { "type": "say", "speaker": "narration", "text": "【21:08】手机震动。发信人：宋砚。" },
+    { "type": "say", "speaker": "songyan", "text": "来我办公室一趟。奖金的事，可以再谈。" },
+    { "type": "say", "speaker": "narration", "text": "林一程愣住了。宋砚从来不松口。林一程打开早就写好的申诉信，发送打印。" },
+    { "type": "say", "speaker": "narration", "text": "【21:10～21:14】打印区刷卡取件（21:11）。" },
+    { "type": "say", "speaker": "narration", "text": "路过会议室 B：玻璃墙后面一片漆黑，只有黎默的笔记本屏幕亮着，照着那张脸。黎默戴着耳机，额头上全是汗，明明空调开得很冷。黎默抬头看了林一程一眼，屏幕的光照在脸上，表情看不清。林一程当时以为他在开会，没多想。" },
+    { "type": "say", "speaker": "narration", "text": "人事办公室的磨砂玻璃门后面，完全是黑的。敲门，没人应。" },
+    { "type": "say", "speaker": "narration", "text": "门口伞架上，宋砚那把墨绿色的长柄伞还在。" },
+    { "type": "say", "speaker": "lyc", "text": "走了？伞都没拿？" },
+    { "type": "say", "speaker": "narration", "text": "林一程把申诉信从门缝塞了进去。" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T02" }] },
+    { "type": "say", "speaker": "narration", "text": "【21:25】林一程坐电梯离开。雨还在下。" },
+    { "type": "say", "speaker": "narration", "text": "——第二天早上 8:30，孟遥的尖叫声传遍了 17 层。" },
+    { "type": "goto", "scene": "day1_wechat" }
+  ]
+}
