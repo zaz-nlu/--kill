@@ -4,7 +4,7 @@ import evidence from '../data/evidence.json'
 import testimony from '../data/testimony.json'
 import actions from '../data/actions.json'
 import debugKit from '../data/debug_kit.json'
-import type { Item, Npc } from './types'
+import type { ExamDef, Item, Line, Npc } from './types'
 import type { Scenes } from './script'
 import type { ActionDef } from './calendar'
 
@@ -17,16 +17,16 @@ export interface GameData {
   testimony: RecordDef[]
   scenes: Scenes
   actions: ActionDef[]
-  exams: Record<string, unknown>   // tightened to Record<string, ExamDef> in Task 10
-  debugKit: { evidence: string[]; testimony: string[] }
+  exams: Record<string, ExamDef>
+  debugKit: { evidence: string[]; testimony: string[]; backlog: Line[] }
 }
 
 export function loadData(): GameData {
   const sceneFiles = import.meta.glob('../data/scenes/*.json', { eager: true, import: 'default' }) as Record<string, Scenes>
-  const examFiles = import.meta.glob('../data/exams/*.json', { eager: true, import: 'default' }) as Record<string, { id: string }>
+  const examFiles = import.meta.glob('../data/exams/*.json', { eager: true, import: 'default' }) as Record<string, ExamDef>
   const scenes: Scenes = {}
   for (const chunk of Object.values(sceneFiles)) Object.assign(scenes, chunk)
-  const exams: Record<string, unknown> = {}
+  const exams: Record<string, ExamDef> = {}
   for (const ex of Object.values(examFiles)) exams[ex.id] = ex
   return {
     npcs: npcs as Npc[],
@@ -36,6 +36,6 @@ export function loadData(): GameData {
     scenes,
     actions: actions as ActionDef[],
     exams,
-    debugKit,
+    debugKit: debugKit as GameData['debugKit'],
   }
 }
