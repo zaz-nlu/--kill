@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "test": "vitest run"
+    "test": "vitest run",
+    "electron:dev": "vite build && node scripts/run-electron.cjs",
+    "dist": "vite build && electron-builder --win portable"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.10",
     "@vue/test-utils": "^2.5.1",
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
     "jsdom": "^29.1.1",
     "typescript": "5.9",
     "vite": "^8.3.4",
@@ -24,5 +28,22 @@
     "vue-tsc": "^3.3.13"
   },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "local.jiudian.game",
+    "productName": "九点熄灯",
+    "files": [
+      "dist/**",
+      "electron/**"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    },
+    "electronDist": "node_modules/electron/dist"
+  }
 }
