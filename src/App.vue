@@ -35,7 +35,13 @@ function onNote(lineId: string) {
 </script>
 
 <template>
-  <TitleScreen v-if="store.screen === 'title'" @start="store.newGame()" />
+  <TitleScreen
+    v-if="store.screen === 'title'"
+    :error="store.loadError"
+    @start="store.newGame()"
+    @continue="store.loadGame()"
+    @debug-finale="store.jumpToFinale()"
+  />
   <div v-else class="stage">
     <HudBar :day="store.state.day" :hour="store.state.hour" :money="store.state.money" :danger="store.state.danger" />
     <div class="body">
@@ -53,6 +59,7 @@ function onNote(lineId: string) {
         @action="(id: string, gift?: string) => store.startAction(id, gift)"
         @shop="store.goShop()"
         @rest="store.restAtHome()"
+        @save="store.saveGame()"
       />
       <ShopPanel
         v-else-if="store.screen === 'shop'"
@@ -78,7 +85,13 @@ function onNote(lineId: string) {
         @present="store.examPresent($event)"
         @choose="store.examChoose($event.stepId, $event.optionIndex)"
       />
-      <EndScreen v-else-if="store.screen === 'end'" :failed="store.examFailed" @restart="store.restart()" />
+      <EndScreen
+        v-else-if="store.screen === 'end'"
+        :failed="store.examFailed"
+        :can-finale="store.canJumpToFinale"
+        @restart="store.restart()"
+        @finale="store.jumpToFinale()"
+      />
       <p v-if="store.notice" class="notice">{{ store.notice }}</p>
     </div>
     <button type="button" class="log-toggle" @click="showLog = !showLog">日志</button>

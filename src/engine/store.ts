@@ -7,6 +7,8 @@ import { SceneRunner, type SceneNode } from './script'
 import { logLines, presentableIds, toggleNote, type NoteResult } from './log'
 import { advanceHour, availableActions, endDay } from './calendar'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
+import { applyEffect } from './effects'
+import { loadSave, serializeState } from './save'
 import {
   availableSteps, chooseOption, computePersuasion, present, press, startExam,
   type ExamResult, type ExamState,
@@ -16,6 +18,15 @@ export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'exam' | 'end'
 
 const FIXED_NAMES: Record<string, string> = { lyc: '林一程', songyan: '宋砚', narration: '' }
 const SHOP_HOURS = [12, 18]
+const SAVE_KEY = 'jiudian-save'
+
+function readSlot(): string | null {
+  try {
+    return localStorage.getItem(SAVE_KEY)
+  } catch {
+    return null
+  }
+}
 
 const NOTHING: ExamResult = {
   outcome: 'ignored', lines: [], persuasion: 0, statementCleared: false, examCleared: false, failed: false,
@@ -29,6 +40,9 @@ export const useGameStore = defineStore('game', () => {
   const tick = ref(0) // bumped after every runner change so `currentNode` recomputes
   const notice = ref('')
   let onSceneEnd: (() => void) | null = null
+
+  const loadError = ref('')
+  const hasSave = ref(readSlot() !== null)
 
   // cross-examination
   const exam = ref<ExamState | null>(null)
@@ -138,6 +152,52 @@ export const useGameStore = defineStore('game', () => {
     screen.value = 'end' // the slice stops after day 2
   }
 
+  // ---- save / load / debug jump ----
+
+  function saveGame(): boolean {
+    try {
+      localStorage.setItem(SAVE_KEY, serializeState(state))
+      hasSave.value = true
+      notice.value = '已存档'
+      return true
+    } catch {
+      notice.value = '存档失败'
+      return false
+    }
+  }
+
+  function loadGame(): void {
+    const r = loadSave(readSlot())
+    if (r.ok) {
+      Object.assign(state, r.state)
+      exam.value = null
+      examFailed.value = false
+      loadError.value = ''
+      screen.value = 'hub'
+      return
+    }
+    loadError.value = r.reason === 'empty' ? '没有存档' : '存档无法读取'
+    screen.value = 'title'
+  }
+
+  // After day 2 the slice offers the finale; `exam` is only set once the finale has started.
+  const canJumpToFinale = computed(() => state.day === 3 && exam.value === null)
+
+  function jumpToFinale(): void {
+    Object.assign(state, createInitialState())
+    state.day = 5
+    state.hour = 14
+    const kit = data.debugKit
+    for (const id of kit.evidence) applyEffect(state, { kind: 'evidence', id })
+    for (const id of kit.testimony) applyEffect(state, { kind: 'testimony', id })
+    logLines(state, kit.backlog)
+    exam.value = null
+    examFailed.value = false
+    notice.value = ''
+    screen.value = 'scene'
+    playScene('finale_intro', () => startExamById('finale_act1'))
+  }
+
   // ---- cross-examination ----
 
   const examStatement = computed(() => exam.value?.def.statements[examIndex.value] ?? null)
@@ -222,6 +282,7 @@ export const useGameStore = defineStore('game', () => {
     data, state, screen, currentNode, notice, actions, canShop,
     playScene, newGame, restart, advance, note, speakerName, itemName,
     startAction, goShop, leaveShop, buy, gift, restAtHome,
+    loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,
     exam, examIndex, examFailed, examStatement, lastLinesView, argument, recordIds, recordNames,
     startExamById, examGoto, examPresent, examPress, examChoose,
   }
