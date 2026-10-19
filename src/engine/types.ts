@@ -5,7 +5,7 @@ export type Speaker = NpcId | 'lyc' | 'songyan' | 'narration'
 export type IntelId = 'phone' | 'draft' | 'trophy' | 'card' | 'attack'
 export type IntelStatus = 'unknown' | 'clean' | 'leaked'
 
-export interface Line { speaker: Speaker; text: string; tag?: string }
+export interface Line { speaker: Speaker; text: string; tag?: string; expr?: string }
 export interface LogLine extends Line { id: string; day: number; hour: number }
 
 export type LeakTrigger =

@@ -2,6 +2,9 @@ import type { Condition, Effect, GameState, LeakTrigger, Line } from './types'
 import { applyEffect } from './effects'
 import { addLog } from './log'
 import { isSlipAvailable, triggerLeak } from './flow'
+import type { TimeOfDay } from './backgrounds'
+
+export interface SceneHooks { onBackground?: (id: string, time?: TimeOfDay) => void }
 
 export type SceneNode =
   | ({ type: 'say' } & Line)
@@ -9,6 +12,7 @@ export type SceneNode =
   | { type: 'branch'; when: Condition; then: SceneNode[]; else: SceneNode[] }
   | { type: 'effect'; effects?: Effect[]; leak?: LeakTrigger }
   | { type: 'goto'; scene: string }
+  | { type: 'bg'; id: string; time?: TimeOfDay }
   | { type: 'end' }
 
 export type Scenes = Record<string, SceneNode[]>
@@ -34,7 +38,7 @@ export class SceneRunner {
   private stack: Frame[] = []
   private cur: SceneNode | null = null
 
-  constructor(private state: GameState, private scenes: Scenes) {}
+  constructor(private state: GameState, private scenes: Scenes, private hooks: SceneHooks = {}) {}
 
   start(sceneId: string): void {
     const nodes = this.scenes[sceneId]
@@ -107,6 +111,10 @@ export class SceneRunner {
           this.stack = [{ nodes, idx: 0 }]
           break
         }
+        case 'bg':
+          this.hooks.onBackground?.(node.id, node.time)
+          frame.idx += 1
+          break
         case 'end':
           this.stack = []
           return

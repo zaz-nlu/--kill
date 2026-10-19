@@ -15,7 +15,7 @@ defineEmits<{ start: []; continue: []; debugFinale: [] }>()
 </template>
 
 <style scoped>
-.title { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; color: #eee; background: #101014; }
+.title { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #eee; background: linear-gradient(#0006, #000b); text-shadow: 0 2px 8px #000; }
 h1 { font-size: 56px; letter-spacing: 12px; margin: 0 0 8px; }
 button { margin-top: 18px; padding: 12px 36px; font-size: 18px; background: #c8501e; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
 .secondary { background: #3a3a44; }

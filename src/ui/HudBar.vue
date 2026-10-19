@@ -17,7 +17,7 @@ const pace = computed(() => (props.danger >= 90 ? 'fast' : props.danger >= 60 ? 
 </template>
 
 <style scoped>
-.hud { display: flex; gap: 16px; align-items: center; padding: 8px 14px; background: #1b1b1f; color: #eee; }
+.hud { display: flex; gap: 16px; align-items: center; padding: 8px 14px; background: #1b1b1fb0; color: #eee; }
 .heart { color: #d33; margin-left: auto; animation: beat 1.2s infinite; }
 .heart.mid { animation-duration: 0.8s; }
 .heart.fast { animation-duration: 0.45s; }

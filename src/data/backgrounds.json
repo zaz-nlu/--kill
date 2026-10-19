@@ -1,0 +1,13 @@
+[
+  { "id": "title", "label": "雨夜的大厦" },
+  { "id": "office", "label": "17 层开放办公区" },
+  { "id": "meeting_b", "label": "会议室 B" },
+  { "id": "hr_office", "label": "人事办公室" },
+  { "id": "stairwell", "label": "东楼梯" },
+  { "id": "cafe", "label": "咖啡店" },
+  { "id": "store", "label": "楼下超商" },
+  { "id": "police", "label": "分局" },
+  { "id": "meeting_a", "label": "大会议室 A" },
+  { "id": "street", "label": "雨夜的街" },
+  { "id": "home", "label": "林一程的家" }
+]

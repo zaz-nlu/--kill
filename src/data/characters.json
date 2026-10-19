@@ -1,0 +1,51 @@
+{
+  "lyc": {
+    "normal": "characters/lyc/normal.webp",
+    "panic": "characters/lyc/panic.webp",
+    "angry": "characters/lyc/angry.webp",
+    "sad": "characters/lyc/sad.webp",
+    "determined": "characters/lyc/determined.webp"
+  },
+  "songyan": {
+    "normal": "characters/songyan/normal.webp",
+    "sneer": "characters/songyan/sneer.webp",
+    "impatient": "characters/songyan/impatient.webp",
+    "memory": "characters/songyan/memory.webp"
+  },
+  "boss": {
+    "normal": "characters/boss/normal.webp",
+    "sneer": "characters/boss/sneer.webp",
+    "angry": "characters/boss/angry.webp",
+    "guilty": "characters/boss/guilty.webp"
+  },
+  "suwen": {
+    "normal": "characters/suwen/normal.webp",
+    "angry": "characters/suwen/angry.webp",
+    "nervous": "characters/suwen/nervous.webp",
+    "guilty": "characters/suwen/guilty.webp"
+  },
+  "zhengcen": {
+    "normal": "characters/zhengcen/normal.webp",
+    "nervous": "characters/zhengcen/nervous.webp",
+    "angry": "characters/zhengcen/angry.webp",
+    "guilty": "characters/zhengcen/guilty.webp"
+  },
+  "shaoxy": {
+    "normal": "characters/shaoxy/normal.webp",
+    "angry": "characters/shaoxy/angry.webp",
+    "nervous": "characters/shaoxy/nervous.webp",
+    "guilty": "characters/shaoxy/guilty.webp"
+  },
+  "lucheng": {
+    "normal": "characters/lucheng/normal.webp",
+    "angry": "characters/lucheng/angry.webp",
+    "nervous": "characters/lucheng/nervous.webp",
+    "guilty": "characters/lucheng/guilty.webp"
+  },
+  "limo": {
+    "normal": "characters/limo/normal.webp",
+    "angry": "characters/limo/angry.webp",
+    "nervous": "characters/limo/nervous.webp",
+    "guilty": "characters/limo/guilty.webp"
+  }
+}

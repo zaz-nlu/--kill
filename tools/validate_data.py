@@ -50,6 +50,7 @@ def main(root):
     items = load(root, 'items.json', [])
     npcs = load(root, 'npcs.json', [])
     evidence = {e['id'] for e in load(root, 'evidence.json', [])}
+    backgrounds = {b['id'] for b in load(root, 'backgrounds.json', [])}
     testimony_list = load(root, 'testimony.json', [])
     testimony = {t['id'] for t in testimony_list}
     scenes = {}
@@ -103,6 +104,8 @@ def main(root):
                         errors.append(f"scene {sid}: unknown evidence '{e['id']}'")
                     if e['kind'] == 'testimony' and e['id'] not in testimony:
                         errors.append(f"scene {sid}: unknown testimony '{e['id']}'")
+            if t == 'bg' and node['id'] not in backgrounds:
+                errors.append(f"scene {sid}: unknown background '{node['id']}'")
             if t == 'goto' and node['scene'] not in scenes:
                 errors.append(f"scene {sid}: goto '{node['scene']}' does not exist")
             if t == 'branch':

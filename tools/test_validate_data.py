@@ -22,6 +22,7 @@ def base_data():
             {'id': 'laohan', 'name': '老韩', 'giftable': True, 'favorite': 'tea'},
             {'id': 'tang', 'name': '唐经理', 'giftable': False},
         ],
+        'backgrounds.json': [{'id': 'office', 'label': 'o'}],
         'evidence.json': [{'id': 'E01', 'name': 'e', 'desc': 'd'}],
         'testimony.json': [{'id': 'T26', 'name': 't', 'desc': 'd', 'slice': True}],
         'scenes/a.json': {
@@ -102,6 +103,15 @@ class ValidateDataTest(unittest.TestCase):
         def m(d):
             d['scenes/a.json']['a'][2]['then'][0]['tag'] = 'G1'
         self.assertNotEqual(self.run_with(m), 0)
+
+    def test_bg_node_must_name_a_known_background(self):
+        def m(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'bg', 'id': 'office'})
+        self.assertEqual(self.run_with(m), 0)
+
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'bg', 'id': 'nowhere'})
+        self.assertNotEqual(self.run_with(bad), 0)
 
 
 if __name__ == '__main__':

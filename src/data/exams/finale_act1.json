@@ -4,7 +4,7 @@
   "startPersuasion": 5,
   "onClear": "finale_act1_end",
   "wrongReply": [
-    { "speaker": "limo", "text": "你拿这个出来，是想说明什么？" }
+    { "speaker": "limo", "text": "你拿这个出来，是想说明什么？", "expr": "angry" }
   ],
   "statements": [
     {
@@ -18,7 +18,7 @@
       "steps": [
         {
           "kind": "present", "id": "s2-1", "accepts": ["E06"],
-          "reply": [{ "speaker": "limo", "text": "也许我看错了人，走廊上人影晃，西楼梯那边……" }]
+          "reply": [{ "speaker": "limo", "text": "也许我看错了人，走廊上人影晃，西楼梯那边……", "expr": "nervous" }]
         },
         {
           "kind": "press", "id": "s2-2", "after": ["s2-1"], "required": true,
@@ -29,17 +29,17 @@
         },
         {
           "kind": "present", "id": "s2-3", "accepts": ["E13"], "after": ["s2-2"],
-          "reply": [{ "speaker": "limo", "text": "……我记错了，我是从东边消防门出去的，下到 16 层借他们的洗手间。门磁早就被陆诚贴了磁铁，谁都知道。" }]
+          "reply": [{ "speaker": "limo", "text": "……我记错了，我是从东边消防门出去的，下到 16 层借他们的洗手间。门磁早就被陆诚贴了磁铁，谁都知道。", "expr": "nervous" }]
         },
         {
           "kind": "present", "id": "s2-4", "accepts": ["E15"], "after": ["s2-2"],
-          "reply": [{ "speaker": "limo", "text": "……可能是我记错了时间。" }]
+          "reply": [{ "speaker": "limo", "text": "……可能是我记错了时间。", "expr": "nervous" }]
         },
         {
           "kind": "present", "id": "s2-5", "accepts": ["T06", "T06a"], "after": ["s2-1", "s2-3", "s2-4"],
           "reply": [
-            { "speaker": "lyc", "text": "第一天，你清清楚楚说了时间，连方向都说了。一个记错的人，不会把时间和方向记得这么清楚。" },
-            { "speaker": "limo", "text": "……我可能是记错了。" }
+            { "speaker": "lyc", "text": "第一天，你清清楚楚说了时间，连方向都说了。一个记错的人，不会把时间和方向记得这么清楚。", "expr": "determined" },
+            { "speaker": "limo", "text": "……我可能是记错了。", "expr": "guilty" }
           ],
           "replyFor": {
             "T06a": [
@@ -74,8 +74,8 @@
         {
           "kind": "present", "id": "s4-2", "accepts": ["E03"], "after": ["s4-1"],
           "reply": [
-            { "speaker": "lyc", "text": "同一份日志里，我的手机连上是 21:11，打印日志是 21:11。差几分钟？一分钟都没差。" },
-            { "speaker": "limo", "text": "那……是有人把宋砚的手机带进了会议室 B，想栽赃我！" }
+            { "speaker": "lyc", "text": "同一份日志里，我的手机连上是 21:11，打印日志是 21:11。差几分钟？一分钟都没差。", "expr": "determined" },
+            { "speaker": "limo", "text": "那……是有人把宋砚的手机带进了会议室 B，想栽赃我！", "expr": "angry" }
           ]
         },
         {
@@ -95,7 +95,7 @@
           "kind": "press", "id": "s5-1",
           "reply": [
             { "speaker": "lyc", "text": "你为什么总想让我怀疑孟遥？" },
-            { "speaker": "limo", "text": "我只是……不想你被冤枉。" }
+            { "speaker": "limo", "text": "我只是……不想你被冤枉。", "expr": "guilty" }
           ]
         }
       ]

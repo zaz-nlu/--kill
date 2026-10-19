@@ -1,14 +1,16 @@
 {
   "day2_desk": [
+    { "type": "bg", "id": "office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "【9 月 16 日 09:20】黎默从斜后方探过头来，丢给林一程一个包子。" },
     { "type": "say", "speaker": "limo", "text": "吃了没。" },
     { "type": "say", "speaker": "narration", "text": "路过人事办公室的封条，黎默嘟囔了一句。" },
     { "type": "say", "speaker": "limo", "text": "封得真严。听说两年前出事的时候，也是这样封了好几天。", "tag": "G2" },
     { "type": "say", "speaker": "lyc", "text": "两年前？" },
-    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。" },
+    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。", "expr": "nervous" },
     { "type": "goto", "scene": "day2_pantry" }
   ],
   "day2_pantry": [
+    { "type": "bg", "id": "office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "【09:40 茶水间】黎默递来一杯咖啡。" },
     { "type": "say", "speaker": "limo", "text": "昨天没睡好吧？" },
     {
@@ -25,6 +27,7 @@
     { "type": "end" }
   ],
   "day2_lunch": [
+    { "type": "bg", "id": "office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "【12:00 午饭】黎默端着餐盘坐过来。他解锁手机时，壁纸是一座海岛；背包拉链上挂着一个小银鱼铃铛。他的餐盘边放着一包鱼形小饼干，有人伸手他会拍开。" },
     { "type": "say", "speaker": "limo", "text": "查到什么了？要不要我帮你一起想？" },
     {
@@ -65,6 +68,7 @@
     { "type": "end" }
   ],
   "act_2_3": [
+    { "type": "bg", "id": "office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "你帮邵晓阳修了一个前端 bug。" },
     { "type": "say", "speaker": "shaoxy", "text": "……谢了。" },
     { "type": "say", "speaker": "narration", "text": "他的手机放在桌上，锁屏是一只橘猫。" },
@@ -73,6 +77,7 @@
     { "type": "end" }
   ],
   "act_2_6": [
+    { "type": "bg", "id": "street", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "你去了 1 楼吸烟区，陆诚正靠着墙。" },
     {
       "type": "branch",
@@ -89,6 +94,7 @@
     { "type": "end" }
   ],
   "act_2_9": [
+    { "type": "bg", "id": "hr_office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "你找孟遥聊了聊。" },
     {
       "type": "branch",

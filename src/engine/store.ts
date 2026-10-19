@@ -8,6 +8,7 @@ import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from
 import { advanceHour, availableActions, endDay } from './calendar'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
+import type { TimeOfDay } from './backgrounds'
 import { loadSave, serializeState } from './save'
 import {
   availableSteps, chooseOption, computePersuasion, present, press, startExam,
@@ -16,8 +17,18 @@ import {
 
 export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'exam' | 'end'
 
+export interface StageSlot { id: string; expr: string }
+export interface StageState {
+  bg: string
+  time: TimeOfDay | null           // null = follow the clock
+  left: StageSlot | null
+  right: StageSlot | null
+  side: 'left' | 'right' | null    // who is speaking; null = narration
+}
+
 const FIXED_NAMES: Record<string, string> = { lyc: '林一程', songyan: '宋砚', narration: '' }
 const SHOP_HOURS = [12, 18]
+const EXAM_WITNESS: Speaker = 'limo'
 const SAVE_KEY = 'jiudian-save'
 
 function readSlot(): string | null {
@@ -58,10 +69,46 @@ export const useGameStore = defineStore('game', () => {
   const actions = computed(() => availableActions(state, data.actions))
   const canShop = computed(() => SHOP_HOURS.includes(state.hour))
 
-  // After every runner change: if the scene just ended, run its follow-up once.
+  // ---- stage: background + the two characters on screen ----
+
+  const stage = reactive<StageState>({ bg: 'office', time: null, left: null, right: null, side: null })
+
+  function clearActors(): void {
+    stage.left = null
+    stage.right = null
+    stage.side = null
+  }
+
+  function setBackground(id: string, time: TimeOfDay | null = null): void {
+    if (id !== stage.bg || time !== stage.time) clearActors() // a new place: the actors leave
+    stage.bg = id
+    stage.time = time
+  }
+
+  // The protagonist stands on the left, everyone else on the right; narration dims nobody.
+  function putOnStage(speaker: Speaker, expr = 'normal'): void {
+    if (speaker === 'narration') {
+      stage.side = null
+    } else if (speaker === 'lyc') {
+      stage.left = { id: speaker, expr }
+      stage.side = 'left'
+    } else {
+      stage.right = { id: speaker, expr }
+      stage.side = 'right'
+    }
+  }
+
+  function toHub(): void {
+    screen.value = 'hub'
+    setBackground('office')
+  }
+
+  // After every runner change: sync the stage, and if the scene just ended, run its follow-up once.
   function settle(): void {
     tick.value += 1
-    if (runner.value && runner.value.current() === null && onSceneEnd) {
+    const node = runner.value ? runner.value.current() : null
+    if (node && node.type === 'say') putOnStage(node.speaker, node.expr)
+    if (runner.value && node === null && onSceneEnd) {
       const cb = onSceneEnd
       onSceneEnd = null
       cb()
@@ -70,7 +117,8 @@ export const useGameStore = defineStore('game', () => {
 
   function playScene(sceneId: string, done?: () => void): void {
     onSceneEnd = done ?? null
-    runner.value = new SceneRunner(state, data.scenes)
+    clearActors()
+    runner.value = new SceneRunner(state, data.scenes, { onBackground: setBackground })
     runner.value.start(sceneId)
     settle()
   }
@@ -85,9 +133,7 @@ export const useGameStore = defineStore('game', () => {
       endDay(state, { rested: false }) // day 1 -> day 2
       playScene('day2_desk', () => {
         state.hour = 12
-        playScene('day2_lunch', () => {
-          screen.value = 'hub'
-        })
+        playScene('day2_lunch', toHub)
       })
     })
   }
@@ -121,7 +167,7 @@ export const useGameStore = defineStore('game', () => {
     playScene(a.scene, () => {
       advanceHour(state, a.costHours)
       if (giftItemId && a.npc) gift(a.npc, giftItemId)
-      screen.value = 'hub'
+      toHub()
     })
   }
 
@@ -129,10 +175,11 @@ export const useGameStore = defineStore('game', () => {
     if (!canShop.value) return
     openShop(state)
     screen.value = 'shop'
+    setBackground('store')
   }
 
   function leaveShop(): void {
-    screen.value = 'hub'
+    toHub()
   }
 
   function buy(itemId: string): BuyResult {
@@ -173,7 +220,7 @@ export const useGameStore = defineStore('game', () => {
       exam.value = null
       examFailed.value = false
       loadError.value = ''
-      screen.value = 'hub'
+      toHub()
       return
     }
     loadError.value = r.reason === 'empty' ? '没有存档' : '存档无法读取'
@@ -233,17 +280,27 @@ export const useGameStore = defineStore('game', () => {
     examFailed.value = false
     lastLines.value = []
     screen.value = 'exam'
+    setBackground('meeting_a')
+    resetExamStage()
+  }
+
+  // The witness stands alone on the right between replies.
+  function resetExamStage(): void {
+    clearActors()
+    stage.right = { id: EXAM_WITNESS, expr: 'normal' }
   }
 
   function examGoto(index: number): void {
     const n = exam.value?.def.statements.length ?? 0
     examIndex.value = Math.max(0, Math.min(n - 1, index))
+    resetExamStage()
   }
 
   function afterExamStep(result: ExamResult): ExamResult {
     if (screen.value !== 'exam') return result
     logLines(state, result.lines)
     lastLines.value = result.lines
+    for (const l of result.lines) putOnStage(l.speaker, l.expr)
     if (result.failed) {
       examFailed.value = true
       screen.value = 'end'
@@ -277,7 +334,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   return {
-    data, state, screen, currentNode, notice, actions, canShop,
+    data, state, screen, stage, currentNode, notice, actions, canShop,
     playScene, newGame, restart, advance, note, speakerName, itemName,
     startAction, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,

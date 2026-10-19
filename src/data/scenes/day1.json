@@ -1,10 +1,12 @@
 {
   "day1_wechat": [
+    { "type": "bg", "id": "office", "time": "day" },
     { "type": "say", "speaker": "narration", "text": "【9 月 15 日 14:30】手机震了一下，是黎默的微信。" },
     { "type": "say", "speaker": "limo", "text": "听说你被条子带走了？别被他们套话，嘴闭紧。……宋砚得罪的人多了，不止你一个。她手里攥着多少人的把柄，你想过没有？", "tag": "G1" },
     { "type": "goto", "scene": "day1_coffee" }
   ],
   "day1_coffee": [
+    { "type": "bg", "id": "cafe", "time": "night" },
     {
       "type": "effect",
       "effects": [
