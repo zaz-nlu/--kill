@@ -55,3 +55,22 @@ export interface GameState {
   giftsGiven: Record<string, string[]> // NpcId -> item ids already given
   giftedToday: NpcId[]
 }
+
+export type Step =
+  | { kind: 'present'; id: string; accepts: string[]; after?: string[]; required?: boolean; reply: Line[];
+      replyFor?: Record<string, Line[]> }          // when the presented id has an entry here, use it instead of reply
+  | { kind: 'press'; id: string; after?: string[]; required?: boolean; reply: Line[] }
+  | { kind: 'argument'; id: string; after?: string[]; required?: boolean; prompt: string;
+      options: { text: string; correct: boolean; reply: Line[] }[] }
+
+export interface Statement { id: string; text: string; steps: Step[] }
+
+export interface ExamDef {
+  id: string
+  title: string
+  startPersuasion: number
+  statements: Statement[]
+  wrongReply: Line[]
+  intro?: string
+  onClear?: string
+}
