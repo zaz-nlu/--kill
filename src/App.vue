@@ -9,6 +9,8 @@ import ChoiceList from './ui/ChoiceList.vue'
 import BacklogPanel from './ui/BacklogPanel.vue'
 import HubScreen from './ui/HubScreen.vue'
 import ShopPanel from './ui/ShopPanel.vue'
+import ExamScreen from './ui/ExamScreen.vue'
+import EndScreen from './ui/EndScreen.vue'
 
 const store = useGameStore()
 const showLog = ref(false)
@@ -60,7 +62,23 @@ function onNote(lineId: string) {
         @buy="store.buy($event)"
         @leave="store.leaveShop()"
       />
-      <p v-else-if="store.screen === 'end'" class="done">切片到此结束。</p>
+      <ExamScreen
+        v-else-if="store.screen === 'exam' && store.examStatement && store.exam"
+        :statement="store.examStatement"
+        :index="store.examIndex"
+        :total="store.exam.def.statements.length"
+        :persuasion="store.exam.persuasion"
+        :last-lines="store.lastLinesView"
+        :record-ids="store.recordIds"
+        :names="store.recordNames"
+        :argument="store.argument"
+        @prev="store.examGoto(store.examIndex - 1)"
+        @next="store.examGoto(store.examIndex + 1)"
+        @press="store.examPress()"
+        @present="store.examPresent($event)"
+        @choose="store.examChoose($event.stepId, $event.optionIndex)"
+      />
+      <EndScreen v-else-if="store.screen === 'end'" :failed="store.examFailed" @restart="store.restart()" />
       <p v-if="store.notice" class="notice">{{ store.notice }}</p>
     </div>
     <button type="button" class="log-toggle" @click="showLog = !showLog">日志</button>
