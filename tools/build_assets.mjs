@@ -71,5 +71,20 @@ if (existsSync(bgSrc)) {
   }
 }
 
+// Evidence: ../evidence/E01_<name>.png -> src/assets/evidence/E01.webp
+const evSrc = resolve(root, '..', 'evidence')
+const evOut = join(root, 'src', 'assets', 'evidence')
+let evCount = 0
+if (existsSync(evSrc)) {
+  rmSync(evOut, { recursive: true, force: true })
+  mkdirSync(evOut, { recursive: true })
+  for (const name of readdirSync(evSrc)) {
+    const m = /^(E\d{2})_.*\.png$/.exec(name)
+    if (!m) continue
+    await sharp(join(evSrc, name)).resize({ width: 512 }).webp({ quality: 85, alphaQuality: 90 }).toFile(join(evOut, `${m[1]}.webp`))
+    evCount += 1
+  }
+}
+
 writeFileSync(join(root, 'src', 'data', 'characters.json'), JSON.stringify(manifest, null, 2) + '\n')
-console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds`)
+console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds, ${evCount} evidence images`)

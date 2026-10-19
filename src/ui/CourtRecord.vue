@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { resolveEvidenceImage } from '../engine/evidenceArt'
+
 defineProps<{ ids: string[]; names: Record<string, string>; quotes: { id: string; text: string }[] }>()
 defineEmits<{ pick: [id: string] }>()
 </script>
@@ -9,7 +11,8 @@ defineEmits<{ pick: [id: string] }>()
       <h3>证物与证言</h3>
       <p v-if="ids.length === 0">还没有可以出示的东西</p>
       <button v-for="id in ids" :key="id" type="button" :data-testid="'record-' + id" @click="$emit('pick', id)">
-        {{ names[id] ?? id }}
+        <img v-if="resolveEvidenceImage(id)" class="thumb" :src="resolveEvidenceImage(id)!" alt="">
+        <span>{{ names[id] ?? id }}</span>
       </button>
     </section>
     <section>
@@ -33,4 +36,6 @@ ul { list-style: none; padding: 0; margin: 0; }
 li { margin: 3px 0; }
 button { padding: 6px 12px; background: #2a2a2a; color: #eee; border: 1px solid #777; border-radius: 4px; cursor: pointer; text-align: left; }
 button:hover { border-color: #c8501e; }
+section:first-child button { display: inline-flex; align-items: center; gap: 8px; margin: 0 6px 6px 0; }
+.thumb { width: 44px; height: 44px; object-fit: contain; }
 </style>
