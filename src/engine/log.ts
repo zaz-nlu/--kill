@@ -46,7 +46,11 @@ export function visibleLog(state: GameState): VisibleLogLine[] {
 
 export function presentableIds(state: GameState): string[] {
   const ids = new Set<string>([...state.evidence, ...state.testimony])
-  for (const l of state.backlog) if (l.tag) ids.add(l.tag)
+  // Any logged line can be presented; a slip is indistinguishable from a plain line, so a plain line is just wrong evidence.
+  for (const l of state.backlog) {
+    ids.add(l.id)
+    if (l.tag) ids.add(l.tag)
+  }
   return [...ids]
 }
 
@@ -55,4 +59,17 @@ export function noticedSlip(state: GameState): boolean {
     const tag = state.backlog.find(l => l.id === id)?.tag
     return tag !== undefined && SLIP_TAGS.has(tag)
   })
+}
+
+// Every logged line, shaped identically whether or not it carries a hidden tag (spec 6.9: no highlight).
+export function quoteList(state: GameState): { id: string; text: string }[] {
+  const seen = new Set<string>()
+  const out: { id: string; text: string }[] = []
+  for (const line of state.backlog) {
+    const id = line.tag ?? line.id
+    if (seen.has(id)) continue
+    seen.add(id)
+    out.push({ id, text: line.text })
+  }
+  return out
 }

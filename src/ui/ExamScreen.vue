@@ -11,6 +11,7 @@ defineProps<{
   lastLines: { name: string; text: string }[]
   recordIds: string[]
   names: Record<string, string>
+  quotes: { id: string; text: string }[]
   argument: { stepId: string; prompt: string; options: string[] } | null
 }>()
 const emit = defineEmits<{
@@ -58,7 +59,7 @@ function present(id: string) {
       <button type="button" data-testid="open-record" @click="showRecord = !showRecord">出示</button>
       <button type="button" data-testid="next" :disabled="index >= total - 1" @click="emit('next')">下一句</button>
     </div>
-    <CourtRecord v-if="showRecord" :ids="recordIds" :names="names" @pick="present" />
+    <CourtRecord v-if="showRecord" :ids="recordIds" :names="names" :quotes="quotes" @pick="present" />
   </section>
 </template>
 

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { createInitialState } from '../src/engine/state'
-import { addLog, logLines, toggleNote, visibleLog, presentableIds, noticedSlip } from '../src/engine/log'
+import { addLog, logLines, toggleNote, visibleLog, presentableIds, noticedSlip, quoteList } from '../src/engine/log'
 
 describe('dialogue log', () => {
   it('assigns sequential ids and stamps day/hour', () => {
@@ -69,6 +69,24 @@ describe('dialogue log', () => {
     const s = createInitialState()
     addLog(s, { speaker: 'limo', text: '你说手机不见了？' })
     expect(presentableIds(s)).not.toContain('T26')
+  })
+
+  it('quoteList offers every logged line, tagged or not, in the same shape', () => {
+    const s = createInitialState()
+    addLog(s, { speaker: 'limo', text: '手机别是已经沉海河了吧', tag: 'T26' })
+    addLog(s, { speaker: 'lyc', text: '嗯。' })
+    const q = quoteList(s)
+    expect(q).toEqual([
+      { id: 'T26', text: '手机别是已经沉海河了吧' },
+      { id: 'L2', text: '嗯。' },
+    ])
+    expect(Object.keys(q[0])).toEqual(Object.keys(q[1]))
+  })
+
+  it('any logged line is presentable (an untagged one is simply wrong evidence)', () => {
+    const s = createInitialState()
+    addLog(s, { speaker: 'lyc', text: '嗯。' })
+    expect(presentableIds(s)).toContain('L1')
   })
 
   it('noticedSlip becomes true only after noting a slip line', () => {

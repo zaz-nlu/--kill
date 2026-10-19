@@ -4,7 +4,7 @@ import type { GameState, Line, NpcId, Speaker } from './types'
 import { createInitialState } from './state'
 import { loadData } from './data'
 import { SceneRunner, type SceneNode } from './script'
-import { logLines, presentableIds, toggleNote, type NoteResult } from './log'
+import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from './log'
 import { advanceHour, availableActions, endDay } from './calendar'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
@@ -211,21 +211,19 @@ export const useGameStore = defineStore('game', () => {
     return { stepId: step.id, prompt: step.prompt, options: step.options.map(o => o.text) }
   })
 
-  const recordIds = computed(() => presentableIds(state))
+  // Evidence and testimony the player actually holds. Quotes are listed separately and never named.
+  const recordIds = computed(() => [...new Set([...state.evidence, ...state.testimony])])
 
   const recordNames = computed(() => {
     const out: Record<string, string> = {}
     for (const id of recordIds.value) {
       const def = data.evidence.find(e => e.id === id) ?? data.testimony.find(t => t.id === id)
-      if (def) {
-        out[id] = def.name
-        continue
-      }
-      const quote = state.backlog.find(l => l.tag === id)
-      out[id] = `原话：${(quote?.text ?? id).slice(0, 14)}`
+      out[id] = def ? def.name : id
     }
     return out
   })
+
+  const quotes = computed(() => quoteList(state))
 
   function startExamById(id: string): void {
     const def = data.exams[id]
@@ -283,7 +281,7 @@ export const useGameStore = defineStore('game', () => {
     playScene, newGame, restart, advance, note, speakerName, itemName,
     startAction, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,
-    exam, examIndex, examFailed, examStatement, lastLinesView, argument, recordIds, recordNames,
+    exam, examIndex, examFailed, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     startExamById, examGoto, examPresent, examPress, examChoose,
   }
 })

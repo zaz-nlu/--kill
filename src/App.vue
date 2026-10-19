@@ -78,6 +78,7 @@ function onNote(lineId: string) {
         :last-lines="store.lastLinesView"
         :record-ids="store.recordIds"
         :names="store.recordNames"
+        :quotes="store.quotes"
         :argument="store.argument"
         @prev="store.examGoto(store.examIndex - 1)"
         @next="store.examGoto(store.examIndex + 1)"

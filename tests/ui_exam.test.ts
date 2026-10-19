@@ -18,6 +18,7 @@ function examProps(extra: Record<string, unknown> = {}) {
     lastLines: [{ name: '黎默', text: '也许我看错了人。' }],
     recordIds: ['E06', 'T06'],
     names: { E06: '电梯楼层日志', T06: '黎默的证词' },
+    quotes: [{ id: 'T26', text: '手机别是已经沉海河了吧' }, { id: 'L9', text: '嗯。' }],
     argument: null,
     ...extra,
   }
@@ -48,6 +49,9 @@ describe('ExamScreen', () => {
     await w.find('[data-testid="open-record"]').trigger('click')
     await w.find('[data-testid="record-E06"]').trigger('click')
     expect(w.emitted('present')?.[0]).toEqual(['E06'])
+    await w.find('[data-testid="open-record"]').trigger('click')
+    await w.find('[data-testid="quote-T26"]').trigger('click')
+    expect(w.emitted('present')?.[1]).toEqual(['T26'])
   })
 
   it('renders an argument step and emits the chosen option', async () => {
@@ -61,10 +65,23 @@ describe('ExamScreen', () => {
 
 describe('CourtRecord', () => {
   it('lists the items by name and emits pick', async () => {
-    const w = mount(CourtRecord, { props: { ids: ['E06', 'T06'], names: { E06: '电梯楼层日志', T06: '黎默的证词' } } })
+    const quotes = [{ id: 'T26', text: '手机别是已经沉海河了吧' }, { id: 'L9', text: '嗯。' }]
+    const w = mount(CourtRecord, { props: { ids: ['E06', 'T06'], names: { E06: '电梯楼层日志', T06: '黎默的证词' }, quotes } })
     expect(w.text()).toContain('电梯楼层日志')
     await w.find('[data-testid="record-T06"]').trigger('click')
     expect(w.emitted('pick')?.[0]).toEqual(['T06'])
+    await w.find('[data-testid="quote-L9"]').trigger('click')
+    expect(w.emitted('pick')?.[1]).toEqual(['L9'])
+  })
+
+  it('shows every quote the same way: no marker, no class, nothing that tells a slip from a plain line', () => {
+    const quotes = [{ id: 'T26', text: '手机别是已经沉海河了吧' }, { id: 'L9', text: '嗯。' }]
+    const w = mount(CourtRecord, { props: { ids: [], names: {}, quotes } })
+    const a = w.find('[data-testid="quote-T26"]')
+    const b = w.find('[data-testid="quote-L9"]')
+    expect(a.classes()).toEqual(b.classes())
+    expect(a.element.tagName).toBe(b.element.tagName)
+    expect(w.html()).not.toContain('黎默的话')
   })
 })
 
@@ -153,13 +170,22 @@ describe('store: finale act 1', () => {
     expect(store.examStatement?.id).toBe('s1')
   })
 
-  it('names the record entries: evidence by name, quotes by their text', () => {
+  it('lists evidence and testimony by name, and quotes (tagged or not) by their text', () => {
     const store = armed()
     expect(store.recordNames.E06).toBe('电梯楼层日志')
-    expect(store.recordNames.T06).toBeDefined()
+    expect(store.recordIds).not.toContain('Q-light')
     store.examGoto(2)
     store.examPress()
-    expect(store.recordIds).toContain('Q-light')
-    expect(store.recordNames['Q-light']).toContain('原话')
+    const light = store.quotes.find(q => q.id === 'Q-light')
+    expect(light?.text).toContain('屏幕的光')
+    expect(store.quotes.every(q => Object.keys(q).sort().join() === 'id,text')).toBe(true)
+  })
+
+  it('never names a slip: a T26 line is only ever plain text in the record', () => {
+    const store = useGameStore()
+    logLines(store.state, [{ speaker: 'limo', text: '手机别是已经沉海河了吧', tag: 'T26' }])
+    expect(store.recordIds).not.toContain('T26')
+    expect(Object.keys(store.recordNames)).not.toContain('T26')
+    expect(store.quotes.some(q => q.id === 'T26' && q.text.includes('沉海河'))).toBe(true)
   })
 })
