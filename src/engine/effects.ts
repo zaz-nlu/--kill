@@ -1,4 +1,5 @@
 import type { Effect, GameState } from './types'
+import { learnIntel } from './flow'
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v))
 
@@ -29,6 +30,7 @@ export function applyEffect(state: GameState, e: Effect): void {
       state.flags[e.key] = e.value
       break
     case 'learnIntel':
+      learnIntel(state, e.intel)
       break
   }
 }
