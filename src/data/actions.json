@@ -1,5 +1,38 @@
 [
-  { "id": "2-3", "label": "帮邵晓阳修一个前端 bug", "location": "外包区", "days": [2], "maxHour": 17, "scene": "act_2_3", "costHours": 1 },
-  { "id": "2-6", "label": "去 1 楼吸烟区找陆诚", "location": "1 楼", "days": [2], "maxHour": 17, "scene": "act_2_6", "costHours": 1 },
-  { "id": "2-9", "label": "找孟遥聊", "location": "人事区", "days": [2], "maxHour": 17, "scene": "act_2_9", "costHours": 1 }
+  {
+    "id": "2-3",
+    "label": "帮邵晓阳修一个前端 bug",
+    "location": "外包区",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "scene": "act_2_3",
+    "costHours": 1,
+    "npc": "shaoxy"
+  },
+  {
+    "id": "2-6",
+    "label": "去 1 楼吸烟区找陆诚",
+    "location": "1 楼",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "scene": "act_2_6",
+    "costHours": 1,
+    "npc": "lucheng"
+  },
+  {
+    "id": "2-9",
+    "label": "找孟遥聊",
+    "location": "人事区",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "scene": "act_2_9",
+    "costHours": 1,
+    "npc": "mengyao"
+  }
 ]

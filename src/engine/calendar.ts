@@ -1,4 +1,4 @@
-import type { GameState } from './types'
+import type { GameState, NpcId } from './types'
 
 export interface ActionDef {
   id: string
@@ -10,6 +10,7 @@ export interface ActionDef {
   requiresEvidence?: string[]
   scene: string
   costHours: number
+  npc?: NpcId   // who the action talks to; a gift can be attached to it
 }
 
 export function advanceHour(state: GameState, n = 1): void {

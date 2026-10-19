@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import type { ActionDef } from '../engine/calendar'
+import type { Item } from '../engine/types'
+import GiftPicker from './GiftPicker.vue'
+
+defineProps<{ actions: ActionDef[]; canShop: boolean; inventory: Record<string, number>; items: Item[] }>()
+const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; rest: [] }>()
+
+const picking = ref<string | null>(null)              // action id whose gift picker is open
+const chosenGift = reactive<Record<string, string>>({}) // action id -> item id
+
+function pick(actionId: string, itemId: string) {
+  chosenGift[actionId] = itemId
+  picking.value = null
+}
+
+function run(actionId: string) {
+  const gift = chosenGift[actionId]
+  if (gift) emit('action', actionId, gift)
+  else emit('action', actionId)
+  delete chosenGift[actionId]
+}
+</script>
+
+<template>
+  <section class="hub">
+    <h2>接下来做什么？</h2>
+    <ul>
+      <li v-for="a in actions" :key="a.id">
+        <button type="button" :data-testid="'action-' + a.id" @click="run(a.id)">{{ a.label }}</button>
+        <template v-if="a.npc">
+          <button type="button" class="gift" :data-testid="'gift-' + a.id" @click="picking = picking === a.id ? null : a.id">
+            送礼{{ chosenGift[a.id] ? '（已选）' : '' }}
+          </button>
+          <GiftPicker v-if="picking === a.id" :inventory="inventory" :items="items" @pick="pick(a.id, $event)" />
+        </template>
+      </li>
+    </ul>
+    <div class="bar">
+      <button v-if="canShop" type="button" data-testid="go-shop" @click="emit('shop')">去超商</button>
+      <button type="button" data-testid="rest" @click="emit('rest')">回家休息</button>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.hub { margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
+ul { list-style: none; padding: 0; }
+li { margin: 8px 0; }
+button { padding: 8px 14px; margin-right: 8px; cursor: pointer; }
+.gift { font-size: 13px; }
+.bar { margin-top: 14px; }
+</style>
