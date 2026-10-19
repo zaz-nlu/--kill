@@ -1,0 +1,12 @@
+[
+  { "id": "jianbing", "name": "煎饼果子（加两个蛋）", "price": 10 },
+  { "id": "hongtashan", "name": "红塔山", "price": 22 },
+  { "id": "ruanzhonghua", "name": "软中华", "price": 65 },
+  { "id": "iced_americano", "name": "冰美式", "price": 12 },
+  { "id": "cat_stick", "name": "猫条", "price": 15 },
+  { "id": "fruit_box", "name": "切好的水果盒", "price": 18 },
+  { "id": "redbull", "name": "红牛", "price": 7 },
+  { "id": "jasmine_tea", "name": "茉莉花茶", "price": 20 },
+  { "id": "milk_tea", "name": "奶茶", "price": 15 },
+  { "id": "fish_cookie", "name": "小鱼饼干", "price": 6 }
+]

@@ -1,0 +1,13 @@
+[
+  { "id": "laowang", "name": "老王", "giftable": true, "favorite": "jianbing" },
+  { "id": "lucheng", "name": "陆诚", "giftable": true, "favorite": "hongtashan", "minefield": ["milk_tea"] },
+  { "id": "shaoxy", "name": "邵晓阳", "giftable": true, "favorite": "cat_stick", "minefield": ["hongtashan", "ruanzhonghua"] },
+  { "id": "suwen", "name": "苏闻", "giftable": true, "favorite": "iced_americano", "minefield": ["redbull"] },
+  { "id": "mengyao", "name": "孟遥", "giftable": true, "favorite": "fruit_box", "minefield": ["hongtashan", "ruanzhonghua"] },
+  { "id": "zhengcen", "name": "郑岑", "giftable": true, "favorite": "ruanzhonghua", "minefield": ["hongtashan"] },
+  { "id": "boss", "name": "贺川", "giftable": true, "favorite": "redbull", "minefield": ["milk_tea"] },
+  { "id": "laohan", "name": "老韩", "giftable": true, "favorite": "jasmine_tea", "minefield": ["hongtashan", "ruanzhonghua"] },
+  { "id": "xiaoxu", "name": "小许", "giftable": true, "favorite": "milk_tea" },
+  { "id": "limo", "name": "黎默", "giftable": true, "favorite": "fish_cookie", "minefield": ["milk_tea", "redbull"] },
+  { "id": "tang", "name": "唐经理", "giftable": false }
+]
