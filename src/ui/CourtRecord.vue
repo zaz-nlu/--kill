@@ -28,7 +28,7 @@ defineEmits<{ pick: [id: string] }>()
 </template>
 
 <style scoped>
-.record { margin: 10px 0; padding: 10px; background: #1a1a1e; border: 1px solid #666; border-radius: 6px; max-height: 40vh; overflow-y: auto; }
+.record { margin: 10px 0; padding: 10px; background: #1a1a1e; border: 1px solid #666; border-radius: 6px; max-height: 30vh; overflow-y: auto; flex: none; }
 section + section { margin-top: 10px; }
 h3 { margin: 0 0 6px; font-size: 14px; color: #aaa; }
 p { margin: 0; color: #999; }

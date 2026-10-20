@@ -130,11 +130,17 @@ function onNote(lineId: string) {
 </template>
 
 <style>
-html, body { margin: 0; background: #0c0c0f; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+* { scrollbar-width: thin; scrollbar-color: #5a5a66 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #5a5a66; border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #c8501e; }
+html, body { height: 100%; margin: 0; overflow: hidden; background: #0c0c0f; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
 .game { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: #eee; pointer-events: none; }
 .game > * { pointer-events: auto; }
 .body { margin-top: auto; }
-.panel { max-height: 62vh; overflow-y: auto; background: #000b; margin: 0 12px; border-radius: 6px; }
+.panel { display: flex; flex-direction: column; max-height: 62vh; overflow: hidden; background: #000b; margin: 0 12px; border-radius: 6px; }
+.panel > * { min-height: 0; }
 .done { text-align: center; color: #888; }
 .notice { text-align: center; color: #e8a070; }
 .log-toggle { position: fixed; right: 14px; top: 8px; }

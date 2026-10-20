@@ -16,7 +16,7 @@ const label = (speaker: string) => props.names?.[speaker] ?? (speaker === 'narra
       <button type="button" data-testid="tab-log" :class="{ on: tab === 'log' }" @click="tab = 'log'">日志</button>
       <button type="button" data-testid="tab-notes" :class="{ on: tab === 'notes' }" @click="tab = 'notes'">笔记</button>
     </nav>
-    <ul>
+    <ul class="scroll" data-testid="scroll">
       <li v-for="l in shown" :key="l.id">
         <span v-if="label(l.speaker)" class="who">{{ label(l.speaker) }}：</span>{{ l.text }}
         <button type="button" class="note" :data-testid="'note-' + l.id" @click="$emit('note', l.id)">
@@ -28,8 +28,9 @@ const label = (speaker: string) => props.names?.[speaker] ?? (speaker === 'narra
 </template>
 
 <style scoped>
-.backlog { margin: 12px; padding: 10px 14px; max-height: 45vh; overflow-y: auto; background: #181818; color: #ddd; border: 1px solid #555; border-radius: 6px; }
-nav { display: flex; gap: 8px; margin-bottom: 8px; }
+.backlog { position: fixed; top: 44px; right: 12px; z-index: 20; display: flex; flex-direction: column; width: min(560px, 92vw); max-height: 70vh; padding: 10px 14px; background: #181818ee; color: #ddd; border: 1px solid #555; border-radius: 6px; }
+nav { display: flex; gap: 8px; margin-bottom: 8px; flex: none; }
+.scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 6px; }
 nav button.on { background: #c8501e; color: #fff; }
 ul { list-style: none; padding: 0; margin: 0; }
 li { padding: 6px 0; border-bottom: 1px solid #2a2a2a; line-height: 1.6; }

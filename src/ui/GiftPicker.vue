@@ -20,7 +20,7 @@ const owned = computed(() =>
 </template>
 
 <style scoped>
-.picker { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.picker { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; max-height: 110px; overflow-y: auto; }
 p { margin: 0; color: #999; }
 button { padding: 4px 10px; background: #2a2a2a; color: #eee; border: 1px solid #666; border-radius: 4px; cursor: pointer; }
 </style>

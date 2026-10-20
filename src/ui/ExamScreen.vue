@@ -36,6 +36,7 @@ function present(id: string) {
       <span>说服力</span>
       <span v-for="n in persuasion" :key="n" class="pip" data-testid="pip" />
     </div>
+    <div class="scroll" data-testid="scroll">
     <div class="statement">
       <small>{{ index + 1 }} / {{ total }}</small>
       <p>{{ statement.text }}</p>
@@ -53,6 +54,7 @@ function present(id: string) {
         @click="emit('choose', { stepId: argument.stepId, optionIndex: i })"
       >{{ o }}</button>
     </div>
+    </div>
     <div class="bar">
       <button type="button" data-testid="prev" :disabled="index <= 0" @click="emit('prev')">上一句</button>
       <button type="button" data-testid="press" @click="emit('press')">追问</button>
@@ -64,8 +66,9 @@ function present(id: string) {
 </template>
 
 <style scoped>
-.exam { margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
-.meter { display: flex; gap: 6px; align-items: center; }
+.exam { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
+.meter { display: flex; gap: 6px; align-items: center; flex: none; }
+.scroll { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding-right: 6px; }
 .pip { width: 14px; height: 14px; background: #c8501e; border-radius: 3px; }
 .statement { margin: 14px 0; padding: 12px; background: #1e2a3a; border-left: 4px solid #4aa3ff; }
 .statement p { margin: 4px 0 0; font-size: 19px; line-height: 1.7; }
@@ -73,7 +76,7 @@ function present(id: string) {
 .replies b { color: #e8a070; }
 .argument { margin: 10px 0; }
 .argument button { display: block; margin: 6px 0; }
-.bar { display: flex; gap: 10px; margin-top: 10px; }
+.bar { display: flex; gap: 10px; flex: none; margin-top: 10px; }
 button { padding: 8px 16px; cursor: pointer; }
 button:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>

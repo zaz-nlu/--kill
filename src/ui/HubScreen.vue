@@ -26,6 +26,7 @@ function run(actionId: string) {
 <template>
   <section class="hub">
     <h2>接下来做什么？</h2>
+    <div class="scroll" data-testid="scroll">
     <ul>
       <li v-for="a in actions" :key="a.id">
         <button type="button" :data-testid="'action-' + a.id" @click="run(a.id)">{{ a.label }}</button>
@@ -37,6 +38,7 @@ function run(actionId: string) {
         </template>
       </li>
     </ul>
+    </div>
     <div class="bar">
       <button v-if="canShop" type="button" data-testid="go-shop" @click="emit('shop')">去超商</button>
       <button v-if="canShop" type="button" data-testid="wait" @click="emit('wait')">继续</button>
@@ -47,10 +49,12 @@ function run(actionId: string) {
 </template>
 
 <style scoped>
-.hub { margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
-ul { list-style: none; padding: 0; }
+.hub { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
+h2 { margin: 0 0 8px; flex: none; }
+.scroll { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding-right: 6px; }
+ul { list-style: none; padding: 0; margin: 0; }
 li { margin: 8px 0; }
 button { padding: 8px 14px; margin-right: 8px; cursor: pointer; }
 .gift { font-size: 13px; }
-.bar { margin-top: 14px; }
+.bar { flex: none; margin-top: 12px; padding-top: 10px; border-top: 1px solid #333; }
 </style>
