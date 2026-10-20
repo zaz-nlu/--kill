@@ -23,6 +23,8 @@ const CHARACTERS = {
   lc: { id: 'lucheng', dir: 'lc', files: { 正常: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
   my: { id: 'mengyao', dir: 'my', files: { 正常: 'normal', 紧张: 'nervous', 害怕: 'panic', 生气: 'angry' } },
   lh: { id: 'laohan', dir: 'lh', suffix: '', nameInfix: '老韩_', files: { 严肃: 'normal', 怀疑: 'suspicious', 惊讶: 'surprised', 缓和: 'soft' } },
+  lw: { id: 'laowang', dir: 'lw', nameInfix: '老王_', files: { 憨厚: 'normal', 打哈欠: 'yawn', 惊讶: 'surprised' } },
+  xx: { id: 'xiaoxu', dir: 'xx', nameInfix: '小许_', files: { 精神: 'normal', 紧张: 'nervous', 开心: 'happy' } },
   lm: { id: 'limo', dir: 'lm', files: { '平常-不耐烦': 'normal', 生气: 'angry', 紧张: 'nervous', '心虚-克制': 'guilty' } },
 }
 
@@ -86,6 +88,13 @@ if (existsSync(evSrc)) {
     await sharp(join(evSrc, name)).resize({ width: 512 }).webp({ quality: 85, alphaQuality: 90 }).toFile(join(evOut, `${m[1]}.webp`))
     evCount += 1
   }
+}
+
+// Tang only ever appears inside a video-call window: a square avatar, kept as a prop rather than a standing sprite.
+const tangSrc = join(src, 'tjl', 'tjl_唐经理_视频会议头像.png')
+if (existsSync(tangSrc)) {
+  await sharp(tangSrc).resize({ width: 512 }).webp({ quality: 85 }).toFile(join(propsDir, 'tang_avatar.webp'))
+  count += 1
 }
 
 writeFileSync(join(root, 'src', 'data', 'characters.json'), JSON.stringify(manifest, null, 2) + '\n')

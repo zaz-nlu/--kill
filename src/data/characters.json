@@ -54,6 +54,16 @@
     "surprised": "characters/laohan/surprised.webp",
     "soft": "characters/laohan/soft.webp"
   },
+  "laowang": {
+    "normal": "characters/laowang/normal.webp",
+    "yawn": "characters/laowang/yawn.webp",
+    "surprised": "characters/laowang/surprised.webp"
+  },
+  "xiaoxu": {
+    "normal": "characters/xiaoxu/normal.webp",
+    "nervous": "characters/xiaoxu/nervous.webp",
+    "happy": "characters/xiaoxu/happy.webp"
+  },
   "limo": {
     "normal": "characters/limo/normal.webp",
     "angry": "characters/limo/angry.webp",

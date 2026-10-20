@@ -9,8 +9,8 @@ import { resolveBackground } from '../src/engine/backgrounds'
 const assets = resolve(__dirname, '../src/assets')
 
 describe('character art manifest', () => {
-  it('covers the ten characters that have art, each with a normal face', () => {
-    expect(Object.keys(manifest).sort()).toEqual(['boss', 'laohan', 'limo', 'lucheng', 'lyc', 'mengyao', 'shaoxy', 'songyan', 'suwen', 'zhengcen'])
+  it('covers the twelve characters that have art, each with a normal face', () => {
+    expect(Object.keys(manifest).sort()).toEqual(['boss', 'laohan', 'laowang', 'limo', 'lucheng', 'lyc', 'mengyao', 'shaoxy', 'songyan', 'suwen', 'xiaoxu', 'zhengcen'])
     for (const faces of Object.values(manifest)) expect(Object.keys(faces)).toContain('normal')
   })
 
@@ -20,9 +20,10 @@ describe('character art manifest', () => {
     }
   })
 
-  it('ships both evidence props', () => {
+  it('ships the props and the video-call avatar', () => {
     expect(existsSync(resolve(assets, 'props/trophy.webp'))).toBe(true)
     expect(existsSync(resolve(assets, 'props/umbrella.webp'))).toBe(true)
+    expect(existsSync(resolve(assets, 'props/tang_avatar.webp'))).toBe(true)
   })
 })
 
@@ -44,8 +45,10 @@ describe('resolveSprite', () => {
   })
 
   it('returns null for characters without art', () => {
-    expect(resolveSprite('xiaoxu', 'normal')).toBeNull()
-    expect(hasArt('xiaoxu')).toBe(false)
+    expect(resolveSprite('tang', 'normal')).toBeNull()   // Tang is a video-window avatar, not a standing sprite
+    expect(hasArt('tang')).toBe(false)
+    expect(hasArt('xiaoxu')).toBe(true)
+    expect(hasArt('laowang')).toBe(true)
     expect(hasArt('mengyao')).toBe(true)
     expect(hasArt('laohan')).toBe(true)
     expect(hasArt('limo')).toBe(true)

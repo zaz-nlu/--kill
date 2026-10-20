@@ -122,14 +122,14 @@ describe('store stage', () => {
 })
 
 describe('Stage component', () => {
-  const names = { lyc: '林一程', mengyao: '孟遥', xiaoxu: '小许' }
+  const names = { lyc: '林一程', mengyao: '孟遥', tang: '唐经理' }
 
   it('draws the sprite for characters with art and a named placeholder for the rest', () => {
     const w = mount(Stage, {
-      props: { bg: 'office', left: { id: 'lyc', expr: 'normal' }, right: { id: 'xiaoxu', expr: 'normal' }, side: 'right', names },
+      props: { bg: 'office', left: { id: 'lyc', expr: 'normal' }, right: { id: 'tang', expr: 'normal' }, side: 'right', names },
     })
     expect(w.find('img[data-testid="sprite-left"]').exists()).toBe(true)
-    expect(w.find('[data-testid="sprite-right-placeholder"]').text()).toContain('小许')
+    expect(w.find('[data-testid="sprite-right-placeholder"]').text()).toContain('唐经理')
     expect(w.find('img[data-testid="sprite-right"]').exists()).toBe(false)
   })
 
