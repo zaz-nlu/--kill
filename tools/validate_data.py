@@ -115,6 +115,17 @@ def main(root):
                     if c['kind'] == 'hasTestimony' and c['id'] not in testimony:
                         errors.append(f"scene {sid}: condition on unknown testimony '{c['id']}'")
 
+    # fixed events
+    seen_events = set()
+    for ev in load(root, 'events.json', []):
+        if ev['id'] in seen_events:
+            errors.append(f"event {ev['id']}: duplicate id")
+        seen_events.add(ev['id'])
+        if ev['scene'] not in scenes:
+            errors.append(f"event {ev['id']}: scene '{ev['scene']}' does not exist")
+        if not (isinstance(ev['hour'], int) and 0 <= ev['hour'] <= 23):
+            errors.append(f"event {ev['id']}: hour {ev['hour']} is not a real hour")
+
     # rooms and actions
     rooms = load(root, 'rooms.json', [])
     room_ids = {r['id'] for r in rooms}

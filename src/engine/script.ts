@@ -27,6 +27,10 @@ export function evalCondition(state: GameState, c: Condition): boolean {
       return state.evidence.includes(c.id)
     case 'hasTestimony':
       return state.testimony.includes(c.id)
+    case 'flag':
+      return state.flags[c.key] === true
+    case 'trustAtLeast':
+      return state.trust >= c.value
     case 'not':
       return !evalCondition(state, c.cond)
   }

@@ -1,5 +1,160 @@
 [
   {
+    "id": "1-1",
+    "label": "整理昨晚的时间线，翻日历和聊天记录",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_1",
+    "costHours": 1
+  },
+  {
+    "id": "1-2",
+    "label": "带煎饼果子去 B1 监控室找老王",
+    "location": "物业",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_2",
+    "costHours": 1,
+    "npc": "laowang"
+  },
+  {
+    "id": "1-3",
+    "label": "去 1 楼便利店问店员",
+    "location": "大堂",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_3",
+    "costHours": 1
+  },
+  {
+    "id": "1-4",
+    "label": "给孟遥发消息",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_4",
+    "costHours": 1,
+    "npc": "mengyao"
+  },
+  {
+    "id": "1-5",
+    "label": "刷新闻，看网友怎么骂你",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_5",
+    "costHours": 1
+  },
+  {
+    "id": "1-6",
+    "label": "在工作群里发长文自证清白",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_6",
+    "costHours": 1
+  },
+  {
+    "id": "1-7",
+    "label": "去老板家楼下堵人",
+    "location": "外",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_7",
+    "costHours": 1
+  },
+  {
+    "id": "1-8",
+    "label": "给苏闻打电话",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_8",
+    "costHours": 1,
+    "npc": "suwen"
+  },
+  {
+    "id": "1-9",
+    "label": "给陆诚打电话",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_9",
+    "costHours": 1,
+    "npc": "lucheng",
+    "requires": {
+      "kind": "affinityAtLeast",
+      "npc": "lucheng",
+      "value": 50
+    }
+  },
+  {
+    "id": "1-10",
+    "label": "回分局补充说明",
+    "location": "分局",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_10",
+    "costHours": 1,
+    "npc": "laohan"
+  },
+  {
+    "id": "1-11",
+    "label": "赴约：黎默约你在地铁站旁的咖啡店见面",
+    "location": "咖啡店",
+    "days": [
+      1
+    ],
+    "minHour": 19,
+    "maxHour": 19,
+    "scene": "day1_coffee",
+    "costHours": 1,
+    "npc": "limo"
+  },
+  {
+    "id": "1-12",
+    "label": "夜里从 1 楼走东楼梯上 17 层看看",
+    "location": "东楼梯",
+    "days": [
+      1
+    ],
+    "minHour": 19,
+    "maxHour": 20,
+    "scene": "act_1_12",
+    "costHours": 1
+  },
+  {
     "id": "2-1",
     "label": "调查会议室 B",
     "location": "17 层",

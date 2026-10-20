@@ -7,6 +7,7 @@ import GiftPicker from '../src/ui/GiftPicker.vue'
 import { useGameStore } from '../src/engine/store'
 import type { ActionDef } from '../src/engine/calendar'
 import { loadData } from '../src/engine/data'
+import { toDay2Noon } from './helpers'
 
 const { items } = loadData()
 const actions: ActionDef[] = [
@@ -69,16 +70,6 @@ describe('GiftPicker', () => {
   })
 })
 
-function playToHub(store: ReturnType<typeof useGameStore>) {
-  store.newGame()
-  let guard = 0
-  while (store.screen === 'scene' && store.currentNode) {
-    if (guard++ > 800) throw new Error('runaway')
-    if (store.currentNode.type === 'choice') store.advance(1)
-    else store.advance()
-  }
-}
-
 function finishScene(store: ReturnType<typeof useGameStore>) {
   let guard = 0
   while (store.currentNode) {
@@ -93,7 +84,7 @@ describe('store: day 2 flow', () => {
 
   it('plays the prologue, day 1, then day 2 morning and lunch, and lands in the hub at 12:00', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
     expect(store.screen).toBe('hub')
     expect(store.state.day).toBe(2)
     expect(store.state.hour).toBe(12)
@@ -102,18 +93,19 @@ describe('store: day 2 flow', () => {
 
   it('startAction plays the scene, costs an hour and returns to the hub', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
+    store.waitAnHour()
     store.startAction('2-3')
     expect(store.screen).toBe('scene')
     finishScene(store)
     expect(store.screen).toBe('hub')
-    expect(store.state.hour).toBe(13)
+    expect(store.state.hour).toBe(14)
     expect(store.state.affinity.shaoxy).toBe(60)
   })
 
   it('an unknown or unavailable action does nothing', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
     store.startAction('9-9')
     expect(store.screen).toBe('hub')
     expect(store.state.hour).toBe(12)
@@ -121,10 +113,11 @@ describe('store: day 2 flow', () => {
 
   it('the shop opens at 12:00 but not at 13:00', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
     store.goShop()
     expect(store.screen).toBe('shop')
     store.leaveShop()
+    store.waitAnHour()
     store.startAction('2-3')
     finishScene(store)
     store.goShop()
@@ -133,12 +126,13 @@ describe('store: day 2 flow', () => {
 
   it('buy and gift work end to end, and a gift attached to an action is given after the scene', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
     store.goShop()
     expect(store.buy('ruanzhonghua')).toEqual({ ok: true })
     expect(store.buy('hongtashan')).toEqual({ ok: true })
     expect(store.state.money).toBe(150 - 65 - 22)
     store.leaveShop()
+    store.waitAnHour()
     store.startAction('2-6', 'hongtashan')
     finishScene(store)
     expect(store.state.affinity.lucheng).toBe(50 + 15)
@@ -147,7 +141,7 @@ describe('store: day 2 flow', () => {
 
   it('resting ends the day and, in the slice, the playable part', () => {
     const store = useGameStore()
-    playToHub(store)
+    toDay2Noon(store)
     store.restAtHome()
     expect(store.state.day).toBe(3)
     expect(store.screen).toBe('end')

@@ -5,6 +5,8 @@ import testimony from '../data/testimony.json'
 import actions from '../data/actions.json'
 import debugKit from '../data/debug_kit.json'
 import rooms from '../data/rooms.json'
+import events from '../data/events.json'
+import type { EventDef } from './events'
 import type { RoomDef } from './rooms'
 import type { ExamDef, Item, Line, Npc } from './types'
 import type { Scenes } from './script'
@@ -20,6 +22,7 @@ export interface GameData {
   scenes: Scenes
   actions: ActionDef[]
   rooms: RoomDef[]
+  events: EventDef[]
   exams: Record<string, ExamDef>
   debugKit: { evidence: string[]; testimony: string[]; backlog: Line[] }
 }
@@ -39,6 +42,7 @@ export function loadData(): GameData {
     scenes,
     actions: actions as ActionDef[],
     rooms: rooms as RoomDef[],
+    events: events as EventDef[],
     exams,
     debugKit: debugKit as GameData['debugKit'],
   }

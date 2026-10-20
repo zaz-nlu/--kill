@@ -70,6 +70,7 @@ describe('store: investigating', () => {
     const store = useGameStore()
     store.state.day = 2
     store.state.hour = 10
+    for (const e of ['day2_desk', 'day2_pantry', 'day2_lunch']) store.state.flags['event:' + e] = true
     store.screen = 'hub'
     store.startAction('2-1')
     return store

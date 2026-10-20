@@ -83,6 +83,7 @@ function onNote(lineId: string) {
             :items="store.data.items"
             @action="(id: string, gift?: string) => store.startAction(id, gift)"
             @shop="store.goShop()"
+            @wait="store.waitAnHour()"
             @rest="store.restAtHome()"
             @save="store.saveGame()"
           />

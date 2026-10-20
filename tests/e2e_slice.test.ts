@@ -19,19 +19,40 @@ describe('the whole slice, title to end', () => {
     }
   }
 
-  it('can be played start to finish, including shop, gift, save, load and the finale', () => {
-    const store = useGameStore()
+  // Day 1: morning questioning (first option), then jump the clock to the evening coffee shop.
+  function dayOne(store: ReturnType<typeof useGameStore>, press: boolean, tellAll: boolean) {
     store.newGame()
-    // prologue: first choice 0; coffee: press (0), then stay quiet (1); lunch: cold (1)
-    const picks = [0, 0, 1, 1]
+    runScene(store, () => 0)                      // prologue + morning questioning
+    expect(store.screen).toBe('hub')
+    expect(store.state.day).toBe(1)
+    expect(store.state.hour).toBe(13)
+    store.startAction('1-1')                      // 13 -> 14: the 14:30 WeChat arrives
+    runScene(store, () => 0)
+    expect(store.screen).toBe('hub')
+    store.state.hour = 18
+    store.waitAnHour()                            // 19:00
+    store.startAction('1-11')
+    const picks = [press ? 0 : 1, tellAll ? 0 : 1]
     runScene(store, () => picks.shift() ?? 0)
+    store.restAtHome()                            // day 2 morning events
+    runScene(store, () => 0)
+    store.state.hour = 11
+    store.waitAnHour()                            // lunch
+    runScene(store, o => (o > 1 ? 0 : tellAll ? 0 : 1))
     expect(store.screen).toBe('hub')
     expect(store.state.day).toBe(2)
+    expect(store.state.hour).toBe(12)
+  }
+
+  it('can be played start to finish, including shop, gift, save, load and the finale', () => {
+    const store = useGameStore()
+    dayOne(store, true, false)
 
     // 12:00: shop, buy the cigarettes Lu Cheng likes, then give them during his scene
     store.goShop()
     expect(store.buy('hongtashan')).toEqual({ ok: true })
     store.leaveShop()
+    store.waitAnHour()
     store.startAction('2-6', 'hongtashan')
     runScene(store, () => 0)
     expect(store.state.affinity.lucheng).toBe(65)
@@ -73,10 +94,7 @@ describe('the whole slice, title to end', () => {
 
   it('the leaky route also reaches the end of the slice', () => {
     const store = useGameStore()
-    store.newGame()
-    const picks = [1, 1, 0, 0] // wait-then-office, don't press, tell all, tell all at lunch
-    runScene(store, () => picks.shift() ?? 0)
-    expect(store.screen).toBe('hub')
+    dayOne(store, false, true)
     expect(store.state.intel.phone).toBe('leaked')
     expect(store.state.backlog.some(l => l.tag === 'T26')).toBe(false)
     store.restAtHome()

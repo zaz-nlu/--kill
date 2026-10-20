@@ -17,6 +17,8 @@ export type Condition =
   | { kind: 'affinityAtLeast'; npc: NpcId; value: number }
   | { kind: 'hasEvidence'; id: string }
   | { kind: 'hasTestimony'; id: string }
+  | { kind: 'flag'; key: string }
+  | { kind: 'trustAtLeast'; value: number }
   | { kind: 'not'; cond: Condition }
 
 export type Effect =
@@ -25,6 +27,7 @@ export type Effect =
   | { kind: 'evidence' | 'testimony'; id: string }
   | { kind: 'learnIntel'; intel: IntelId }
   | { kind: 'flag'; key: string; value: boolean }
+  | { kind: 'time'; hour: number }          // jump the clock forward to this hour
 
 export interface Item { id: string; name: string; price: number }
 export interface Npc {

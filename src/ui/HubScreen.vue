@@ -5,7 +5,7 @@ import type { Item } from '../engine/types'
 import GiftPicker from './GiftPicker.vue'
 
 defineProps<{ actions: ActionDef[]; canShop: boolean; inventory: Record<string, number>; items: Item[] }>()
-const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; rest: []; save: [] }>()
+const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] }>()
 
 const picking = ref<string | null>(null)              // action id whose gift picker is open
 const chosenGift = reactive<Record<string, string>>({}) // action id -> item id
@@ -39,6 +39,7 @@ function run(actionId: string) {
     </ul>
     <div class="bar">
       <button v-if="canShop" type="button" data-testid="go-shop" @click="emit('shop')">去超商</button>
+      <button v-if="canShop" type="button" data-testid="wait" @click="emit('wait')">继续</button>
       <button type="button" data-testid="rest" @click="emit('rest')">回家休息</button>
       <button type="button" data-testid="save" @click="emit('save')">存档</button>
     </div>

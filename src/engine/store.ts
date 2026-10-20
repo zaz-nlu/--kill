@@ -5,7 +5,8 @@ import { createInitialState } from './state'
 import { loadData } from './data'
 import { SceneRunner, type SceneNode } from './script'
 import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from './log'
-import { advanceHour, availableActions, endDay } from './calendar'
+import { advanceHour, availableActions, endDay, markActionDone } from './calendar'
+import { markEventDone, nextEvent } from './events'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
@@ -70,6 +71,7 @@ export const useGameStore = defineStore('game', () => {
   // investigating a room
   const roomId = ref<string | null>(null)
   let roomCost = 0
+  let roomActionId = ''
   const room = computed(() => data.rooms.find(r => r.id === roomId.value) ?? null)
   const hotspots = computed(() => (room.value ? visibleHotspots(state, room.value) : []))
 
@@ -105,9 +107,22 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  // Back to the hub — unless a fixed event is due, which plays first and then comes back here.
   function toHub(): void {
+    const ev = nextEvent(state, data.events)
+    if (ev) {
+      markEventDone(state, ev.id)
+      screen.value = 'scene'
+      playScene(ev.scene, toHub)
+      return
+    }
     screen.value = 'hub'
     setBackground('office')
+  }
+
+  function waitAnHour(): void {
+    advanceHour(state, 1)
+    toHub()
   }
 
   // After every runner change: sync the stage, and if the scene just ended, run its follow-up once.
@@ -136,13 +151,7 @@ export const useGameStore = defineStore('game', () => {
     exam.value = null
     examFailed.value = false
     screen.value = 'scene'
-    playScene('prologue', () => {
-      endDay(state, { rested: false }) // day 1 -> day 2
-      playScene('day2_desk', () => {
-        state.hour = 12
-        playScene('day2_lunch', toHub)
-      })
-    })
+    playScene('prologue', toHub)
   }
 
   function restart(): void {
@@ -171,23 +180,25 @@ export const useGameStore = defineStore('game', () => {
     const a = actions.value.find(x => x.id === actionId)
     if (!a) return
     if (a.room) {
-      enterRoom(a.room, a.costHours)
+      enterRoom(a.room, a.costHours, a.id)
       return
     }
     if (!a.scene) return
     screen.value = 'scene'
     playScene(a.scene, () => {
+      markActionDone(state, a.id)
       advanceHour(state, a.costHours)
       if (giftItemId && a.npc) gift(a.npc, giftItemId)
       toHub()
     })
   }
 
-  function enterRoom(id: string, costHours: number): void {
+  function enterRoom(id: string, costHours: number, actionId: string): void {
     const r = data.rooms.find(x => x.id === id)
     if (!r) return
     roomId.value = id
     roomCost = costHours
+    roomActionId = actionId
     screen.value = 'investigate'
     clearActors()
     setBackground(r.bg)
@@ -206,9 +217,11 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function leaveRoom(): void {
+    markActionDone(state, roomActionId)
     advanceHour(state, roomCost)
     roomId.value = null
     roomCost = 0
+    roomActionId = ''
     toHub()
   }
 
@@ -237,7 +250,8 @@ export const useGameStore = defineStore('game', () => {
 
   function restAtHome(): void {
     endDay(state, { rested: true })
-    screen.value = 'end' // the slice stops after day 2
+    if (state.day >= 3) screen.value = 'end' // the slice stops after day 2
+    else toHub()
   }
 
   // ---- save / load / debug jump ----
@@ -377,7 +391,7 @@ export const useGameStore = defineStore('game', () => {
   return {
     data, state, screen, stage, currentNode, notice, actions, canShop,
     playScene, newGame, restart, advance, note, speakerName, itemName,
-    startAction, room, hotspots, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
+    startAction, waitAnHour, room, hotspots, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,
     exam, examIndex, examFailed, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     startExamById, examGoto, examPresent, examPress, examChoose,

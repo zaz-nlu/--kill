@@ -80,6 +80,8 @@ describe('store: save, load and the debug jump', () => {
     const store = useGameStore()
     store.state.money = 33
     store.state.evidence.push('E06')
+    store.state.hour = 13
+    store.state.flags['event:day1_morning'] = true
     expect(store.saveGame()).toBe(true)
     store.state.money = 150
     store.state.evidence.splice(0)

@@ -26,6 +26,7 @@ def base_data():
         'rooms.json': [{'id': 'r1', 'label': 'R', 'bg': 'office', 'hotspots': [
             {'id': 'h1', 'label': 'H', 'rect': [10, 10, 20, 20], 'scene': 'b'}]}],
         'actions.json': [{'id': 'x', 'label': 'X', 'days': [2], 'room': 'r1', 'costHours': 1}],
+        'events.json': [{'id': 'ev1', 'day': 1, 'hour': 9, 'scene': 'b'}],
         'evidence.json': [{'id': 'E01', 'name': 'e', 'desc': 'd'}],
         'testimony.json': [{'id': 'T26', 'name': 't', 'desc': 'd', 'slice': True}],
         'scenes/a.json': {
@@ -132,6 +133,15 @@ class ValidateDataTest(unittest.TestCase):
         def m(d):
             del d['actions.json'][0]['room']
         self.assertNotEqual(self.run_with(m), 0)
+
+    def test_event_scene_must_exist(self):
+        self.assertNotEqual(self.run_with(lambda d: d['events.json'][0].update(scene='nowhere')), 0)
+
+    def test_event_ids_must_be_unique(self):
+        self.assertNotEqual(self.run_with(lambda d: d['events.json'].append(dict(d['events.json'][0]))), 0)
+
+    def test_event_hour_must_be_a_real_hour(self):
+        self.assertNotEqual(self.run_with(lambda d: d['events.json'][0].update(hour=25)), 0)
 
 
 if __name__ == '__main__':

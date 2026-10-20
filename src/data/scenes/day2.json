@@ -6,8 +6,7 @@
     { "type": "say", "speaker": "narration", "text": "路过人事办公室的封条，黎默嘟囔了一句。" },
     { "type": "say", "speaker": "limo", "text": "封得真严。听说两年前出事的时候，也是这样封了好几天。", "tag": "G2" },
     { "type": "say", "speaker": "lyc", "text": "两年前？" },
-    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。", "expr": "nervous" },
-    { "type": "goto", "scene": "day2_pantry" }
+    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。", "expr": "nervous" }
   ],
   "day2_pantry": [
     { "type": "bg", "id": "office", "time": "day" },
@@ -89,6 +88,7 @@
         { "type": "say", "speaker": "lucheng", "text": "九点灯一下全灭了，我们还以为跳闸了。" }
       ]
     },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T08" }] },
     { "type": "say", "speaker": "narration", "text": "陆诚摸了摸口袋。" },
     { "type": "say", "speaker": "lucheng", "text": "烟瘾上来了，早上那包早抽完了。" },
     { "type": "end" }

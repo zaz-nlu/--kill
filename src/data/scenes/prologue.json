@@ -45,7 +45,6 @@
     { "type": "effect", "effects": [{ "kind": "testimony", "id": "T02" }] },
     { "type": "bg", "id": "street", "time": "night" },
     { "type": "say", "speaker": "narration", "text": "【21:25】林一程坐电梯离开。雨还在下。" },
-    { "type": "say", "speaker": "narration", "text": "——第二天早上 8:30，孟遥的尖叫声传遍了 17 层。" },
-    { "type": "goto", "scene": "day1_wechat" }
+    { "type": "say", "speaker": "narration", "text": "——第二天早上 8:30，孟遥的尖叫声传遍了 17 层。" }
   ]
 }

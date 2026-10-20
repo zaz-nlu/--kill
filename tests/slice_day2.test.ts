@@ -29,10 +29,13 @@ function play(state: GameState, sceneId: string, choices: number[] = []): void {
 const tags = (s: GameState) => s.backlog.map(l => l.tag).filter(Boolean)
 const text = (s: GameState) => s.backlog.map(l => l.text).join('\n')
 
-// prologue (teach choice 0) -> day1_wechat -> day1_coffee (press?, tell?)
+// prologue -> morning questioning -> 14:30 WeChat -> 19:00 coffee (press?, tell?)
 function day1(press: boolean, tellAll: boolean): GameState {
   const s = createInitialState()
-  play(s, 'prologue', [0, press ? 0 : 1, tellAll ? 0 : 1])
+  play(s, 'prologue', [0])
+  play(s, 'day1_morning', [0])
+  play(s, 'day1_wechat')
+  play(s, 'day1_coffee', [press ? 0 : 1, tellAll ? 0 : 1])
   return s
 }
 
@@ -47,9 +50,9 @@ describe('prologue and day 1', () => {
 
   it('both teaching choices lead to the same office scene', () => {
     const a = createInitialState()
-    play(a, 'prologue', [0, 1, 1])
+    play(a, 'prologue', [0])
     const b = createInitialState()
-    play(b, 'prologue', [1, 1, 1])
+    play(b, 'prologue', [1])
     expect(a.testimony).toContain('T01')
     expect(b.testimony).toContain('T01')
   })

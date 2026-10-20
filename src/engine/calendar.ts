@@ -1,4 +1,8 @@
-import type { GameState, NpcId } from './types'
+import type { Condition, GameState, NpcId } from './types'
+import { evalCondition } from './script'
+
+// 12:00 (lunch) and 18:00 (dinner) are fixed-event hours: no investigation, only the shop and moving on.
+export const EVENT_HOURS = [12, 18]
 
 export interface ActionDef {
   id: string
@@ -8,6 +12,7 @@ export interface ActionDef {
   minHour?: number
   maxHour?: number
   requiresEvidence?: string[]
+  requires?: Condition
   scene?: string   // a story scene, or…
   room?: string    // …a room to investigate
   costHours: number
@@ -30,8 +35,15 @@ export function endDay(state: GameState, opts: { rested: boolean }): void {
   state.giftedToday = []
 }
 
+export function markActionDone(state: GameState, id: string): void {
+  state.flags[`done:${id}`] = true
+}
+
 export function availableActions(state: GameState, all: ActionDef[]): ActionDef[] {
+  if (EVENT_HOURS.includes(state.hour)) return []
   return all.filter(a => {
+    if (state.flags[`done:${a.id}`]) return false
+    if (a.requires && !evalCondition(state, a.requires)) return false
     if (!a.days.includes(state.day)) return false
     if (a.minHour !== undefined && state.hour < a.minHour) return false
     if (a.maxHour !== undefined && state.hour > a.maxHour) return false
