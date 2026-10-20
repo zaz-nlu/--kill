@@ -143,6 +143,13 @@ class ValidateDataTest(unittest.TestCase):
     def test_event_hour_must_be_a_real_hour(self):
         self.assertNotEqual(self.run_with(lambda d: d['events.json'][0].update(hour=25)), 0)
 
+    def test_action_attack_scene_must_exist(self):
+        self.assertNotEqual(self.run_with(lambda d: d['actions.json'][0].update(attack='nowhere')), 0)
+        self.assertEqual(self.run_with(lambda d: d['actions.json'][0].update(attack='b', risk='high')), 0)
+
+    def test_action_risk_must_be_known(self):
+        self.assertNotEqual(self.run_with(lambda d: d['actions.json'][0].update(risk='deadly')), 0)
+
 
 if __name__ == '__main__':
     unittest.main()

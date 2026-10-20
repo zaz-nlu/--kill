@@ -19,6 +19,8 @@ export type Condition =
   | { kind: 'hasTestimony'; id: string }
   | { kind: 'flag'; key: string }
   | { kind: 'trustAtLeast'; value: number }
+  | { kind: 'dangerAtLeast'; value: number }
+  | { kind: 'affinityTier'; npc: NpcId; tier: 'open' | 'guarded' | 'closed' }
   | { kind: 'not'; cond: Condition }
 
 export type Effect =

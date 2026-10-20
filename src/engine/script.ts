@@ -3,6 +3,7 @@ import { applyEffect } from './effects'
 import { addLog } from './log'
 import { isSlipAvailable, triggerLeak } from './flow'
 import type { TimeOfDay } from './backgrounds'
+import { affinityTier } from './affinity'
 
 export interface SceneHooks { onBackground?: (id: string, time?: TimeOfDay) => void }
 
@@ -31,6 +32,10 @@ export function evalCondition(state: GameState, c: Condition): boolean {
       return state.flags[c.key] === true
     case 'trustAtLeast':
       return state.trust >= c.value
+    case 'dangerAtLeast':
+      return state.danger >= c.value
+    case 'affinityTier':
+      return affinityTier(state.affinity[c.npc]) === c.tier
     case 'not':
       return !evalCondition(state, c.cond)
   }

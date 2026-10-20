@@ -127,7 +127,8 @@
     "maxHour": 17,
     "scene": "act_1_10",
     "costHours": 1,
-    "npc": "laohan"
+    "npc": "laohan",
+    "risk": "safe"
   },
   {
     "id": "1-11",
@@ -152,7 +153,9 @@
     "minHour": 19,
     "maxHour": 20,
     "scene": "act_1_12",
-    "costHours": 1
+    "costHours": 1,
+    "risk": "high",
+    "attack": "attack_stairs"
   },
   {
     "id": "2-1",

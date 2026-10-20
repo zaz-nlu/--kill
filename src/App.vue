@@ -12,11 +12,16 @@ import BacklogPanel from './ui/BacklogPanel.vue'
 import HubScreen from './ui/HubScreen.vue'
 import ShopPanel from './ui/ShopPanel.vue'
 import InvestigateScreen from './ui/InvestigateScreen.vue'
+import RelationsPanel from './ui/RelationsPanel.vue'
+import FeedToasts from './ui/FeedToasts.vue'
+import { dangerTier } from './engine/danger'
 import ExamScreen from './ui/ExamScreen.vue'
 import EndScreen from './ui/EndScreen.vue'
 
 const store = useGameStore()
 const showLog = ref(false)
+const showRelations = ref(false)
+const tier = computed(() => dangerTier(store.state.danger))
 const reaction = ref('')
 
 const sayNode = computed(() => (store.currentNode?.type === 'say' ? store.currentNode : null))
@@ -60,7 +65,8 @@ function onNote(lineId: string) {
       @debug-finale="store.jumpToFinale()"
     />
     <div v-else class="game">
-      <HudBar :day="store.state.day" :hour="store.state.hour" :money="store.state.money" :danger="store.state.danger" />
+      <HudBar :day="store.state.day" :hour="store.state.hour" :money="store.state.money" :danger="store.state.danger" :hp="store.state.hp" />
+      <div class="vignette" :class="tier" />
       <div class="body">
         <template v-if="store.screen === 'scene'">
           <ChoiceList v-if="choiceNode" :options="choiceNode.options.map(o => o.text)" @choose="store.advance($event)" />
@@ -115,6 +121,7 @@ function onNote(lineId: string) {
           <EndScreen
             v-else-if="store.screen === 'end'"
             :failed="store.examFailed"
+            :reason="store.gameOver"
             :can-finale="store.canJumpToFinale"
             @restart="store.restart()"
             @finale="store.jumpToFinale()"
@@ -122,8 +129,11 @@ function onNote(lineId: string) {
         </div>
         <p v-if="store.notice" class="notice">{{ store.notice }}</p>
       </div>
-      <button type="button" class="log-toggle" @click="showLog = !showLog">日志</button>
+      <button type="button" class="log-toggle" @click="showLog = !showLog; showRelations = false">日志</button>
+      <button type="button" class="relations-toggle" data-testid="relations-toggle" @click="showRelations = !showRelations; showLog = false">关系</button>
       <BacklogPanel v-if="showLog" :lines="logLines" :names="names" @note="onNote" />
+      <RelationsPanel v-if="showRelations" :rows="store.relations" />
+      <FeedToasts :items="store.feed" :names="stageNames" @dismiss="store.dismissFeed($event)" />
       <div v-if="reaction" class="reaction">{{ reaction }}</div>
     </div>
   </Stage>
@@ -143,6 +153,10 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #0c0c0f; fon
 .panel > * { min-height: 0; }
 .done { text-align: center; color: #888; }
 .notice { text-align: center; color: #e8a070; }
-.log-toggle { position: fixed; right: 14px; top: 8px; }
+.log-toggle { position: fixed; right: 14px; top: 8px; z-index: 25; }
+.relations-toggle { position: fixed; right: 62px; top: 8px; z-index: 25; }
+.vignette { position: absolute; inset: 0; pointer-events: none; transition: box-shadow 0.8s; }
+.vignette.tense { box-shadow: inset 0 0 120px 20px #4a000044; }
+.vignette.critical { box-shadow: inset 0 0 180px 60px #000d; }
 .reaction { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); padding: 8px 20px; background: #000a; color: #fff; border-radius: 20px; font-size: 20px; }
 </style>

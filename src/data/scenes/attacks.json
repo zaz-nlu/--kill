@@ -1,0 +1,140 @@
+{
+  "attack_stairs": [
+    { "type": "bg", "id": "stairwell", "time": "night" },
+    { "type": "say", "speaker": "narration", "text": "楼梯间的感应灯忽然灭了。身后有脚步声贴上来——一只手重重推在你的背上！" },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "抓住扶手", "goto": "attack_stairs_good" },
+        { "text": "回头看", "goto": "attack_stairs_bad" }
+      ]
+    }
+  ],
+  "attack_stairs_good": [
+    { "type": "say", "speaker": "narration", "text": "你一把攥住扶手，只是手掌擦破了皮。黑暗里，传来一声很轻的“叮”，那个人往楼上去了。" },
+    { "type": "say", "speaker": "narration", "text": "空气里有一股烟味。（这栋楼里躲在楼梯间抽烟的人，可不止一个。）" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T15" }, { "kind": "learnIntel", "intel": "attack" }, { "kind": "flag", "key": "trace_stairs_good", "value": true }] }
+  ],
+  "attack_stairs_bad": [
+    { "type": "say", "speaker": "narration", "text": "你下意识回头，脚下一空，滚下了半层楼梯。昏暗里，只看到一截橙色的袖子。" },
+    { "type": "effect", "effects": [{ "kind": "learnIntel", "intel": "attack" }, { "kind": "flag", "key": "trace_stairs_bad", "value": true }] },
+    {
+      "type": "branch",
+      "when": { "kind": "dangerAtLeast", "value": 90 },
+      "then": [
+        { "type": "say", "speaker": "narration", "text": "后背重重磕在台阶上，眼前一黑。" },
+        { "type": "effect", "effects": [{ "kind": "hp", "delta": -1 }] }
+      ],
+      "else": []
+    }
+  ],
+  "attack_parking": [
+    { "type": "bg", "id": "street", "time": "night" },
+    { "type": "say", "speaker": "narration", "text": "地下车库。一根细线从背后勒住了你的脖子——和宋砚的死法一样。" },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "双手插进线和脖子之间", "goto": "attack_parking_2" },
+        { "text": "向后肘击", "goto": "attack_parking_elbow" }
+      ]
+    }
+  ],
+  "attack_parking_elbow": [
+    { "type": "say", "speaker": "narration", "text": "你的肘击落了空，线勒得更紧了一瞬。" },
+    {
+      "type": "branch",
+      "when": { "kind": "dangerAtLeast", "value": 90 },
+      "then": [{ "type": "effect", "effects": [{ "kind": "hp", "delta": -1 }] }],
+      "else": []
+    },
+    { "type": "goto", "scene": "attack_parking_2" }
+  ],
+  "attack_parking_2": [
+    {
+      "type": "choice",
+      "options": [
+        { "text": "死死掐住对方勒线的手腕", "goto": "attack_parking_good" },
+        { "text": "去扯对方的帽子", "goto": "attack_parking_bad" }
+      ]
+    }
+  ],
+  "attack_parking_good": [
+    { "type": "say", "speaker": "narration", "text": "对方吃痛，松了手，转身就跑。你的指甲里留下一点皮屑——是左手腕。" },
+    { "type": "say", "speaker": "narration", "text": "那只手上戴着手套，指尖发涩，像测试间里那种黑色防静电手套。" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T16" }, { "kind": "testimony", "id": "T23" }, { "kind": "learnIntel", "intel": "attack" }, { "kind": "flag", "key": "trace_parking", "value": true }] }
+  ],
+  "attack_parking_bad": [
+    { "type": "say", "speaker": "narration", "text": "你只抓到一把橙色的布，对方挣脱，消失在车库深处。" },
+    { "type": "effect", "effects": [{ "kind": "learnIntel", "intel": "attack" }, { "kind": "flag", "key": "trace_parking", "value": true }] }
+  ],
+  "attack_office_night": [
+    { "type": "bg", "id": "office", "time": "night" },
+    { "type": "say", "speaker": "narration", "text": "啪——灯灭了。黑暗里，身后有风声。" },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "立刻趴下", "goto": "attack_office_2" },
+        { "text": "回头看", "goto": "attack_office_turn" }
+      ]
+    }
+  ],
+  "attack_office_turn": [
+    { "type": "say", "speaker": "narration", "text": "你一回头，正好迎上去，后脑挨了一下。" },
+    { "type": "effect", "effects": [{ "kind": "flag", "key": "trace_office_bump", "value": true }] },
+    {
+      "type": "branch",
+      "when": { "kind": "dangerAtLeast", "value": 90 },
+      "then": [{ "type": "effect", "effects": [{ "kind": "hp", "delta": -1 }] }],
+      "else": []
+    },
+    { "type": "goto", "scene": "attack_office_2" }
+  ],
+  "attack_office_2": [
+    {
+      "type": "choice",
+      "options": [
+        { "text": "抓住对方手腕", "goto": "attack_office_good" },
+        { "text": "打开手机手电", "goto": "attack_office_bad" }
+      ]
+    }
+  ],
+  "attack_office_good": [
+    { "type": "say", "speaker": "narration", "text": "你抓住了对方的手腕——是左手。空气里有一丝很淡的酒精味。" },
+    { "type": "say", "speaker": "narration", "text": "对方挣脱，跑向东侧消防门。你听了又听——门，没有响。" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T16" }, { "kind": "testimony", "id": "T24" }, { "kind": "learnIntel", "intel": "attack" }] }
+  ],
+  "attack_office_bad": [
+    { "type": "say", "speaker": "narration", "text": "手电只照到一个橙色的背影。不过，你仍然闻到了一丝很淡的酒精味。" },
+    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T24" }, { "kind": "learnIntel", "intel": "attack" }] }
+  ],
+  "attack_street": [
+    { "type": "bg", "id": "street", "time": "night" },
+    { "type": "say", "speaker": "narration", "text": "夜路。有人从背后猛地推了你一把——你正对着驶过来的车流！" },
+    {
+      "type": "choice",
+      "options": [
+        { "text": "后退贴墙", "goto": "attack_street_good" },
+        { "text": "向前闪开", "goto": "attack_street_bad" }
+      ]
+    }
+  ],
+  "attack_street_good": [
+    { "type": "say", "speaker": "narration", "text": "你贴住墙，车从身前擦过，只是手掌擦破了皮。推你的人早已不见。" },
+    { "type": "effect", "effects": [{ "kind": "learnIntel", "intel": "attack" }, { "kind": "flag", "key": "station_camera_lead", "value": true }] }
+  ],
+  "attack_street_bad": [
+    { "type": "say", "speaker": "narration", "text": "你向前扑出去，手掌狠狠擦在地上。喇叭声在耳边炸开。" },
+    { "type": "effect", "effects": [{ "kind": "learnIntel", "intel": "attack" }] },
+    {
+      "type": "branch",
+      "when": { "kind": "dangerAtLeast", "value": 90 },
+      "then": [{ "type": "effect", "effects": [{ "kind": "hp", "delta": -1 }] }],
+      "else": []
+    }
+  ],
+  "bad_end_1": [
+    { "type": "say", "speaker": "narration", "text": "你再也撑不住了。眼前的灯，一盏一盏地灭了。" },
+    { "type": "say", "speaker": "narration", "text": "第二天的新闻里，多了一行小字：“又一名贝塔员工在 17 层附近发生意外。”" },
+    { "type": "say", "speaker": "narration", "text": "没有人知道，那一晚你离真相有多近。" }
+  ]
+}

@@ -139,6 +139,10 @@ def main(root):
             if not (x >= 0 and y >= 0 and w > 0 and ht > 0 and x + w <= 100 and y + ht <= 100):
                 errors.append(f"room {r['id']}/{h['id']}: rect {h['rect']} is outside the picture")
     for act in load(root, 'actions.json', []):
+        if act.get('risk') not in (None, 'high', 'normal', 'safe'):
+            errors.append(f"action {act['id']}: unknown risk '{act.get('risk')}'")
+        if act.get('attack') and act['attack'] not in scenes:
+            errors.append(f"action {act['id']}: attack scene '{act['attack']}' does not exist")
         if act.get('room'):
             if act['room'] not in room_ids:
                 errors.append(f"action {act['id']}: room '{act['room']}' does not exist")

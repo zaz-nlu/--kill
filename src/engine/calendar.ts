@@ -1,5 +1,6 @@
 import type { Condition, GameState, NpcId } from './types'
 import { evalCondition } from './script'
+import type { Risk } from './danger'
 
 // 12:00 (lunch) and 18:00 (dinner) are fixed-event hours: no investigation, only the shop and moving on.
 export const EVENT_HOURS = [12, 18]
@@ -17,6 +18,8 @@ export interface ActionDef {
   room?: string    // …a room to investigate
   costHours: number
   npc?: NpcId   // who the action talks to; a gift can be attached to it
+  risk?: Risk   // 'high' (stairs, car park, night office), 'safe' (police, subway car); default ordinary
+  attack?: string // scene played if an attack lands after this action
 }
 
 export function advanceHour(state: GameState, n = 1): void {

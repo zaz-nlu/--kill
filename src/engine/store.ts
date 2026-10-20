@@ -5,8 +5,11 @@ import { createInitialState } from './state'
 import { loadData } from './data'
 import { SceneRunner, type SceneNode } from './script'
 import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from './log'
-import { advanceHour, availableActions, endDay, markActionDone } from './calendar'
+import { advanceHour, availableActions, endDay, markActionDone, type ActionDef } from './calendar'
 import { markEventDone, nextEvent } from './events'
+import { recordLimoAway, rollAttack } from './danger'
+import { affinityTier, TIER_LABEL, trustLabel } from './affinity'
+import { diffState, snapshot, type Change } from './changes'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
@@ -54,6 +57,36 @@ export const useGameStore = defineStore('game', () => {
   const notice = ref('')
   let onSceneEnd: (() => void) | null = null
 
+  // random source for attacks; tests replace it
+  let rng: () => number = Math.random
+  function setRng(fn: () => number): void {
+    rng = fn
+  }
+
+  const gameOver = ref<'hp' | null>(null)
+
+  // What just moved (affinity, trust, health, money), for the little notices on screen. Danger is felt, never listed.
+  type FeedItem = Change & { id: number }
+  const feed = ref<FeedItem[]>([])
+  let feedSeq = 0
+  let lastSnap = snapshot(state)
+
+  function reportChanges(): void {
+    const now = snapshot(state)
+    for (const c of diffState(lastSnap, now)) feed.value.push({ ...c, id: ++feedSeq })
+    lastSnap = now
+    if (feed.value.length > 8) feed.value.splice(0, feed.value.length - 8)
+  }
+
+  function resetFeed(): void {
+    feed.value = []
+    lastSnap = snapshot(state)
+  }
+
+  function dismissFeed(id: number): void {
+    feed.value = feed.value.filter(f => f.id !== id)
+  }
+
   const loadError = ref('')
   const hasSave = ref(readSlot() !== null)
 
@@ -74,6 +107,21 @@ export const useGameStore = defineStore('game', () => {
   let roomActionId = ''
   const room = computed(() => data.rooms.find(r => r.id === roomId.value) ?? null)
   const hotspots = computed(() => (room.value ? visibleHotspots(state, room.value) : []))
+
+  // Everyone you can win over and have already met, described in words rather than numbers.
+  const relations = computed(() => {
+    const met = new Set(state.backlog.map(l => l.speaker as string))
+    return data.npcs
+      .filter(n => met.has(n.id))
+      .map(n => {
+        if (n.id === 'laohan') {
+          const tier = state.trust >= 60 ? 'high' : state.trust >= 50 ? 'good' : state.trust >= 40 ? 'mid' : 'low'
+          return { id: n.id, name: n.name, kind: 'trust' as const, tier, label: trustLabel(state.trust), fill: Math.min(100, Math.round((state.trust / 80) * 100)) }
+        }
+        const tier = affinityTier(state.affinity[n.id])
+        return { id: n.id, name: n.name, kind: 'affinity' as const, tier, label: TIER_LABEL[tier], fill: state.affinity[n.id] }
+      })
+  })
 
   const actions = computed(() => availableActions(state, data.actions))
   const canShop = computed(() => SHOP_HOURS.includes(state.hour))
@@ -130,10 +178,20 @@ export const useGameStore = defineStore('game', () => {
     tick.value += 1
     const node = runner.value ? runner.value.current() : null
     if (node && node.type === 'say') putOnStage(node.speaker, node.expr)
-    if (runner.value && node === null && onSceneEnd) {
-      const cb = onSceneEnd
-      onSceneEnd = null
-      cb()
+    reportChanges()
+    if (runner.value && node === null) {
+      if (state.hp <= 0 && !gameOver.value) {
+        gameOver.value = 'hp'
+        playScene('bad_end_1', () => {
+          screen.value = 'end'
+        })
+        return
+      }
+      if (onSceneEnd) {
+        const cb = onSceneEnd
+        onSceneEnd = null
+        cb()
+      }
     }
   }
 
@@ -150,6 +208,8 @@ export const useGameStore = defineStore('game', () => {
     notice.value = ''
     exam.value = null
     examFailed.value = false
+    gameOver.value = null
+    resetFeed()
     screen.value = 'scene'
     playScene('prologue', toHub)
   }
@@ -187,10 +247,21 @@ export const useGameStore = defineStore('game', () => {
     screen.value = 'scene'
     playScene(a.scene, () => {
       markActionDone(state, a.id)
+      const when = state.hour
       advanceHour(state, a.costHours)
       if (giftItemId && a.npc) gift(a.npc, giftItemId)
-      toHub()
+      if (!attackAfter(a, when)) toHub()
     })
+  }
+
+  // After an action, the dark may bite back (spec 6.4). Returns true if an attack scene took over.
+  function attackAfter(a: ActionDef, when: number): boolean {
+    if (!a.attack || !data.scenes[a.attack]) return false
+    if (!rollAttack(state, a.risk ?? 'normal', rng)) return false
+    recordLimoAway(state, when)
+    screen.value = 'scene'
+    playScene(a.attack, toHub)
+    return true
   }
 
   function enterRoom(id: string, costHours: number, actionId: string): void {
@@ -217,12 +288,14 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function leaveRoom(): void {
+    const action = data.actions.find(a => a.id === roomActionId)
     markActionDone(state, roomActionId)
+    const when = state.hour
     advanceHour(state, roomCost)
     roomId.value = null
     roomCost = 0
     roomActionId = ''
-    toHub()
+    if (!action || !attackAfter(action, when)) toHub()
   }
 
   function goShop(): void {
@@ -239,12 +312,14 @@ export const useGameStore = defineStore('game', () => {
   function buy(itemId: string): BuyResult {
     const r = buyItem(state, data.items, itemId)
     notice.value = r.ok ? `买了 ${itemName(itemId)}` : '买不了'
+    reportChanges()
     return r
   }
 
   function gift(npcId: NpcId, itemId: string): GiftResult {
     const r = giveGift(state, data.npcs, npcId, itemId)
     notice.value = r.ok ? `把 ${itemName(itemId)} 送给了 ${speakerName(npcId)}` : '送不出去'
+    reportChanges()
     return r
   }
 
@@ -272,6 +347,8 @@ export const useGameStore = defineStore('game', () => {
     const r = loadSave(readSlot())
     if (r.ok) {
       Object.assign(state, r.state)
+      gameOver.value = null
+      resetFeed()
       exam.value = null
       examFailed.value = false
       loadError.value = ''
@@ -293,6 +370,8 @@ export const useGameStore = defineStore('game', () => {
     for (const id of kit.evidence) applyEffect(state, { kind: 'evidence', id })
     for (const id of kit.testimony) applyEffect(state, { kind: 'testimony', id })
     logLines(state, kit.backlog)
+    gameOver.value = null
+    resetFeed()
     exam.value = null
     examFailed.value = false
     notice.value = ''
@@ -389,7 +468,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   return {
-    data, state, screen, stage, currentNode, notice, actions, canShop,
+    data, state, screen, stage, currentNode, relations, feed, dismissFeed, gameOver, setRng, notice, actions, canShop,
     playScene, newGame, restart, advance, note, speakerName, itemName,
     startAction, waitAnHour, room, hotspots, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, canJumpToFinale, jumpToFinale,
