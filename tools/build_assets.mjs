@@ -21,6 +21,8 @@ const CHARACTERS = {
   zc: { id: 'zhengcen', dir: 'zc', files: { '正常-笑脸合本': 'normal', '紧张-记录': 'nervous', '生气-撕本': 'angry', '害怕心虚-遮脸': 'guilty' } },
   sxy: { id: 'shaoxy', dir: 'sxy', files: { 正常: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
   lc: { id: 'lucheng', dir: 'lc', files: { 正常: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
+  my: { id: 'mengyao', dir: 'my', files: { 正常: 'normal', 紧张: 'nervous', 害怕: 'panic', 生气: 'angry' } },
+  lh: { id: 'laohan', dir: 'lh', suffix: '', nameInfix: '老韩_', files: { 严肃: 'normal', 怀疑: 'suspicious', 惊讶: 'surprised', 缓和: 'soft' } },
   lm: { id: 'limo', dir: 'lm', files: { '平常-不耐烦': 'normal', 生气: 'angry', 紧张: 'nervous', '心虚-克制': 'guilty' } },
 }
 
@@ -43,7 +45,7 @@ for (const [prefix, c] of Object.entries(CHARACTERS)) {
   const dir = join(src, c.dir)
   const present = new Set(readdirSync(dir))
   for (const [stem, key] of Object.entries(c.files)) {
-    const name = `${prefix}_${stem}${c.suffix ?? ''}.png`
+    const name = `${prefix}_${c.nameInfix ?? ''}${stem}${c.suffix ?? ''}.png`
     if (!present.has(name)) throw new Error(`missing ${join(c.dir, name)}`)
     await sharp(join(dir, name))
       .resize({ width: 640 })

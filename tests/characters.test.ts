@@ -9,8 +9,8 @@ import { resolveBackground } from '../src/engine/backgrounds'
 const assets = resolve(__dirname, '../src/assets')
 
 describe('character art manifest', () => {
-  it('covers the eight characters that have art, each with a normal face', () => {
-    expect(Object.keys(manifest).sort()).toEqual(['boss', 'limo', 'lucheng', 'lyc', 'shaoxy', 'songyan', 'suwen', 'zhengcen'])
+  it('covers the ten characters that have art, each with a normal face', () => {
+    expect(Object.keys(manifest).sort()).toEqual(['boss', 'laohan', 'limo', 'lucheng', 'lyc', 'mengyao', 'shaoxy', 'songyan', 'suwen', 'zhengcen'])
     for (const faces of Object.values(manifest)) expect(Object.keys(faces)).toContain('normal')
   })
 
@@ -44,8 +44,10 @@ describe('resolveSprite', () => {
   })
 
   it('returns null for characters without art', () => {
-    expect(resolveSprite('mengyao', 'normal')).toBeNull()
-    expect(hasArt('mengyao')).toBe(false)
+    expect(resolveSprite('xiaoxu', 'normal')).toBeNull()
+    expect(hasArt('xiaoxu')).toBe(false)
+    expect(hasArt('mengyao')).toBe(true)
+    expect(hasArt('laohan')).toBe(true)
     expect(hasArt('limo')).toBe(true)
   })
 })

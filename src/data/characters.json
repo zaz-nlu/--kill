@@ -42,6 +42,18 @@
     "nervous": "characters/lucheng/nervous.webp",
     "guilty": "characters/lucheng/guilty.webp"
   },
+  "mengyao": {
+    "normal": "characters/mengyao/normal.webp",
+    "nervous": "characters/mengyao/nervous.webp",
+    "panic": "characters/mengyao/panic.webp",
+    "angry": "characters/mengyao/angry.webp"
+  },
+  "laohan": {
+    "normal": "characters/laohan/normal.webp",
+    "suspicious": "characters/laohan/suspicious.webp",
+    "surprised": "characters/laohan/surprised.webp",
+    "soft": "characters/laohan/soft.webp"
+  },
   "limo": {
     "normal": "characters/limo/normal.webp",
     "angry": "characters/limo/angry.webp",
