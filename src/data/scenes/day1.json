@@ -48,6 +48,7 @@
   ],
   "day1_morning_end": [
     { "type": "say", "speaker": "laohan", "text": "DNA 和完整的尸检报告，周六下午出来。在那之前，别离开天津。" },
+    { "type": "say", "speaker": "laohan", "text": "还有，上面催得紧。周六以后，这案子就不是我一个人说了算了。" },
     { "type": "say", "speaker": "narration", "text": "整个 17 层今天封锁。你走出分局的时候，已经是中午了。今天只能用手机联系黎默。" },
     { "type": "effect", "effects": [{ "kind": "time", "hour": 13 }] }
   ],
