@@ -10,7 +10,8 @@ defineEmits<{ choose: [index: number] }>()
 </template>
 
 <style scoped>
-.choices { display: flex; flex-direction: column; gap: 10px; margin: 12px; max-height: 52vh; overflow-y: auto; padding-right: 6px; }
-button { padding: 14px 18px; font-size: 17px; text-align: left; background: #222; color: #f3f3f3; border: 2px solid #888; border-radius: 6px; cursor: pointer; }
-button:hover { border-color: #c8501e; }
+.choices { display: flex; flex-direction: column; gap: 8px; margin: 12px; max-height: 52vh; overflow-y: auto; padding-right: 6px; }
+button { position: relative; padding: 14px 20px; font-size: 17px; text-align: left; border-radius: 10px; overflow: hidden; background: var(--glass); backdrop-filter: blur(14px) saturate(1.25); border: 1px solid var(--glass-line); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+button::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: transparent; transition: background 0.15s; }
+button:hover::before { background: var(--accent); }
 </style>

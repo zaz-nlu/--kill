@@ -1,0 +1,279 @@
+{
+  "intro_lyc_home": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把自己关在家里，没有开大灯，只留了书桌上那盏。窗外的河和摩天轮，还和昨天一样亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "一个人想事情，不如把事情摆出来看。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站在客厅中间，环顾四周。每一样东西，昨天晚上，好像都和你说过话。"
+    }
+  ],
+  "inspect_lh_laptop": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "笔记本的屏幕亮着，是日历。你把日期翻回 9 月 11 日，周五。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "下午 16:00：“会议室 B · 前端接口演示（外包组）”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我在那儿用过数据线。演示完，我忙着收电脑，好像有人说了一句……“我帮你收”。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasTestimony",
+        "id": "T03"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "这件事，我已经想起来了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "谁说的？我当时没抬头。……不，我什么都没看清。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T03"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_lh_phone": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "手机屏幕上，还躺着那条 21:08 的消息：“来我办公室一趟。奖金的事，可以再谈。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你一个字一个字地看。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚给我发消息，从来都是“亲爱的”开头。扣我奖金的时候是，开会骂人的时候也是。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这一条，没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一个把“亲爱的”当口头禅的人，会在松口的这一条消息里，忘了说它吗？"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "noticed_no_dear",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "inspect_lh_drawer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "抽屉里的一个小盒子，装着你调试手机用的数据线。每一根都贴着标签：LYC-01，LYC-02，LYC-04，LYC-05。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "LYC-03 的位置，空着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "警察说，勒死她的，是 LYC-03。可那根线，周五以后，我就没再见过。"
+    }
+  ],
+  "inspect_lh_table": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶几上扣着一杯早就凉了的茶，旁边是手机里存的那张截图：工资条，“年中绩效奖金：0.00”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "一万八。我攒了一整年。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我是为了这个，才跟她吵的。……所有人都会这么想。"
+    }
+  ],
+  "inspect_lh_coat": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外套的口袋里，塞着一张皱巴巴的小票：打印取件，21:11。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那是我去取申诉信的时间。我一整晚，都在这条线上。"
+    }
+  ],
+  "inspect_lh_window": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "雨小了一点，河面上的灯碎成一片一片。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "21:12，我路过会议室 B。里面一片黑，只有一块屏幕亮着，照着一个戴耳机的人影。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "当时我以为，是外包在开会。……就是这个“以为”。"
+    }
+  ],
+  "inspect_lh_bed": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "床铺没有叠，被子团成一团，是昨天早上起来的样子。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "昨天早上，我还在担心奖金。今天……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你突然很想躺下去，就这么睡过去。可你知道，睡不着。"
+    }
+  ],
+  "inspect_lh_photos": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "照片墙上，是爸妈来天津那年拍的。你笑得特别憨。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "妈要是知道我现在的处境，估计会连夜买票过来。……还是先别告诉她。"
+    }
+  ],
+  "intro_convenience": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "大堂里的便利店，二十四小时开着。这个点没什么人，冰柜的嗡嗡声很响。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你随手拿了一个篮子，什么也没买。你想看看，那天晚上，这里发生过什么。"
+    }
+  ],
+  "inspect_cv_counter": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "收银台后面，是一整面墙的香烟。最显眼的一排，是软中华。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "郑岑买烟，每次都是这个。……那天晚上九点零六分，他买的，也是这个。"
+    }
+  ],
+  "inspect_cv_snacks": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "货架第三层，放着一排鱼形的小饼干，只剩最后两包。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "不是每个人都爱吃这种东西。……这个口味，好像是有人每天都在买。"
+    }
+  ],
+  "inspect_cv_fridge": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "冰柜里，冰美式只剩两瓶，红牛和奶茶码得整整齐齐。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏闻，老板，小许……这栋楼里每个人，好像都能在这面柜子里，找到自己的那一瓶。"
+    }
+  ],
+  "inspect_cv_camera": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "收银台上方，装着一只小摄像头，镜头对着大堂门口。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "C3。它拍到过谁，几点出的门，物业那边都有记录。……不过想调，得有公函。"
+    }
+  ],
+  "inspect_cv_door": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "玻璃门外，是栏杆和湿漉漉的路面。路灯一盏一盏亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "21:20，郑岑在这儿上了滴滴。……我不信，他是回家了。"
+    }
+  ],
+  "inspect_cv_umbrella": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "门边的雨伞桶里，插着几把忘了拿的伞，黑的居多。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这个点，还会有人回来取。……也有人，永远不会回来了。"
+    }
+  ]
+}

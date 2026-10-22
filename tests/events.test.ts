@@ -6,6 +6,7 @@ import { evalCondition } from '../src/engine/script'
 import { availableActions, markActionDone, type ActionDef } from '../src/engine/calendar'
 import { markEventDone, nextEvent, type EventDef } from '../src/engine/events'
 import { useGameStore } from '../src/engine/store'
+import { skipEvents } from './helpers'
 
 describe('new conditions and effects', () => {
   it('flag and trustAtLeast conditions', () => {
@@ -54,6 +55,26 @@ describe('action availability', () => {
     }
     s.hour = 13
     expect(availableActions(s, [base])).toHaveLength(1)
+  })
+
+  it('meal actions are the only things on offer at 12 and 18, and are never offered at other hours', () => {
+    const lunch: ActionDef = { ...base, id: 'lunch', meal: true, minHour: 12, maxHour: 12 }
+    const dinner: ActionDef = { ...base, id: 'dinner', meal: true, minHour: 18, maxHour: 18 }
+    const s = createInitialState()
+    s.hour = 12
+    expect(availableActions(s, [base, lunch, dinner]).map(a => a.id)).toEqual(['lunch'])
+    s.hour = 18
+    expect(availableActions(s, [base, lunch, dinner]).map(a => a.id)).toEqual(['dinner'])
+    s.hour = 15
+    expect(availableActions(s, [base, lunch, dinner]).map(a => a.id)).toEqual(['a'])
+  })
+
+  it('a meal action is used up once done, like any other', () => {
+    const lunch: ActionDef = { ...base, id: 'lunch', meal: true, minHour: 12, maxHour: 12 }
+    const s = createInitialState()
+    s.hour = 12
+    markActionDone(s, 'lunch')
+    expect(availableActions(s, [lunch])).toEqual([])
   })
 })
 
@@ -121,9 +142,7 @@ describe('store: the day flows through events', () => {
     const store = useGameStore()
     store.state.day = 2
     store.state.hour = 12
-    store.state.flags['event:day2_desk'] = true
-    store.state.flags['event:day2_pantry'] = true
-    store.state.flags['event:day2_lunch'] = true
+    skipEvents(store, 2)
     store.screen = 'hub'
     store.waitAnHour()
     expect(store.state.hour).toBe(13)
@@ -139,5 +158,31 @@ describe('store: the day flows through events', () => {
     skipScene(store)
     skipScene(store)
     expect(store.actions.map(a => a.id)).not.toContain('1-1')
+  })
+})
+
+describe('the "any" condition', () => {
+  it('is true when at least one of its parts is, and false for an empty list', () => {
+    const s = createInitialState()
+    const c = { kind: 'any' as const, conds: [{ kind: 'hasTestimony' as const, id: 'T10' }, { kind: 'affinityAtLeast' as const, npc: 'suwen' as const, value: 70 }] }
+    expect(evalCondition(s, c)).toBe(false)
+    s.affinity.suwen = 70
+    expect(evalCondition(s, c)).toBe(true)
+    s.affinity.suwen = 60
+    s.testimony.push('T10')
+    expect(evalCondition(s, c)).toBe(true)
+    expect(evalCondition(s, { kind: 'any', conds: [] })).toBe(false)
+  })
+
+  it('can gate an action: either way in', () => {
+    const gated: ActionDef = {
+      id: 'g', label: 'g', location: 'x', days: [1], scene: 's', costHours: 1,
+      requires: { kind: 'any', conds: [{ kind: 'hasTestimony', id: 'T10' }, { kind: 'affinityAtLeast', npc: 'suwen', value: 70 }] },
+    }
+    const s = createInitialState()
+    s.hour = 13
+    expect(availableActions(s, [gated])).toEqual([])
+    s.affinity.suwen = 75
+    expect(availableActions(s, [gated])).toHaveLength(1)
   })
 })

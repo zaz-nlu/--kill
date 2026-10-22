@@ -22,11 +22,11 @@ const pace = computed(() => (tier.value === 'critical' ? 'fast' : tier.value ===
 </template>
 
 <style scoped>
-.hud { display: flex; gap: 16px; align-items: center; padding: 8px 14px; background: #1b1b1fb0; color: #eee; }
+.hud { display: flex; gap: 16px; align-items: center; padding: 8px 16px; color: #f1ece4; background: rgba(16, 18, 26, 0.42); backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-line); }
 .hp { letter-spacing: 2px; }
 .hp .full { color: #e5484d; }
 .hp .empty { color: #666; }
-.heart { color: #d33; margin-left: auto; margin-right: 120px; animation: beat 1.2s infinite; }
+.heart { color: #d33; margin-left: 4px; animation: beat 1.2s infinite; }
 .heart.mid { animation-duration: 0.8s; }
 .heart.fast { animation-duration: 0.45s; }
 @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }

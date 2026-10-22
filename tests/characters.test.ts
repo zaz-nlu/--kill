@@ -9,8 +9,8 @@ import { resolveBackground } from '../src/engine/backgrounds'
 const assets = resolve(__dirname, '../src/assets')
 
 describe('character art manifest', () => {
-  it('covers the twelve characters that have art, each with a normal face', () => {
-    expect(Object.keys(manifest).sort()).toEqual(['boss', 'laohan', 'laowang', 'limo', 'lucheng', 'lyc', 'mengyao', 'shaoxy', 'songyan', 'suwen', 'xiaoxu', 'zhengcen'])
+  it('covers the thirteen characters that have art, each with a normal face', () => {
+    expect(Object.keys(manifest).sort()).toEqual(['boss', 'laohan', 'laoliu', 'laowang', 'limo', 'lucheng', 'lyc', 'mengyao', 'shaoxy', 'songyan', 'suwen', 'xiaoxu', 'zhengcen'])
     for (const faces of Object.values(manifest)) expect(Object.keys(faces)).toContain('normal')
   })
 
@@ -65,13 +65,14 @@ describe('backgrounds', () => {
     expect(resolveBackground('nowhere')).toBeNull()
   })
 
-  it('has distinct night and day artwork for every declared background', () => {
-    for (const b of backgrounds) {
+  it('has distinct night and day artwork for every declared background (the night-only ones show the night picture by day)', () => {
+    for (const b of backgrounds as { id: string; nightOnly?: boolean }[]) {
       const night = resolveBackground(b.id, 'night')
       const day = resolveBackground(b.id, 'day')
       expect(night, `${b.id} night`).not.toBeNull()
       expect(day, `${b.id} day`).not.toBeNull()
-      expect(day, `${b.id} day differs`).not.toBe(night)
+      if (b.nightOnly) expect(day, `${b.id} day falls back to night`).toBe(night)
+      else expect(day, `${b.id} day differs`).not.toBe(night)
     }
   })
 

@@ -39,7 +39,7 @@
       "electron/**"
     ],
     "directories": {
-      "output": "release"
+      "output": "release-final2"
     },
     "win": {
       "target": "portable",

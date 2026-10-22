@@ -4,7 +4,11 @@
   "startPersuasion": 5,
   "onClear": "finale_act1_end",
   "wrongReply": [
-    { "speaker": "limo", "text": "你拿这个出来，是想说明什么？", "expr": "angry" }
+    {
+      "speaker": "limo",
+      "text": "你拿这个出来，是想说明什么？",
+      "expr": "angry"
+    }
   ],
   "statements": [
     {
@@ -17,34 +21,105 @@
       "text": "8 点 50 我去了一趟洗手间，路上看见郑岑没坐电梯，往西楼梯走了。",
       "steps": [
         {
-          "kind": "present", "id": "s2-1", "accepts": ["E06"],
-          "reply": [{ "speaker": "limo", "text": "也许我看错了人，走廊上人影晃，西楼梯那边……", "expr": "nervous" }]
-        },
-        {
-          "kind": "press", "id": "s2-2", "after": ["s2-1"], "required": true,
+          "kind": "present",
+          "id": "s2-1",
+          "accepts": [
+            "E06"
+          ],
           "reply": [
-            { "speaker": "lyc", "text": "你从哪条路去的洗手间？" },
-            { "speaker": "limo", "text": "从转角出去，过电梯厅。就那一条路。" }
+            {
+              "speaker": "limo",
+              "text": "也许我看错了人，走廊上人影晃，西楼梯那边……",
+              "expr": "nervous"
+            }
           ]
         },
         {
-          "kind": "present", "id": "s2-3", "accepts": ["E13"], "after": ["s2-2"],
-          "reply": [{ "speaker": "limo", "text": "……我记错了，我是从东边消防门出去的，下到 16 层借他们的洗手间。门磁早就被陆诚贴了磁铁，谁都知道。", "expr": "nervous" }]
-        },
-        {
-          "kind": "present", "id": "s2-4", "accepts": ["E15"], "after": ["s2-2"],
-          "reply": [{ "speaker": "limo", "text": "……可能是我记错了时间。", "expr": "nervous" }]
-        },
-        {
-          "kind": "present", "id": "s2-5", "accepts": ["T06", "T06a"], "after": ["s2-1", "s2-3", "s2-4"],
+          "kind": "press",
+          "id": "s2-2",
+          "after": [
+            "s2-1"
+          ],
+          "required": true,
           "reply": [
-            { "speaker": "lyc", "text": "第一天，你清清楚楚说了时间，连方向都说了。一个记错的人，不会把时间和方向记得这么清楚。", "expr": "determined" },
-            { "speaker": "limo", "text": "……我可能是记错了。", "expr": "guilty" }
+            {
+              "speaker": "lyc",
+              "text": "你从哪条路去的洗手间？"
+            },
+            {
+              "speaker": "limo",
+              "text": "从转角出去，过电梯厅。就那一条路。"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-3",
+          "accepts": [
+            "E13"
+          ],
+          "after": [
+            "s2-2"
+          ],
+          "reply": [
+            {
+              "speaker": "limo",
+              "text": "……我记错了，我是从东边消防门出去的，下到 16 层借他们的洗手间。门磁早就被陆诚贴了磁铁，谁都知道。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-4",
+          "accepts": [
+            "E15"
+          ],
+          "after": [
+            "s2-2"
+          ],
+          "reply": [
+            {
+              "speaker": "limo",
+              "text": "……可能是我记错了时间。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-5",
+          "accepts": [
+            "T06",
+            "T06a"
+          ],
+          "after": [
+            "s2-1",
+            "s2-3",
+            "s2-4"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第一天，你清清楚楚说了时间，连方向都说了。一个记错的人，不会把时间和方向记得这么清楚。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……我可能是记错了。",
+              "expr": "guilty"
+            }
           ],
           "replyFor": {
             "T06a": [
-              { "speaker": "lyc", "text": "第一天你只说郑岑走得急。今天你连时间、方向都有了。故事越编越细。" },
-              { "speaker": "limo", "text": "……我可能是记错了。" }
+              {
+                "speaker": "lyc",
+                "text": "第一天你只说郑岑走得急。今天你连时间、方向都有了。故事越编越细。"
+              },
+              {
+                "speaker": "limo",
+                "text": "……我可能是记错了。"
+              }
             ]
           }
         }
@@ -55,10 +130,18 @@
       "text": "九点灯一下全灭了，大家都以为跳闸。我一直坐在会议室里没动。",
       "steps": [
         {
-          "kind": "press", "id": "s3-1",
+          "kind": "press",
+          "id": "s3-1",
           "reply": [
-            { "speaker": "lyc", "text": "灯灭了以后你做了什么？" },
-            { "speaker": "limo", "text": "继续开会啊。反正有屏幕的光。", "tag": "Q-light" }
+            {
+              "speaker": "lyc",
+              "text": "灯灭了以后你做了什么？"
+            },
+            {
+              "speaker": "limo",
+              "text": "继续开会啊。反正有屏幕的光。",
+              "tag": "Q-light"
+            }
           ]
         }
       ]
@@ -68,21 +151,59 @@
       "text": "21:08 宋砚还给林一程发了消息。这对 TA 不利，但我相信 TA 是被骗去的。",
       "steps": [
         {
-          "kind": "present", "id": "s4-1", "accepts": ["E14"],
-          "reply": [{ "speaker": "limo", "text": "WiFi 漫游日志本来就不准，差几分钟是常事。" }]
-        },
-        {
-          "kind": "present", "id": "s4-2", "accepts": ["E03"], "after": ["s4-1"],
+          "kind": "present",
+          "id": "s4-1",
+          "accepts": [
+            "E14",
+            "E12",
+            "T05",
+            "T02"
+          ],
           "reply": [
-            { "speaker": "lyc", "text": "同一份日志里，我的手机连上是 21:11，打印日志是 21:11。差几分钟？一分钟都没差。", "expr": "determined" },
-            { "speaker": "limo", "text": "那……是有人把宋砚的手机带进了会议室 B，想栽赃我！", "expr": "angry" }
+            {
+              "speaker": "limo",
+              "text": "WiFi 漫游日志本来就不准，差几分钟是常事。"
+            }
           ]
         },
         {
-          "kind": "press", "id": "s4-3", "after": ["s4-2"], "required": true,
+          "kind": "present",
+          "id": "s4-2",
+          "accepts": [
+            "E03"
+          ],
+          "after": [
+            "s4-1"
+          ],
           "reply": [
-            { "speaker": "lyc", "text": "会议室 B 里除了你，还有谁？" },
-            { "speaker": "limo", "text": "没有。所以才是栽赃。我进去的时候门是开着的。" }
+            {
+              "speaker": "lyc",
+              "text": "同一份日志里，我的手机连上是 21:11，打印日志是 21:11。差几分钟？一分钟都没差。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "那……是有人把宋砚的手机带进了会议室 B，想栽赃我！",
+              "expr": "angry"
+            }
+          ]
+        },
+        {
+          "kind": "press",
+          "id": "s4-3",
+          "after": [
+            "s4-2"
+          ],
+          "required": true,
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "会议室 B 里除了你，还有谁？"
+            },
+            {
+              "speaker": "limo",
+              "text": "没有。所以才是栽赃。我进去的时候门是开着的。"
+            }
           ]
         }
       ]
@@ -92,13 +213,89 @@
       "text": "凶手肯定是个知道林一程和宋砚吵过架的人。谁最恨宋砚？……孟遥一直被压榨，对吧？",
       "steps": [
         {
-          "kind": "press", "id": "s5-1",
+          "kind": "press",
+          "id": "s5-1",
           "reply": [
-            { "speaker": "lyc", "text": "你为什么总想让我怀疑孟遥？" },
-            { "speaker": "limo", "text": "我只是……不想你被冤枉。", "expr": "guilty" }
+            {
+              "speaker": "lyc",
+              "text": "你为什么总想让我怀疑孟遥？"
+            },
+            {
+              "speaker": "limo",
+              "text": "我只是……不想你被冤枉。",
+              "expr": "guilty"
+            }
           ]
         }
       ]
     }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这是什么玩意？别在这儿丢人现眼。",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。别丢人现眼。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "想清楚再拿出来。这里不是菜市场。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……就这？你要是没别的，就别浪费大家时间。",
+        "expr": "angry"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问题问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "同一样东西你要拿几遍？",
+        "expr": "angry"
+      }
+    ]
   ]
 }

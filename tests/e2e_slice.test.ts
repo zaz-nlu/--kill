@@ -57,6 +57,7 @@ describe('the whole slice, title to end', () => {
     runScene(store, () => 0)
     expect(store.state.affinity.lucheng).toBe(65)
 
+    store.state.flags.noticed_no_dear = true
     store.startAction('2-9')
     runScene(store, () => 0)
     expect(store.state.testimony).toContain('T32')
@@ -68,14 +69,25 @@ describe('the whole slice, title to end', () => {
     expect(store.state.money).toBe(150 - 22)
     expect(store.screen).toBe('hub')
 
+    for (const e of store.data.events.filter(x => x.day === 3)) store.state.flags['event:' + e.id] = true   // day 3 is covered by its own tests
+    store.restAtHome()                            // the evening still happens at home
+    runScene(store, () => 0)
+    expect(store.state.day).toBe(3)
+    expect(store.screen).toBe('hub')
     store.restAtHome()
-    expect(store.screen).toBe('end')
-    expect(store.canJumpToFinale).toBe(true)
+    runScene(store, () => 0)
+    expect(store.state.day).toBe(4)
+    expect(store.screen).toBe('hub')
+    for (const e of store.data.events.filter(x => x.day === 4)) store.state.flags['event:' + e.id] = true   // day 4 is covered by its own tests
+    store.restAtHome()
+    runScene(store, () => 0)
+    expect(store.state.day).toBe(5)                // the story goes on: the fifth day is playable
 
-    // finale act 1
+    // finale act 1 (through the dev jump)
     store.jumpToFinale()
     runScene(store, () => 0)
     expect(store.screen).toBe('exam')
+    store.state.evidence.push(...store.data.evidence.map(e => e.id).filter(id => !store.state.evidence.includes(id)))   // enough in hand that act 2 can begin
     store.examGoto(1)
     for (const step of ['E06', 'PRESS', 'E13', 'E15', 'T06']) {
       const r = step === 'PRESS' ? store.examPress() : store.examPresent(step)
@@ -87,9 +99,10 @@ describe('the whole slice, title to end', () => {
     store.examPress()
     expect(store.screen).toBe('scene')
     runScene(store, () => 0)
-    expect(store.screen).toBe('end')
+    expect(store.screen).toBe('exam')              // act 2 follows
+    expect(store.exam?.def.id).toBe('finale_act2')
     expect(store.examFailed).toBe(false)
-    expect(store.state.backlog.at(-1)?.text).toContain('切片到此结束')
+    expect(store.state.backlog.some(l => l.text.includes('我是周屿的未婚夫'))).toBe(true)
   })
 
   it('the leaky route also reaches the end of the slice', () => {

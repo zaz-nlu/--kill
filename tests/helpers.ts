@@ -25,3 +25,8 @@ export function toDay2Noon(store: Store): void {
   store.waitAnHour()
   playOut(store, cold)
 }
+
+// Marks every fixed event of a day as already played, so a test can focus on something else.
+export function skipEvents(store: Store, day: number): void {
+  for (const e of store.data.events.filter(x => x.day === day)) store.state.flags['event:' + e.id] = true
+}

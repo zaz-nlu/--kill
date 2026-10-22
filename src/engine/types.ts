@@ -1,6 +1,6 @@
 export type NpcId =
   | 'boss' | 'mengyao' | 'suwen' | 'zhengcen' | 'shaoxy' | 'lucheng'
-  | 'limo' | 'laohan' | 'xiaoxu' | 'laowang' | 'tang'
+  | 'limo' | 'laohan' | 'xiaoxu' | 'laowang' | 'tang' | 'laoliu'
 export type Speaker = NpcId | 'lyc' | 'songyan' | 'narration'
 export type IntelId = 'phone' | 'draft' | 'trophy' | 'card' | 'attack'
 export type IntelStatus = 'unknown' | 'clean' | 'leaked'
@@ -18,9 +18,11 @@ export type Condition =
   | { kind: 'hasEvidence'; id: string }
   | { kind: 'hasTestimony'; id: string }
   | { kind: 'flag'; key: string }
+  | { kind: 'gaveGift'; npc: NpcId; item: string }
   | { kind: 'trustAtLeast'; value: number }
   | { kind: 'dangerAtLeast'; value: number }
   | { kind: 'affinityTier'; npc: NpcId; tier: 'open' | 'guarded' | 'closed' }
+  | { kind: 'any'; conds: Condition[] }      // at least one of them
   | { kind: 'not'; cond: Condition }
 
 export type Effect =
@@ -30,6 +32,7 @@ export type Effect =
   | { kind: 'learnIntel'; intel: IntelId }
   | { kind: 'flag'; key: string; value: boolean }
   | { kind: 'time'; hour: number }          // jump the clock forward to this hour
+  | { kind: 'persuasion'; delta: number }   // finale persuasion, carried from act to act
 
 export interface Item { id: string; name: string; price: number }
 export interface Npc {
@@ -59,16 +62,23 @@ export interface GameState {
   shopItemsLeft: number
   giftsGiven: Record<string, string[]> // NpcId -> item ids already given
   giftedToday: NpcId[]
+  persuasionLoss: number               // finale persuasion spent so far (negative = won back)
+  examGaps?: number                    // finale steps passed over for want of evidence, over all acts (old saves: absent)
 }
 
 export type Step =
-  | { kind: 'present'; id: string; accepts: string[]; after?: string[]; required?: boolean; reply: Line[];
+  | { kind: 'present'; id: string; accepts: string[]; after?: string[]; required?: boolean; reply: Line[]; bonus?: number;
       replyFor?: Record<string, Line[]> }          // when the presented id has an entry here, use it instead of reply
   | { kind: 'press'; id: string; after?: string[]; required?: boolean; reply: Line[] }
   | { kind: 'argument'; id: string; after?: string[]; required?: boolean; prompt: string;
       options: { text: string; correct: boolean; reply: Line[] }[] }
 
-export interface Statement { id: string; text: string; steps: Step[] }
+export interface Statement {
+  id: string
+  text: string
+  steps: Step[]
+  anyOf?: string[]   // the statement also needs at least one of these steps done
+}
 
 export interface ExamDef {
   id: string
@@ -76,6 +86,9 @@ export interface ExamDef {
   startPersuasion: number
   statements: Statement[]
   wrongReply: Line[]
+  wrongReplies?: Line[][]       // taken in turn: the witness and the detective can both lose patience
+  prematureReplies?: Line[][]   // right item, wrong moment: answered, no penalty
+  repeatReplies?: Line[][]      // the same item shown twice: answered, no penalty
   intro?: string
   onClear?: string
 }

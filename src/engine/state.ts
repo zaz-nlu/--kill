@@ -14,6 +14,7 @@ export const INITIAL_AFFINITY: Record<NpcId, number> = {
   xiaoxu: 50,
   laowang: 50,
   tang: 0,
+  laoliu: 0,
 }
 
 export function createInitialState(): GameState {
@@ -36,5 +37,7 @@ export function createInitialState(): GameState {
     shopItemsLeft: 0,
     giftsGiven: {},
     giftedToday: [],
+    persuasionLoss: 0,
+    examGaps: 0,
   }
 }

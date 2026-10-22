@@ -7,9 +7,10 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_1",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "key"
   },
   {
     "id": "1-2",
@@ -19,10 +20,11 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_2",
     "costHours": 1,
-    "npc": "laowang"
+    "npc": "laowang",
+    "kind": "key"
   },
   {
     "id": "1-3",
@@ -32,9 +34,10 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_3",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "key"
   },
   {
     "id": "1-4",
@@ -44,10 +47,11 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_4",
     "costHours": 1,
-    "npc": "mengyao"
+    "npc": "mengyao",
+    "kind": "key"
   },
   {
     "id": "1-5",
@@ -57,9 +61,10 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_5",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "key"
   },
   {
     "id": "1-6",
@@ -69,9 +74,10 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_6",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "useless"
   },
   {
     "id": "1-7",
@@ -83,7 +89,8 @@
     "minHour": 13,
     "maxHour": 17,
     "scene": "act_1_7",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "useless"
   },
   {
     "id": "1-8",
@@ -93,10 +100,11 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_8",
     "costHours": 1,
-    "npc": "suwen"
+    "npc": "suwen",
+    "kind": "aux"
   },
   {
     "id": "1-9",
@@ -106,7 +114,7 @@
       1
     ],
     "minHour": 13,
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_1_9",
     "costHours": 1,
     "npc": "lucheng",
@@ -114,7 +122,8 @@
       "kind": "affinityAtLeast",
       "npc": "lucheng",
       "value": 50
-    }
+    },
+    "kind": "aux"
   },
   {
     "id": "1-10",
@@ -128,7 +137,8 @@
     "scene": "act_1_10",
     "costHours": 1,
     "npc": "laohan",
-    "risk": "safe"
+    "risk": "safe",
+    "kind": "trust"
   },
   {
     "id": "1-11",
@@ -141,7 +151,9 @@
     "maxHour": 19,
     "scene": "day1_coffee",
     "costHours": 1,
-    "npc": "limo"
+    "npc": "limo",
+    "kind": "key",
+    "pinned": true
   },
   {
     "id": "1-12",
@@ -155,29 +167,206 @@
     "scene": "act_1_12",
     "costHours": 1,
     "risk": "high",
-    "attack": "attack_stairs"
+    "attack": "attack_stairs",
+    "kind": "key",
+    "until": "stairs_top"
+  },
+  {
+    "id": "1-13",
+    "label": "在公司楼下转转",
+    "location": "楼下",
+    "days": [
+      1
+    ],
+    "room": "street",
+    "costHours": 1,
+    "kind": "aux",
+    "maxHour": 20
+  },
+  {
+    "id": "1-14",
+    "label": "给家里打个电话",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_14",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "1-15",
+    "label": "翻翻同事们的朋友圈",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_15",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "1-16",
+    "label": "在招聘软件上刷刷岗位",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_16",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "1-17",
+    "label": "打电话咨询劳动律师",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_17",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "1-18",
+    "label": "去分局台阶上找小许聊聊",
+    "location": "分局",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "scene": "act_1_18",
+    "costHours": 1,
+    "npc": "xiaoxu",
+    "risk": "safe",
+    "kind": "aux"
+  },
+  {
+    "id": "1-19",
+    "label": "在楼下煎饼摊吃一套",
+    "location": "楼下",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 16,
+    "scene": "act_1_19",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "1-20",
+    "label": "去海河边走走",
+    "location": "海河",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_20",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "1-21",
+    "label": "回家补一觉",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_21",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "1-22",
+    "label": "去大厦门口，看看记者在问什么",
+    "location": "大堂",
+    "days": [
+      1
+    ],
+    "minHour": 14,
+    "maxHour": 17,
+    "scene": "act_1_22",
+    "costHours": 1,
+    "kind": "trap"
+  },
+  {
+    "id": "1-23",
+    "label": "给邵晓阳发微信",
+    "location": "线上",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "scene": "act_1_23",
+    "costHours": 1,
+    "npc": "shaoxy",
+    "kind": "affinity"
+  },
+  {
+    "id": "m1-1",
+    "label": "回家煮碗面",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "scene": "m1_dinner_home",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
+  },
+  {
+    "id": "m1-2",
+    "label": "到楼下便利店买点热的",
+    "location": "大堂",
+    "days": [
+      1
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "scene": "m1_dinner_store",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
   },
   {
     "id": "2-1",
+    "label": "翻熄灯令的原邮件和收件人列表",
+    "location": "邮箱",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_1",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
+    "id": "2-2",
     "label": "调查会议室 B",
     "location": "17 层",
     "days": [
       2
     ],
-    "maxHour": 17,
+    "maxHour": 20,
     "room": "meeting_b",
-    "costHours": 1
-  },
-  {
-    "id": "2-2",
-    "label": "在办公区转转",
-    "location": "17 层",
-    "days": [
-      2
-    ],
-    "maxHour": 17,
-    "room": "office",
-    "costHours": 1
+    "costHours": 1,
+    "kind": "key"
   },
   {
     "id": "2-3",
@@ -186,10 +375,40 @@
     "days": [
       2
     ],
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_2_3",
     "costHours": 1,
+    "npc": "shaoxy",
+    "kind": "affinity"
+  },
+  {
+    "id": "2-4",
+    "label": "和邵晓阳聊那天晚上",
+    "location": "外包区",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_4",
+    "costHours": 1,
+    "kind": "key",
     "npc": "shaoxy"
+  },
+  {
+    "id": "2-5",
+    "label": "问苏闻：宋砚那封邮件草稿是几点存的",
+    "location": "机房",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_5",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "suwen",
+    "requiresEvidence": [
+      "E07"
+    ]
   },
   {
     "id": "2-6",
@@ -198,10 +417,37 @@
     "days": [
       2
     ],
-    "maxHour": 17,
+    "maxHour": 20,
     "scene": "act_2_6",
     "costHours": 1,
-    "npc": "lucheng"
+    "npc": "lucheng",
+    "kind": "aux"
+  },
+  {
+    "id": "2-7",
+    "label": "找郑岑谈",
+    "location": "副总办公室",
+    "days": [
+      2
+    ],
+    "maxHour": 19,
+    "scene": "act_2_7",
+    "costHours": 1,
+    "kind": "trap",
+    "npc": "zhengcen"
+  },
+  {
+    "id": "2-8",
+    "label": "找老板",
+    "location": "老板办公室",
+    "days": [
+      2
+    ],
+    "maxHour": 19,
+    "scene": "act_2_8",
+    "costHours": 1,
+    "kind": "trap",
+    "npc": "boss"
   },
   {
     "id": "2-9",
@@ -210,9 +456,1760 @@
     "days": [
       2
     ],
-    "maxHour": 17,
+    "maxHour": 19,
     "scene": "act_2_9",
     "costHours": 1,
+    "npc": "mengyao",
+    "kind": "key"
+  },
+  {
+    "id": "2-10",
+    "label": "去分局向老韩交线索",
+    "location": "分局",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "scene": "act_2_10",
+    "costHours": 1,
+    "kind": "trust",
+    "npc": "laohan",
+    "risk": "safe"
+  },
+  {
+    "id": "2-11",
+    "label": "留到晚上 9 点，亲身体验熄灯",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_11",
+    "costHours": 1,
+    "kind": "key",
+    "minHour": 20,
+    "risk": "high",
+    "attack": "attack_office_night"
+  },
+  {
+    "id": "2-12",
+    "label": "在工位假装正常写代码",
+    "location": "工位",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_12",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "2-13",
+    "label": "去茶水间八卦宋砚的私事",
+    "location": "茶水间",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_13",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "2-14",
+    "label": "撕掉封条，偷偷进人事办公室",
+    "location": "人事区",
+    "days": [
+      2
+    ],
+    "maxHour": 17,
+    "scene": "act_2_14",
+    "costHours": 2,
+    "kind": "trap"
+  },
+  {
+    "id": "2-15",
+    "label": "夜里再去东楼梯转转",
+    "location": "东楼梯",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_15",
+    "costHours": 1,
+    "kind": "useless",
+    "minHour": 19,
+    "risk": "high",
+    "attack": "attack_stairs"
+  },
+  {
+    "id": "2-17",
+    "label": "在办公区转转",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "room": "office",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "2-18",
+    "label": "去外包区找黎默聊聊",
+    "location": "外包区",
+    "days": [
+      2
+    ],
+    "maxHour": 20,
+    "scene": "act_2_18",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "limo"
+  },
+  {
+    "id": "2-19",
+    "label": "在公司楼下转转",
+    "location": "楼下",
+    "days": [
+      2
+    ],
+    "room": "street",
+    "costHours": 1,
+    "kind": "aux",
+    "maxHour": 20
+  },
+  {
+    "id": "m2-1",
+    "label": "和邵晓阳、陆诚一起下楼吃饭",
+    "location": "楼下",
+    "days": [
+      2
+    ],
+    "minHour": 12,
+    "maxHour": 12,
+    "scene": "m2_lunch_outsourcers",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
+  },
+  {
+    "id": "m2-2",
+    "label": "一个人去面馆吃面，理一理思路",
+    "location": "楼下",
+    "days": [
+      2
+    ],
+    "minHour": 12,
+    "maxHour": 12,
+    "scene": "m2_lunch_alone",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
+  },
+  {
+    "id": "m2-3",
+    "label": "去看看孟遥吃饭了没有",
+    "location": "人事区",
+    "days": [
+      2
+    ],
+    "minHour": 12,
+    "maxHour": 12,
+    "scene": "m2_lunch_mengyao",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true,
     "npc": "mengyao"
+  },
+  {
+    "id": "m2-4",
+    "label": "留在公司，和加班的同事拼一份外卖",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "scene": "m2_dinner_office",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
+  },
+  {
+    "id": "m2-5",
+    "label": "下楼走一走，淋着雨想想事",
+    "location": "楼下",
+    "days": [
+      2
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "scene": "m2_dinner_walk",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true
+  },
+  {
+    "id": "m2-6",
+    "label": "给孟遥带一份热的饭",
+    "location": "人事区",
+    "days": [
+      2
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "scene": "m2_dinner_mengyao",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true,
+    "npc": "mengyao"
+  },
+  {
+    "id": "3-1",
+    "label": "找老韩看 C2 录像",
+    "location": "分局",
+    "days": [
+      3
+    ],
+    "maxHour": 17,
+    "scene": "act_3_1",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laohan",
+    "risk": "safe",
+    "requires": {
+      "kind": "trustAtLeast",
+      "value": 30
+    }
+  },
+  {
+    "id": "3-2",
+    "label": "拿着协查函去物业调日志",
+    "location": "物业",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_2",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laowang"
+  },
+  {
+    "id": "3-3",
+    "label": "拿 C2 录像逼问苏闻",
+    "location": "机房",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_3",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "suwen",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E13"
+    }
+  },
+  {
+    "id": "3-4",
+    "label": "请苏闻帮忙调人事门禁的本地日志",
+    "location": "人事区",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_4",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "suwen",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "hasTestimony",
+          "id": "T10"
+        },
+        {
+          "kind": "affinityAtLeast",
+          "npc": "suwen",
+          "value": 70
+        }
+      ]
+    }
+  },
+  {
+    "id": "3-5",
+    "label": "私下找孟遥谈谈临时卡的事",
+    "location": "茶水间",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_5",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "mengyao",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "hasEvidence",
+          "id": "E17"
+        },
+        {
+          "kind": "hasEvidence",
+          "id": "E42"
+        }
+      ]
+    }
+  },
+  {
+    "id": "3-6",
+    "label": "拿着证据找郑岑对质",
+    "location": "副总办公室",
+    "days": [
+      3
+    ],
+    "maxHour": 19,
+    "scene": "act_3_6",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "zhengcen",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "hasEvidence",
+          "id": "E25"
+        },
+        {
+          "kind": "hasEvidence",
+          "id": "E44"
+        }
+      ]
+    }
+  },
+  {
+    "id": "3-7",
+    "label": "找陆诚聊聊",
+    "location": "吸烟区",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_7",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "lucheng"
+  },
+  {
+    "id": "3-8",
+    "label": "在网上搜“贝塔 外包 猝死”",
+    "location": "家",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_8",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
+    "id": "3-9",
+    "label": "拿 E24 问邵晓阳关于周屿的事",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_9",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "shaoxy",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E24"
+    }
+  },
+  {
+    "id": "3-10",
+    "label": "把所有线索都告诉黎默，一起分析",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_10",
+    "costHours": 1,
+    "kind": "trap",
+    "npc": "limo"
+  },
+  {
+    "id": "3-11",
+    "label": "请全组喝奶茶（¥45）",
+    "location": "17 层",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_11",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "3-12",
+    "label": "找老板问奖金能不能补发",
+    "location": "老板办公室",
+    "days": [
+      3
+    ],
+    "maxHour": 19,
+    "scene": "act_3_12",
+    "costHours": 1,
+    "kind": "useless",
+    "npc": "boss"
+  },
+  {
+    "id": "3-13",
+    "label": "去东楼梯 16 层看看",
+    "location": "东楼梯",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_13",
+    "costHours": 1,
+    "kind": "key",
+    "risk": "high",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E15"
+    }
+  },
+  {
+    "id": "3-15",
+    "label": "查防静电手套是从哪来的",
+    "location": "17 层",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_15",
+    "costHours": 1,
+    "kind": "trap",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E27"
+    }
+  },
+  {
+    "id": "3-16",
+    "label": "夜里在会议室 B 复盘",
+    "location": "会议室 B",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_16",
+    "costHours": 1,
+    "kind": "key",
+    "minHour": 20
+  },
+  {
+    "id": "3-17",
+    "label": "夜里穿过 B2 停车场，去监控室找老王",
+    "location": "停车场",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_17",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laowang",
+    "minHour": 19,
+    "risk": "high",
+    "attack": "attack_parking"
+  },
+  {
+    "id": "3-18",
+    "label": "去物业问老王：今天有人翻过我的工位吗",
+    "location": "物业",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_18",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laowang",
+    "minHour": 19,
+    "requires": {
+      "kind": "flag",
+      "key": "desk_searched"
+    }
+  },
+  {
+    "id": "3-19",
+    "label": "去外包区找黎默聊聊",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "maxHour": 20,
+    "scene": "act_3_19",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "limo",
+    "requires": {
+      "kind": "flag",
+      "key": "boss_offer_seen"
+    }
+  },
+  {
+    "id": "4-1",
+    "label": "去河边茶馆，听孟遥说",
+    "location": "河边茶馆",
+    "days": [
+      4
+    ],
+    "maxHour": 12,
+    "scene": "act_4_1",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "mengyao",
+    "meal": true,
+    "minHour": 12,
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "mengyao_teahouse"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "any",
+              "conds": [
+                {
+                  "kind": "affinityAtLeast",
+                  "npc": "mengyao",
+                  "value": 60
+                },
+                {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "any",
+                    "conds": [
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "hasEvidence",
+                          "id": "E42"
+                        }
+                      },
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "affinityAtLeast",
+                          "npc": "mengyao",
+                          "value": 40
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "4-2",
+    "label": "跟唐经理一起逐帧看站会录像",
+    "location": "会议室 A",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_2",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "tang",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E19"
+    },
+    "until": "frames:e19:solved"
+  },
+  {
+    "id": "4-3",
+    "label": "去分局补要灯光日志",
+    "location": "分局",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_3",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laohan",
+    "risk": "safe",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 50
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "hasEvidence",
+                "id": "E16"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "4-4",
+    "label": "去 16 层，打开消防栓箱",
+    "location": "东楼梯",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_4",
+    "costHours": 1,
+    "kind": "key",
+    "risk": "high",
+    "away": true,
+    "requiresEvidence": [
+      "E15"
+    ],
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "any",
+                "conds": [
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E21"
+                  },
+                  {
+                    "kind": "flag",
+                    "key": "e21_lost"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "any",
+              "conds": [
+                {
+                  "kind": "hasEvidence",
+                  "id": "E11"
+                },
+                {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "any",
+                    "conds": [
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "hasEvidence",
+                          "id": "E07"
+                        }
+                      },
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "hasTestimony",
+                          "id": "T01"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "4-5",
+    "label": "把奖杯交给老韩",
+    "location": "分局",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_5",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laohan",
+    "risk": "safe",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E21"
+    }
+  },
+  {
+    "id": "4-6",
+    "label": "不动声色地观察黎默",
+    "location": "外包区",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_6",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "limo"
+  },
+  {
+    "id": "4-7",
+    "label": "留意邵晓阳手上的伤",
+    "location": "外包区",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_7",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "shaoxy"
+  },
+  {
+    "id": "4-8",
+    "label": "向邵晓阳要他的“加班存证”相册",
+    "location": "外包区",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_8",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "shaoxy",
+    "requires": {
+      "kind": "affinityAtLeast",
+      "npc": "shaoxy",
+      "value": 70
+    }
+  },
+  {
+    "id": "4-9",
+    "label": "问陆诚会议室 B 的 WiFi",
+    "location": "吸烟区",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_9",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "lucheng",
+    "requires": {
+      "kind": "affinityAtLeast",
+      "npc": "lucheng",
+      "value": 60
+    }
+  },
+  {
+    "id": "4-10",
+    "label": "调查两次袭击时各人在哪",
+    "location": "17 层",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_10",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "trustAtLeast",
+          "value": 50
+        },
+        {
+          "kind": "affinityAtLeast",
+          "npc": "mengyao",
+          "value": 70
+        }
+      ]
+    }
+  },
+  {
+    "id": "4-11",
+    "label": "当面质问黎默（可能会激怒对方）",
+    "location": "外包区",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_11",
+    "costHours": 1,
+    "kind": "trap",
+    "npc": "limo"
+  },
+  {
+    "id": "4-12",
+    "label": "查周屿的悼念微博",
+    "location": "家",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_12",
+    "costHours": 1,
+    "kind": "aux",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E24"
+    }
+  },
+  {
+    "id": "4-13",
+    "label": "拿周屿的事去问老板",
+    "location": "老板办公室",
+    "days": [
+      4
+    ],
+    "maxHour": 19,
+    "scene": "act_4_13",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "boss",
+    "requires": {
+      "kind": "hasTestimony",
+      "id": "T13"
+    }
+  },
+  {
+    "id": "4-14",
+    "label": "在工位更新简历",
+    "location": "17 层",
+    "days": [
+      4
+    ],
+    "maxHour": 20,
+    "scene": "act_4_14",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "4-16",
+    "label": "去分局探视孟遥",
+    "location": "分局",
+    "days": [
+      4
+    ],
+    "maxHour": 17,
+    "scene": "act_4_16",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "mengyao",
+    "risk": "safe",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "mengyao_taken"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 60
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E13"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E05"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "m4-1",
+    "label": "一个人去楼下面馆，理一理思路",
+    "location": "楼下",
+    "days": [
+      4
+    ],
+    "maxHour": 12,
+    "scene": "m4_lunch_alone",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true,
+    "minHour": 12
+  },
+  {
+    "id": "m4-2",
+    "label": "约邵晓阳一起吃午饭",
+    "location": "楼下",
+    "days": [
+      4
+    ],
+    "maxHour": 12,
+    "scene": "m4_lunch_shaoxy",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "shaoxy",
+    "meal": true,
+    "minHour": 12
+  },
+  {
+    "id": "m4-3",
+    "label": "叫份外卖，在工位吃",
+    "location": "17 层",
+    "days": [
+      4
+    ],
+    "maxHour": 18,
+    "scene": "m4_dinner_office",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "lucheng",
+    "meal": true,
+    "minHour": 18
+  },
+  {
+    "id": "m4-4",
+    "label": "沿着河边走一圈，吃个烤红薯",
+    "location": "河边",
+    "days": [
+      4
+    ],
+    "maxHour": 18,
+    "scene": "m4_dinner_walk",
+    "costHours": 1,
+    "kind": "affinity",
+    "meal": true,
+    "minHour": 18
+  },
+  {
+    "id": "5-1",
+    "label": "和老韩一起读 SD 卡",
+    "location": "分局",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_5_1",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laohan",
+    "risk": "safe",
+    "pinned": true,
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E21"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "e22_booked"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 60
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "5-2",
+    "label": "去分局补要灯光日志",
+    "location": "分局",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_4_3",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "laohan",
+    "risk": "safe",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 50
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "hasEvidence",
+                "id": "E16"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "5-3",
+    "label": "单独约黎默去东楼梯 16 层",
+    "location": "东楼梯",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_5_3",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "limo",
+    "pinned": true,
+    "risk": "high",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E21"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E23"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasTestimony",
+              "id": "T09"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E24"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "affinityAtLeast",
+              "npc": "limo",
+              "value": 50
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "flag",
+                "key": "confronted_limo"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "5-4",
+    "label": "去理发，“得体面点”",
+    "location": "街角",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_5_4",
+    "costHours": 1,
+    "kind": "useless"
+  },
+  {
+    "id": "5-5",
+    "label": "去外包区，和黎默说两句",
+    "location": "外包区",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_5_5",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "limo"
+  },
+  {
+    "id": "5-6",
+    "label": "给老韩打个电话",
+    "location": "线上",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_5_6",
+    "costHours": 1,
+    "kind": "trust",
+    "npc": "laohan"
+  },
+  {
+    "id": "5-7",
+    "label": "再去分局探视孟遥",
+    "location": "分局",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_4_16",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "mengyao",
+    "risk": "safe",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "mengyao_taken"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 60
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E13"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "hasEvidence",
+              "id": "E05"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "hasTestimony",
+                "id": "T13"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "5-8",
+    "label": "再看一遍站会录像",
+    "location": "会议室 A",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_4_2",
+    "costHours": 1,
+    "kind": "key",
+    "npc": "tang",
+    "requires": {
+      "kind": "hasEvidence",
+      "id": "E19"
+    },
+    "until": "frames:e19:solved"
+  },
+  {
+    "id": "5-9",
+    "label": "去 16 层，打开消防栓箱",
+    "location": "东楼梯",
+    "days": [
+      5
+    ],
+    "maxHour": 11,
+    "scene": "act_4_4",
+    "costHours": 1,
+    "kind": "key",
+    "risk": "high",
+    "away": true,
+    "requiresEvidence": [
+      "E15"
+    ],
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "not",
+              "cond": {
+                "kind": "any",
+                "conds": [
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E21"
+                  },
+                  {
+                    "kind": "flag",
+                    "key": "e21_lost"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "any",
+              "conds": [
+                {
+                  "kind": "hasEvidence",
+                  "id": "E11"
+                },
+                {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "any",
+                    "conds": [
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "hasEvidence",
+                          "id": "E07"
+                        }
+                      },
+                      {
+                        "kind": "not",
+                        "cond": {
+                          "kind": "hasTestimony",
+                          "id": "T01"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "r-hr-night",
+    "label": "夜里趁警察不在，潜入宋砚的办公室",
+    "location": "人事区",
+    "days": [
+      3,
+      4
+    ],
+    "minHour": 19,
+    "maxHour": 21,
+    "room": "hr_night",
+    "costHours": 1,
+    "kind": "key",
+    "risk": "high",
+    "attack": "attack_office_night",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "E36"
+      }
+    },
+    "pinned": true,
+    "until": "seen:hn_notes"
+  },
+  {
+    "id": "r-hr-outer",
+    "label": "夜里搜孟遥的工位，看她在躲什么",
+    "location": "人事区",
+    "days": [
+      3,
+      4
+    ],
+    "minHour": 19,
+    "maxHour": 21,
+    "room": "hr_outer",
+    "costHours": 1,
+    "kind": "key",
+    "risk": "high",
+    "attack": "attack_office_night",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "flag",
+        "key": "knows_card_story"
+      }
+    },
+    "pinned": true,
+    "until": "seen:ho_trash"
+  },
+  {
+    "id": "r-server",
+    "label": "趁苏闻被叫去开会，溜进机房",
+    "location": "机房",
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "room": "server_room",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "E14"
+      }
+    },
+    "requiresEvidence": [
+      "E07"
+    ],
+    "pinned": true,
+    "until": "seen:sr_router"
+  },
+  {
+    "id": "r-security",
+    "label": "夜里去监控室，趁老王巡楼翻他的终端",
+    "location": "物业",
+    "days": [
+      3,
+      4
+    ],
+    "minHour": 19,
+    "maxHour": 21,
+    "room": "security",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E15"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E16"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E41"
+          }
+        }
+      ]
+    },
+    "pinned": true,
+    "until": "seen:sc_pc"
+  },
+  {
+    "id": "r-outsource",
+    "label": "趁外包组开会，翻外包区的桌子",
+    "location": "外包区",
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "room": "outsource",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E33"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "any",
+            "conds": [
+              {
+                "kind": "not",
+                "cond": {
+                  "kind": "hasEvidence",
+                  "id": "E27"
+                }
+              },
+              {
+                "kind": "not",
+                "cond": {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "hasEvidence",
+                    "id": "E28"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "pinned": true,
+    "until": "seen:os_board"
+  },
+  {
+    "id": "r-boss",
+    "label": "趁老板外出，溜进他的办公室",
+    "location": "老板办公室",
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "room": "boss_office",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "E43"
+      }
+    }
+  },
+  {
+    "id": "r-vp",
+    "label": "趁郑岑下楼打电话，翻他的办公室",
+    "location": "副总办公室",
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "minHour": 13,
+    "maxHour": 17,
+    "room": "vp_office",
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "E44"
+      }
+    }
+  },
+  {
+    "id": "r-parking",
+    "label": "夜里下 B2 停车场看看",
+    "location": "停车场",
+    "days": [
+      3,
+      4
+    ],
+    "minHour": 19,
+    "maxHour": 21,
+    "room": "parking",
+    "costHours": 1,
+    "kind": "aux",
+    "risk": "high",
+    "attack": "attack_parking"
+  },
+  {
+    "id": "r-pantry",
+    "label": "去茶水间转转",
+    "location": "茶水间",
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "maxHour": 20,
+    "room": "pantry",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "r-smoking",
+    "label": "去吸烟区透口气",
+    "location": "吸烟区",
+    "days": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "maxHour": 20,
+    "room": "smoking",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "r-lobby",
+    "label": "在一楼大堂转转",
+    "location": "大堂",
+    "days": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "maxHour": 20,
+    "room": "lobby",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "2-20",
+    "label": "早到：在茶水间碰见孟遥",
+    "location": "茶水间",
+    "days": [
+      2
+    ],
+    "maxHour": 8,
+    "scene": "act_2_20",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "mengyao"
+  },
+  {
+    "id": "2-21",
+    "label": "早到：在大堂碰见下夜班的老王",
+    "location": "大堂",
+    "days": [
+      2
+    ],
+    "maxHour": 8,
+    "scene": "act_2_21",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "laowang"
+  },
+  {
+    "id": "2-24",
+    "label": "帮孟遥整理被警察翻乱的档案",
+    "location": "人事区",
+    "days": [
+      2
+    ],
+    "minHour": 9,
+    "maxHour": 17,
+    "scene": "act_2_24",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "mengyao"
+  },
+  {
+    "id": "3-20",
+    "label": "早到：去机房找苏闻聊聊",
+    "location": "机房",
+    "days": [
+      3
+    ],
+    "maxHour": 8,
+    "scene": "act_3_20",
+    "costHours": 1,
+    "kind": "affinity",
+    "npc": "suwen"
+  },
+  {
+    "id": "3-21",
+    "label": "早到：在大堂遇见老板的司机",
+    "location": "大堂",
+    "days": [
+      3
+    ],
+    "maxHour": 8,
+    "scene": "act_3_21",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "laoliu"
+  },
+  {
+    "id": "4-17",
+    "label": "早到：去东楼梯 16 层看那枝白菊",
+    "location": "东楼梯",
+    "days": [
+      4
+    ],
+    "maxHour": 8,
+    "scene": "act_4_17",
+    "costHours": 1,
+    "kind": "aux",
+    "npc": "shaoxy"
+  },
+  {
+    "id": "4-18",
+    "label": "早到：和小许在楼下买早点",
+    "location": "楼下",
+    "days": [
+      4
+    ],
+    "maxHour": 8,
+    "scene": "act_4_18",
+    "costHours": 1,
+    "kind": "trust",
+    "npc": "xiaoxu",
+    "risk": "safe"
+  },
+  {
+    "id": "5-10",
+    "label": "早到：给老韩带一份早饭",
+    "location": "分局",
+    "days": [
+      5
+    ],
+    "maxHour": 8,
+    "scene": "act_5_10",
+    "costHours": 1,
+    "kind": "trust",
+    "npc": "laohan",
+    "risk": "safe"
+  },
+  {
+    "id": "5-11",
+    "label": "早到：在家把证物摆一遍",
+    "location": "家",
+    "days": [
+      5
+    ],
+    "maxHour": 8,
+    "scene": "act_5_11",
+    "costHours": 1,
+    "kind": "aux"
+  },
+  {
+    "id": "1-24",
+    "label": "在家翻翻自己的东西，想想哪里不对劲",
+    "location": "家",
+    "days": [
+      1
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "room": "lyc_home",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
+    "id": "r-store",
+    "label": "去楼下便利店逛逛",
+    "location": "大堂",
+    "days": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "maxHour": 20,
+    "room": "convenience",
+    "costHours": 1,
+    "kind": "aux"
   }
 ]

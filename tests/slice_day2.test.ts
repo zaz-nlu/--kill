@@ -35,7 +35,9 @@ function day1(press: boolean, tellAll: boolean): GameState {
   play(s, 'prologue', [0])
   play(s, 'day1_morning', [0])
   play(s, 'day1_wechat')
-  play(s, 'day1_coffee', [press ? 0 : 1, tellAll ? 0 : 1])
+  play(s, 'day1_coffee', [press ? 0 : 1, tellAll ? 0 : 1, 0])
+  s.flags['deduce:night1:solved'] = true       // the evening reasoning reaches its conclusion
+  play(s, 'day1_night')
   return s
 }
 
@@ -97,7 +99,6 @@ describe('day 2', () => {
   it('clean route: G2, T27, T26 and G3 all land in the log and are presentable', () => {
     const s = day1(true, false)
     play(s, 'day2_desk')
-    play(s, 'day2_pantry')
     play(s, 'day2_lunch', [1])
     for (const t of ['G2', 'T27', 'T26', 'G3']) expect(tags(s)).toContain(t)
     for (const t of ['G1', 'G2', 'T27', 'T26', 'G3']) expect(presentableIds(s)).toContain(t)
@@ -106,7 +107,6 @@ describe('day 2', () => {
   it('leaked route: no T26 or T27 lines, but the innocent versions are there', () => {
     const s = day1(true, true)
     play(s, 'day2_desk')
-    play(s, 'day2_pantry')
     play(s, 'day2_lunch', [1])
     expect(tags(s)).not.toContain('T26')
     expect(tags(s)).not.toContain('T27')
@@ -140,13 +140,24 @@ describe('day 2', () => {
     expect(s.affinity.shaoxy).toBe(60)
 
     const warm = createInitialState()
-    play(warm, 'act_2_9')
+    warm.flags.noticed_no_dear = true      // you saw it yourself in your flat
+    play(warm, 'act_2_9', [0])
     expect(warm.testimony).toContain('T05')
     expect(warm.testimony).toContain('T32')
 
+    const unprompted = createInitialState()   // warm enough for the lamp, but she will not do your noticing for you
+    play(unprompted, 'act_2_9', [0])
+    expect(unprompted.testimony).toContain('T05')
+    expect(unprompted.testimony).not.toContain('T32')
+
+    const close = createInitialState()
+    close.affinity.mengyao = 65
+    play(close, 'act_2_9', [0])
+    expect(close.testimony).toContain('T32')
+
     const cold = createInitialState()
     cold.affinity.mengyao = 30
-    play(cold, 'act_2_9')
+    play(cold, 'act_2_9', [0])
     expect(cold.testimony).not.toContain('T05')
 
     const smoke = createInitialState()
@@ -162,13 +173,32 @@ describe('day 2', () => {
 })
 
 describe('day 2 action pool', () => {
-  it('offers the five actions on day 2 morning and none on day 3', () => {
+  it('offers twenty actions at 09:00 on day 2 (the pool the hub draws five from), and none yet on day 6', () => {
     const s = createInitialState()
     s.day = 2
     s.hour = 9
-    expect(availableActions(s, data.actions).map(a => a.id).sort()).toEqual(['2-1', '2-2', '2-3', '2-6', '2-9'])
-    s.day = 3
+    const ids = availableActions(s, data.actions).map(a => a.id)
+    expect(ids).toEqual(['2-1', '2-2', '2-3', '2-4', '2-6', '2-7', '2-8', '2-9', '2-10', '2-12', '2-13', '2-14', '2-17', '2-18', '2-19', 'r-pantry', 'r-smoking', 'r-lobby', '2-24', 'r-store'])
+    s.day = 6
     expect(availableActions(s, data.actions)).toEqual([])
+  })
+
+  it('asking Su Wen about the draft needs the crime-scene photo first', () => {
+    const s = createInitialState()
+    s.day = 2
+    s.hour = 9
+    expect(availableActions(s, data.actions).map(a => a.id)).not.toContain('2-5')
+    s.evidence.push('E07')
+    expect(availableActions(s, data.actions).map(a => a.id)).toContain('2-5')
+  })
+
+  it('the night-only actions appear in the evening', () => {
+    const s = createInitialState()
+    s.day = 2
+    s.hour = 20
+    const ids = availableActions(s, data.actions).map(a => a.id)
+    expect(ids).toContain('2-11')
+    expect(ids).toContain('2-15')
   })
 
   it('every action points at a real scene or a real room', () => {

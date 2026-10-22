@@ -9,7 +9,15 @@ export interface Hotspot {
   requires?: Condition
 }
 
-export interface RoomDef { id: string; label: string; bg: string; hotspots: Hotspot[] }
+export interface RoomDef {
+  id: string
+  label: string
+  bg: string
+  hotspots: Hotspot[]
+  intro?: string    // scene played on the way in, before the hotspots appear
+  budget?: number   // a sneaked search: you only get to look at this many spots before you have to leave (no timer)
+  cutoff?: string   // scene played when the budget runs out
+}
 
 const seenKey = (id: string) => `seen:${id}`
 

@@ -6,6 +6,7 @@ import { SceneRunner } from '../src/engine/script'
 import { useGameStore } from '../src/engine/store'
 import Stage from '../src/ui/Stage.vue'
 import { logLines } from '../src/engine/log'
+import { skipEvents } from './helpers'
 
 describe('bg nodes', () => {
   it('call the background hook and do not stop the scene', () => {
@@ -113,6 +114,7 @@ describe('store stage', () => {
     const store = useGameStore()
     store.state.day = 2
     store.state.hour = 12
+    skipEvents(store, 2)
     store.screen = 'hub'
     store.goShop()
     expect(store.stage.bg).toBe('store')
@@ -158,5 +160,80 @@ describe('Stage component', () => {
     const w = mount(Stage, { props: { bg: 'office', left: null, right: null, side: null, names } })
     expect(w.find('[data-testid="slot-left"]').exists()).toBe(false)
     expect(w.find('[data-testid="slot-right"]').exists()).toBe(false)
+  })
+})
+
+describe('memory scenes are grey', () => {
+  it('the memory node calls the hook with on/off and does not stop the scene', () => {
+    const seen: boolean[] = []
+    const r = new SceneRunner(
+      createInitialState(),
+      { a: [{ type: 'memory', on: true }, { type: 'say', speaker: 'lyc', text: 'x' }, { type: 'memory', on: false }, { type: 'say', speaker: 'lyc', text: 'y' }] },
+      { onMemory: on => seen.push(on) },
+    )
+    r.start('a')
+    expect(seen).toEqual([true])
+    r.advance()
+    expect(seen).toEqual([true, false])
+  })
+
+  it('works without hooks', () => {
+    const r = new SceneRunner(createInitialState(), { a: [{ type: 'memory', on: true }, { type: 'say', speaker: 'lyc', text: 'x' }] })
+    r.start('a')
+    expect(r.current()).toMatchObject({ text: 'x' })
+  })
+
+  it('the store turns it on and off with the story, and always starts a new scene in colour', () => {
+    setActivePinia(createPinia())
+    const store = useGameStore()
+    store.data.scenes.__flash = [
+      { type: 'say', speaker: 'narration', text: '现在' },
+      { type: 'memory', on: true },
+      { type: 'say', speaker: 'narration', text: '那时' },
+      { type: 'memory', on: false },
+      { type: 'say', speaker: 'narration', text: '又回到现在' },
+    ]
+    store.screen = 'scene'
+    store.playScene('__flash')
+    expect(store.stage.memory).toBe(false)
+    store.advance()
+    expect(store.stage.memory).toBe(true)
+    store.advance()
+    expect(store.stage.memory).toBe(false)
+    store.advance()
+    // a scene that ends while still in a memory does not leave the next one grey
+    store.data.scenes.__stuck = [{ type: 'memory', on: true }, { type: 'say', speaker: 'narration', text: 'x' }]
+    store.playScene('__stuck')
+    expect(store.stage.memory).toBe(true)
+    store.playScene('__flash')
+    expect(store.stage.memory).toBe(false)
+  })
+
+  it('going back to the hub clears it too', () => {
+    setActivePinia(createPinia())
+    const store = useGameStore()
+    store.stage.memory = true
+    store.state.day = 2
+    store.state.hour = 15
+    skipEvents(store, 2)
+    store.screen = 'hub'
+    store.leaveShop()
+    expect(store.stage.memory).toBe(false)
+  })
+
+  it('the stage greys the picture and the people and says why', () => {
+    const grey = mount(Stage, { props: { bg: 'office', left: { id: 'lyc', expr: 'normal' }, right: null, side: 'left', names: { lyc: '林一程' }, memory: true } })
+    expect(grey.find('[data-testid="stage-root"]').classes()).toContain('memory')
+    expect(grey.find('[data-testid="memory-tag"]').text()).toContain('回忆')
+    const live = mount(Stage, { props: { bg: 'office', left: null, right: null, side: null, names: {} } })
+    expect(live.find('[data-testid="stage-root"]').classes()).not.toContain('memory')
+    expect(live.find('[data-testid="memory-tag"]').exists()).toBe(false)
+  })
+})
+
+describe('a scene with a node the engine does not know', () => {
+  it('fails loudly instead of hanging', () => {
+    const r = new SceneRunner(createInitialState(), { a: [{ type: 'warp', id: 'x' } as never, { type: 'say', speaker: 'lyc', text: 'x' }] })
+    expect(() => r.start('a')).toThrow(/warp/)
   })
 })

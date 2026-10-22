@@ -1,0 +1,3090 @@
+{
+  "st_0_0": [
+    {
+      "type": "music",
+      "tension": 0.4
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_0"
+    }
+  ],
+  "stm_0_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_0_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_0_0": [
+    {
+      "type": "music",
+      "tension": 0.58
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.26
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_2"
+    }
+  ],
+  "st_0_1": [
+    {
+      "type": "music",
+      "tension": 0.33
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_1"
+    }
+  ],
+  "stm_0_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 3 层（耗体力 ●）",
+          "goto": "st_1_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_0_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_0_1": [
+    {
+      "type": "music",
+      "tension": 0.51
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.19
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_3"
+    }
+  ],
+  "st_0_2": [
+    {
+      "type": "music",
+      "tension": 0.26
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_2"
+    }
+  ],
+  "stm_0_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 3 层（耗体力 ●）",
+          "goto": "st_1_1"
+        },
+        {
+          "text": "上到 6 层（耗体力 ●●）",
+          "goto": "st_2_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_0_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_0_2": [
+    {
+      "type": "music",
+      "tension": 0.44
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.12
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_4"
+    }
+  ],
+  "st_0_3": [
+    {
+      "type": "music",
+      "tension": 0.19
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_3"
+    }
+  ],
+  "stm_0_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 3 层（耗体力 ●）",
+          "goto": "st_1_2"
+        },
+        {
+          "text": "上到 6 层（耗体力 ●●）",
+          "goto": "st_2_1"
+        },
+        {
+          "text": "上到 9 层（耗体力 ●●●）",
+          "goto": "st_3_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_0_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_0_3": [
+    {
+      "type": "music",
+      "tension": 0.37
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.12
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_4"
+    }
+  ],
+  "st_0_4": [
+    {
+      "type": "music",
+      "tension": 0.12
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_0_4"
+    }
+  ],
+  "stm_0_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 3 层（耗体力 ●）",
+          "goto": "st_1_3"
+        },
+        {
+          "text": "上到 6 层（耗体力 ●●）",
+          "goto": "st_2_2"
+        },
+        {
+          "text": "上到 9 层（耗体力 ●●●）",
+          "goto": "st_3_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_1_0": [
+    {
+      "type": "music",
+      "tension": 0.48
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "3 层。墙上贴着一张褪色的消防疏散图，红色的箭头指向你来的方向。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的感应灯，比平时灭得快了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_0"
+    }
+  ],
+  "stm_1_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_1_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_1_0": [
+    {
+      "type": "music",
+      "tension": 0.66
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.34
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_2"
+    }
+  ],
+  "st_1_1": [
+    {
+      "type": "music",
+      "tension": 0.41
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "3 层。墙上贴着一张褪色的消防疏散图，红色的箭头指向你来的方向。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的感应灯，比平时灭得快了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_1"
+    }
+  ],
+  "stm_1_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 6 层（耗体力 ●）",
+          "goto": "st_2_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_1_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_1_1": [
+    {
+      "type": "music",
+      "tension": 0.59
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.27
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_3"
+    }
+  ],
+  "st_1_2": [
+    {
+      "type": "music",
+      "tension": 0.34
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "3 层。墙上贴着一张褪色的消防疏散图，红色的箭头指向你来的方向。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的感应灯，比平时灭得快了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_2"
+    }
+  ],
+  "stm_1_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 6 层（耗体力 ●）",
+          "goto": "st_2_1"
+        },
+        {
+          "text": "上到 9 层（耗体力 ●●）",
+          "goto": "st_3_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_1_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_1_2": [
+    {
+      "type": "music",
+      "tension": 0.52
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.2
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_4"
+    }
+  ],
+  "st_1_3": [
+    {
+      "type": "music",
+      "tension": 0.27
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "3 层。墙上贴着一张褪色的消防疏散图，红色的箭头指向你来的方向。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的感应灯，比平时灭得快了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_3"
+    }
+  ],
+  "stm_1_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 6 层（耗体力 ●）",
+          "goto": "st_2_2"
+        },
+        {
+          "text": "上到 9 层（耗体力 ●●）",
+          "goto": "st_3_1"
+        },
+        {
+          "text": "上到 12 层（耗体力 ●●●）",
+          "goto": "st_4_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_1_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_1_3": [
+    {
+      "type": "music",
+      "tension": 0.45
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.2
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_4"
+    }
+  ],
+  "st_1_4": [
+    {
+      "type": "music",
+      "tension": 0.2
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "3 层。墙上贴着一张褪色的消防疏散图，红色的箭头指向你来的方向。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的感应灯，比平时灭得快了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_1_4"
+    }
+  ],
+  "stm_1_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 6 层（耗体力 ●）",
+          "goto": "st_2_3"
+        },
+        {
+          "text": "上到 9 层（耗体力 ●●）",
+          "goto": "st_3_2"
+        },
+        {
+          "text": "上到 12 层（耗体力 ●●●）",
+          "goto": "st_4_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_2_0": [
+    {
+      "type": "music",
+      "tension": 0.56
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "6 层，你开始喘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这楼梯怕不是专门治我的……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后的台阶上，好像有人停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_0"
+    }
+  ],
+  "stm_2_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_2_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_2_0": [
+    {
+      "type": "music",
+      "tension": 0.74
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.42
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_2"
+    }
+  ],
+  "st_2_1": [
+    {
+      "type": "music",
+      "tension": 0.49
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "6 层，你开始喘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这楼梯怕不是专门治我的……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后的台阶上，好像有人停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_1"
+    }
+  ],
+  "stm_2_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 9 层（耗体力 ●）",
+          "goto": "st_3_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_2_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_2_1": [
+    {
+      "type": "music",
+      "tension": 0.67
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.35
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_3"
+    }
+  ],
+  "st_2_2": [
+    {
+      "type": "music",
+      "tension": 0.42
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "6 层，你开始喘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这楼梯怕不是专门治我的……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后的台阶上，好像有人停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_2"
+    }
+  ],
+  "stm_2_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 9 层（耗体力 ●）",
+          "goto": "st_3_1"
+        },
+        {
+          "text": "上到 12 层（耗体力 ●●）",
+          "goto": "st_4_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_2_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_2_2": [
+    {
+      "type": "music",
+      "tension": 0.6
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.28
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_4"
+    }
+  ],
+  "st_2_3": [
+    {
+      "type": "music",
+      "tension": 0.35
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "6 层，你开始喘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这楼梯怕不是专门治我的……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后的台阶上，好像有人停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_3"
+    }
+  ],
+  "stm_2_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 9 层（耗体力 ●）",
+          "goto": "st_3_2"
+        },
+        {
+          "text": "上到 12 层（耗体力 ●●）",
+          "goto": "st_4_1"
+        },
+        {
+          "text": "上到 15 层（耗体力 ●●●）",
+          "goto": "st_5_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_2_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_2_3": [
+    {
+      "type": "music",
+      "tension": 0.53
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.28
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_4"
+    }
+  ],
+  "st_2_4": [
+    {
+      "type": "music",
+      "tension": 0.28
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "6 层，你开始喘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这楼梯怕不是专门治我的……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后的台阶上，好像有人停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_2_4"
+    }
+  ],
+  "stm_2_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 9 层（耗体力 ●）",
+          "goto": "st_3_3"
+        },
+        {
+          "text": "上到 12 层（耗体力 ●●）",
+          "goto": "st_4_2"
+        },
+        {
+          "text": "上到 15 层（耗体力 ●●●）",
+          "goto": "st_5_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_3_0": [
+    {
+      "type": "music",
+      "tension": 0.64
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 层平台，你扶着扶手，肺里像拉风箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "胖子的命也是命啊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你停下脚步。那个脚步声，隔了半拍，也停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_0"
+    }
+  ],
+  "stm_3_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_3_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_3_0": [
+    {
+      "type": "music",
+      "tension": 0.82
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.5
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_2"
+    }
+  ],
+  "st_3_1": [
+    {
+      "type": "music",
+      "tension": 0.57
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 层平台，你扶着扶手，肺里像拉风箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "胖子的命也是命啊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你停下脚步。那个脚步声，隔了半拍，也停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_1"
+    }
+  ],
+  "stm_3_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 12 层（耗体力 ●）",
+          "goto": "st_4_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_3_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_3_1": [
+    {
+      "type": "music",
+      "tension": 0.75
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.43
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_3"
+    }
+  ],
+  "st_3_2": [
+    {
+      "type": "music",
+      "tension": 0.5
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 层平台，你扶着扶手，肺里像拉风箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "胖子的命也是命啊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你停下脚步。那个脚步声，隔了半拍，也停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_2"
+    }
+  ],
+  "stm_3_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 12 层（耗体力 ●）",
+          "goto": "st_4_1"
+        },
+        {
+          "text": "上到 15 层（耗体力 ●●）",
+          "goto": "st_5_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_3_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_3_2": [
+    {
+      "type": "music",
+      "tension": 0.68
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.36
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_4"
+    }
+  ],
+  "st_3_3": [
+    {
+      "type": "music",
+      "tension": 0.43
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 层平台，你扶着扶手，肺里像拉风箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "胖子的命也是命啊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你停下脚步。那个脚步声，隔了半拍，也停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_3"
+    }
+  ],
+  "stm_3_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 12 层（耗体力 ●）",
+          "goto": "st_4_2"
+        },
+        {
+          "text": "上到 15 层（耗体力 ●●）",
+          "goto": "st_5_1"
+        },
+        {
+          "text": "上到 16 层（耗体力 ●●●）",
+          "goto": "st_6_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_3_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_3_3": [
+    {
+      "type": "music",
+      "tension": 0.61
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.36
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_4"
+    }
+  ],
+  "st_3_4": [
+    {
+      "type": "music",
+      "tension": 0.36
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 层平台，你扶着扶手，肺里像拉风箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "胖子的命也是命啊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你停下脚步。那个脚步声，隔了半拍，也停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_3_4"
+    }
+  ],
+  "stm_3_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 12 层（耗体力 ●）",
+          "goto": "st_4_3"
+        },
+        {
+          "text": "上到 15 层（耗体力 ●●）",
+          "goto": "st_5_2"
+        },
+        {
+          "text": "上到 16 层（耗体力 ●●●）",
+          "goto": "st_6_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_4_0": [
+    {
+      "type": "music",
+      "tension": 0.71
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "12 层。墙上有人用笔画了一只简笔的猫，下面写着“加班使我快乐”，后面跟着一个笑哭的表情。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼下传来一声很轻的门响，可你一层都没经过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_0"
+    }
+  ],
+  "stm_4_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_4_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_4_0": [
+    {
+      "type": "music",
+      "tension": 0.89
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.57
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_2"
+    }
+  ],
+  "st_4_1": [
+    {
+      "type": "music",
+      "tension": 0.64
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "12 层。墙上有人用笔画了一只简笔的猫，下面写着“加班使我快乐”，后面跟着一个笑哭的表情。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼下传来一声很轻的门响，可你一层都没经过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_1"
+    }
+  ],
+  "stm_4_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 15 层（耗体力 ●）",
+          "goto": "st_5_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_4_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_4_1": [
+    {
+      "type": "music",
+      "tension": 0.82
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.5
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_3"
+    }
+  ],
+  "st_4_2": [
+    {
+      "type": "music",
+      "tension": 0.57
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "12 层。墙上有人用笔画了一只简笔的猫，下面写着“加班使我快乐”，后面跟着一个笑哭的表情。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼下传来一声很轻的门响，可你一层都没经过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_2"
+    }
+  ],
+  "stm_4_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 15 层（耗体力 ●）",
+          "goto": "st_5_1"
+        },
+        {
+          "text": "上到 16 层（耗体力 ●●）",
+          "goto": "st_6_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_4_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_4_2": [
+    {
+      "type": "music",
+      "tension": 0.75
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.43
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_4"
+    }
+  ],
+  "st_4_3": [
+    {
+      "type": "music",
+      "tension": 0.5
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "12 层。墙上有人用笔画了一只简笔的猫，下面写着“加班使我快乐”，后面跟着一个笑哭的表情。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼下传来一声很轻的门响，可你一层都没经过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_3"
+    }
+  ],
+  "stm_4_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 15 层（耗体力 ●）",
+          "goto": "st_5_2"
+        },
+        {
+          "text": "上到 16 层（耗体力 ●●）",
+          "goto": "st_6_1"
+        },
+        {
+          "text": "上到 17 层（耗体力 ●●●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_4_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_4_3": [
+    {
+      "type": "music",
+      "tension": 0.68
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.43
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_4"
+    }
+  ],
+  "st_4_4": [
+    {
+      "type": "music",
+      "tension": 0.43
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "12 层。墙上有人用笔画了一只简笔的猫，下面写着“加班使我快乐”，后面跟着一个笑哭的表情。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼下传来一声很轻的门响，可你一层都没经过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_4_4"
+    }
+  ],
+  "stm_4_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 15 层（耗体力 ●）",
+          "goto": "st_5_3"
+        },
+        {
+          "text": "上到 16 层（耗体力 ●●）",
+          "goto": "st_6_2"
+        },
+        {
+          "text": "上到 17 层（耗体力 ●●●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_5_0": [
+    {
+      "type": "music",
+      "tension": 0.79
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "15 层。防火门缝里漏出一点电子音乐，是做直播的那家公司。地上散着烟头：红塔山、利群、中南海，什么牌子都有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不敢回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_0"
+    }
+  ],
+  "stm_5_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_5_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_5_0": [
+    {
+      "type": "music",
+      "tension": 0.95
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.65
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_2"
+    }
+  ],
+  "st_5_1": [
+    {
+      "type": "music",
+      "tension": 0.72
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "15 层。防火门缝里漏出一点电子音乐，是做直播的那家公司。地上散着烟头：红塔山、利群、中南海，什么牌子都有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不敢回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_1"
+    }
+  ],
+  "stm_5_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 16 层（耗体力 ●）",
+          "goto": "st_6_0"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_5_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_5_1": [
+    {
+      "type": "music",
+      "tension": 0.9
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.58
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_3"
+    }
+  ],
+  "st_5_2": [
+    {
+      "type": "music",
+      "tension": 0.65
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "15 层。防火门缝里漏出一点电子音乐，是做直播的那家公司。地上散着烟头：红塔山、利群、中南海，什么牌子都有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不敢回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_2"
+    }
+  ],
+  "stm_5_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 16 层（耗体力 ●）",
+          "goto": "st_6_1"
+        },
+        {
+          "text": "上到 17 层（耗体力 ●●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_5_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_5_2": [
+    {
+      "type": "music",
+      "tension": 0.83
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.51
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_4"
+    }
+  ],
+  "st_5_3": [
+    {
+      "type": "music",
+      "tension": 0.58
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "15 层。防火门缝里漏出一点电子音乐，是做直播的那家公司。地上散着烟头：红塔山、利群、中南海，什么牌子都有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不敢回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_3"
+    }
+  ],
+  "stm_5_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 16 层（耗体力 ●）",
+          "goto": "st_6_2"
+        },
+        {
+          "text": "上到 17 层（耗体力 ●●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_5_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_5_3": [
+    {
+      "type": "music",
+      "tension": 0.76
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.51
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_4"
+    }
+  ],
+  "st_5_4": [
+    {
+      "type": "music",
+      "tension": 0.51
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "15 层。防火门缝里漏出一点电子音乐，是做直播的那家公司。地上散着烟头：红塔山、利群、中南海，什么牌子都有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不敢回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_5_4"
+    }
+  ],
+  "stm_5_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 16 层（耗体力 ●）",
+          "goto": "st_6_3"
+        },
+        {
+          "text": "上到 17 层（耗体力 ●●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "st_6_0": [
+    {
+      "type": "music",
+      "tension": 0.87
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "16 层平台。墙上的消防栓箱里，红色的水带盘得整整齐齐，玻璃上贴着一道封条。隔壁保险公司的门里传出一阵很轻的笑声，很快又没了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "灯灭了。你抬手晃了晃，灯又“啪”地亮起来，亮得比刚才暗一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的腿像灌了铅，每一口气都像在吞玻璃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ○○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_0"
+    }
+  ],
+  "stm_6_0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_6_0"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_6_0": [
+    {
+      "type": "music",
+      "tension": 0.95
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.73
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_2"
+    }
+  ],
+  "st_6_1": [
+    {
+      "type": "music",
+      "tension": 0.8
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "16 层平台。墙上的消防栓箱里，红色的水带盘得整整齐齐，玻璃上贴着一道封条。隔壁保险公司的门里传出一阵很轻的笑声，很快又没了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "灯灭了。你抬手晃了晃，灯又“啪”地亮起来，亮得比刚才暗一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "腿开始发抖，汗顺着后背往下淌。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●○○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_1"
+    }
+  ],
+  "stm_6_1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 17 层（耗体力 ●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_6_1"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_6_1": [
+    {
+      "type": "music",
+      "tension": 0.95
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.66
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_3"
+    }
+  ],
+  "st_6_2": [
+    {
+      "type": "music",
+      "tension": 0.73
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "16 层平台。墙上的消防栓箱里，红色的水带盘得整整齐齐，玻璃上贴着一道封条。隔壁保险公司的门里传出一阵很轻的笑声，很快又没了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "灯灭了。你抬手晃了晃，灯又“啪”地亮起来，亮得比刚才暗一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的呼吸声在楼梯间里大得吓人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●○○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_2"
+    }
+  ],
+  "stm_6_2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 17 层（耗体力 ●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_6_2"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_6_2": [
+    {
+      "type": "music",
+      "tension": 0.91
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.59
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_4"
+    }
+  ],
+  "st_6_3": [
+    {
+      "type": "music",
+      "tension": 0.66
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "16 层平台。墙上的消防栓箱里，红色的水带盘得整整齐齐，玻璃上贴着一道封条。隔壁保险公司的门里传出一阵很轻的笑声，很快又没了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "灯灭了。你抬手晃了晃，灯又“啪”地亮起来，亮得比刚才暗一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "呼吸重了一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●○）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_3"
+    }
+  ],
+  "stm_6_3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 17 层（耗体力 ●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "在平台上歇一歇",
+          "goto": "str_6_3"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "str_6_3": [
+    {
+      "type": "music",
+      "tension": 0.84
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你靠着冰凉的墙壁坐下来，闭上眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "头顶的灯“啪”地灭了。黑暗里，只剩你自己的心跳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好像有人在楼下往上走。你屏住呼吸，那声音停了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "过了很久，你才抬手晃了晃。灯亮了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "music",
+      "tension": 0.59
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_4"
+    }
+  ],
+  "st_6_4": [
+    {
+      "type": "music",
+      "tension": 0.59
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "16 层平台。墙上的消防栓箱里，红色的水带盘得整整齐齐，玻璃上贴着一道封条。隔壁保险公司的门里传出一阵很轻的笑声，很快又没了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "灯灭了。你抬手晃了晃，灯又“啪”地亮起来，亮得比刚才暗一点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "（体力 ●●●●）"
+    },
+    {
+      "type": "goto",
+      "scene": "stm_6_4"
+    }
+  ],
+  "stm_6_4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "上到 17 层（耗体力 ●）",
+          "goto": "act_1_12_top"
+        },
+        {
+          "text": "不爬了，下楼",
+          "goto": "act_1_12_quit"
+        }
+      ]
+    }
+  ],
+  "act_1_12_quit": [
+    {
+      "type": "music",
+      "tension": 0
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你扶着扶手，一层一层往下走。身后，楼上的感应灯一层一层，全灭了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "改天再来吧。"
+    }
+  ],
+  "act_1_12_top": [
+    {
+      "type": "music",
+      "tension": 0.7
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "stairs_top",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "好不容易爬到 17 层东侧，消防门上，贴着一块小小的黑色磁铁。门磁被它按住了，门开关，都不会响。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E10"
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁干的？这样一来，谁都能悄悄进出，连警报都不会响。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你回头往下看。16 层和 17 层之间的平台拐角，像是有什么东西。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你扶着栏杆走下半层。平台角落里，躺着一枝枯掉的白菊，花瓣已经发黑，贴在潮湿的水泥地上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁在这儿放的花……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼梯间里很静，只听得见你自己的喘息。花旁边的墙角，有一小块地方被擦得很干净，像是常有人来。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "蹲下来仔细看看",
+          "goto": "act_1_12_look"
+        },
+        {
+          "text": "不看了，下楼",
+          "goto": "act_1_12_leave"
+        }
+      ]
+    }
+  ]
+}

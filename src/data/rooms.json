@@ -4,10 +4,61 @@
     "label": "会议室 B",
     "bg": "meeting_b",
     "hotspots": [
-      { "id": "mb_projector", "label": "投影仪", "rect": [36, 5, 30, 9], "scene": "inspect_mb_projector" },
-      { "id": "mb_laptop", "label": "会议桌上的笔记本", "rect": [21, 43, 12, 9], "scene": "inspect_mb_laptop" },
-      { "id": "mb_glass", "label": "磨砂玻璃墙", "rect": [71, 6, 28, 62], "scene": "inspect_mb_glass" },
-      { "id": "mb_window", "label": "窗外", "rect": [0, 2, 22, 38], "scene": "inspect_mb_window" }
+      {
+        "id": "mb_projector",
+        "label": "投影仪",
+        "rect": [
+          36,
+          5,
+          30,
+          9
+        ],
+        "scene": "inspect_mb_projector"
+      },
+      {
+        "id": "mb_laptop",
+        "label": "会议桌上的笔记本",
+        "rect": [
+          21,
+          43,
+          12,
+          9
+        ],
+        "scene": "inspect_mb_laptop"
+      },
+      {
+        "id": "mb_glass",
+        "label": "磨砂玻璃墙",
+        "rect": [
+          71,
+          6,
+          28,
+          62
+        ],
+        "scene": "inspect_mb_glass"
+      },
+      {
+        "id": "mb_screen",
+        "label": "投影幕布",
+        "rect": [
+          37,
+          14,
+          29,
+          26
+        ],
+        "scene": "inspect_mb_screen"
+      },
+      {
+        "id": "mb_booking",
+        "label": "门边的预订屏",
+        "rect": [
+          86,
+          28,
+          6,
+          12
+        ],
+        "scene": "inspect_mb_booking"
+      }
     ]
   },
   {
@@ -15,9 +66,1068 @@
     "label": "17 层办公区",
     "bg": "office",
     "hotspots": [
-      { "id": "of_hr", "label": "人事办公室", "rect": [3, 10, 16, 38], "scene": "inspect_of_hr" },
-      { "id": "of_window", "label": "窗外的河", "rect": [30, 14, 38, 28], "scene": "inspect_of_window" },
-      { "id": "of_limo", "label": "黎默的工位", "rect": [77, 36, 22, 30], "scene": "inspect_of_limo" }
+      {
+        "id": "of_hr",
+        "label": "人事办公室",
+        "rect": [
+          3,
+          10,
+          16,
+          38
+        ],
+        "scene": "inspect_of_hr"
+      },
+      {
+        "id": "of_window",
+        "label": "窗外的河",
+        "rect": [
+          30,
+          14,
+          38,
+          28
+        ],
+        "scene": "inspect_of_window"
+      },
+      {
+        "id": "of_limo",
+        "label": "黎默的工位",
+        "rect": [
+          77,
+          36,
+          22,
+          30
+        ],
+        "scene": "inspect_of_limo"
+      },
+      {
+        "id": "of_myseat",
+        "label": "你的工位",
+        "rect": [
+          0,
+          40,
+          9,
+          22
+        ],
+        "scene": "inspect_of_myseat"
+      },
+      {
+        "id": "of_cabinet",
+        "label": "窗下的文件柜",
+        "rect": [
+          34,
+          43,
+          28,
+          9
+        ],
+        "scene": "inspect_of_cabinet"
+      }
+    ]
+  },
+  {
+    "id": "street",
+    "label": "公司楼下",
+    "bg": "street",
+    "hotspots": [
+      {
+        "id": "st_subway",
+        "label": "地铁出入口",
+        "rect": [
+          56,
+          34,
+          25,
+          26
+        ],
+        "scene": "inspect_st_subway"
+      },
+      {
+        "id": "st_shops",
+        "label": "路边的店铺",
+        "rect": [
+          0,
+          8,
+          13,
+          46
+        ],
+        "scene": "inspect_st_shops"
+      },
+      {
+        "id": "st_road",
+        "label": "湿漉漉的路面",
+        "rect": [
+          26,
+          62,
+          40,
+          30
+        ],
+        "scene": "inspect_st_road"
+      }
+    ]
+  },
+  {
+    "id": "hr_night",
+    "label": "宋砚的办公室（夜）",
+    "bg": "hr_office_after",
+    "intro": "intro_hr_night",
+    "hotspots": [
+      {
+        "id": "hn_notes",
+        "label": "笔记本屏幕边的便签",
+        "rect": [
+          21.2,
+          40.2,
+          10.2,
+          8.7
+        ],
+        "scene": "inspect_hn_notes"
+      },
+      {
+        "id": "hn_shelf",
+        "label": "书架上空出来的位置",
+        "rect": [
+          7.1,
+          10.4,
+          9.6,
+          11.2
+        ],
+        "scene": "inspect_hn_shelf"
+      },
+      {
+        "id": "hn_papers",
+        "label": "桌上的文件",
+        "rect": [
+          10.8,
+          44.6,
+          7.5,
+          4.3
+        ],
+        "scene": "inspect_hn_papers"
+      },
+      {
+        "id": "hn_drawer",
+        "label": "上锁的抽屉",
+        "rect": [
+          27.2,
+          51.0,
+          6.3,
+          12.8
+        ],
+        "scene": "inspect_hn_drawer"
+      },
+      {
+        "id": "hn_cabinet",
+        "label": "窗边的矮柜",
+        "rect": [
+          69.7,
+          45.7,
+          8.1,
+          17.5
+        ],
+        "scene": "inspect_hn_cabinet"
+      },
+      {
+        "id": "hn_umbrella",
+        "label": "门口伞架上的伞",
+        "rect": [
+          93.3,
+          46.8,
+          5.1,
+          47.8
+        ],
+        "scene": "inspect_hn_umbrella"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_hr_night"
+  },
+  {
+    "id": "hr_outer",
+    "label": "人事外间（夜）",
+    "bg": "hr_outer",
+    "intro": "intro_hr_outer",
+    "hotspots": [
+      {
+        "id": "ho_trash",
+        "label": "桌边的纸篓",
+        "rect": [
+          44.1,
+          62.0,
+          5.1,
+          11.5
+        ],
+        "scene": "inspect_ho_trash"
+      },
+      {
+        "id": "ho_drawer",
+        "label": "拉开的抽屉",
+        "rect": [
+          25.1,
+          55.8,
+          8.9,
+          7.4
+        ],
+        "scene": "inspect_ho_drawer"
+      },
+      {
+        "id": "ho_shred",
+        "label": "碎纸机",
+        "rect": [
+          38.0,
+          53.7,
+          7.9,
+          20.0
+        ],
+        "scene": "inspect_ho_shred"
+      },
+      {
+        "id": "ho_printer",
+        "label": "卡片打印机",
+        "rect": [
+          3.7,
+          43.6,
+          6.9,
+          7.2
+        ],
+        "scene": "inspect_ho_printer"
+      },
+      {
+        "id": "ho_box",
+        "label": "墙上的门禁控制盒",
+        "rect": [
+          56.5,
+          19.7,
+          4.7,
+          10.4
+        ],
+        "scene": "inspect_ho_box"
+      },
+      {
+        "id": "ho_pc",
+        "label": "孟遥的电脑",
+        "rect": [
+          20.3,
+          34.0,
+          9.9,
+          11.9
+        ],
+        "scene": "inspect_ho_pc"
+      },
+      {
+        "id": "ho_door",
+        "label": "贴着封条的玻璃门",
+        "rect": [
+          69.7,
+          6.4,
+          19.1,
+          59.5
+        ],
+        "scene": "inspect_ho_door"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_hr_outer"
+  },
+  {
+    "id": "server_room",
+    "label": "机房",
+    "bg": "server_room",
+    "intro": "intro_server_room",
+    "hotspots": [
+      {
+        "id": "sr_router",
+        "label": "机架上的路由器",
+        "rect": [
+          50.5,
+          18.1,
+          11.4,
+          35.6
+        ],
+        "scene": "inspect_sr_router"
+      },
+      {
+        "id": "sr_pc",
+        "label": "苏闻的双屏电脑",
+        "rect": [
+          26.6,
+          38.3,
+          23.6,
+          14.9
+        ],
+        "scene": "inspect_sr_pc"
+      },
+      {
+        "id": "sr_phone",
+        "label": "桌上的旧手机",
+        "rect": [
+          54.7,
+          56.9,
+          4.2,
+          3.0
+        ],
+        "scene": "inspect_sr_phone"
+      },
+      {
+        "id": "sr_cam",
+        "label": "天花板角落的摄像头",
+        "rect": [
+          60.9,
+          4.5,
+          4.1,
+          6.6
+        ],
+        "scene": "inspect_sr_cam"
+      },
+      {
+        "id": "sr_glass",
+        "label": "玻璃墙外的走廊",
+        "rect": [
+          65.2,
+          5.3,
+          33.5,
+          90.3
+        ],
+        "scene": "inspect_sr_glass"
+      },
+      {
+        "id": "sr_gloves",
+        "label": "架子上的纸箱",
+        "rect": [
+          2.7,
+          56.9,
+          11.7,
+          13.8
+        ],
+        "scene": "inspect_sr_gloves"
+      },
+      {
+        "id": "sr_drawer",
+        "label": "桌下的抽屉柜",
+        "rect": [
+          53.5,
+          64.8,
+          9.6,
+          21.3
+        ],
+        "scene": "inspect_sr_drawer"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_server_room"
+  },
+  {
+    "id": "security",
+    "label": "物业监控室（夜）",
+    "bg": "security",
+    "intro": "intro_security",
+    "hotspots": [
+      {
+        "id": "sc_wall",
+        "label": "监控墙",
+        "rect": [
+          0.6,
+          2.1,
+          35.6,
+          55.3
+        ],
+        "scene": "inspect_sc_wall"
+      },
+      {
+        "id": "sc_pc",
+        "label": "旧电脑",
+        "rect": [
+          42.8,
+          36.1,
+          9.9,
+          15.9
+        ],
+        "scene": "inspect_sc_pc"
+      },
+      {
+        "id": "sc_book",
+        "label": "值班登记本",
+        "rect": [
+          23.9,
+          57.9,
+          20.9,
+          10.6
+        ],
+        "scene": "inspect_sc_book"
+      },
+      {
+        "id": "sc_keys",
+        "label": "钥匙柜",
+        "rect": [
+          77.8,
+          2.1,
+          17.6,
+          55.8
+        ],
+        "scene": "inspect_sc_keys"
+      },
+      {
+        "id": "sc_panel",
+        "label": "墙上的灯控面板",
+        "rect": [
+          39.5,
+          21.8,
+          3.9,
+          10.4
+        ],
+        "scene": "inspect_sc_panel"
+      },
+      {
+        "id": "sc_shelf",
+        "label": "文件架",
+        "rect": [
+          54.1,
+          15.9,
+          17.6,
+          36.7
+        ],
+        "scene": "inspect_sc_shelf"
+      },
+      {
+        "id": "sc_flask",
+        "label": "保温杯和煎饼",
+        "rect": [
+          12.9,
+          46.2,
+          15.8,
+          27.1
+        ],
+        "scene": "inspect_sc_flask"
+      }
+    ],
+    "budget": 5,
+    "cutoff": "cutoff_security"
+  },
+  {
+    "id": "outsource",
+    "label": "外包区",
+    "bg": "outsource",
+    "intro": "intro_outsource",
+    "hotspots": [
+      {
+        "id": "os_board",
+        "label": "白板上的看板",
+        "rect": [
+          35.0,
+          18.6,
+          14.4,
+          18.1
+        ],
+        "scene": "inspect_os_board"
+      },
+      {
+        "id": "os_left",
+        "label": "左边堆着易拉罐的桌子",
+        "rect": [
+          0.0,
+          39.3,
+          29.9,
+          28.7
+        ],
+        "scene": "inspect_os_left"
+      },
+      {
+        "id": "os_mid",
+        "label": "最整洁的那张桌子",
+        "rect": [
+          32.3,
+          38.8,
+          38.9,
+          46.8
+        ],
+        "scene": "inspect_os_mid"
+      },
+      {
+        "id": "os_right",
+        "label": "右边放着烟盒的桌子",
+        "rect": [
+          70.9,
+          37.2,
+          27.2,
+          32.9
+        ],
+        "scene": "inspect_os_right"
+      },
+      {
+        "id": "os_shelf",
+        "label": "设备架",
+        "rect": [
+          52.6,
+          14.9,
+          25.7,
+          24.4
+        ],
+        "scene": "inspect_os_shelf"
+      },
+      {
+        "id": "os_gloves",
+        "label": "右下角的纸箱",
+        "rect": [
+          89.1,
+          67.5,
+          10.9,
+          13.3
+        ],
+        "scene": "inspect_os_gloves"
+      },
+      {
+        "id": "os_jackets",
+        "label": "椅背上的橙色外套",
+        "rect": [
+          41.3,
+          61.6,
+          12.9,
+          18.1
+        ],
+        "scene": "inspect_os_jackets"
+      },
+      {
+        "id": "os_pantry",
+        "label": "走廊尽头的茶水间",
+        "rect": [
+          84.3,
+          10.6,
+          13.8,
+          26.6
+        ],
+        "scene": "inspect_os_pantry"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_outsource"
+  },
+  {
+    "id": "boss_office",
+    "label": "老板办公室",
+    "bg": "boss_office",
+    "intro": "intro_boss_office",
+    "hotspots": [
+      {
+        "id": "bo_desk",
+        "label": "书桌上的文件",
+        "rect": [
+          38.3,
+          46.8,
+          14.4,
+          4.3
+        ],
+        "scene": "inspect_bo_desk"
+      },
+      {
+        "id": "bo_safe",
+        "label": "墙里的保险柜",
+        "rect": [
+          88.5,
+          22.8,
+          4.2,
+          10.6
+        ],
+        "scene": "inspect_bo_safe"
+      },
+      {
+        "id": "bo_cabinet",
+        "label": "奖杯展示柜",
+        "rect": [
+          70.6,
+          3.2,
+          12.6,
+          58.4
+        ],
+        "scene": "inspect_bo_cabinet"
+      },
+      {
+        "id": "bo_club",
+        "label": "墙角的球杆",
+        "rect": [
+          15.7,
+          35.1,
+          3.1,
+          25.0
+        ],
+        "scene": "inspect_bo_club"
+      },
+      {
+        "id": "bo_tea",
+        "label": "茶台上的茶具",
+        "rect": [
+          59.2,
+          73.3,
+          35.9,
+          18.6
+        ],
+        "scene": "inspect_bo_tea"
+      },
+      {
+        "id": "bo_shelf",
+        "label": "书架上的合影",
+        "rect": [
+          0.0,
+          0.0,
+          15.0,
+          74.4
+        ],
+        "scene": "inspect_bo_shelf"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_boss_office"
+  },
+  {
+    "id": "vp_office",
+    "label": "副总办公室",
+    "bg": "vp_office",
+    "intro": "intro_vp_office",
+    "hotspots": [
+      {
+        "id": "vo_shred",
+        "label": "碎纸机旁的纸条",
+        "rect": [
+          70.3,
+          59.0,
+          12.6,
+          32.4
+        ],
+        "scene": "inspect_vo_shred"
+      },
+      {
+        "id": "vo_phone",
+        "label": "桌上亮着的手机",
+        "rect": [
+          56.2,
+          59.5,
+          6.0,
+          5.8
+        ],
+        "scene": "inspect_vo_phone"
+      },
+      {
+        "id": "vo_docs",
+        "label": "桌上的文件堆",
+        "rect": [
+          46.1,
+          49.9,
+          13.2,
+          10.1
+        ],
+        "scene": "inspect_vo_docs"
+      },
+      {
+        "id": "vo_coat",
+        "label": "衣架上的西装",
+        "rect": [
+          87.6,
+          10.1,
+          9.6,
+          38.3
+        ],
+        "scene": "inspect_vo_coat"
+      },
+      {
+        "id": "vo_golf",
+        "label": "墙角的球包",
+        "rect": [
+          26.6,
+          18.1,
+          6.0,
+          28.2
+        ],
+        "scene": "inspect_vo_golf"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_vp_office"
+  },
+  {
+    "id": "parking",
+    "label": "B2 停车场（夜）",
+    "bg": "parking",
+    "intro": "intro_parking",
+    "hotspots": [
+      {
+        "id": "pk_gate",
+        "label": "出口的车牌识别闸机",
+        "rect": [
+          0.0,
+          28.7,
+          15.0,
+          45.7
+        ],
+        "scene": "inspect_pk_gate"
+      },
+      {
+        "id": "pk_car",
+        "label": "黑色轿车",
+        "rect": [
+          19.4,
+          37.2,
+          23.9,
+          20.7
+        ],
+        "scene": "inspect_pk_car"
+      },
+      {
+        "id": "pk_slot",
+        "label": "旁边的空车位",
+        "rect": [
+          49.9,
+          49.4,
+          11.4,
+          3.2
+        ],
+        "scene": "inspect_pk_slot"
+      },
+      {
+        "id": "pk_hydrant",
+        "label": "柱子上的消防栓箱",
+        "rect": [
+          68.8,
+          30.3,
+          6.6,
+          17.0
+        ],
+        "scene": "inspect_pk_hydrant"
+      },
+      {
+        "id": "pk_door",
+        "label": "铁门",
+        "rect": [
+          84.3,
+          27.6,
+          7.5,
+          26.0
+        ],
+        "scene": "inspect_pk_door"
+      }
+    ],
+    "budget": 4,
+    "cutoff": "cutoff_parking"
+  },
+  {
+    "id": "pantry",
+    "label": "茶水间",
+    "bg": "pantry",
+    "intro": "intro_pantry",
+    "hotspots": [
+      {
+        "id": "pa_fridge",
+        "label": "冰箱上的便利贴",
+        "rect": [
+          44.3,
+          21.8,
+          5.7,
+          11.9
+        ],
+        "scene": "inspect_pa_fridge"
+      },
+      {
+        "id": "pa_coffee",
+        "label": "咖啡机",
+        "rect": [
+          0.0,
+          24.4,
+          14.1,
+          21.8
+        ],
+        "scene": "inspect_pa_coffee"
+      },
+      {
+        "id": "pa_cup",
+        "label": "圆桌上的纸杯",
+        "rect": [
+          56.7,
+          44.1,
+          3.0,
+          6.2
+        ],
+        "scene": "inspect_pa_cup"
+      },
+      {
+        "id": "pa_trash",
+        "label": "垃圾桶",
+        "rect": [
+          86.4,
+          57.4,
+          11.4,
+          30.8
+        ],
+        "scene": "inspect_pa_trash"
+      }
+    ]
+  },
+  {
+    "id": "smoking",
+    "label": "吸烟区",
+    "bg": "smoking",
+    "intro": "intro_smoking",
+    "hotspots": [
+      {
+        "id": "sm_ash",
+        "label": "立式烟灰桶",
+        "rect": [
+          13.8,
+          40.4,
+          8.3,
+          37.7
+        ],
+        "scene": "inspect_sm_ash"
+      },
+      {
+        "id": "sm_lighter",
+        "label": "地上的打火机",
+        "rect": [
+          42.5,
+          83.4,
+          5.1,
+          4.8
+        ],
+        "scene": "inspect_sm_lighter"
+      },
+      {
+        "id": "sm_vend",
+        "label": "自动售货机",
+        "rect": [
+          50.2,
+          22.3,
+          16.1,
+          38.8
+        ],
+        "scene": "inspect_sm_vend"
+      }
+    ]
+  },
+  {
+    "id": "lobby",
+    "label": "一楼大堂",
+    "bg": "lobby",
+    "intro": "intro_lobby",
+    "hotspots": [
+      {
+        "id": "lb_book",
+        "label": "前台的访客登记簿",
+        "rect": [
+          6.6,
+          47.8,
+          11.4,
+          5.3
+        ],
+        "scene": "inspect_lb_book"
+      },
+      {
+        "id": "lb_lift",
+        "label": "电梯楼层显示",
+        "rect": [
+          32.6,
+          30.3,
+          2.4,
+          8.5
+        ],
+        "scene": "inspect_lb_lift"
+      },
+      {
+        "id": "lb_cam",
+        "label": "天花板上的摄像头",
+        "rect": [
+          59.5,
+          3.0,
+          3.0,
+          5.1
+        ],
+        "scene": "inspect_lb_cam"
+      },
+      {
+        "id": "lb_shop",
+        "label": "便利店的入口",
+        "rect": [
+          56.2,
+          20.7,
+          11.4,
+          23.9
+        ],
+        "scene": "inspect_lb_shop"
+      },
+      {
+        "id": "lb_umb",
+        "label": "门口的雨伞架",
+        "rect": [
+          72.1,
+          41.4,
+          9.0,
+          21.3
+        ],
+        "scene": "inspect_lb_umb"
+      }
+    ]
+  },
+  {
+    "id": "lyc_home",
+    "label": "林一程的家",
+    "bg": "home",
+    "intro": "intro_lyc_home",
+    "hotspots": [
+      {
+        "id": "lh_laptop",
+        "label": "书桌上的笔记本",
+        "rect": [
+          5.1,
+          31.9,
+          12.9,
+          12.2
+        ],
+        "scene": "inspect_lh_laptop"
+      },
+      {
+        "id": "lh_phone",
+        "label": "桌上的手机",
+        "rect": [
+          9.6,
+          44.8,
+          4.2,
+          3.0
+        ],
+        "scene": "inspect_lh_phone"
+      },
+      {
+        "id": "lh_drawer",
+        "label": "抽屉柜里的数据线",
+        "rect": [
+          11.4,
+          54.7,
+          3.7,
+          27.1
+        ],
+        "scene": "inspect_lh_drawer"
+      },
+      {
+        "id": "lh_table",
+        "label": "茶几上的截图",
+        "rect": [
+          75.1,
+          68.0,
+          24.9,
+          31.9
+        ],
+        "scene": "inspect_lh_table"
+      },
+      {
+        "id": "lh_coat",
+        "label": "衣架上的外套",
+        "rect": [
+          78.9,
+          15.9,
+          6.0,
+          21.3
+        ],
+        "scene": "inspect_lh_coat"
+      },
+      {
+        "id": "lh_window",
+        "label": "阳台和窗外",
+        "rect": [
+          17.9,
+          1.1,
+          25.7,
+          47.8
+        ],
+        "scene": "inspect_lh_window"
+      },
+      {
+        "id": "lh_bed",
+        "label": "卧室的床",
+        "rect": [
+          54.4,
+          6.4,
+          14.4,
+          44.6
+        ],
+        "scene": "inspect_lh_bed"
+      },
+      {
+        "id": "lh_photos",
+        "label": "墙上的照片",
+        "rect": [
+          95.1,
+          11.7,
+          4.9,
+          19.1
+        ],
+        "scene": "inspect_lh_photos"
+      }
+    ]
+  },
+  {
+    "id": "convenience",
+    "label": "楼下便利店",
+    "bg": "store",
+    "intro": "intro_convenience",
+    "hotspots": [
+      {
+        "id": "cv_counter",
+        "label": "收银台后的烟柜",
+        "rect": [
+          20.3,
+          29.8,
+          18.5,
+          35.1
+        ],
+        "scene": "inspect_cv_counter"
+      },
+      {
+        "id": "cv_snacks",
+        "label": "零食货架",
+        "rect": [
+          9.0,
+          27.6,
+          11.4,
+          49.9
+        ],
+        "scene": "inspect_cv_snacks"
+      },
+      {
+        "id": "cv_fridge",
+        "label": "冰柜",
+        "rect": [
+          80.7,
+          4.3,
+          19.3,
+          65.9
+        ],
+        "scene": "inspect_cv_fridge"
+      },
+      {
+        "id": "cv_camera",
+        "label": "门口的摄像头",
+        "rect": [
+          34.7,
+          15.9,
+          3.6,
+          6.4
+        ],
+        "scene": "inspect_cv_camera"
+      },
+      {
+        "id": "cv_door",
+        "label": "门外的雨夜",
+        "rect": [
+          47.8,
+          10.6,
+          26.9,
+          45.7
+        ],
+        "scene": "inspect_cv_door"
+      },
+      {
+        "id": "cv_umbrella",
+        "label": "门边的雨伞桶",
+        "rect": [
+          71.5,
+          42.0,
+          3.6,
+          13.8
+        ],
+        "scene": "inspect_cv_umbrella"
+      }
     ]
   }
 ]

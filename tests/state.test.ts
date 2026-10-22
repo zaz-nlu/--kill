@@ -71,7 +71,7 @@ describe('calendar', () => {
     endDay(s, { rested: false })
     expect(s.danger).toBe(25)
     expect(s.day).toBe(2)
-    expect(s.hour).toBe(9)
+    expect(s.hour).toBe(8)   // the day opens an hour before the 09:00 events
     expect(s.giftedToday).toEqual([])
   })
   it('endDay with rest lowers danger by 25 and restores 1 hp', () => {

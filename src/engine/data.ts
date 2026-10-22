@@ -6,6 +6,10 @@ import actions from '../data/actions.json'
 import debugKit from '../data/debug_kit.json'
 import rooms from '../data/rooms.json'
 import events from '../data/events.json'
+import deductions from '../data/deductions.json'
+import frames from '../data/frames.json'
+import type { FrameDef } from './frames'
+import type { DeductionDef } from './deduction'
 import type { EventDef } from './events'
 import type { RoomDef } from './rooms'
 import type { ExamDef, Item, Line, Npc } from './types'
@@ -23,6 +27,8 @@ export interface GameData {
   actions: ActionDef[]
   rooms: RoomDef[]
   events: EventDef[]
+  deductions: Record<string, DeductionDef>
+  frames: Record<string, FrameDef>
   exams: Record<string, ExamDef>
   debugKit: { evidence: string[]; testimony: string[]; backlog: Line[] }
 }
@@ -43,6 +49,8 @@ export function loadData(): GameData {
     actions: actions as ActionDef[],
     rooms: rooms as RoomDef[],
     events: events as EventDef[],
+    frames: Object.fromEntries((frames as FrameDef[]).map(f => [f.id, f])),
+    deductions: Object.fromEntries((deductions as DeductionDef[]).map(d => [d.id, d])),
     exams,
     debugKit: debugKit as GameData['debugKit'],
   }

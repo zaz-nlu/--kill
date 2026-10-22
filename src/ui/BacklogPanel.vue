@@ -11,7 +11,7 @@ const label = (speaker: string) => props.names?.[speaker] ?? (speaker === 'narra
 </script>
 
 <template>
-  <aside class="backlog">
+  <aside class="backlog glass">
     <nav>
       <button type="button" data-testid="tab-log" :class="{ on: tab === 'log' }" @click="tab = 'log'">日志</button>
       <button type="button" data-testid="tab-notes" :class="{ on: tab === 'notes' }" @click="tab = 'notes'">笔记</button>
@@ -28,12 +28,12 @@ const label = (speaker: string) => props.names?.[speaker] ?? (speaker === 'narra
 </template>
 
 <style scoped>
-.backlog { position: fixed; top: 44px; right: 12px; z-index: 20; display: flex; flex-direction: column; width: min(560px, 92vw); max-height: 70vh; padding: 10px 14px; background: #181818ee; color: #ddd; border: 1px solid #555; border-radius: 6px; }
+.backlog { position: fixed; top: 48px; right: 12px; z-index: 20; display: flex; flex-direction: column; width: min(560px, 92vw); max-height: 70vh; padding: 12px 16px; color: #e6e0d6; }
 nav { display: flex; gap: 8px; margin-bottom: 8px; flex: none; }
+nav button.on { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
 .scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 6px; }
-nav button.on { background: #c8501e; color: #fff; }
 ul { list-style: none; padding: 0; margin: 0; }
-li { padding: 6px 0; border-bottom: 1px solid #2a2a2a; line-height: 1.6; }
-.who { color: #e8a070; }
-.note { margin-left: 10px; font-size: 12px; }
+li { padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); line-height: 1.6; }
+.who { color: var(--accent); }
+.note { margin-left: 10px; font-size: 12px; padding: 1px 10px; }
 </style>

@@ -1,29 +1,385 @@
 {
   "inspect_mb_projector": [
-    { "type": "say", "speaker": "narration", "text": "投影仪吊在天花板上。镜头旁边的挂钩上，原本该套着一只黑色防尘袋，现在空空的。" },
-    { "type": "say", "speaker": "lyc", "text": "防尘袋……去哪了？" },
-    { "type": "effect", "effects": [{ "kind": "evidence", "id": "E11" }] }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室 B 的天花板上，吊着一台投影仪，镜头旁边有个用来挂防尘袋的小钩子。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你搬来一把椅子，站上去。钩子上空空的，只剩一道浅浅的灰痕，是袋子长期挂在那里压出来的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "防尘袋……去哪了？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起来，这种袋子是黑色的，带抽绳，平时一直套在投影仪上，谁也不会去碰。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "总不会是自己长腿跑了吧。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "椅子晃了一下，你赶紧扶住天花板。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E11"
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
   ],
   "inspect_mb_laptop": [
-    { "type": "say", "speaker": "narration", "text": "会议桌上有一台公用笔记本，屏幕早就息了。" },
-    { "type": "say", "speaker": "lyc", "text": "那天晚上，这间屋子里亮着的就是这样一块屏幕。" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议桌的另一头，放着一台公用笔记本，合着盖子。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你打开它，屏幕亮了。是公司给会议室配的那种公用机，桌面干干净净，什么都没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天晚上，这间屋子里亮着的，就是这样一块屏幕吧。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站在屏幕前，想起 21:12 路过玻璃墙时看到的那一幕：黑漆漆的屋子，只有一块屏幕亮着，照着一个戴耳机的人影。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "那一刻你只觉得里面在开会，没多想。"
+    }
   ],
   "inspect_mb_glass": [
-    { "type": "say", "speaker": "narration", "text": "磨砂玻璃墙。外面走廊的灯一灭，这里就像一只黑箱子。" },
-    { "type": "say", "speaker": "narration", "text": "从外面经过的人，只能看见里面一块发亮的屏幕。" }
-  ],
-  "inspect_mb_window": [
-    { "type": "say", "speaker": "narration", "text": "窗外是海河，天津之眼的灯在雨里一闪一闪。" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室 B 朝走廊的一整面墙，是磨砂玻璃，下半截磨得很厚，上半截透一点光。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你先站到走廊那边往里看，什么也看不清，只有模模糊糊的影子。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "再走进屋里往外看，走廊的灯一亮，外面的人看得清清楚楚。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "从外面看不清里面，从里面却看得清外面。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起昨晚路过时看见的：黑漆漆的屋子，一块发亮的屏幕。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "要是灯是黑的，从走廊过的人，只能看见那块屏幕的光。"
+    }
   ],
   "inspect_of_hr": [
-    { "type": "say", "speaker": "narration", "text": "人事办公室的门上还贴着封条，磨砂玻璃后面黑着灯。" },
-    { "type": "say", "speaker": "lyc", "text": "她每天九点以后都会开台灯……可那晚，灯是灭的。" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "人事办公室的门上贴着交叉的封条，磨砂玻璃后面黑着灯，屋里的陈设只剩下一团团模糊的影子。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把脸贴近玻璃。桌子，椅子，靠门边的地方立着一个细长的东西——是伞架。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她每天九点以后都会开台灯。可那晚，灯是灭的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "封条上签着老韩的名字和日期。你的手指在封条边上停了很久，最后还是放下了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "撕了，就是破坏现场。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "伞架上已经没有那把墨绿色的伞了。大概是警察收走了。"
+    }
   ],
   "inspect_of_window": [
-    { "type": "say", "speaker": "narration", "text": "九点熄灯以后，这一整层只剩窗外的光。" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "17 层的落地窗外，是海河。天津之眼的灯，在雨里一闪一闪。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "九点熄灯以后，这一整层只剩窗外的光。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天晚上，大概也是这样吧。一层楼的人，借着窗外的一点光，慢慢摸黑往外走。"
+    }
   ],
   "inspect_of_limo": [
-    { "type": "say", "speaker": "narration", "text": "黎默的工位。屏幕锁着，桌上摆着一包拆开的鱼形小饼干。" },
-    { "type": "say", "speaker": "lyc", "text": "（想拿一块，想起他会拍你的手。）" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默的工位。屏幕锁着，键盘上一点灰都没有，桌上摆得整整齐齐。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "显示器边上贴着一张便签：“接口字段统一用下划线！！！”，三个感叹号，笔画重得几乎要划破纸。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这口气，一看就是他。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌角放着一个蓝色保温杯，杯盖拧得很紧，旁边是一包拆开的鱼形小饼干。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（想拿一块，想起他会拍你的手。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你忍住了，把手缩回来。"
+    }
+  ],
+  "inspect_mb_screen": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "投影幕布拉了一半，白得发灰。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这间屋子里，每天晚上都有外包的站会，对面是成都的唐经理。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你伸手摸了摸幕布边缘，指尖沾上一层薄薄的灰。这屋子，似乎有一阵子没人好好打扫了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "连窗都没有，一年四季都是这个样子。"
+    }
+  ],
+  "inspect_mb_booking": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室 B 的门边，墙上嵌着一块小小的电子预订屏，是行政系统的终端。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你点开 9 月 14 日的记录：两条预订，预订人都是黎默。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "17:45～18:15，理由：录 bug 复现视频。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "20:25 续订，20:30～21:30，理由：外包区太吵，继续录。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "录视频……还录到九点半？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想了想，也许他确实在赶工。外包区晚上，确实又吵又乱。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E26"
+        }
+      ]
+    }
+  ],
+  "inspect_st_subway": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "地铁口的灯很白，在雨夜里像一只亮着的眼睛。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你从大厦门口走到这里，掐着表走了一遍：不紧不慢，八分钟。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "八分钟……从楼下大堂走到地铁口，就是这个时间。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "站口的闸机上方，有一个半球形的摄像头，正对着人流。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "进站的人，都会被拍下来。"
+    }
+  ],
+  "inspect_st_shops": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "路边的一排店铺里，有一家咖啡店亮着灯，暖黄色的光落在积水里。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "透过玻璃，你看见靠窗的位置空着，桌上留着一个没收的杯子。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "晚上约人聊天，倒是个好地方。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起很久以前，和同事在这里喝过一次咖啡。宋砚恰好从门口路过，隔着玻璃，朝你们笑着挥了挥手。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那时候，谁也没想到她笑得那么假，又走得那么早。"
+    }
+  ],
+  "inspect_st_road": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "雨水顺着路面往下水口流，路灯把积水映得像一条金色的河。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "夜里这里很少有车，只有偶尔驶过的出租车，溅起一层水花。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "路沿边有一排黑色的隔离柱，从地铁口一直排到街角。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "要是有人想把谁推向车道，这里没有任何遮挡。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你打了个寒战，把衣领拉紧了一点。"
+    }
+  ],
+  "inspect_of_myseat": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的工位。桌面上落了一层薄灰，这两天，没有人动过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你拉开抽屉。里面是你调试手机用的数据线，每一根都贴着白色的小标签：LYC-01、LYC-02、LYC-04、LYC-05。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "只少了一根。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着那个空着的位置，仿佛那里还躺着一根看不见的线。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把抽屉轻轻合上，没有再往下想。"
+    }
+  ],
+  "inspect_of_cabinet": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "窗下的文件柜里，按月份码着考勤表。你抽出 9 月的那一份。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "正式员工的名字后面，是密密麻麻的打卡记录。外包的考勤，是另外一本，要手签的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你翻了翻：9 月 14 日那一栏，黎默的签名，笔画规整得几乎像印上去的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周一尽调要纸质存档……这个规矩，倒是挺严。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把本子放回去，指尖沾上一点灰。这柜子，已经很久没人认真整理过了。"
+    }
   ]
 }

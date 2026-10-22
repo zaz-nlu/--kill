@@ -1,0 +1,749 @@
+{
+  "id": "finale_act2",
+  "title": "证人黎默 · 第二幕「同样的受害者」",
+  "startPersuasion": 5,
+  "onClear": "finale_act2_end",
+  "wrongReply": [
+    {
+      "speaker": "limo",
+      "text": "这是什么玩意？别在这儿丢人现眼。",
+      "expr": "angry"
+    }
+  ],
+  "statements": [
+    {
+      "id": "s1",
+      "text": "要是我杀人，绝不会用贴着林一程名字的线。那等于告诉所有人，这是栽赃。",
+      "steps": [
+        {
+          "kind": "argument",
+          "id": "s1-1",
+          "prompt": "林一程怎么回应？",
+          "options": [
+            {
+              "text": "“因为线上有你的 DNA。”",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "limo",
+                  "text": "完整报告上写得清清楚楚：另检出极微弱的第二人 DNA，不足以比对。你拿什么说是我？",
+                  "expr": "angry"
+                }
+              ]
+            },
+            {
+              "text": "“栽赃的目的，就是被相信，而不是显得高明。警方最后认定的，就是我。”",
+              "correct": true,
+              "reply": [
+                {
+                  "speaker": "lyc",
+                  "text": "栽赃的目的，就是被相信，而不是显得高明。警方最后认定的，就是我。",
+                  "expr": "determined"
+                },
+                {
+                  "speaker": "limo",
+                  "text": "……",
+                  "expr": "nervous"
+                },
+                {
+                  "speaker": "boss",
+                  "text": "（老板的嘴角，微微翘了一下。）"
+                }
+              ]
+            },
+            {
+              "text": "“因为周五，是你帮我收的线。”",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "limo",
+                  "text": "我放回你桌上了。你自己忘了。",
+                  "expr": "angry"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "text": "我从没拿过那张临时卡。孟遥做了卡又删了记录，最该被怀疑的，是孟遥。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s2-1",
+          "accepts": [
+            "T13"
+          ],
+          "reply": [
+            {
+              "speaker": "limo",
+              "text": "她为了自保，什么都能说！删记录的是她，她才是想掩盖的人！",
+              "expr": "angry"
+            },
+            {
+              "speaker": "mengyao",
+              "text": "……我没有。我什么都说了，我什么都说了……",
+              "expr": "panic"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-2",
+          "accepts": [
+            "E05"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "孟遥 20:41 就离开了公司。20:52，她已经在于家堡地铁站刷卡进站了。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "她可以把卡交给别人，自己先走。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s2-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-3",
+          "accepts": [
+            "E26"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "孟遥是 20:20 才告诉你：‘原件明天要处理掉。’可你 17:48，就已经在会议室 B 里，录视频了。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "早在孟遥开口之前，你就想好了今晚的每一步。孟遥不是主谋，她只是你选中的人。"
+            },
+            {
+              "speaker": "mengyao",
+              "text": "……黎默？",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s2-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "text": "就算那张卡真被人用过，凭什么说是我？一张卡，一间会议室，谁都能订。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s3-1",
+          "accepts": [
+            "E18"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "9 月 14 日 17:40，临时卡签发。领用人一栏，空着。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……空着，才说明不是我。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-2",
+          "accepts": [
+            "E26"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "17:45，会议室 B 被订，理由是‘录 bug 复现视频’。"
+            },
+            {
+              "speaker": "limo",
+              "text": "订会议室，是我的工作。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s3-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-3",
+          "accepts": [
+            "E33"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "可那天，外包组根本没有需要录复现视频的 bug，你也没提交过任何一个视频。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "八分钟里，发生了三件事。卡、会议室、视频，三样东西，同时握在手里的，只有一个人。"
+            },
+            {
+              "speaker": "shaoxy",
+              "text": "……巧合？我组里那天，一个 bug 都没报。",
+              "expr": "angry"
+            },
+            {
+              "speaker": "limo",
+              "text": "……巧合。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s3-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "text": "整晚戴防静电手套的，是机房里的苏闻。指甲里的纤维，指向的是机房。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s4-1",
+          "accepts": [
+            "E13"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "苏闻 20:30 到 21:20，一步都没有离开过机房。转角的摄像头，拍得清清楚楚。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "suwen",
+              "text": "我、我就说，那晚的事，我没动过手……",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-2",
+          "accepts": [
+            "E28"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "手套，测试间门口放着一大盒，外包谁都能拿。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "angry"
+            }
+          ],
+          "after": [
+            "s4-1"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "text": "我一个外包，连宋砚办公室的门，都进不去。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s5-1",
+          "accepts": [
+            "E17",
+            "E18"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "20:57，‘孟遥-临时 02’，开过一次门。第二天 08:41，后台有人，删掉了一条记录。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "zhengcen",
+              "text": "（郑岑把小本本举到脸前，一动不动。）",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "text": "我要杀人，何必挑在全公司都盯着我的时候？",
+      "steps": [
+        {
+          "kind": "press",
+          "id": "s6-1",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "这句话，我留到后面，再问你。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……随你。",
+              "expr": "angry"
+            }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "text": "你被人栽赃，我也一样。我们是同一种人。这三天，我哪一句话，不是在帮你？",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "g1",
+          "accepts": [
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5",
+            "G6",
+            "G7",
+            "G8",
+            "G9"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第二天，你说，两年前出事的时候，也是这样封了好几天。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "那是……闲聊。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "g2",
+          "accepts": [
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5",
+            "G6",
+            "G7",
+            "G8",
+            "G9"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第三天，你让我自己去搜旧帖，别说是你说的。第四天，你让我去问老板。"
+            },
+            {
+              "speaker": "limo",
+              "text": "我是想让你……",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "g1"
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "g3",
+          "accepts": [
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5",
+            "G6",
+            "G7",
+            "G8",
+            "G9"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "你每一天，都在把我往老板身上推。可你比谁都清楚，老板有不在场证明。你不是在帮我找凶手，你是想让他倒霉。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……我只是想让你，查清真相。",
+              "expr": "guilty"
+            },
+            {
+              "speaker": "lyc",
+              "text": "你要的真相，是你想让我看到的那一部分。"
+            },
+            {
+              "speaker": "boss",
+              "text": "……他一直在，推你来查我？",
+              "expr": "angry"
+            }
+          ],
+          "after": [
+            "g2"
+          ],
+          "required": false,
+          "bonus": 1
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "text": "我也是被人盯上的人。你们凭什么觉得，我知道得比别人多？",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s8-1a",
+          "accepts": [
+            "T26"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第二天午饭，你说：‘手机别是已经沉海河了吧，那就真的什么都查不到了。’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "孟遥告诉我的。……或者，新闻上看的。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s8-1b",
+          "accepts": [
+            "T04",
+            "T30",
+            "E08"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "孟遥只看到了脖子上的线，没看见手机。手机失踪的事，从来没有对外公布过，我也没对你提过。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……我随口一说。",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "lyc",
+              "text": "随口一说，说的是‘海河’，不是‘扔了’。"
+            }
+          ],
+          "after": [
+            "s8-1a"
+          ],
+          "required": false,
+          "bonus": 1
+        },
+        {
+          "kind": "present",
+          "id": "s8-2a",
+          "accepts": [
+            "T27"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第二天早上，你问：‘宋砚那台电脑，有没有什么来不及发出去的东西？’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "人事经理，总有没发的东西。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s8-2b",
+          "accepts": [
+            "T30",
+            "E07"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "笔记本上，有一封没发完的邮件。这件事，从来没有对外说过。‘来不及’，预设了有一封，写了一半的东西。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s8-2a"
+          ],
+          "required": false,
+          "bonus": 1
+        },
+        {
+          "kind": "present",
+          "id": "s8-3a",
+          "accepts": [
+            "T28"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第三天上午，你说：‘她天天擦三遍的那座贝塔之星，现在也不知道落在谁手里。’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "我猜，是被警察收走了。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s8-3b",
+          "accepts": [
+            "T30",
+            "E07"
+          ],
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "现场清单里，没有奖杯。我们也不知道，桌角那块无尘印是什么。",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "lyc",
+              "text": "‘落在谁手里’，和‘被收走’，是两个意思。"
+            }
+          ],
+          "after": [
+            "s8-3a"
+          ],
+          "required": false,
+          "bonus": 1
+        },
+        {
+          "kind": "present",
+          "id": "s8-4a",
+          "accepts": [
+            "T29"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第三天，孟遥被带走的时候，你问：‘是因为那张卡吗？’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……门禁的事，大家都在传。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s8-4b",
+          "accepts": [
+            "T13",
+            "E17"
+          ],
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "对外，我们只说了‘协助调查’。卡的事，没有出过这个房间。"
+            },
+            {
+              "speaker": "lyc",
+              "text": "‘那张’，是定指。‘我是说’，是改口。改口，说明你自己也意识到，说漏了。"
+            },
+            {
+              "speaker": "mengyao",
+              "text": "……黎默。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s8-4a"
+          ],
+          "required": false,
+          "bonus": 1
+        },
+        {
+          "kind": "present",
+          "id": "s8-5a",
+          "accepts": [
+            "T22"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "那天早上，你说：‘还好你抓住了扶手。’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "你手上缠着纱布。我猜的。",
+              "expr": "nervous"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s8-5b",
+          "accepts": [
+            "T16",
+            "T15",
+            "T23"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "手上缠着纱布，有一百种原因。你猜中的，偏偏是推人的那个人，才知道的那一种。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s8-5a"
+          ],
+          "required": false,
+          "bonus": 1
+        }
+      ],
+      "anyOf": [
+        "s8-1b",
+        "s8-2b",
+        "s8-3b",
+        "s8-4b",
+        "s8-5b"
+      ]
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这是什么玩意？别在这儿丢人现眼。",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。别丢人现眼。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "zhengcen",
+        "text": "小林啊，这个……跟案子有关系吗？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "想清楚再拿出来。这里不是菜市场。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……就这？你要是没别的，就别浪费大家时间。",
+        "expr": "angry"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问题问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "同一样东西你要拿几遍？",
+        "expr": "angry"
+      }
+    ]
+  ]
+}

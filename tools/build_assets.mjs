@@ -25,6 +25,7 @@ const CHARACTERS = {
   lh: { id: 'laohan', dir: 'lh', suffix: '', nameInfix: '老韩_', files: { 严肃: 'normal', 怀疑: 'suspicious', 惊讶: 'surprised', 缓和: 'soft' } },
   lw: { id: 'laowang', dir: 'lw', nameInfix: '老王_', files: { 憨厚: 'normal', 打哈欠: 'yawn', 惊讶: 'surprised' } },
   xx: { id: 'xiaoxu', dir: 'xx', nameInfix: '小许_', files: { 精神: 'normal', 紧张: 'nervous', 开心: 'happy' } },
+  ll: { id: 'laoliu', dir: 'll', nameInfix: '老刘_', files: { 凶狠: 'angry', 慌张: 'nervous', 讨好: 'happy' }, also: { normal: '凶狠' } },
   lm: { id: 'limo', dir: 'lm', files: { '平常-不耐烦': 'normal', 生气: 'angry', 紧张: 'nervous', '心虚-克制': 'guilty' } },
 }
 
@@ -50,6 +51,15 @@ for (const [prefix, c] of Object.entries(CHARACTERS)) {
     const name = `${prefix}_${c.nameInfix ?? ''}${stem}${c.suffix ?? ''}.png`
     if (!present.has(name)) throw new Error(`missing ${join(c.dir, name)}`)
     await sharp(join(dir, name))
+      .resize({ width: 640 })
+      .webp({ quality: 82, alphaQuality: 90 })
+      .toFile(join(outDir, c.id, `${key}.webp`))
+    manifest[c.id][key] = `characters/${c.id}/${key}.webp`
+    count += 1
+  }
+  // a look that is also used as the default one (he has no neutral drawing: the fierce one is how he stands)
+  for (const [key, stem] of Object.entries(c.also ?? {})) {
+    await sharp(join(dir, `${prefix}_${c.nameInfix ?? ''}${stem}${c.suffix ?? ''}.png`))
       .resize({ width: 640 })
       .webp({ quality: 82, alphaQuality: 90 })
       .toFile(join(outDir, c.id, `${key}.webp`))

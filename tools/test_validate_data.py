@@ -27,6 +27,7 @@ def base_data():
             {'id': 'h1', 'label': 'H', 'rect': [10, 10, 20, 20], 'scene': 'b'}]}],
         'actions.json': [{'id': 'x', 'label': 'X', 'days': [2], 'room': 'r1', 'costHours': 1}],
         'events.json': [{'id': 'ev1', 'day': 1, 'hour': 9, 'scene': 'b'}],
+        'deductions.json': [{'id': 'n1', 'prompt': 'p', 'pick': 2, 'answer': ['E01', 'T26'], 'hints': ['h']}],
         'evidence.json': [{'id': 'E01', 'name': 'e', 'desc': 'd'}],
         'testimony.json': [{'id': 'T26', 'name': 't', 'desc': 'd', 'slice': True}],
         'scenes/a.json': {
@@ -149,6 +150,97 @@ class ValidateDataTest(unittest.TestCase):
 
     def test_action_risk_must_be_known(self):
         self.assertNotEqual(self.run_with(lambda d: d['actions.json'][0].update(risk='deadly')), 0)
+
+    def test_show_node_must_name_a_known_item(self):
+        def ok(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'show', 'id': 'E01'})
+        self.assertEqual(self.run_with(ok), 0)
+
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'show', 'id': 'E99'})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_deduce_node_must_name_a_known_deduction(self):
+        def ok(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'deduce', 'id': 'n1'})
+        self.assertEqual(self.run_with(ok), 0)
+
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'deduce', 'id': 'nope'})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_frames_node_must_name_a_known_frame_check(self):
+        def ok(d):
+            d['frames.json'] = [{'id': 'f1', 'prompt': 'p', 'rows': [
+                {'id': 'a', 'time': '20:45', 'text': 't', 'flaw': True}]}]
+            d['scenes/a.json']['a'].insert(0, {'type': 'frames', 'id': 'f1'})
+        self.assertEqual(self.run_with(ok), 0)
+
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'frames', 'id': 'nope'})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_frame_check_rows_need_unique_ids_and_a_real_flaw(self):
+        def dup(d):
+            d['frames.json'] = [{'id': 'f1', 'prompt': 'p', 'rows': [
+                {'id': 'a', 'time': 't', 'text': 'x', 'flaw': True},
+                {'id': 'a', 'time': 't', 'text': 'y', 'flaw': False}]}]
+        self.assertNotEqual(self.run_with(dup), 0)
+
+        def none(d):
+            d['frames.json'] = [{'id': 'f1', 'prompt': 'p', 'rows': [
+                {'id': 'a', 'time': 't', 'text': 'x', 'flaw': False}]}]
+        self.assertNotEqual(self.run_with(none), 0)
+
+    def test_exam_node_must_name_a_known_exam(self):
+        def ok(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'exam', 'id': 'e'})
+        self.assertEqual(self.run_with(ok), 0)
+
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'exam', 'id': 'nope'})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_statement_any_of_must_name_its_own_steps(self):
+        def bad(d):
+            d['exams/e.json']['statements'][0]['anyOf'] = ['p1', 'zzz']
+        self.assertNotEqual(self.run_with(bad), 0)
+
+        def ok(d):
+            d['exams/e.json']['statements'][0]['anyOf'] = ['p1']
+        self.assertEqual(self.run_with(ok), 0)
+
+    def test_ending_flags_must_be_known_endings(self):
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'effect', 'effects': [{'kind': 'flag', 'key': 'ending:nope', 'value': True}]})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+        def ok(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'effect', 'effects': [{'kind': 'flag', 'key': 'ending:true', 'value': True}]})
+        self.assertEqual(self.run_with(ok), 0)
+
+    def test_deduction_must_name_real_items(self):
+        self.assertNotEqual(self.run_with(lambda d: d['deductions.json'][0].update(answer=['E01', 'E99'])), 0)
+
+    def test_deduction_answer_must_fit_the_slots(self):
+        self.assertNotEqual(self.run_with(lambda d: d['deductions.json'][0].update(pick=1)), 0)
+
+    def test_deduction_trap_items_must_exist(self):
+        def m(d):
+            d['deductions.json'][0]['trap'] = {'items': ['E01', 'E99'], 'flag': 'x', 'line': 'l'}
+        self.assertNotEqual(self.run_with(m), 0)
+
+    def test_any_condition_is_checked_inside(self):
+        def bad(d):
+            d['scenes/a.json']['a'].insert(0, {'type': 'branch', 'when': {'kind': 'any', 'conds': [{'kind': 'hasEvidence', 'id': 'E99'}]}, 'then': [], 'else': []})
+        self.assertNotEqual(self.run_with(bad), 0)
+
+    def test_action_requires_must_name_known_items(self):
+        self.assertNotEqual(self.run_with(lambda d: d['actions.json'][0].update(requires={'kind': 'hasEvidence', 'id': 'E99'})), 0)
+        self.assertEqual(self.run_with(lambda d: d['actions.json'][0].update(requires={'kind': 'hasEvidence', 'id': 'E01'})), 0)
+
+    def test_event_requires_must_name_known_items(self):
+        self.assertNotEqual(self.run_with(lambda d: d['events.json'][0].update(requires={'kind': 'hasTestimony', 'id': 'T99'})), 0)
 
 
 if __name__ == '__main__':

@@ -4,8 +4,8 @@ import { loadData } from '../src/engine/data'
 describe('loadData', () => {
   const data = loadData()
 
-  it('has the 11 npcs and 10 shop items from the spec', () => {
-    expect(data.npcs.length).toBe(11)
+  it('has the 12 npcs and 10 shop items from the spec', () => {
+    expect(data.npcs.length).toBe(12)
     expect(data.items.length).toBe(10)
     expect(data.items.reduce((sum, i) => sum + i.price, 0)).toBe(190)
   })
@@ -18,8 +18,8 @@ describe('loadData', () => {
     }
   })
 
-  it('tang cannot be gifted and everyone else can', () => {
-    for (const n of data.npcs) expect(n.giftable).toBe(n.id !== 'tang')
+  it('tang and the driver cannot be gifted and everyone else can', () => {
+    for (const n of data.npcs) expect(n.giftable).toBe(!['tang', 'laoliu'].includes(n.id))
   })
 
   it('knows the evidence and testimony the slice needs', () => {

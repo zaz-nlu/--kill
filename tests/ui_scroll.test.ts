@@ -26,7 +26,7 @@ describe('long lists scroll inside a box, not the whole panel', () => {
     expect(inside(w, 'scroll', '[data-testid="leave-shop"]')).toBe(false)
   })
 
-  it('exam: the statement and replies scroll, the controls do not', () => {
+  it('exam: the statement scrolls, the reaction and the controls stay put', () => {
     const w = mount(ExamScreen, {
       props: {
         statement: { id: 's', text: '一句很长的证词', steps: [] }, index: 0, total: 3, persuasion: 5,
@@ -34,7 +34,8 @@ describe('long lists scroll inside a box, not the whole panel', () => {
       },
     })
     expect(w.find('[data-testid="scroll"]').text()).toContain('一句很长的证词')
-    expect(w.find('[data-testid="scroll"]').text()).toContain('回答')
+    expect(w.find('[data-testid="scroll"]').text()).not.toContain('回答')      // the reply has a block of its own, never pushed out of sight
+    expect(w.find('[data-testid="reaction"]').text()).toContain('回答')
     for (const id of ['prev', 'press', 'open-record', 'next']) expect(inside(w, 'scroll', `[data-testid="${id}"]`), id).toBe(false)
   })
 

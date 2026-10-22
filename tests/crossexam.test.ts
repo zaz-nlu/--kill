@@ -168,3 +168,56 @@ describe('computePersuasion', () => {
     expect(computePersuasion(s)).toBe(7)
   })
 })
+
+describe('every presentation gets an answer', () => {
+  const def = (): ExamDef => ({
+    ...makeDef(),
+    wrongReplies: [[{ speaker: 'limo', text: '这是什么玩意？别丢人现眼。' }], [{ speaker: 'laohan', text: '证物不是这么用的。' }], [line('就这？')]],
+    prematureReplies: [[line('现在拿这个，跟我说的有什么关系？')], [{ speaker: 'laohan', text: '时机不对，先把前面的问清楚。' }]],
+    repeatReplies: [[{ speaker: 'laohan', text: '这个你已经出示过了。' }]],
+  })
+
+  it('wrong evidence rotates through the replies and costs a point each time', () => {
+    const ex = startExam(def(), 5)
+    const a = present(ex, 's', 'E99', OWNED)
+    const b = present(ex, 's', 'E99', OWNED)
+    const c = present(ex, 's', 'E99', OWNED)
+    const d = present(ex, 's', 'E99', OWNED)
+    expect([a, b, c, d].map(r => r.outcome)).toEqual(['wrong', 'wrong', 'wrong', 'wrong'])
+    expect(a.lines[0].text).toContain('丢人现眼')
+    expect(b.lines[0].speaker).toBe('laohan')
+    expect(c.lines[0].text).toBe('就这？')
+    expect(d.lines[0].text).toContain('丢人现眼')          // and round again
+    expect(ex.persuasion).toBe(1)
+  })
+
+  it('a valid item shown too early is answered, and costs nothing', () => {
+    const ex = startExam(def(), 5)
+    const r = present(ex, 's', 'E13', OWNED)             // needs steps a and b first
+    expect(r.outcome).toBe('premature')
+    expect(r.lines.length).toBeGreaterThan(0)
+    expect(ex.persuasion).toBe(5)
+    const again = present(ex, 's', 'E13', OWNED)
+    expect(again.lines[0].speaker).toBe('laohan')          // the second reply in the rotation
+  })
+
+  it('showing the same item twice is answered too', () => {
+    const ex = startExam(def(), 5)
+    present(ex, 's', 'E06', OWNED)
+    const r = present(ex, 's', 'E06', OWNED)
+    expect(r.outcome).toBe('ignored')
+    expect(r.lines[0].text).toContain('已经出示过')
+    expect(ex.persuasion).toBe(5)
+  })
+
+  it('without custom replies the old single wrong reply and silent premature still work', () => {
+    const ex = startExam(makeDef(), 5)
+    expect(present(ex, 's', 'E99', OWNED).lines[0].text).toContain('是想说明什么')
+    expect(present(ex, 's', 'E13', OWNED).lines).toEqual([])
+  })
+
+  it('an item you do not hold is still ignored in silence', () => {
+    const ex = startExam(def(), 5)
+    expect(present(ex, 's', 'NOPE', OWNED)).toMatchObject({ outcome: 'ignored', lines: [] })
+  })
+})

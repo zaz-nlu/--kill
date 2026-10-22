@@ -6,7 +6,7 @@ defineEmits<{ buy: [itemId: string]; leave: [] }>()
 </script>
 
 <template>
-  <section class="shop">
+  <section class="shop glass">
     <h2>楼下超商</h2>
     <p>现金 ¥{{ money }}　这次还能拿 {{ itemsLeft }} 件</p>
     <div class="scroll" data-testid="scroll">
@@ -24,13 +24,12 @@ defineEmits<{ buy: [itemId: string]; leave: [] }>()
 </template>
 
 <style scoped>
-.shop { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 18px; background: #141418; color: #eee; border: 2px solid #888; border-radius: 6px; }
-h2 { margin: 0 0 6px; flex: none; }
-p { margin: 0 0 8px; flex: none; }
+.shop { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 16px 12px; }
+h2 { margin: 0 0 6px; flex: none; font-size: 19px; font-weight: 600; letter-spacing: 2px; }
+p { margin: 0 0 10px; flex: none; color: #d9c7b4; font-size: 14px; }
 .scroll { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding-right: 6px; }
-.leave { flex: none; margin-top: 12px; align-self: flex-start; }
 ul { list-style: none; padding: 0; margin: 0; }
-li { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #2a2a2a; }
-button { padding: 4px 14px; cursor: pointer; }
-button:disabled { opacity: 0.4; cursor: not-allowed; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; margin-bottom: 6px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); }
+button { padding: 5px 18px; }
+.leave { flex: none; margin-top: 10px; align-self: flex-start; }
 </style>

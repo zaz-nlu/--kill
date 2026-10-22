@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 interface Spot { id: string; label: string; rect: [number, number, number, number]; seen: boolean }
 
-defineProps<{ label: string; hotspots: Spot[] }>()
+defineProps<{ label: string; hotspots: Spot[]; left?: number | null; fit?: boolean }>()
 defineEmits<{ inspect: [id: string]; leave: [] }>()
 
 const hover = ref('')
@@ -12,7 +12,7 @@ const hover = ref('')
 <template>
   <div class="investigate">
     <!-- A 16:9 frame that covers the screen exactly like the background does, so % rectangles line up with the picture. -->
-    <div class="frame">
+    <div class="frame" :class="{ fit }">
       <button
         v-for="h in hotspots"
         :key="h.id"
@@ -32,6 +32,7 @@ const hover = ref('')
     <div class="bar">
       <span class="where">{{ label }}</span>
       <span class="hint">{{ hover || '点击场景里发亮的地方调查' }}</span>
+      <span v-if="left !== null && left !== undefined" class="left" data-testid="looks-left">还来得及翻 {{ left }} 处</span>
       <button type="button" class="leave" data-testid="leave-room" @click="$emit('leave')">离开</button>
     </div>
   </div>
@@ -39,6 +40,7 @@ const hover = ref('')
 
 <style scoped>
 .investigate { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.frame.fit { width: 100vw; height: 56.25vw; top: 30%; transform: translate(-50%, -30%); }
 .frame { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   width: max(100vw, calc(100vh * 16 / 9)); height: max(100vh, calc(100vw * 9 / 16)); }
 .hotspot { position: absolute; pointer-events: auto; cursor: pointer; padding: 0; background: #ffd27a14;
@@ -47,9 +49,10 @@ const hover = ref('')
 .hotspot.seen { border-style: dashed; border-color: #ffffff55; background: transparent; animation: none; }
 .tag { position: absolute; left: 0; top: 100%; margin-top: 4px; padding: 2px 8px; font-size: 14px; color: #fff; background: #000c; border-radius: 4px; white-space: nowrap; opacity: 0; transition: opacity 0.15s; }
 .hotspot:hover .tag { opacity: 1; }
+.left { color: #ffd27a; }
 @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 #ffd27a55; } 50% { box-shadow: 0 0 14px 4px #ffd27a55; } }
-.bar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 16px; align-items: center; padding: 12px 18px; background: #000c; color: #eee; pointer-events: auto; }
+.bar { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 16px; align-items: center; padding: 10px 16px; border-radius: 12px; background: var(--glass); backdrop-filter: blur(14px) saturate(1.25); border: 1px solid var(--glass-line); color: #f1ece4; pointer-events: auto; }
 .where { font-weight: bold; padding: 2px 12px; background: #c8501e; border-radius: 4px; }
 .hint { flex: 1; color: #bbb; }
-.leave { padding: 8px 26px; font-size: 16px; background: #3a3a44; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+.leave { padding: 8px 26px; font-size: 16px; }
 </style>

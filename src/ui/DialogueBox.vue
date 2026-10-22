@@ -4,7 +4,7 @@ defineEmits<{ advance: [] }>()
 </script>
 
 <template>
-  <div class="dialogue" @click="$emit('advance')">
+  <div class="dialogue glass" @click="$emit('advance')">
     <div v-if="speaker" class="nameplate" data-testid="nameplate">{{ speaker }}</div>
     <p class="text">{{ text }}</p>
     <span class="hint">▼</span>
@@ -12,9 +12,9 @@ defineEmits<{ advance: [] }>()
 </template>
 
 <style scoped>
-.dialogue { position: relative; margin: 12px; padding: 18px 20px; min-height: 120px; background: #111d; color: #f3f3f3;
-  border: 2px solid #888; border-radius: 6px; cursor: pointer; user-select: none; }
-.nameplate { position: absolute; top: -14px; left: 16px; padding: 2px 14px; background: #c8501e; color: #fff; border-radius: 4px; font-weight: bold; }
-.text { margin: 6px 0 0; font-size: 18px; line-height: 1.7; }
-.hint { position: absolute; right: 14px; bottom: 8px; color: #aaa; }
+.dialogue { position: relative; margin: 12px; padding: 24px 28px 18px; min-height: 132px; cursor: pointer; user-select: none; }
+.nameplate { position: absolute; top: -15px; left: 24px; padding: 3px 20px; background: linear-gradient(135deg, #ee8044, #b8431a); color: #fff; border-radius: 999px; font-weight: 600; letter-spacing: 1px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
+.text { margin: 6px 0 0; font-size: 19px; line-height: 1.85; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
+.hint { position: absolute; right: 18px; bottom: 10px; color: var(--accent); animation: nudge 1.1s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(3px); opacity: 1; } }
 </style>

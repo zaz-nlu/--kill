@@ -4,8 +4,8 @@ import { resolveEvidenceImage } from '../src/engine/evidenceArt'
 import CourtRecord from '../src/ui/CourtRecord.vue'
 
 describe('evidence art', () => {
-  it('has an image for every evidence id E01–E41 except E40', () => {
-    for (let n = 1; n <= 41; n++) {
+  it('has an image for every evidence id E01–E44 except E40', () => {
+    for (let n = 1; n <= 44; n++) {
       const id = 'E' + String(n).padStart(2, '0')
       if (id === 'E40') expect(resolveEvidenceImage(id), id).toBeNull()
       else expect(resolveEvidenceImage(id), id).not.toBeNull()

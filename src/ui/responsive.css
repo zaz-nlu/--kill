@@ -1,0 +1,122 @@
+/* Small screens. The game is built for a 16:9 desktop window; on a phone held sideways (about 400 px tall) every panel has
+   to give up some padding and some font size, or the dialogue box and the menus eat the picture. The component styles are
+   scoped, so these rules use !important to be sure of winning whatever order the style sheets arrive in. */
+
+html, body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
+button, .dialogue, .hotspot { touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.hud span { white-space: nowrap; }
+
+/* No hover on a touch screen: the volume slider that opens on hover is only in the way. */
+@media (hover: none) { .audio input { display: none !important; } }
+
+/* ---------- a phone held sideways (and any other window not much taller than that) ---------- */
+@media (max-height: 520px) {
+  .hud { padding: 3px 10px !important; gap: 10px !important; font-size: 13px; }
+  .toolbar { top: 3px !important; right: 8px !important; gap: 4px !important; }
+  .toolbar button { padding: 3px 10px !important; font-size: 13px !important; border-radius: 6px !important; }
+  .memory-tag { top: 38px !important; }
+  .toasts { top: 36px !important; }
+  .toast { font-size: 13px !important; padding: 3px 10px !important; }
+  .backlog, .relations { top: 38px !important; max-height: 84vh !important; padding: 8px 12px !important; }
+  .reaction { bottom: 8px !important; font-size: 16px !important; padding: 5px 14px !important; }
+  .notice { margin: 2px !important; font-size: 13px; }
+
+  /* dialogue and choices */
+  .dialogue { margin: 6px 8px !important; padding: 14px 18px 8px !important; min-height: 76px !important; }
+  .dialogue .text { font-size: 16px !important; line-height: 1.55 !important; margin-top: 4px !important; }
+  .dialogue .nameplate { top: -12px !important; font-size: 13px !important; padding: 1px 14px !important; }
+  .dialogue .hint { bottom: 6px !important; }
+  .choices { margin: 6px 8px !important; gap: 5px !important; max-height: 66vh !important; }
+  .choices button { padding: 7px 14px !important; font-size: 15px !important; }
+
+  /* the hour's menu: two columns, so that four or five choices are in view at once */
+  .hub { margin: 6px 8px !important; padding: 8px 12px !important; }
+  .hub header { margin-bottom: 5px !important; }
+  .hub h2 { font-size: 15px !important; letter-spacing: 1px !important; }
+  .hub .slots { font-size: 12px !important; }
+  .hub .scroll { min-height: 60px !important; }
+  .hub ul { display: grid !important; grid-template-columns: 1fr 1fr; gap: 5px 8px; }
+  .hub li { margin: 0 !important; }
+  .hub .act { padding: 6px 10px !important; gap: 8px !important; grid-template-columns: 52px 1fr auto !important; border-radius: 8px !important; }
+  .hub .act.has-gift { padding-right: 76px !important; }
+  .hub .loc { font-size: 11px !important; }
+  .hub .label { font-size: 13px !important; }
+  .hub .cost { font-size: 11px !important; }
+  .hub .gift { right: 6px !important; padding: 2px 8px !important; font-size: 11px !important; }
+  .hub .bar { margin-top: 5px !important; padding-top: 5px !important; }
+  .hub .bar button { padding: 3px 12px !important; font-size: 13px !important; }
+
+  /* the shop, the cross-examination, the reasoning, the frame check */
+  .shop, .exam, .deduce, .frames { margin: 6px 8px !important; padding: 8px 12px !important; }
+  .shop h2, .deduce h2, .frames h2 { font-size: 15px !important; }
+  .exam .statement { margin: 6px 0 !important; padding: 7px 12px !important; }
+  .exam .statement p { font-size: 15px !important; line-height: 1.5 !important; }
+  .exam .reply { max-height: 30vh !important; padding: 6px 10px !important; margin-top: 6px !important; }
+  .exam .reply p { font-size: 14px !important; line-height: 1.5 !important; }
+  .exam .bar { margin-top: 6px !important; padding-top: 6px !important; gap: 6px !important; }
+  .exam .bar button, .exam button { padding: 4px 12px !important; font-size: 13px !important; }
+  .deduce, .frames { max-height: calc(100dvh - 34px) !important; }
+  .record { max-height: 34vh !important; padding: 6px !important; }
+  .go { padding: 5px 22px !important; font-size: 14px !important; }
+
+  /* the evidence book, the popup, the two panels of mine */
+  .evidence { height: 90vh !important; width: 96vw !important; padding: 8px 12px !important; }
+  .evidence .list { width: 200px !important; }
+  .evidence .list button { padding: 4px 8px !important; gap: 8px !important; }
+  .evidence .thumb { width: 28px !important; height: 28px !important; }
+  .evidence .name { font-size: 12px !important; }
+  .evidence header { margin-bottom: 6px !important; }
+  .evidence .big { max-height: 130px !important; }
+  .evidence h3 { font-size: 16px !important; margin: 4px 0 !important; }
+  .evidence p { font-size: 14px !important; line-height: 1.6 !important; }
+  .popup .card { padding: 16px 22px 10px !important; }
+  .popup .pic { max-height: 150px !important; }
+  .popup h3 { font-size: 18px !important; margin: 4px 0 !important; }
+  .popup p { font-size: 14px !important; line-height: 1.6 !important; }
+  .veil .box { max-height: 94vh !important; padding: 10px 14px !important; }
+  .veil .slot { padding: 6px 10px !important; }
+  .veil .node { padding: 4px 10px !important; }
+
+  /* the search rooms */
+  .investigate .bar { left: 6px !important; right: 6px !important; bottom: 6px !important; padding: 5px 10px !important; gap: 8px !important; font-size: 13px !important; }
+  .investigate .leave { padding: 3px 16px !important; font-size: 13px !important; }
+  .investigate .where { padding: 1px 10px !important; }
+
+  /* the title */
+  .title h1 { font-size: 38px !important; letter-spacing: 6px !important; margin-bottom: 0 !important; }
+  .title p { margin: 2px 0 !important; font-size: 14px; }
+  .title button { margin-top: 10px !important; padding: 7px 26px !important; font-size: 15px !important; }
+}
+
+/* ---------- narrow windows: a phone held upright, or a small split screen ---------- */
+@media (max-width: 700px) {
+  .hub ul { grid-template-columns: 1fr !important; }
+  .evidence .body { flex-direction: column !important; }
+  .evidence .list { width: auto !important; max-height: 34% !important; }
+  .toolbar button { padding: 3px 8px !important; }
+}
+
+/* Too narrow for the status line and the buttons side by side: the buttons drop to a row of their own. */
+@media (max-width: 560px) {
+  .hud { padding-bottom: 34px !important; }
+  .toolbar { top: 32px !important; left: 8px; right: 8px !important; justify-content: flex-end; max-width: none !important; }
+  .backlog, .relations { top: 70px !important; }
+  .toasts { top: 76px !important; }
+  .memory-tag { top: 76px !important; }
+}
+
+/* Panels that float over the picture must be readable when the picture is small and busy. */
+@media (max-height: 520px), (max-width: 700px) {
+  .evidence, .backlog, .relations, .veil .box, .veil .sheet { background: rgba(14, 16, 24, 0.95) !important; }
+  .investigate .hint { display: none !important; }
+  .investigate .bar { flex-wrap: wrap; }
+  .investigate .where { white-space: nowrap; }
+}
+@media (max-width: 700px) {
+  .hub .act { grid-template-columns: 1fr auto !important; }
+  .hub .loc { display: none !important; }
+  .hub .label { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; line-height: 1.35; }
+  .dialogue .text { font-size: 16px !important; line-height: 1.65 !important; }
+  .dialogue { min-height: 96px !important; }
+  .investigate .bar { justify-content: space-between; }
+}

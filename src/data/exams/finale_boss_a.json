@@ -1,0 +1,124 @@
+{
+  "id": "finale_boss_a",
+  "title": "老板路线 · 老板的辩解",
+  "startPersuasion": 5,
+  "onClear": "finale_boss_a_end",
+  "wrongReply": [
+    {
+      "speaker": "boss",
+      "text": "你拿这种东西来冤枉我？",
+      "expr": "angry"
+    }
+  ],
+  "statements": [
+    {
+      "id": "s1",
+      "text": "我 20:20 就离开公司了，一路在车上跟投资方打电话，21:10 到家。杀人？我连人事办公室的门都没进过。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s1-1",
+          "accepts": [
+            "E05",
+            "E37",
+            "E38"
+          ],
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "这些，我们早核实过了。他 20:20 离开，20:28 驶出车库，21:00 整，还在电话里。",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "boss",
+              "text": "你们听见了？我不在场！",
+              "expr": "angry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "text": "我要真想杀她，会让人满公司翻她留下的东西吗？这不是前后矛盾吗？",
+      "steps": [
+        {
+          "kind": "press",
+          "id": "s2-1",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "你一直在找东西。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "boss",
+              "text": "……",
+              "expr": "angry"
+            },
+            {
+              "speaker": "laohan",
+              "text": "他说的，是真话。他一直在‘找’，东西不在他手里。",
+              "expr": "suspicious"
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "boss",
+        "text": "你拿这种东西来冤枉我？",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，这不是他的问题。想清楚再拿出来。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "boss",
+        "text": "胡闹！这跟我有什么关系！",
+        "expr": "angry"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问题问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "同一样东西你要拿几遍？",
+        "expr": "angry"
+      }
+    ]
+  ]
+}

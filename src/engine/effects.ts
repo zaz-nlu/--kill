@@ -32,6 +32,9 @@ export function applyEffect(state: GameState, e: Effect): void {
     case 'time':
       state.hour = Math.max(state.hour, e.hour)
       break
+    case 'persuasion':
+      state.persuasionLoss = (state.persuasionLoss ?? 0) - e.delta
+      break
     case 'learnIntel':
       learnIntel(state, e.intel)
       break

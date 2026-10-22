@@ -9,10 +9,11 @@ const { items, npcs } = loadData()
 function shopper(...bought: string[]) {
   const s = createInitialState()
   s.money = 1000
-  for (const id of bought) {
+  bought.forEach((id, i) => {
+    s.hour = 100 + i            // every purchase is its own visit
     openShop(s)
     buyItem(s, items, id)
-  }
+  })
   return s
 }
 
@@ -28,6 +29,44 @@ describe('shop', () => {
     expect(buyItem(s, items, 'redbull')).toEqual({ ok: false, reason: 'visitLimit' })
     expect(s.money).toBe(75)
     expect(s.inventory).toEqual({ ruanzhonghua: 1, jianbing: 1 })
+  })
+
+  it('walking out and back in during the same meal hour does not refill the allowance', () => {
+    const s = createInitialState()
+    s.money = 1000
+    s.hour = 12
+    openShop(s)
+    buyItem(s, items, 'jianbing')
+    buyItem(s, items, 'redbull')
+    openShop(s)                               // leave and come back
+    expect(s.shopItemsLeft).toBe(0)
+    expect(buyItem(s, items, 'cat_stick')).toEqual({ ok: false, reason: 'visitLimit' })
+  })
+
+  it('a half-used allowance is still there when you come back', () => {
+    const s = createInitialState()
+    s.money = 1000
+    s.hour = 12
+    openShop(s)
+    buyItem(s, items, 'jianbing')
+    openShop(s)
+    expect(s.shopItemsLeft).toBe(1)
+  })
+
+  it('the next meal hour, and the next day, are fresh visits', () => {
+    const s = createInitialState()
+    s.money = 1000
+    s.hour = 12
+    openShop(s)
+    buyItem(s, items, 'jianbing')
+    buyItem(s, items, 'redbull')
+    s.hour = 18
+    openShop(s)
+    expect(s.shopItemsLeft).toBe(2)
+    buyItem(s, items, 'cat_stick')
+    s.day += 1; s.hour = 18
+    openShop(s)
+    expect(s.shopItemsLeft).toBe(2)
   })
 
   it('refuses when money is short and changes nothing', () => {

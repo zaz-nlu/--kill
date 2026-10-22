@@ -6,6 +6,8 @@ import { addLog, presentableIds } from '../src/engine/log'
 import { learnIntel } from '../src/engine/flow'
 import { loadSave, serializeState } from '../src/engine/save'
 import { useGameStore } from '../src/engine/store'
+import { skipEvents } from './helpers'
+import { FINALE_VISIBLE } from '../src/engine/features'
 import TitleScreen from '../src/ui/TitleScreen.vue'
 import HubScreen from '../src/ui/HubScreen.vue'
 import EndScreen from '../src/ui/EndScreen.vue'
@@ -123,14 +125,12 @@ describe('store: save, load and the debug jump', () => {
     expect(store.screen).toBe('exam')
   })
 
-  it('after resting on day 2 the finale can be entered from the end screen', () => {
+  it('the dev jump to the finale works from any state', () => {
     const store = useGameStore()
-    store.state.day = 2
-    store.restAtHome()
-    expect(store.screen).toBe('end')
-    expect(store.canJumpToFinale).toBe(true)
+    store.state.day = 3
     store.jumpToFinale()
     expect(store.screen).toBe('scene')
+    expect(store.state.day).toBe(5)
   })
 })
 
@@ -143,6 +143,16 @@ describe('UI wiring', () => {
     await w.find('[data-testid="debug-finale"]').trigger('click')
     expect(w.emitted('continue')?.length).toBe(1)
     expect(w.emitted('debugFinale')?.length).toBe(1)
+  })
+
+  it('title: the dev jump to the finale can be switched off', () => {
+    const w = mount(TitleScreen, { props: { devFinale: false } })
+    expect(w.find('[data-testid="debug-finale"]').exists()).toBe(false)
+    expect(w.find('[data-testid="start"]').exists()).toBe(true)
+  })
+
+  it('the finale is hidden for now: nothing in the game offers it', () => {
+    expect(FINALE_VISIBLE).toBe(false)
   })
 
   it('hub: a save button', async () => {

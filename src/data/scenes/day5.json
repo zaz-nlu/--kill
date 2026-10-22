@@ -1,0 +1,2104 @@
+{
+  "day5_attack4": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:30】地铁站台。你站在黄线内侧，等第一班车。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "人很多。有人从背后，猛地推了你一把——"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "后退贴墙",
+          "goto": "day5_attack4_good"
+        },
+        {
+          "text": "向前闪开",
+          "goto": "day5_attack4_bad"
+        }
+      ]
+    }
+  ],
+  "day5_attack4_good": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你往后一缩，背贴上了站台的立柱。有人擦着你的肩膀挤过去，戴着兜帽，很快混进了人群。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的手从你眼前掠过。是左手。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "learnIntel",
+          "intel": "attack"
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "day5_attack4_tail"
+    }
+  ],
+  "day5_attack4_bad": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你向前一闪，鞋尖已经踩过了黄线。身后有人一把拽住了你的背包带，把你拖了回来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "等你回过头，那个戴兜帽的人已经不见了。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "dangerAtLeast",
+        "value": 90
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你的小腿重重磕在站台边上，疼得眼前发黑。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "hp",
+              "delta": -2
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "learnIntel",
+          "intel": "attack"
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "day5_attack4_tail"
+    }
+  ],
+  "day5_attack4_tail": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "trustAtLeast",
+        "value": 40
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你给老韩打了电话。半小时后，他回了你一条消息，附着一段站台监控。"
+        },
+        {
+          "type": "say",
+          "speaker": "laohan",
+          "text": "戴兜帽，背双肩包。他推你的时候，用的是左手。",
+          "expr": "suspicious"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T25"
+            }
+          ]
+        }
+      ],
+      "else": []
+    }
+  ],
+  "day5_call": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【09:00】手机响了，是老韩。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "下午两点，贝塔的大会议室，所有人都会到场。你只有这一次机会。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "所有人？"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你说的所有人。上面给了我这一个下午。DNA 结果，三点半出来。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你想好了怎么说，就来。想不好，也来。",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "电话挂了。窗外的雨，终于停了。"
+    }
+  ],
+  "day5_boss_msgs": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【09:10】手机连震三下，都是老板。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "在吗"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "周末也要有奋斗者的状态"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "下周一尽调，今天来公司把需求过一遍"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "命案当前，他的关心点，还是加班。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "已读，不回",
+          "goto": "day5_boss_ignore"
+        },
+        {
+          "text": "回一句：“老板，我在查案。”",
+          "goto": "day5_boss_reply"
+        }
+      ]
+    }
+  ],
+  "day5_boss_ignore": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把手机反扣在桌上。屏幕又亮了一下，你没有翻过来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "boss",
+          "delta": -5
+        }
+      ]
+    }
+  ],
+  "day5_boss_reply": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你回了一句：“老板，我在查案。”"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "查案也是工作，算加班。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把手机关了机。"
+    }
+  ],
+  "day5_e35": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【09:20】老韩又发来一条消息，附着一个视频。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你告诉我的那个晚上。小区门口的监控，我调出来了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "视频里，19:20，一辆黑色轿车驶入小区。19:50，驶出。车牌清晰得很。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E35"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这个车牌……是老板在 B2 车库的那辆。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "他的人去拦你。他自己，当晚也在附近。我们已经在查了。",
+      "expr": "suspicious"
+    }
+  ],
+  "day5_challenge": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【12:00】手机震了一下。是老韩转来的一封邮件，标题是：《致林一程：挑战书》。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“所有必要的线索，都已经出现在你面前。请回答三个问题。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【一】宋砚真正的死亡时间，是几点？"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "21:08 之后。她那时候还给我发过消息。"
+        },
+        {
+          "text": "20:45 到 21:30 之间，法医给的区间。"
+        },
+        {
+          "text": "20:59 到 21:05 之间。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "ch1ok",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "昨晚还是前天，我已经分不清了。"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【二】凶手如何在“九点整”，同时出现在两个地方？"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "有人替他坐在会议室里，替他开会。"
+        },
+        {
+          "text": "一段提前录好的画面，用虚拟摄像头循环播放。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "ch2ok",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "会议平台出了故障，画面卡在了旧的那一帧。"
+        },
+        {
+          "text": "他走得很快，两头都赶得上。"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【三】凶手是谁？为什么？"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "黎默。为了周屿。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:limo",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "老板贺川。是他下令改的记录，也是他在灭口。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:boss",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "孟遥。她恨宋砚，又有那张卡。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:mengyao",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "郑岑。宋砚握着他的把柄。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:zhengcen",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "邵晓阳。外包要被换掉，他在偷偷拍照。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:shaoxy",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "苏闻。指甲里的手套纤维，是机房的东西。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:suwen",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "陆诚。磁铁，还有那通电话。",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "route:lucheng",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "any",
+          "conds": [
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "flag",
+                "key": "ch1ok"
+              }
+            },
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "flag",
+                "key": "ch2ok"
+              }
+            },
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "flag",
+                "key": "route:limo"
+              }
+            }
+          ]
+        }
+      },
+      "then": [
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "challengeAllCorrect",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把答案回了过去。过了一会儿，老韩回了两个字：“收到。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "没有人告诉你，哪一个对，哪一个错。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "time",
+          "hour": 14
+        }
+      ]
+    }
+  ],
+  "finale_intro": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【9 月 19 日 14:00 贝塔大会议室 A】所有人都到齐了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板坐在长桌的一头，郑岑把小本本合在手边。孟遥由警察带着，坐在最角落。外包三人并排坐着，黎默的背包放在脚边。投屏上，唐经理的头像戴着耳机。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "21:08 宋砚给你发了消息，21:10 你就进了那条走廊。之后她再也没出现过。林一程，你还有什么好说的？"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:boss"
+      },
+      "then": [
+        {
+          "type": "goto",
+          "scene": "finale_boss_intro"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "flag",
+            "key": "route:mengyao"
+          },
+          {
+            "kind": "flag",
+            "key": "route:zhengcen"
+          },
+          {
+            "kind": "flag",
+            "key": "route:shaoxy"
+          },
+          {
+            "kind": "flag",
+            "key": "route:suwen"
+          },
+          {
+            "kind": "flag",
+            "key": "route:lucheng"
+          }
+        ]
+      },
+      "then": [
+        {
+          "type": "goto",
+          "scene": "finale_wrong"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程刚要开口，黎默站了起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "等一下。我想作证。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场看向他。黎默的声音压得很沉，不耐烦里带着一股护短的火气，和平时骂人的时候一个调。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "林一程不可能杀人。那晚的事，我从头到尾都看在眼里。"
+    },
+    {
+      "type": "exam",
+      "id": "finale_act1"
+    }
+  ],
+  "finale_wrong": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站起来，说出了那个名字。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:mengyao"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "mengyao",
+          "text": "我……不是我……",
+          "expr": "panic"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "孟遥被两个警察扶了起来。她回头，看了你一眼，什么也没说。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:zhengcen"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "zhengcen",
+          "text": "你们、你们这是诬陷！",
+          "expr": "nervous"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "郑岑把小本本举到脸前，手一直在抖。小许上前，把他请了出去。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:shaoxy"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "你凭什么？！",
+          "expr": "angry"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "邵晓阳攥着拳站了很久，最后，被带走的时候，他没有再看任何人。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:suwen"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "suwen",
+          "text": "我跑不快……你们都知道我跑不快……",
+          "expr": "nervous"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "苏闻的腿，一瘸一拐。他被架出门的时候，嘴里还在重复这一句。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "route:lucheng"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lucheng",
+          "text": "……行。",
+          "expr": "guilty"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "陆诚掐灭了手里没点着的烟，站起身，跟着警察走了。他没有争辩。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室里一片安静。老板松了一口气，黎默低着头，看着自己的手。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "林一程。你确定？",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……我确定。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不确定。你比谁都清楚，自己不确定。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:b",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "finale_act1_end": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默沉默了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……我撒了谎。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他抬头，看向林一程。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我是周屿的未婚夫。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场哗然。老板脸色发白，邵晓阳猛地站起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你说什么？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "对，我撒了谎。因为我怕。你们一查就知道，我是周屿的未婚夫，我有动机，所以我不敢说。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "可你们想想：一个真凶手，会把自己的会议室、自己未婚妻的仇、自己认识的人，一件一件，全摆在明面上吗？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "林一程，你被人栽赃，我也一样。你的奖金被扣了一万八，我的……是一条命。我们是同一种人。"
+    },
+    {
+      "type": "exam",
+      "id": "finale_act2"
+    }
+  ],
+  "finale_act2_end": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默撑着桌子，声音沙哑。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……你一直在翻我说过的话。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "是你一直在对我说话。你说你关心我，每一句都是。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……我确实不该知道这些。我太想让你去查老板了。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "片刻后，他慢慢坐直，神情忽然变得冷静。朋友的面具，受害者的面具，一层一层，掉了下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "好。就算我有动机，就算我撒过谎，就算那些巧合……"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "那又怎样？这些只能证明我有嫌疑。九点整，我在开会。所有人都能在屏幕上看到我。一个人，不可能同时出现在两个地方。"
+    },
+    {
+      "type": "exam",
+      "id": "finale_act3"
+    }
+  ],
+  "finale_act3_end": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默长长地吐了一口气。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……好。视频是我放的。我承认。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场一片哗然。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "可你们知道我为什么这么做吗？我只是想拿回周屿的记录。我怕被人发现我偷拷数据，所以做了个假的不在场证明。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我撒了谎，我用了卡，我进了人事办公室。我认。但我没有杀人。你们谁，亲眼看见我动手了？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "他承认了视频，承认了卡。他的故事说得通：他只是去偷拷数据。人是谁杀的？",
+      "expr": "suspicious"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E21"
+      },
+      "then": [
+        {
+          "type": "goto",
+          "scene": "finale_act3_report"
+        }
+      ],
+      "else": [
+        {
+          "type": "goto",
+          "scene": "ending_a_scene"
+        }
+      ]
+    }
+  ],
+  "finale_act3_report": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:30】会议室的门被推开。小许快步走进来，把一份报告递给老韩。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "e22_booked"
+      },
+      "then": [
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E22"
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你问的，是不是没人看见他动手？",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩翻开那一页，停了几秒。"
+    },
+    {
+      "type": "exam",
+      "id": "finale_act4"
+    }
+  ],
+  "ending_a_scene": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程把能说的，都说了。可那座奖杯，始终没有找到。没有凶器，没有指纹，没有周屿的记录。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我要见律师。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默被带走的时候，很平静。他走过林一程身边，没有停。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "警方以“伪造不在场证明、非法侵入”刑拘了他。他拒不认罪。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:a",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "finale_act4_end": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默低着头，很久没有说话。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……我要见律师。这些，都只能证明我……有嫌疑。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你不认？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "没有人看见我杀人。没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "逻辑到这里，已经穷尽了。他不再争辩，只是沉默。全场也沉默了。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E23"
+      },
+      "then": [
+        {
+          "type": "goto",
+          "scene": "finale_e23"
+        }
+      ],
+      "else": [
+        {
+          "type": "goto",
+          "scene": "ending_a_scene"
+        }
+      ]
+    }
+  ],
+  "finale_e23": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "还有一件事，你不知道。宋砚说过，最重要的东西，都放在‘荣誉底下’。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩把读卡器连上投影。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "2024 年 11 月 21 日，周屿的原始门禁记录，一直到凌晨 02:10，她都在公司。然后是一段录音，是老板的声音：“把她的下班时间，改成七点。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板想开口：“那是宋砚自己——”老韩直接打断：“贺总，跟我们走一趟。”小许走上前去。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默一下子瘫坐在椅子上。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……原来，一直在我手里。我抱着它，走过她倒下的地方……",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他忽然停住，声音很轻。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "她指着奖杯。我以为她在炫耀。她是在告诉我……东西在那里。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "没有人说话。林一程想起那句话：“最重要的东西，都放在荣誉底下。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默抬起头，看向被带走的老板。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "周屿死的时候，你连她的名字，都叫不出来。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板没有回头。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "那天在楼梯间，我听见她说：‘一个外包，死了就死了，还想翻案？’就在那个平台。她倒下的地方。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你们知道九点熄灯是什么意思吗？灯一关，就当没人在加班了。周屿，就是这样被‘熄灯’的。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "动手的时候，灯灭了。我在她耳边说，这是为了周屿。她已经快说不出话了，嘴唇动了动，说了两个字：‘未婚夫’。她认出我了。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我们就那样看了几秒钟。然后她抬起手，指着桌上的奖杯。我以为她在炫耀。我气疯了，抓起来就砸。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我没想杀你。每一次都没有。推你的时候，我选的是有扶手的那一侧。勒线的时候，我没收紧。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "林一程，对不起。我选你，是因为你跟她吵过架。可后来，只有你还在查。只有你，还在问‘真相是什么’。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许给他戴上手铐。黎默没有挣扎。走到门口，他回头，看了林一程一眼。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:true",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "finale_boss_intro": [
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你说你有答案。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "是老板。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场安静。老板笑了一声，像听到了一个蹩脚的笑话。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默站到了林一程身后，语气急躁，护短。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我也觉得是他。当年改记录的是谁，周屿是怎么没的，你们都清楚。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "你们这是血口喷人！",
+      "expr": "angry"
+    },
+    {
+      "type": "exam",
+      "id": "finale_boss_a"
+    }
+  ],
+  "finale_boss_a_end": [
+    {
+      "type": "goto",
+      "scene": "finale_boss_gate"
+    }
+  ],
+  "finale_boss_gate": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "gate:3"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "老韩看了看表。"
+        },
+        {
+          "type": "say",
+          "speaker": "laohan",
+          "text": "时间不多了。他的话，一条一条地问。"
+        },
+        {
+          "type": "exam",
+          "id": "finale_boss_b"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩转向林一程。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "他不在场。那，是谁动的手？"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "是老刘。他是老板的司机。",
+          "goto": "finale_boss_liu"
+        },
+        {
+          "text": "是老板另外雇的、我们没查到的人。",
+          "goto": "finale_boss_hired"
+        },
+        {
+          "text": "……不对。他不在场，雇人也得有人在现场。那个时间，南翼里只有两个人。",
+          "goto": "finale_boss_think"
+        },
+        {
+          "text": "不用多说了，就是老板，他是主谋。",
+          "goto": "finale_boss_stay"
+        }
+      ]
+    }
+  ],
+  "finale_boss_fail": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "gate:2"
+      },
+      "then": [
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "gate:3",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "gate:1"
+          },
+          "then": [
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "flag",
+                  "key": "gate:2",
+                  "value": true
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "flag",
+                  "key": "gate:1",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "persuasion",
+          "delta": -1
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "finale_boss_gate"
+    }
+  ],
+  "finale_boss_liu": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "是老刘。他替老板动的手。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "老刘 19:12 就下班了，当晚老板自己开的车。老刘 07:40 才回的公司。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你要说的，是这个吗？"
+    },
+    {
+      "type": "goto",
+      "scene": "finale_boss_fail"
+    }
+  ],
+  "finale_boss_hired": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "是老板另外雇的人。我们没查到的人。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "谁？在哪？凭什么说他存在？你的证据呢？",
+      "expr": "suspicious"
+    },
+    {
+      "type": "goto",
+      "scene": "finale_boss_fail"
+    }
+  ],
+  "finale_boss_think": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老板不在场。可雇人杀人，也得有人在现场。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "any",
+          "conds": [
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "any",
+                "conds": [
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E12"
+                  },
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E14"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "any",
+                "conds": [
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E13"
+                  },
+                  {
+                    "kind": "hasEvidence",
+                    "id": "E15"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "then": [
+        {
+          "type": "goto",
+          "scene": "finale_boss_switch"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "laohan",
+          "text": "现场有谁？你怎么知道？21:08 宋砚还给你发了消息，你怎么确定，她 21:00 就已经死了？",
+          "expr": "suspicious"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "……"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你拿不出能证明时间的东西。这一环，你接不上。"
+        },
+        {
+          "type": "goto",
+          "scene": "finale_boss_fail"
+        }
+      ]
+    }
+  ],
+  "finale_boss_stay": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "就是老板。他下令改记录，他急着灭口，他的人翻我的工位，拦我的路。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "好。那就一条一条，看你拿得出什么。"
+    },
+    {
+      "type": "exam",
+      "id": "finale_boss_b"
+    }
+  ],
+  "finale_boss_switch": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……那个时间，南翼里，只有两个人。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场安静下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你的意思是，动手的人，当时就在南翼？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默脸色微微变了一下，抢着开口。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "南翼里？外包的人都在开会，我可以作证。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "好。那就从你开始说。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你转过身，面向黎默。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "等一下。我想作证。",
+      "expr": "nervous"
+    },
+    {
+      "type": "exam",
+      "id": "finale_act1"
+    }
+  ],
+  "finale_boss_b_end": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板瘫在椅子上，嘴唇一动一动，已经说不出完整的句子。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "贺川。涉嫌篡改记录、阻碍调查、指使他人袭击。跟我们走一趟。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许上前。老板被带出了会议室。他经过黎默身边的时候，黎默没有看他。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你们早该查他了。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "全场的人，都用感激的眼神看着黎默。只有林一程，看见他放在膝头的手，慢慢松开了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "警方对外宣布：宋砚案，取得重大进展，并案侦查。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:c",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "act_5_1": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "分局的小会议室。老韩把那座奖杯放在桌上，旁边是一台读卡器。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "指纹和 DNA，下午出来。SD 卡我们先看，你在场，规矩你知道。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "奖杯的底座被拧开，里面，躺着一张小小的 microSD 卡。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "宋砚说，最重要的东西，都放在荣誉底下。……她倒没骗人。",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "屏幕亮起。三个文件夹，三个日期。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "周屿 2024 年 11 月 21 日的原始门禁记录：一直到凌晨 02:10，她都在公司。宋砚篡改记录的操作日志。老板的录音：“把她的下班时间，改成七点。”还有郑岑的回扣账。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E23"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这就是她拿来勒索老板的东西。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "也是有人，用命，想要的东西。",
+      "expr": "suspicious"
+    }
+  ],
+  "act_5_3": [
+    {
+      "type": "bg",
+      "id": "stairwell",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "东楼梯，16 层的平台。一枝白菊，还立在角落里。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你约了黎默。他来了，背靠着墙，没有问为什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你知道了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我知道。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没有说话。感应灯灭了。他伸手，在黑暗里，拍了一下墙。灯又亮了。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "gaveGift",
+        "npc": "limo",
+        "item": "fish_cookie"
+      },
+      "then": [
+        {
+          "type": "choice",
+          "options": [
+            {
+              "text": "“周屿不该被熄灯。”",
+              "goto": "act_5_3_empathy"
+            },
+            {
+              "text": "“你该去自首。”",
+              "goto": "act_5_3_wrong"
+            },
+            {
+              "text": "什么也不说，把一包小鱼饼干放在台阶上。",
+              "goto": "act_5_3_cookie"
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "choice",
+          "options": [
+            {
+              "text": "“周屿不该被熄灯。”",
+              "goto": "act_5_3_empathy"
+            },
+            {
+              "text": "“你该去自首。”",
+              "goto": "act_5_3_wrong"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "act_5_3_empathy": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周屿不该被熄灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默的肩膀，轻轻抖了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……没有人这么说过。两年了，没有人这么说过。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他从口袋里，掏出一张临时卡，轻轻放在了台阶上。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我去分局。你不用陪我。",
+      "expr": "guilty"
+    },
+    {
+      "type": "goto",
+      "scene": "act_5_3_end"
+    }
+  ],
+  "act_5_3_cookie": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把那包鱼形的小饼干，放在台阶上，一个字也没有说。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默盯着它，很久很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……你从哪知道的。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没有等你回答。他蹲下来，把饼干拿起来，攥在手心里，又放下。然后，从口袋里，掏出一张临时卡，放在了饼干旁边。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "她以前，最爱吃这个。",
+      "expr": "guilty"
+    },
+    {
+      "type": "goto",
+      "scene": "act_5_3_end"
+    }
+  ],
+  "act_5_3_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他转身，往楼下走。脚步声一层一层地远了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "感应灯，一层一层地亮着，又一层一层地灭了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:hidden",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "act_5_3_wrong": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你该去自首。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默看了你很久。他的眼睛里，什么情绪也没有了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……你和他们，没有区别。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的手，从口袋里抽了出来，手里是一根细线。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "把 SD 卡举到他面前",
+          "goto": "act_5_3_card"
+        },
+        {
+          "text": "转身逃跑",
+          "goto": "act_5_3_run"
+        }
+      ]
+    }
+  ],
+  "act_5_3_card": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你一把掏出那张 SD 卡，举到他面前。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你看清楚。这上面，有她的名字。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默的手，停在了半空中。他盯着那一点小小的银色，发了很久的呆。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……你竟然带着它。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他慢慢把线收了回去，转身走了。他没有再回头。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "limo",
+          "delta": -10
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    }
+  ],
+  "act_5_3_run": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你转身就跑。细线擦过你的脖子，勒进了肉里。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你摔倒在楼梯上。黎默站在上面，居高临下地看着你，手里的线，缓缓收紧。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "远处，有 16 层公司的人推门出来：“谁在那儿？”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "线松了。他退进黑暗里。这一次，他是真的想杀你。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "hp",
+          "delta": -2
+        },
+        {
+          "kind": "affinity",
+          "npc": "limo",
+          "delta": -10
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    }
+  ],
+  "act_5_4": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你走进街角那家老理发店，在镜子前坐下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "理发师围上围布：“小伙子，剪个什么样的？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "得体面点的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "理发师笑了：“今儿有事儿吧？看你这精神头儿。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有。大事。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "剪刀在耳边咔嚓咔嚓地响。镜子里的那个人，眼睛下面，全是青的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你付了钱，对着镜子，看了很久。"
+    }
+  ],
+  "act_5_5": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区。黎默正在收拾工位，把一个纸箱，一点一点地装满。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这就收拾了？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "下周一才走。早点收，省得周一手忙脚乱。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把一个蓝色的保温杯放进纸箱里，又拿出来，看了看，擦了擦杯口。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你那个前端，别再瞎改我的接口了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "知道了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "还有，别熬夜。我说真的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他低头去收拾抽屉。你站在他背后，站了很久。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "limo",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "act_5_6": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你给老韩打了个电话。他接得很快，背景里有人声。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队，今天下午，我想把我知道的，都说出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "我知道。你准备了几天了。",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "您不问我，准备得怎么样？"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "我问了，你也不会说实话。你说‘还行’。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……还行。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "那就还行。下午见。别紧张。",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "电话挂了。你握着手机，手心是干的。你忽然意识到，自己已经，不那么怕了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "day5_video": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【09:10】邵晓阳在你桌边站了一会儿，才开口。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "那天晚上的站会录像，唐经理昨天才转给我。我看了一遍……你要不要拷一份？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "为什么不早点给我？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你没提，我也不敢乱发。公司的东西，出了事我担不起。",
+      "expr": "nervous"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E19"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把录像存进手机。可今天已经是第五天，下午两点就要开庭，没有时间，再一格一格地去看了。"
+    }
+  ]
+}

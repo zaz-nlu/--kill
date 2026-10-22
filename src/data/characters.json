@@ -64,6 +64,12 @@
     "nervous": "characters/xiaoxu/nervous.webp",
     "happy": "characters/xiaoxu/happy.webp"
   },
+  "laoliu": {
+    "angry": "characters/laoliu/angry.webp",
+    "nervous": "characters/laoliu/nervous.webp",
+    "happy": "characters/laoliu/happy.webp",
+    "normal": "characters/laoliu/normal.webp"
+  },
   "limo": {
     "normal": "characters/limo/normal.webp",
     "angry": "characters/limo/angry.webp",

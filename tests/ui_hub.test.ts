@@ -7,7 +7,7 @@ import GiftPicker from '../src/ui/GiftPicker.vue'
 import { useGameStore } from '../src/engine/store'
 import type { ActionDef } from '../src/engine/calendar'
 import { loadData } from '../src/engine/data'
-import { toDay2Noon } from './helpers'
+import { toDay2Noon, skipEvents } from './helpers'
 
 const { items } = loadData()
 const actions: ActionDef[] = [
@@ -139,11 +139,63 @@ describe('store: day 2 flow', () => {
     expect(store.state.inventory.hongtashan).toBeUndefined()
   })
 
-  it('resting ends the day and, in the slice, the playable part', () => {
+  it('resting on day 2 starts day 3, whose morning events play first', () => {
     const store = useGameStore()
     toDay2Noon(store)
+    skipEvents(store, 2)
     store.restAtHome()
     expect(store.state.day).toBe(3)
-    expect(store.screen).toBe('end')
+    expect(store.screen).toBe('hub')       // 08:00: an early hour of your own
+    store.waitAnHour()
+    expect(store.screen).toBe('scene')     // 09:00: the morning events play
+  })
+
+  it('resting carries you from day to day, up to the fifth', () => {
+    const store = useGameStore()
+    toDay2Noon(store)
+    skipEvents(store, 2)
+    skipEvents(store, 3)
+    skipEvents(store, 4)
+    skipEvents(store, 5)
+    store.restAtHome()
+    expect(store.state.day).toBe(3)
+    store.restAtHome()
+    expect(store.state.day).toBe(4)
+    expect(store.screen).toBe('hub')
+    store.restAtHome()
+    expect(store.state.day).toBe(5)
+    expect(store.screen).toBe('hub')
+  })
+})
+
+
+describe('HubScreen: an empty hour never traps you into going home', () => {
+  const none: ActionDef[] = []
+
+  it('at a meal hour it says so, and offers the shop and moving on', () => {
+    const w = mount(HubScreen, { props: { actions: none, canShop: true, inventory: {}, items, slotsLeft: 5 } })
+    expect(w.find('[data-testid="empty-hint"]').text()).toContain('饭点')
+    expect(w.find('[data-testid="go-shop"]').exists()).toBe(true)
+    expect(w.find('[data-testid="wait"]').exists()).toBe(true)
+  })
+
+  it('with hours left but nothing to do, it explains and lets you let the hour pass', async () => {
+    const w = mount(HubScreen, { props: { actions: none, canShop: false, inventory: {}, items, slotsLeft: 5 } })
+    expect(w.find('[data-testid="empty-hint"]').text()).toContain('没有能做的事')
+    expect(w.find('[data-testid="go-shop"]').exists()).toBe(false)
+    await w.find('[data-testid="wait"]').trigger('click')
+    expect(w.emitted('wait')).toHaveLength(1)
+  })
+
+  it('when the day is really over, there is nothing to wait for', () => {
+    const w = mount(HubScreen, { props: { actions: none, canShop: false, inventory: {}, items, slotsLeft: 0 } })
+    expect(w.find('[data-testid="empty-hint"]').text()).toContain('回家休息')
+    expect(w.find('[data-testid="wait"]').exists()).toBe(false)
+  })
+
+  it('with actions on offer there is no empty-hint', () => {
+    const w = mount(HubScreen, { props: { actions, canShop: false, inventory: {}, items, slotsLeft: 5 } })
+    expect(w.find('[data-testid="empty-hint"]').exists()).toBe(false)
+    expect(w.find('[data-testid="wait"]').exists()).toBe(false)
   })
 })

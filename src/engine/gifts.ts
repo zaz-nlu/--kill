@@ -1,7 +1,11 @@
 import type { GameState, Item, Npc, NpcId } from './types'
 import { applyEffect } from './effects'
 
+// Two items per visit. A visit is one meal hour: walking out and back in does not refill the allowance.
 export function openShop(state: GameState): void {
+  const visit = `shop:${state.day}:${state.hour}`
+  if (state.flags[visit]) return
+  state.flags[visit] = true
   state.shopItemsLeft = 2
 }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ error?: string }>()
+withDefaults(defineProps<{ error?: string; devFinale?: boolean }>(), { devFinale: true })
 defineEmits<{ start: []; continue: []; debugFinale: [] }>()
 </script>
 
@@ -10,7 +10,7 @@ defineEmits<{ start: []; continue: []; debugFinale: [] }>()
     <button type="button" data-testid="start" @click="$emit('start')">开始游戏</button>
     <button type="button" class="secondary" data-testid="continue" @click="$emit('continue')">继续游戏</button>
     <p v-if="error" class="error">{{ error }}</p>
-    <button type="button" class="dev" data-testid="debug-finale" @click="$emit('debugFinale')">【开发】直接进入终章第一幕</button>
+    <button v-if="devFinale" type="button" class="dev" data-testid="debug-finale" @click="$emit('debugFinale')">【开发】直接进入终章第一幕</button>
   </main>
 </template>
 

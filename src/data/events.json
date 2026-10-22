@@ -12,21 +12,279 @@
     "scene": "day1_wechat"
   },
   {
+    "id": "day1_night",
+    "day": 1,
+    "hour": 21,
+    "scene": "day1_night"
+  },
+  {
+    "id": "day2_meeting",
+    "day": 2,
+    "hour": 9,
+    "scene": "day2_meeting"
+  },
+  {
     "id": "day2_desk",
     "day": 2,
     "hour": 9,
     "scene": "day2_desk"
   },
   {
-    "id": "day2_pantry",
-    "day": 2,
-    "hour": 9,
-    "scene": "day2_pantry"
-  },
-  {
     "id": "day2_lunch",
     "day": 2,
     "hour": 12,
     "scene": "day2_lunch"
+  },
+  {
+    "id": "day2_anon",
+    "day": 2,
+    "hour": 15,
+    "scene": "day2_anon"
+  },
+  {
+    "id": "day2_dinner",
+    "day": 2,
+    "hour": 18,
+    "scene": "day2_dinner"
+  },
+  {
+    "id": "day2_street",
+    "day": 2,
+    "hour": 19,
+    "scene": "day2_street",
+    "requires": {
+      "kind": "flag",
+      "key": "attack1_pending"
+    }
+  },
+  {
+    "id": "day2_boss_msg",
+    "day": 2,
+    "hour": 20,
+    "scene": "day2_boss_msg"
+  },
+  {
+    "id": "day2_sms",
+    "day": 2,
+    "hour": 21,
+    "scene": "day2_sms"
+  },
+  {
+    "id": "day2_night",
+    "day": 2,
+    "hour": 21,
+    "scene": "day2_night"
+  },
+  {
+    "id": "day3_call",
+    "day": 3,
+    "hour": 9,
+    "scene": "day3_call"
+  },
+  {
+    "id": "day3_morning",
+    "day": 3,
+    "hour": 9,
+    "scene": "day3_morning"
+  },
+  {
+    "id": "day3_noon",
+    "day": 3,
+    "hour": 12,
+    "scene": "day3_noon"
+  },
+  {
+    "id": "day3_boss_offer",
+    "day": 3,
+    "hour": 14,
+    "scene": "day3_boss_offer"
+  },
+  {
+    "id": "day3_desk_searched",
+    "day": 3,
+    "hour": 17,
+    "scene": "day3_desk_searched"
+  },
+  {
+    "id": "day3_mengyao_taken",
+    "day": 3,
+    "hour": 18,
+    "scene": "day3_mengyao_taken",
+    "requires": {
+      "kind": "flag",
+      "key": "mengyao_taken"
+    }
+  },
+  {
+    "id": "day3_laohan_call",
+    "day": 3,
+    "hour": 19,
+    "scene": "day3_laohan_call",
+    "requires": {
+      "kind": "trustAtLeast",
+      "value": 30
+    }
+  },
+  {
+    "id": "day3_attack2",
+    "day": 3,
+    "hour": 21,
+    "scene": "day3_attack2"
+  },
+  {
+    "id": "day3_night",
+    "day": 3,
+    "hour": 21,
+    "scene": "day3_night"
+  },
+  {
+    "id": "day3_g8",
+    "day": 3,
+    "hour": 22,
+    "scene": "day3_g8"
+  },
+  {
+    "id": "day4_news",
+    "day": 4,
+    "hour": 9,
+    "scene": "day4_news"
+  },
+  {
+    "id": "day4_video",
+    "day": 4,
+    "hour": 10,
+    "scene": "day4_video",
+    "requires": {
+      "kind": "flag",
+      "key": "req_video"
+    }
+  },
+  {
+    "id": "day4_traces",
+    "day": 4,
+    "hour": 10,
+    "scene": "day4_traces",
+    "requires": {
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "flag",
+          "key": "trace_parking"
+        },
+        {
+          "kind": "flag",
+          "key": "trace_office_bump"
+        }
+      ]
+    }
+  },
+  {
+    "id": "day4_announce",
+    "day": 4,
+    "hour": 14,
+    "scene": "day4_announce"
+  },
+  {
+    "id": "day4_dinner",
+    "day": 4,
+    "hour": 18,
+    "scene": "day4_dinner"
+  },
+  {
+    "id": "day4_laoliu",
+    "day": 4,
+    "hour": 19,
+    "scene": "day4_laoliu"
+  },
+  {
+    "id": "day4_confront_night",
+    "day": 4,
+    "hour": 21,
+    "scene": "day4_confront_night",
+    "requires": {
+      "kind": "flag",
+      "key": "confronted_limo"
+    }
+  },
+  {
+    "id": "day4_night",
+    "day": 4,
+    "hour": 21,
+    "scene": "day4_night"
+  },
+  {
+    "id": "day5_attack4",
+    "day": 5,
+    "hour": 9,
+    "scene": "day5_attack4",
+    "requires": {
+      "kind": "dangerAtLeast",
+      "value": 80
+    }
+  },
+  {
+    "id": "day5_call",
+    "day": 5,
+    "hour": 9,
+    "scene": "day5_call"
+  },
+  {
+    "id": "day5_video",
+    "day": 5,
+    "hour": 9,
+    "scene": "day5_video",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "E19"
+      }
+    }
+  },
+  {
+    "id": "day5_boss_msgs",
+    "day": 5,
+    "hour": 9,
+    "scene": "day5_boss_msgs"
+  },
+  {
+    "id": "day5_e35",
+    "day": 5,
+    "hour": 9,
+    "scene": "day5_e35",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "told_laohan_liu"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "trustAtLeast",
+              "value": 40
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "day5_challenge",
+    "day": 5,
+    "hour": 12,
+    "scene": "day5_challenge"
+  },
+  {
+    "id": "day5_finale",
+    "day": 5,
+    "hour": 14,
+    "scene": "finale_intro"
   }
 ]

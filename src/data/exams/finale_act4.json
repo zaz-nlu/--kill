@@ -1,0 +1,483 @@
+{
+  "id": "finale_act4",
+  "title": "证人黎默 · 第四幕「沉默的被告」",
+  "startPersuasion": 5,
+  "onClear": "finale_act4_end",
+  "wrongReply": [
+    {
+      "speaker": "limo",
+      "text": "这是什么玩意？别在这儿丢人现眼。",
+      "expr": "angry"
+    }
+  ],
+  "statements": [
+    {
+      "id": "s1",
+      "text": "我承认视频是我放的，卡是我用的，我进了人事办公室。但我没进内间。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s1-1",
+          "accepts": [
+            "E21"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "凶器，是从内间被带出来的，装进了会议室 B 的防尘袋，一路蹭着血。防尘袋外面，是擦拭状的血迹；消防栓箱封条的撕口上，也有。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "你没进过内间？那你告诉我，血是怎么，跑到你会议室的袋子上去的？"
+            },
+            {
+              "speaker": "shaoxy",
+              "text": "（邵晓阳攥着拳，指节发白。）",
+              "expr": "angry"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "text": "能把人砸晕再勒死的东西，你们找到了吗？它凭空消失了？",
+      "steps": [
+        {
+          "kind": "press",
+          "id": "s2-1",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "砸晕？",
+              "expr": "determined"
+            }
+          ],
+          "required": true
+        },
+        {
+          "kind": "present",
+          "id": "s2-2",
+          "accepts": [
+            "E08",
+            "E30"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "警方的通报里，只写了颈部受压窒息。警方从来没有公开过，宋砚头上有伤。你怎么知道，她是先被‘砸晕’的？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……孟遥说的！是 TA 发现的尸体！",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s2-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-3",
+          "accepts": [
+            "T04"
+          ],
+          "reply": [
+            {
+              "speaker": "mengyao",
+              "text": "我……我只看到了线。我什么都没跟黎默说过。我早上发现她的时候，吓得跑出去了。",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s2-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "text": "就算有指纹，奖杯我们外包年会时搬过。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s3-1",
+          "accepts": [
+            "E21"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "宋砚桌上，少了一样东西。在东楼梯 16 层的消防栓箱里，用会议室 B 的防尘袋包着，袋子外面，蹭着宋砚的血。就在两年前，周屿倒下的那个平台旁边。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "上面有我的指纹，又怎么样？年会的时候，我们外包，帮忙搬过奖杯！",
+              "expr": "angry"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-2",
+          "accepts": [
+            "E22"
+          ],
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "案发第二天，你们每个人都按过指纹，这是标准程序。比对结果出来了：奖杯侧面那枚左手拇指指纹，是用死者的血按上去的。",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "laohan",
+              "text": "年会的时候，奖杯上，可没有血。"
+            },
+            {
+              "speaker": "limo",
+              "text": "那可能……是我先碰了奖杯，凶手后来才……",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s3-1"
+          ]
+        },
+        {
+          "kind": "argument",
+          "id": "s3-3",
+          "prompt": "指纹和血，谁先谁后？",
+          "options": [
+            {
+              "text": "“血是后来才滴上去的。”",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "limo",
+                  "text": "那就是我先碰的。你自己都承认了。",
+                  "expr": "angry"
+                }
+              ]
+            },
+            {
+              "text": "“指纹是压在血上面的。先有血，后有手。你的左手拇指，是在宋砚流血之后，才碰到奖杯的，而且是光着的。”",
+              "correct": true,
+              "reply": [
+                {
+                  "speaker": "lyc",
+                  "text": "指纹，是压在血上面的。先有血，后有手。你的左手拇指，是在宋砚流血之后，才碰到奖杯的。",
+                  "expr": "determined"
+                },
+                {
+                  "speaker": "limo",
+                  "text": "……",
+                  "expr": "guilty"
+                }
+              ]
+            },
+            {
+              "text": "“因为你是左撇子。”",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "limo",
+                  "text": "左撇子多了去了。你就这点本事？",
+                  "expr": "angry"
+                }
+              ]
+            }
+          ],
+          "after": [
+            "s3-2"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-4",
+          "accepts": [
+            "E27"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "而且，是光着的。手套，被她抓掉了。她指甲里的黑色纤维，就是防静电手套的。她抓到的，是手套，不是皮肤。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s3-3"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "text": "袭击林一程的人，也不是我。你们有证据吗？我和苏闻、孟遥一样，都有可能。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s4-1",
+          "accepts": [
+            "T17",
+            "T18"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "两次袭击的时候，郑岑、邵晓阳、陆诚、孟遥、老板、苏闻，每个人，都有人证明他们在哪。只剩一个人，没有。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "那也只是没人证明，不是证明我在场。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-2",
+          "accepts": [
+            "T16",
+            "T25",
+            "T15"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "我掐住的，是勒线的左手腕。站台上推我的，是左手。第一次，我听见的，是一声很轻的铃铛。你的背包拉链上，挂着一只小银鱼。"
+            },
+            {
+              "speaker": "limo",
+              "text": "我是左撇子，全公司都知道。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s4-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-3",
+          "accepts": [
+            "E01",
+            "E31",
+            "T24"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "勒死宋砚的那根线，动手前，被酒精棉片擦过。在楼梯上推我的人，扔下了一个酒精棉片的包装；在黑暗里砸我的人，身上有酒精味。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "杀宋砚的人，和袭击我的人，是同一个人。而他直到今天，还在不停地擦手。"
+            },
+            {
+              "speaker": "narration",
+              "text": "黎默低下头，看着自己攥着棉片的左手。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s4-2"
+          ],
+          "required": false,
+          "bonus": 1
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "text": "就算这些都对，我最多是偷拷数据。我没有预谋杀人。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s5-1",
+          "accepts": [
+            "T09"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "周五下午 15:30，你在东楼梯，听到宋砚打电话说：‘一个外包，死了就死了，还想翻案？’",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s5-2",
+          "accepts": [
+            "T07"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "也是周五，演示完，是你说‘我帮你收’，把线收走的。线，就这样，到了你的口袋里。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "shaoxy",
+              "text": "……他抢着第一个汇报的那天，我就觉得不对。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s5-3",
+          "accepts": [
+            "T03"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "我模糊记得，有人说过一句：‘我帮你收。’当时，忙着收电脑，没看是谁。现在，我想起来了。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s5-4",
+          "accepts": [
+            "E01"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "周一，你给那根线，擦了酒精，又戴上了手套。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "拷数据，用不着一根勒人的线。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s5-1",
+            "s5-2",
+            "s5-3"
+          ]
+        }
+      ]
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这是什么玩意？别在这儿丢人现眼。",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。别丢人现眼。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "zhengcen",
+        "text": "小林啊，这个……跟案子有关系吗？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "想清楚再拿出来。这里不是菜市场。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……就这？你要是没别的，就别浪费大家时间。",
+        "expr": "angry"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问题问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "同一样东西你要拿几遍？",
+        "expr": "angry"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,4885 @@
+{
+  "tk_wang_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_wang:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_wang:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_wang:2"
+              },
+              "then": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "act_1_2_leave"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m7"
+                    }
+                  ]
+                }
+              ],
+              "else": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m11"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_wang:2"
+              },
+              "then": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m13"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m5"
+                    }
+                  ]
+                }
+              ],
+              "else": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m9"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_wang:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_wang:2"
+              },
+              "then": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m14"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m6"
+                    }
+                  ]
+                }
+              ],
+              "else": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m10"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_wang:2"
+              },
+              "then": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m12"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m4"
+                    }
+                  ]
+                }
+              ],
+              "else": [
+                {
+                  "type": "branch",
+                  "when": {
+                    "kind": "flag",
+                    "key": "asked:tk_wang:3"
+                  },
+                  "then": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m8"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "type": "goto",
+                      "scene": "tk_wang_m0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_wang_m0": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王给你续了半杯茶，收音机里的快板说到热闹处。他没有赶你走的意思。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m7": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？",
+          "goto": "tk_wang_t3"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m8": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m9": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m10": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m11": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "东楼梯那边，平时谁走得多？",
+          "goto": "tk_wang_t2"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m12": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m13": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，咱这楼的摄像头，都装在哪儿了？",
+          "goto": "tk_wang_t1"
+        }
+      ]
+    }
+  ],
+  "tk_wang_m14": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "不耽误您了，王叔，我先走。",
+          "goto": "act_1_2_leave"
+        },
+        {
+          "text": "王叔，您一个人守一整夜，不闷得慌？",
+          "goto": "tk_wang_t0"
+        }
+      ]
+    }
+  ],
+  "tk_wang_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，您一个人守一整夜，不闷得慌？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“闷？”老王笑了，拍了拍桌上那台掉漆的收音机。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "我有这个。马三立、郭德纲，翻来覆去听了二十多年，词儿我都背得下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "就是下雨天不行。B1 返潮，墙根都冒水珠子，一个人坐这儿听水管子响，头发根都发麻。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那昨晚呢？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "昨晚啊……还行。就是十七楼那块屏，九点整个黑了，我还当摄像头坏了，拍了两下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“拍了也没用。等了一会儿，它自己亮了，黑白的，红外。”老王比划着，“像个鬼片。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "laowang",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_wang:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_wang_menu"
+    }
+  ],
+  "tk_wang_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，咱这楼的摄像头，都装在哪儿了？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "楼里头？大堂一个，电梯厅一个，B2 车库闸机一个，都是物业的，归我管。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "你们十七层里头的，是你们公司自己装的。机房那一个，对着走廊拐角，数据在你们自己手里。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "就是说，十七层里头，物业这边看不见？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "看不见。我们管门，不管屋。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他啜了一口茶，意味深长地看了你一眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "小程，要想知道里头的事，得找你们自己人。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_wang:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_wang_menu"
+    }
+  ],
+  "tk_wang_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "东楼梯那边，平时谁走得多？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "抽烟的呗。（他压低了声音）全楼的烟民都往那儿钻。十五层做直播的小姑娘，十六层那家保险公司的，你们十七层的……我睁一只眼闭一只眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "不过也怪。每层防火门都连着门磁，开一回报一回警。可东边这一路，这礼拜一回都没响过，我还跟人说，是不是线路坏了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没响过……"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "我上去看过，门好好的。（他挠了挠头）邪门。你别当真，我就是随口一说。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_wang:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_wang_menu"
+    }
+  ],
+  "tk_wang_t3": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，您天天在这儿看着，我们公司的人您都认识吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "咋不认识。孟遥那姑娘，天天最后一个走，有时候我都怕她睡在公司里。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "搞算法的那个苏闻，瘸着腿，下雨天更厉害。从来不爬楼梯，上下就等电梯，等多久都等。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "郑副总爱抽烟，一天三趟楼下。穿橙外套的那三个外包，一个话少烟多，一个长得帅爱说话，还有一个……眼睛特别尖，我登记本上写错一个字，他都得指出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "哈哈，这倒像他们。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "老板的车嘛……（他啧了一声）不说了，说多了不好。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_wang:3",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_wang_menu"
+    }
+  ],
+  "tk_tong_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_tong:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_tong:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_tong:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_3_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_tong:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_tong:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_tong:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_tong:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_tong_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_tong_m0": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小彤把最后一排矿泉水码齐，拍了拍手。看样子没打算赶你走。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "你一个人上夜班，不怕吗？",
+          "goto": "tk_tong_t0"
+        },
+        {
+          "text": "夜里来买东西的，都是些什么人？",
+          "goto": "tk_tong_t1"
+        },
+        {
+          "text": "昨晚你在楼下，看得见十七层吗？",
+          "goto": "tk_tong_t2"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "夜里来买东西的，都是些什么人？",
+          "goto": "tk_tong_t1"
+        },
+        {
+          "text": "昨晚你在楼下，看得见十七层吗？",
+          "goto": "tk_tong_t2"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "你一个人上夜班，不怕吗？",
+          "goto": "tk_tong_t0"
+        },
+        {
+          "text": "昨晚你在楼下，看得见十七层吗？",
+          "goto": "tk_tong_t2"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "昨晚你在楼下，看得见十七层吗？",
+          "goto": "tk_tong_t2"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "你一个人上夜班，不怕吗？",
+          "goto": "tk_tong_t0"
+        },
+        {
+          "text": "夜里来买东西的，都是些什么人？",
+          "goto": "tk_tong_t1"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "夜里来买东西的，都是些什么人？",
+          "goto": "tk_tong_t1"
+        }
+      ]
+    }
+  ],
+  "tk_tong_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "那我先走了，谢谢你。",
+          "goto": "act_1_3_leave"
+        },
+        {
+          "text": "你一个人上夜班，不怕吗？",
+          "goto": "tk_tong_t0"
+        }
+      ]
+    }
+  ],
+  "tk_tong_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你一个人上夜班，不怕吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“怕啥，大堂里有保安大哥。”小彤耸了耸肩，“就是昨天之后，我晚上不太敢往楼上看了。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“我是学生，白天上课，晚上在这儿攒点钱。一个月三千五，我妈让我别干了，我说干嘛不干。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……三千五。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你心里默默算了一下，那还不到你被扣掉的那笔钱的零头。你没说出口。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_tong:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_tong_menu"
+    }
+  ],
+  "tk_tong_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "夜里来买东西的，都是些什么人？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“都是你们楼上的呗，我记得住。”小彤掰着手指头数。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“一个戴眼镜的哥哥，走路一拐一拐的，天天买冰美式，每回都说‘最后一杯了’，第二天又来。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“还有人一箱一箱地买红牛，说是公司报销。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“对了，还有一个哥哥，每次就只买一包鱼形的小饼干，别的什么都不要。结账的时候还要问我有没有别的口味，我说没有，他就叹气。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "鱼形的小饼干？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“就是一口一条的那种，六块钱，在收银台旁边那个架子上，没人买，就他买。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_tong:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_tong_menu"
+    }
+  ],
+  "tk_tong_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "昨晚你在楼下，看得见十七层吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“看得见！”小彤一下子精神了，“昨晚九点整，你们那层一整排窗户‘啪’地一黑，我们还说是不是欠费了。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“可是黑了以后，里头还有人影晃。有几扇窗户有一点蓝光，一闪一闪的，像鬼屋。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那是我们……在加班。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小彤愣了一下，小声说：“啊……对不起。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_tong:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_tong_menu"
+    }
+  ],
+  "tk_meng_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_meng:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_meng:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_meng:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_4_door"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_meng:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_meng:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_meng:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_meng:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_meng_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_meng_m0": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对面又沉默了。你盯着屏幕，想着是不是该再说点什么。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "“阿姨那边，现在怎么样了？”",
+          "goto": "tk_meng_t0"
+        },
+        {
+          "text": "发一段天津话逗她",
+          "goto": "tk_meng_t1"
+        },
+        {
+          "text": "“宋砚平时，是不是老欺负你？”",
+          "goto": "tk_meng_t2"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "发一段天津话逗她",
+          "goto": "tk_meng_t1"
+        },
+        {
+          "text": "“宋砚平时，是不是老欺负你？”",
+          "goto": "tk_meng_t2"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "“阿姨那边，现在怎么样了？”",
+          "goto": "tk_meng_t0"
+        },
+        {
+          "text": "“宋砚平时，是不是老欺负你？”",
+          "goto": "tk_meng_t2"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "“宋砚平时，是不是老欺负你？”",
+          "goto": "tk_meng_t2"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "“阿姨那边，现在怎么样了？”",
+          "goto": "tk_meng_t0"
+        },
+        {
+          "text": "发一段天津话逗她",
+          "goto": "tk_meng_t1"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "发一段天津话逗她",
+          "goto": "tk_meng_t1"
+        }
+      ]
+    }
+  ],
+  "tk_meng_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等她再开口）",
+          "goto": "act_1_4_door"
+        },
+        {
+          "text": "“阿姨那边，现在怎么样了？”",
+          "goto": "tk_meng_t0"
+        }
+      ]
+    }
+  ],
+  "tk_meng_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "阿姨那边，现在怎么样了？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "老毛病，住了快半个月了。医生说还得观察。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "床位费、药费，一天一天地烧钱……程哥，你说，我要是丢了这份工作，我妈怎么办？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "先别想那个。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "嗯。……我就是睡不着的时候，会算这笔账。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_meng:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_meng_menu"
+    }
+  ],
+  "tk_meng_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "孟遥，我跟你讲，咱天津人遇上事儿，先别慌。没有什么是一套煎饼果子解决不了的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "解决不了，就加俩蛋。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对面“正在输入”闪了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "噗。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥你这人……都什么时候了你还有心思讲这个。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "笑完更难受了。可是，谢谢你。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_meng:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_meng_menu"
+    }
+  ],
+  "tk_meng_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚平时，是不是老欺负你？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对面静了好一会儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥，人刚走，你问这个干嘛。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "她是对我不好。功劳抢我的，活儿压我的。我恨过她，真的。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "可我从来没想过要她这样。你别再问了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": -5
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_meng:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_meng_menu"
+    }
+  ],
+  "tk_su_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_su:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_su:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_su:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_8_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_su:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_su:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_su:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_su:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_su_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_su_m0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“苏哥，下雨天，你的腿是不是又疼了？”",
+          "goto": "tk_su_t0"
+        },
+        {
+          "text": "“周一尽调，你们算法那边压力是不是特别大？”",
+          "goto": "tk_su_t1"
+        },
+        {
+          "text": "“那个字段类型的锅，到底是谁的？”",
+          "goto": "tk_su_t2"
+        }
+      ]
+    }
+  ],
+  "tk_su_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“周一尽调，你们算法那边压力是不是特别大？”",
+          "goto": "tk_su_t1"
+        },
+        {
+          "text": "“那个字段类型的锅，到底是谁的？”",
+          "goto": "tk_su_t2"
+        }
+      ]
+    }
+  ],
+  "tk_su_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“苏哥，下雨天，你的腿是不是又疼了？”",
+          "goto": "tk_su_t0"
+        },
+        {
+          "text": "“那个字段类型的锅，到底是谁的？”",
+          "goto": "tk_su_t2"
+        }
+      ]
+    }
+  ],
+  "tk_su_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“那个字段类型的锅，到底是谁的？”",
+          "goto": "tk_su_t2"
+        }
+      ]
+    }
+  ],
+  "tk_su_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“苏哥，下雨天，你的腿是不是又疼了？”",
+          "goto": "tk_su_t0"
+        },
+        {
+          "text": "“周一尽调，你们算法那边压力是不是特别大？”",
+          "goto": "tk_su_t1"
+        }
+      ]
+    }
+  ],
+  "tk_su_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“周一尽调，你们算法那边压力是不是特别大？”",
+          "goto": "tk_su_t1"
+        }
+      ]
+    }
+  ],
+  "tk_su_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（不再打扰他）",
+          "goto": "act_1_8_leave"
+        },
+        {
+          "text": "“苏哥，下雨天，你的腿是不是又疼了？”",
+          "goto": "tk_su_t0"
+        }
+      ]
+    }
+  ],
+  "tk_su_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏哥，下雨天，你的腿是不是又疼了？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……你怎么知道。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你上礼拜走楼梯的时候扶着墙，我看见了。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "旧伤。小时候从二楼窗台摔下来的，医生说不会瘸，结果还是瘸了。下雨天跟针扎似的。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "所以我不爬楼梯，也不跑。别人嫌我走得慢，嫌烦就直说。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没有没有，我没嫌。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "（顿了顿）……你是公司里少数不盯着我腿看的人。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "suwen",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_su:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_su_menu"
+    }
+  ],
+  "tk_su_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周一尽调，你们算法那边压力是不是特别大？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "谁跟你说压力大？！指标是 94%！清清楚楚摆在那儿，有什么压力！"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他说得太快，快得像在背一句背了很多遍的话。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……我是说，模型好就是好，尽调来不来都一样。评测的事跟你前端没关系，你别瞎打听。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他哼了一声，电话那头安静了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_su:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_su_menu"
+    }
+  ],
+  "tk_su_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏哥，那个字段类型的锅，到底是谁的啊？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "当然是你的。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……也不全是。我周五改了个返回值，没跟你说。但这不能算我的锅，文档里有，你自己不会看？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "文档在哪儿？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……我回头补。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的语气里居然有一点点心虚。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "suwen",
+          "delta": 2
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_su:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_su_menu"
+    }
+  ],
+  "tk_lu_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_lu:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_lu:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_lu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_9_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_lu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_lu:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_lu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_lu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_lu_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_lu_m0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你抽的什么烟？”",
+          "goto": "tk_lu_t0"
+        },
+        {
+          "text": "“陆哥，你从上海回来，怎么想的？”",
+          "goto": "tk_lu_t1"
+        },
+        {
+          "text": "“黎默平时在你们组里，怎么样？”",
+          "goto": "tk_lu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你从上海回来，怎么想的？”",
+          "goto": "tk_lu_t1"
+        },
+        {
+          "text": "“黎默平时在你们组里，怎么样？”",
+          "goto": "tk_lu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你抽的什么烟？”",
+          "goto": "tk_lu_t0"
+        },
+        {
+          "text": "“黎默平时在你们组里，怎么样？”",
+          "goto": "tk_lu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“黎默平时在你们组里，怎么样？”",
+          "goto": "tk_lu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你抽的什么烟？”",
+          "goto": "tk_lu_t0"
+        },
+        {
+          "text": "“陆哥，你从上海回来，怎么想的？”",
+          "goto": "tk_lu_t1"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你从上海回来，怎么想的？”",
+          "goto": "tk_lu_t1"
+        }
+      ]
+    }
+  ],
+  "tk_lu_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（等他开口）",
+          "goto": "act_1_9_leave"
+        },
+        {
+          "text": "“陆哥，你抽的什么烟？”",
+          "goto": "tk_lu_t0"
+        }
+      ]
+    }
+  ],
+  "tk_lu_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "陆哥，你抽的什么烟？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "红塔山。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "现在还抽这个的不多了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "便宜，劲大。……习惯了。从上海回来那阵，一天一包半。现在好点，一包。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "少抽点吧。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……你比我妈管得多。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "lucheng",
+          "delta": 2
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_lu:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_lu_menu"
+    }
+  ],
+  "tk_lu_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "陆哥，你从上海回来，怎么想的？大公司不是更好吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "好。就是人累。一天十四个小时，睡觉都得带着电脑。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "回来……家里人在这。也没别的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那咱们这儿呢？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "这儿……至少九点能下班。（他笑了一声）灯是黑的，但是能下班。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_lu:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_lu_menu"
+    }
+  ],
+  "tk_lu_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "黎默平时在你们组里，怎么样？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……话不多。代码洁癖。上回我一个缩进，他盯着我改了半小时。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "人不坏。你的接口他帮你改过不止一回，对吧。嘴上嫌弃，手上不含糊。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我知道。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……那就行。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_lu:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_lu_menu"
+    }
+  ],
+  "tk_han_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_han:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_han:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_han:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_10_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_han:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_han:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_han:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_han:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_han_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_han_m0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，您这茶……是茉莉花吧？”",
+          "goto": "tk_han_t0"
+        },
+        {
+          "text": "“韩队，警察会去找我爸妈吗？”",
+          "goto": "tk_han_t1"
+        },
+        {
+          "text": "“韩队，您自己觉得，是我吗？”",
+          "goto": "tk_han_t2"
+        }
+      ]
+    }
+  ],
+  "tk_han_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，警察会去找我爸妈吗？”",
+          "goto": "tk_han_t1"
+        },
+        {
+          "text": "“韩队，您自己觉得，是我吗？”",
+          "goto": "tk_han_t2"
+        }
+      ]
+    }
+  ],
+  "tk_han_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，您这茶……是茉莉花吧？”",
+          "goto": "tk_han_t0"
+        },
+        {
+          "text": "“韩队，您自己觉得，是我吗？”",
+          "goto": "tk_han_t2"
+        }
+      ]
+    }
+  ],
+  "tk_han_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，您自己觉得，是我吗？”",
+          "goto": "tk_han_t2"
+        }
+      ]
+    }
+  ],
+  "tk_han_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，您这茶……是茉莉花吧？”",
+          "goto": "tk_han_t0"
+        },
+        {
+          "text": "“韩队，警察会去找我爸妈吗？”",
+          "goto": "tk_han_t1"
+        }
+      ]
+    }
+  ],
+  "tk_han_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，警察会去找我爸妈吗？”",
+          "goto": "tk_han_t1"
+        }
+      ]
+    }
+  ],
+  "tk_han_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“那我先走了，韩队。”",
+          "goto": "act_1_10_leave"
+        },
+        {
+          "text": "“韩队，您这茶……是茉莉花吧？”",
+          "goto": "tk_han_t0"
+        }
+      ]
+    }
+  ],
+  "tk_han_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队，您这茶……是茉莉花吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（抬眼）高碎。四十块钱一斤，比不上人家喝的毛尖，我喝了二十年。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "天津人，一天不喝茶，脑仁疼。办案的时候最管用，浓一点，困不着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那您这两天……"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（淡淡地）三天没回家了。你小子别拿这个套我。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "可你看见，他拧杯盖的手，松了一点。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_han:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_han_menu"
+    }
+  ],
+  "tk_han_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队，警察会去找我爸妈吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "例行走访，不会吓着老人。就是问问你平时的为人。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你父母，天津本地人？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "嗯，住老城区。我爸退休了，我妈在社区帮忙。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "那就好。别让他们看新闻，看新闻伤身体。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_han:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_han_menu"
+    }
+  ],
+  "tk_han_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队，您自己觉得，是我吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩放下保温杯，看了你很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "我觉得不重要。证据觉得，证据说是你。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "但是——（他停了停）我从警二十三年，有一条规矩：越像的，越要多看两眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你愣在原地，不知道该说什么。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_han:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_han_menu"
+    }
+  ],
+  "tk_limo_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_limo:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_limo:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_limo:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "day1_coffee_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_limo:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_limo:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_limo:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_limo:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_limo_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_limo_m0": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没急着起身。杯子里的咖啡已经凉了，他也不去换。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你怎么只喝黑咖啡，不加糖也不加奶？”",
+          "goto": "tk_limo_t0"
+        },
+        {
+          "text": "“你那个后端服务，最近是不是在重构？”",
+          "goto": "tk_limo_t1"
+        },
+        {
+          "text": "“你自己也一脸没睡好，还好吧？”",
+          "goto": "tk_limo_t2"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你那个后端服务，最近是不是在重构？”",
+          "goto": "tk_limo_t1"
+        },
+        {
+          "text": "“你自己也一脸没睡好，还好吧？”",
+          "goto": "tk_limo_t2"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你怎么只喝黑咖啡，不加糖也不加奶？”",
+          "goto": "tk_limo_t0"
+        },
+        {
+          "text": "“你自己也一脸没睡好，还好吧？”",
+          "goto": "tk_limo_t2"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你自己也一脸没睡好，还好吧？”",
+          "goto": "tk_limo_t2"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你怎么只喝黑咖啡，不加糖也不加奶？”",
+          "goto": "tk_limo_t0"
+        },
+        {
+          "text": "“你那个后端服务，最近是不是在重构？”",
+          "goto": "tk_limo_t1"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你那个后端服务，最近是不是在重构？”",
+          "goto": "tk_limo_t1"
+        }
+      ]
+    }
+  ],
+  "tk_limo_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "（起身）“走吧。”",
+          "goto": "day1_coffee_leave"
+        },
+        {
+          "text": "“你怎么只喝黑咖啡，不加糖也不加奶？”",
+          "goto": "tk_limo_t0"
+        }
+      ]
+    }
+  ],
+  "tk_limo_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你怎么只喝黑咖啡？不加糖也不加奶。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（眼也不抬）以前加。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "现在怎么不加了？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……苦点清醒。你问这么多干嘛，查户口？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把杯子转了半圈，杯耳对着自己，没再说话。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_limo:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_limo_menu"
+    }
+  ],
+  "tk_limo_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你那个后端服务，最近是不是在重构？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默的眼睛亮了一下，又被他自己压了下去。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你怎么知道。对，鉴权那一层，写得跟屎一样，我看不下去了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你别笑。你前端那个接口，字段命名一半驼峰一半下划线，我改了三遍，你知道吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我……回头改。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "回头？今晚！（顿了顿）……算了，你现在也没这个心思。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "limo",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_limo:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_limo_menu"
+    }
+  ],
+  "tk_limo_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你自己也一脸没睡好，还好吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "关你什么事，管好你自己。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把杯子端起来，又放下。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "……没事。就是这两天睡不着。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "limo",
+          "delta": 2
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_limo:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_limo_menu"
+    }
+  ],
+  "act_1_14": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着通讯录里的“妈”，拇指悬了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "打过去，只响了两声就被接起来。背景里是电视的声音，还有一个老头子在喊：“别换台！”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“一程？吃了没？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "吃了，妈。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“吃了啥？别糊弄我，你那个‘吃了’，十回有九回是泡面。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……真吃了。煎饼果子，加俩蛋。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“哟，加俩蛋，那还行。”那头顿了一下，声音低下去，“你们公司，上新闻了。你爸刷手机看见的，非说是你们公司，我说不能够，你们公司那么多人……”"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“妈，没事。公司出了点事，跟我没关系。”",
+          "goto": "act_1_14_a"
+        },
+        {
+          "text": "“妈……我可能有点麻烦。”",
+          "goto": "act_1_14_b"
+        }
+      ]
+    }
+  ],
+  "act_1_14_a": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "妈，没事。公司出了点事，跟我没关系。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“没关系就好，没关系就好。”她松了一口气，又提起来，“那你周末回不回来？你爸要包饺子，白菜猪肉的，你爱吃那个。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周末……看情况吧。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“看啥情况，不就是加班嘛。你们那个老板，一天到晚把人当驴使。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "您怎么知道的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“我还不知道我儿子吗。”"
+    },
+    {
+      "type": "goto",
+      "scene": "act_1_14_end"
+    }
+  ],
+  "act_1_14_b": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "妈，我可能有点麻烦。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "那头沉默了几秒，电视声被调小了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“什么麻烦？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "警察问了我几句话。没事的，就是……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“一程。”她很少这样叫他，“你从小就这样，一难受就说没事。你听着：天塌下来，回家吃饭。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "那边传来爸的声音：“是不是一程？让他回来，我陪他下盘棋！”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的鼻子忽然一酸。"
+    },
+    {
+      "type": "goto",
+      "scene": "act_1_14_end"
+    }
+  ],
+  "act_1_14_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "挂了电话，屋里安静下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你坐了一会儿，把桌上凉透的泡面桶扔掉，烧了一壶水。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "called_home",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "act_1_15": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你躺在床上，把同事们的朋友圈一个一个点开来看。不为别的，就是想看看，这些昨天还一起加班的人，今天都在想什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "苏闻：凌晨 3:12，一杯冰美式的照片，配文“第四杯。续命。”评论区空空的，只有郑岑点了个赞。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳：一只橘猫趴在拆了一半的沙发上，配文“又磨爪子了，我的沙发。”下面是他老婆的评论：“你自己看着办。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚：三天可见，一片空白。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "郑岑：转发的文章，《领导力的十个底层逻辑》，每天一篇，雷打不动。他自己的配文只有两个字：“共勉。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥：最新一条是三天前，医院走廊的窗户，拍的是窗外的天，配文“今天也要加油”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默：头像是系统默认的灰色人像。朋友圈只有一条横线，什么都没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他倒是干净。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板：转发的短视频，《奋斗者的清晨》，配文“周一晨会，全员到齐，状态拉满”。点赞的有六十几个，一半是公司的官方号。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "最后，你点开了宋砚的头像。她的朋友圈还停在昨天："
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "9 月 14 日 17:32：“亲爱的们，今晚九点起全层熄灯，倡导高效，拒绝无效加班，大家要理解哦～”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "下面四十几条评论，几乎全是同一句话：“收到。”“好的宋经理。”“理解。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的名字也在里面。你昨天下午回的是：“收到。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……收到。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着那两个字看了很久，直到屏幕自己暗了下去。"
+    }
+  ],
+  "act_1_16": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你鬼使神差地点开了招聘软件，筛选条件填的是“天津·前端·三年”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "刷出来一百多个岗位。你一个一个点进去，一个一个失望。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“能适应弹性工作制”——就是加班。“有奋斗者精神”——就是不给加班费。“团队氛围像家人一样”——就是老板的口头禅。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "刷到第三十七个，你停了下来：贝塔科技，前端开发，薪资面议。岗位要求的最后一行写着：“能够适应 21:00 后自主安排工作节奏。”福利一栏：“年终奖丰厚（按考勤）”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这是……我们自己的招聘。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你点开公司评价页，最新的一条匿名评论，发布于 9 月 12 日："
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“听说下周一开始九点熄灯，加班不算加班了。谁懂啊。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "底下有人点赞，有人回复：“懂。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你关掉软件，把手机扣在桌上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "还没到那一步。"
+    }
+  ],
+  "act_1_17": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起一个大学同学推荐过的律师，姓周，做劳动纠纷的。微信存了三年，一次都没联系过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你拨了过去。对面接得很快，背景里有翻纸的声音。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“林先生？你同学提过你。你说。”"
+    },
+    {
+      "type": "goto",
+      "scene": "tk_law_menu"
+    }
+  ],
+  "tk_law_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_law:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_law:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_law:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_17_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_law:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_law:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_law:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_law:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_law_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_law_m0": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "周律师没有寒暄，只说了两个字：“说吧。”"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“我的绩效奖金被扣了一万八，理由是 21:00 后的打卡不计。这合法吗？”",
+          "goto": "tk_law_t0"
+        },
+        {
+          "text": "“如果有人在公司加班的时候突然出了事，算工伤吗？”",
+          "goto": "tk_law_t1"
+        },
+        {
+          "text": "“我现在算不算嫌疑人？警察再找我，我该怎么办？”",
+          "goto": "tk_law_t2"
+        }
+      ]
+    }
+  ],
+  "tk_law_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“如果有人在公司加班的时候突然出了事，算工伤吗？”",
+          "goto": "tk_law_t1"
+        },
+        {
+          "text": "“我现在算不算嫌疑人？警察再找我，我该怎么办？”",
+          "goto": "tk_law_t2"
+        }
+      ]
+    }
+  ],
+  "tk_law_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“我的绩效奖金被扣了一万八，理由是 21:00 后的打卡不计。这合法吗？”",
+          "goto": "tk_law_t0"
+        },
+        {
+          "text": "“我现在算不算嫌疑人？警察再找我，我该怎么办？”",
+          "goto": "tk_law_t2"
+        }
+      ]
+    }
+  ],
+  "tk_law_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“我现在算不算嫌疑人？警察再找我，我该怎么办？”",
+          "goto": "tk_law_t2"
+        }
+      ]
+    }
+  ],
+  "tk_law_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“我的绩效奖金被扣了一万八，理由是 21:00 后的打卡不计。这合法吗？”",
+          "goto": "tk_law_t0"
+        },
+        {
+          "text": "“如果有人在公司加班的时候突然出了事，算工伤吗？”",
+          "goto": "tk_law_t1"
+        }
+      ]
+    }
+  ],
+  "tk_law_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“如果有人在公司加班的时候突然出了事，算工伤吗？”",
+          "goto": "tk_law_t1"
+        }
+      ]
+    }
+  ],
+  "tk_law_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“谢谢周律师，我先挂了。”",
+          "goto": "act_1_17_leave"
+        },
+        {
+          "text": "“我的绩效奖金被扣了一万八，理由是 21:00 后的打卡不计。这合法吗？”",
+          "goto": "tk_law_t0"
+        }
+      ]
+    }
+  ],
+  "tk_law_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我的绩效奖金被扣了一万八，理由是 21:00 之后的打卡不计。这合法吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“看你的合同和制度。绩效扣减要有明确的考核标准，要经过公示。”周律师说，“把工资条、邮件、考勤截图都留着。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“说实话，‘21:00 后打卡不计’这种话，一般不会写进正式制度，只会写在通知里。所以最好的证据，就是那封通知本身。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "邮件我有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“那就够了。留着，别转发，别删。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_law:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_law_menu"
+    }
+  ],
+  "tk_law_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周律师，如果有人在公司加班的时候，突然出了事……算工伤吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“你是说猝死？”周律师顿了顿，“《工伤保险条例》第十五条：在工作时间和工作岗位，突发疾病死亡，或者四十八小时内抢救无效死亡的，视同工伤。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“关键看两样：时间，和地点。公司只要能证明‘不在工作时间、不在工作岗位’，赔偿就能少一大截。所以考勤记录，常常是整个案子的命门。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "考勤记录……命门。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把这四个字记在了手心里。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_law:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_law_menu"
+    }
+  ],
+  "tk_law_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我现在算不算嫌疑人？警察要是再找我，我该怎么办？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对面沉默了一下。“你被怀疑了？”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“我多说一句：别自己瞎猜，别当面攻击任何人。你有权保持沉默，有律师在场再说话。实话实说，不要编。你不确定的事，就说不确定。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我知道了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“还有，小林，”他放缓了语气，“真不是你的话，别慌。慌的人才容易出错。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_law:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_law_menu"
+    }
+  ],
+  "act_1_17_leave": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "挂了电话，你在便签上写了三个字：留证据。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "consulted_lawyer",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "act_1_18": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "分局门口的台阶上，坐着一个人，手里捧着一杯奶茶，吸管咬得扁扁的。是小许。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "林哥？你怎么又来了。韩队不在，去技术科了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我不找韩队，就是……路过。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "（小声）路过也行。我这会儿正好没事，歇一会儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他往旁边挪了挪，给你让出半个台阶。"
+    },
+    {
+      "type": "goto",
+      "scene": "tk_xu_menu"
+    }
+  ],
+  "tk_xu_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_xu:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_xu:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_xu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_18_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_xu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_xu:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_xu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_xu:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_xu_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_xu_m0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“小许，你这杯是什么口味的？”",
+          "goto": "tk_xu_t0"
+        },
+        {
+          "text": "“韩队是不是对谁都那么凶？”",
+          "goto": "tk_xu_t1"
+        },
+        {
+          "text": "“今天你们局里都在忙什么？”",
+          "goto": "tk_xu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“韩队是不是对谁都那么凶？”",
+          "goto": "tk_xu_t1"
+        },
+        {
+          "text": "“今天你们局里都在忙什么？”",
+          "goto": "tk_xu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“小许，你这杯是什么口味的？”",
+          "goto": "tk_xu_t0"
+        },
+        {
+          "text": "“今天你们局里都在忙什么？”",
+          "goto": "tk_xu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“今天你们局里都在忙什么？”",
+          "goto": "tk_xu_t2"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“小许，你这杯是什么口味的？”",
+          "goto": "tk_xu_t0"
+        },
+        {
+          "text": "“韩队是不是对谁都那么凶？”",
+          "goto": "tk_xu_t1"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“韩队是不是对谁都那么凶？”",
+          "goto": "tk_xu_t1"
+        }
+      ]
+    }
+  ],
+  "tk_xu_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“你忙吧，我走了。”",
+          "goto": "act_1_18_leave"
+        },
+        {
+          "text": "“小许，你这杯是什么口味的？”",
+          "goto": "tk_xu_t0"
+        }
+      ]
+    }
+  ],
+  "tk_xu_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "小许，你这杯是什么口味的？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "三分糖，加珍珠！林哥你不知道，我们局里没人陪我喝这个，韩队说甜的伤胃，天天让我喝他那个茶，苦死了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老韩那个茉莉花茶？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "高碎茉莉！我喝一口能苦三天。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他吸了一大口，像在报复。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "xiaoxu",
+          "delta": 3
+        }
+      ]
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_xu:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_xu_menu"
+    }
+  ],
+  "tk_xu_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队是不是对谁都那么凶？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "凶？（他笑了）对嫌疑人才那样，对我们更凶。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "但是他其实……去年有个案子，死者是个小姑娘，家里困难，韩队自己掏钱给家属垫了丧葬费。你别说是我说的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我不说。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_xu:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_xu_menu"
+    }
+  ],
+  "tk_xu_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "今天你们局里都在忙什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "可忙了！技术科在比对指纹，说是昨晚在场的人，一个一个排。孟遥姐上午又被叫来了一趟，出来的时候眼睛都红了。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "……咦，我是不是说多了。林哥你当没听见啊！"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把吸管塞进嘴里，用力咬住，不说话了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_xu:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_xu_menu"
+    }
+  ],
+  "act_1_18_leave": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站起来拍了拍裤子。小许冲你挥了挥手里的奶茶。"
+    }
+  ],
+  "act_1_19": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "大厦东门外的雨棚下，摆着一个煎饼摊。摊主是个五十来岁的大妈，围裙上沾着面糊，手腕一转，面饼就在鏊子上摊成了一个圆。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“小伙子，来一套？加蛋不？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "加俩。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“哟，加俩！我就知道你是天津人，外地人都只加一个。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她一边打蛋、刷酱、撒葱花，一边唠嗑：“你们这楼啊，我天天在这儿摆，认识的人不少。”"
+    },
+    {
+      "type": "goto",
+      "scene": "tk_jb_menu"
+    }
+  ],
+  "tk_jb_menu": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "asked:tk_jb:0"
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_jb:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_jb:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "act_1_19_leave"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m3"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_jb:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m5"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "asked:tk_jb:1"
+          },
+          "then": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_jb:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m6"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m2"
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "asked:tk_jb:2"
+              },
+              "then": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m4"
+                }
+              ],
+              "else": [
+                {
+                  "type": "goto",
+                  "scene": "tk_jb_m0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tk_jb_m0": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您这摊每天摆到几点？”",
+          "goto": "tk_jb_t0"
+        },
+        {
+          "text": "“大妈，您认识我们公司的人吗？”",
+          "goto": "tk_jb_t1"
+        },
+        {
+          "text": "“这两天有记者来问您吗？”",
+          "goto": "tk_jb_t2"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m1": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您认识我们公司的人吗？”",
+          "goto": "tk_jb_t1"
+        },
+        {
+          "text": "“这两天有记者来问您吗？”",
+          "goto": "tk_jb_t2"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m2": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您这摊每天摆到几点？”",
+          "goto": "tk_jb_t0"
+        },
+        {
+          "text": "“这两天有记者来问您吗？”",
+          "goto": "tk_jb_t2"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m3": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“这两天有记者来问您吗？”",
+          "goto": "tk_jb_t2"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m4": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您这摊每天摆到几点？”",
+          "goto": "tk_jb_t0"
+        },
+        {
+          "text": "“大妈，您认识我们公司的人吗？”",
+          "goto": "tk_jb_t1"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m5": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您认识我们公司的人吗？”",
+          "goto": "tk_jb_t1"
+        }
+      ]
+    }
+  ],
+  "tk_jb_m6": [
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“大妈，谢谢，我拿着走了。”",
+          "goto": "act_1_19_leave"
+        },
+        {
+          "text": "“大妈，您这摊每天摆到几点？”",
+          "goto": "tk_jb_t0"
+        }
+      ]
+    }
+  ],
+  "tk_jb_t0": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "大妈，您这摊每天摆到几点？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“早上五点出，下午五点收。晚上不摆，你们这楼里的人下班没点儿，我摆了也没人买。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“十一二点才下来，吃啥都是外卖。我说你们这帮孩子，一天三顿不是外卖就是泡面，铁打的也扛不住。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "您说得对。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_jb:0",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_jb_menu"
+    }
+  ],
+  "tk_jb_t1": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "大妈，您认识我们公司的人吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“认识啊！你们那个小帅哥，戴工牌的，叫啥来着……对对对，爱吃加肠的，一边吃一边打电话，一天三顿。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“还有一个高高瘦瘦的，脾气可大。上回我多找了他一块钱，他追着我退回来，一分都不占。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“还有你，天天加俩蛋，每回都跟我说‘大妈今天辣少一点’。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……您记性真好。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你说不出话来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_jb:1",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_jb_menu"
+    }
+  ],
+  "tk_jb_t2": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这两天有记者来问您吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“来了三拨了！问我认不认识死的那个。我说我只认识吃煎饼的。”她哼了一声。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“下午他们还要来，蹲在大堂门口，逮着人就问。你别往那儿凑，小伙子，一张嘴就被他们拿去当新闻了。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "asked:tk_jb:2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "tk_jb_menu"
+    }
+  ],
+  "act_1_19_leave": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "大妈把煎饼装袋，又硬塞给你一块多出来的薄脆：“拿着，吃不完我也得扔。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站在雨棚下，一口一口把热乎乎的煎饼吃完。肚子里终于有了点底。"
+    }
+  ],
+  "act_1_20": [
+    {
+      "type": "bg",
+      "id": "street"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "从大厦出来，往东走两条街，就是海河。雨小了些，河面泛着铅灰色的光。你在栏杆边站住。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对岸是一片新建的写字楼，玻璃幕墙反着阴云，一格一格亮着灯，像一块巨大的、没有关机的屏幕。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "栏杆边有个老头在钓鱼，雨披下面只露着半张脸。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“小伙子，别往下探，滑。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "大爷，这种天还钓鱼？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“这种天鱼才咬钩。”他头也不回，“人心里不踏实的时候，就得找个水边坐着。你，是不是也有事儿压着？”"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“有。”",
+          "goto": "act_1_20_a"
+        },
+        {
+          "text": "“没有，我就路过。”",
+          "goto": "act_1_20_b"
+        }
+      ]
+    }
+  ],
+  "act_1_20_a": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“甭管多大的事儿，先吃饱了再说。”老头笑了，“天塌不下来，塌下来也砸不着咱这钓竿。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "大爷您这话，倍儿宽心。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“我退休前是修表的。修了一辈子，就明白一个理儿：再乱的零件，一颗一颗来，总能装回去。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在河边站了半个钟头。心里的火，慢慢熄了一点。"
+    }
+  ],
+  "act_1_20_b": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没有，我就路过。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“路过的人，不会站这么久。”老头没再说话。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你尴尬地笑了笑，把手插进兜里，走了。"
+    }
+  ],
+  "act_1_21": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你本来只想躺五分钟。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你做了一个很短的梦：一间没有灯的办公室，宋砚坐在桌子后面，笑眯眯地冲你招手。"
+    },
+    {
+      "type": "say",
+      "speaker": "songyan",
+      "text": "亲爱的，你的考勤有问题哦。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想说话，嘴里却发不出声。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "惊醒的时候出了一身汗，枕头湿了一块。窗外的光已经斜了，手机上有二十几条工作群消息，全是“收到”，没有一条跟你有关。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……我这是怎么了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌上的泡面汤早就凉透了，结了一层白色的油花。"
+    }
+  ],
+  "act_1_22": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "大厦门口围了一圈人，长枪短炮，雨伞挨着雨伞。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你本来只是想绕过去，一个话筒忽然杵到你脸前："
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“你是贝塔的员工吗？你认识死者吗？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“听说你就是被警方带走问话的那位？”闪光灯亮了。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“我没杀人！我是被冤枉的！”",
+          "goto": "act_1_22_a"
+        },
+        {
+          "text": "“无可奉告。”低头挤过去",
+          "goto": "act_1_22_b"
+        }
+      ]
+    }
+  ],
+  "act_1_22_a": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我没杀人！我是被冤枉的！"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "记者的眼睛都亮了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "二十分钟后，这四个字就上了本地新闻的滚动条：《涉案员工当街喊冤：我没杀人》。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的手机响了，是老板：“林一程，我说过什么来着？注意影响。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "十分钟后，老韩的电话也进来了：“你自己看看你都说了什么。别再有下次。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "boss",
+          "delta": -10
+        },
+        {
+          "kind": "trust",
+          "delta": -10
+        }
+      ]
+    }
+  ],
+  "act_1_22_b": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "无可奉告。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你低着头往人群里挤。身后有人喊：“他不敢说话！他心虚！”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "等你从人堆里出来，已经被堵了整整一个钟头，鞋里全是水。"
+    }
+  ],
+  "act_1_23": [
+    {
+      "type": "bg",
+      "id": "home"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳的头像是他家那只橘猫。你在对话框里打了又删，最后只发出一句话：“晓阳，在吗？”"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥！！在！你怎么样？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你被叫去那么久，我们都担心死了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他发来一张照片：一只橘猫横在一张装修图纸上睡觉。配文：“我家这位，把我画了三天的图纸压坏了。”"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，你那边要是有啥需要，吱声。我们组的人都向着你。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "公司让我们先在家办公，别去了。老板的意思是，等警察那边结束。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "把你知道的跟他说说，一起想想办法",
+          "effects": [
+            {
+              "kind": "affinity",
+              "npc": "shaoxy",
+              "delta": 5
+            }
+          ],
+          "leak": {
+            "toNpc": "shaoxy",
+            "intel": [
+              "phone",
+              "draft"
+            ]
+          },
+          "goto": "act_1_23_a"
+        },
+        {
+          "text": "聊点别的：装修怎么样了",
+          "effects": [
+            {
+              "kind": "affinity",
+              "npc": "shaoxy",
+              "delta": 5
+            }
+          ],
+          "goto": "act_1_23_b"
+        }
+      ]
+    }
+  ],
+  "act_1_23_a": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "晓阳，我跟你说，警察给我看过现场的照片。宋砚的手机不见了，她电脑上还开着一封没写完的邮件。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "手机不见了？邮件？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他“正在输入”了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，我给你记着。你有事随时找我。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你放下手机，忽然有点后悔：这些话，是不是不该说得这么痛快。"
+    }
+  ],
+  "act_1_23_b": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你那装修，现在怎么样了？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "别提了，还差六万。装修队每天催尾款，我老婆嘴上不说，但是我知道她着急。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "这个月加班费要是再被砍，我真不知道怎么办……"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "咱们都不容易。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "嗯。程哥，你也别硬撑，有事说。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你们聊了一个钟头，没有一句跟案子有关。挂了线，你觉得心里松了一点。"
+    }
+  ]
+}

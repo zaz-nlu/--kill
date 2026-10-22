@@ -9,5 +9,16 @@
   { "id": "police", "label": "分局" },
   { "id": "meeting_a", "label": "大会议室 A" },
   { "id": "street", "label": "雨夜的街" },
-  { "id": "home", "label": "林一程的家" }
+  { "id": "home", "label": "林一程的家" },
+  { "id": "security", "label": "物业监控室" },
+  { "id": "server_room", "label": "机房" },
+  { "id": "outsource", "label": "外包区" },
+  { "id": "boss_office", "label": "老板办公室" },
+  { "id": "vp_office", "label": "副总办公室" },
+  { "id": "parking", "label": "B2 停车场" },
+  { "id": "pantry", "label": "茶水间" },
+  { "id": "smoking", "label": "吸烟区" },
+  { "id": "lobby", "label": "一楼大堂" },
+  { "id": "hr_outer", "label": "人事外间" },
+  { "id": "hr_office_after", "label": "人事办公室（案发后）" }
 ]

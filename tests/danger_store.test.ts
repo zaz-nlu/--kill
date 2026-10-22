@@ -202,6 +202,20 @@ describe('feedback after a scene', () => {
 describe('who the player knows', () => {
   beforeEach(() => setActivePinia(createPinia()))
 
+  it('shows every colleague and Laohan from the very start, not only the ones who have spoken yet', () => {
+    const store = useGameStore()
+    store.newGame()
+    expect(store.relations.map(r => r.id).sort()).toEqual(
+      ['boss', 'laohan', 'limo', 'lucheng', 'mengyao', 'shaoxy', 'suwen', 'zhengcen'])
+  })
+
+  it('adds the minor characters (the policeman, the guard) once they have spoken', () => {
+    const store = useGameStore()
+    store.newGame()
+    store.state.backlog.push({ id: 'L1', speaker: 'laowang', text: 'x', day: 1, hour: 9 })
+    expect(store.relations.map(r => r.id)).toContain('laowang')
+  })
+
   it('lists the people met so far with a plain-language tier, and Laohan by trust', () => {
     const store = useGameStore()
     store.newGame()
@@ -211,7 +225,8 @@ describe('who the player knows', () => {
     expect(laohan.label).toBe('戒备')
     expect(laohan.kind).toBe('trust')
     expect(rows.find(r => r.id === 'lucheng')).toMatchObject({ kind: 'affinity', label: '一般' })   // he spoke in the prologue
-    expect(rows.find(r => r.id === 'limo')).toBeUndefined()                                        // not met yet
+    expect(rows.find(r => (r.id as string) === 'tang')).toBeUndefined()                            // a voice on a screen, not somebody to befriend
+    expect(rows.find(r => (r.id as string) === 'laoliu')).toBeUndefined()
     expect(rows.find(r => (r.id as string) === 'songyan')).toBeUndefined()                                     // not somebody you can win over
   })
 })

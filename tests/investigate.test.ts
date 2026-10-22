@@ -5,6 +5,7 @@ import { createInitialState } from '../src/engine/state'
 import { isSeen, markSeen, visibleHotspots, type RoomDef } from '../src/engine/rooms'
 import { useGameStore } from '../src/engine/store'
 import { loadData } from '../src/engine/data'
+import { skipEvents } from './helpers'
 import { loadSave, serializeState } from '../src/engine/save'
 import backgrounds from '../src/data/backgrounds.json'
 import InvestigateScreen from '../src/ui/InvestigateScreen.vue'
@@ -70,9 +71,9 @@ describe('store: investigating', () => {
     const store = useGameStore()
     store.state.day = 2
     store.state.hour = 10
-    for (const e of ['day2_desk', 'day2_pantry', 'day2_lunch']) store.state.flags['event:' + e] = true
+    skipEvents(store, 2)
     store.screen = 'hub'
-    store.startAction('2-1')
+    store.startAction('2-2')
     return store
   }
 
@@ -115,6 +116,30 @@ describe('store: investigating', () => {
     const store = enter()
     store.inspect('nope')
     expect(store.screen).toBe('investigate')
+  })
+
+  it('a spot you already looked at is not replayed: no second dose of danger', () => {
+    const store = enter()
+    store.inspect('mb_projector'); finishScene(store)
+    const danger = store.state.danger
+    store.inspect('mb_projector')
+    expect(store.screen).toBe('investigate')
+    expect(store.state.danger).toBe(danger)
+    expect(store.notice).toContain('查过')
+  })
+
+  it('a sneaked search has a budget: the last look ends it, and the hour is paid', () => {
+    const store = enter()
+    const r = store.data.rooms.find(x => x.id === 'meeting_b')!
+    r.budget = 2
+    store.inspect('mb_laptop'); finishScene(store)
+    expect(store.looksLeft).toBe(1)
+    expect(store.screen).toBe('investigate')
+    store.inspect('mb_glass'); finishScene(store)
+    expect(store.screen).toBe('hub')
+    expect(store.room).toBeNull()
+    expect(store.state.hour).toBe(11)
+    delete r.budget
   })
 })
 

@@ -1,0 +1,198 @@
+{
+  "id": "finale_boss_b",
+  "title": "老板路线 · 被击穿的两句",
+  "startPersuasion": 5,
+  "onClear": "finale_boss_b_end",
+  "wrongReply": [
+    {
+      "speaker": "boss",
+      "text": "你拿这种东西来冤枉我？",
+      "expr": "angry"
+    }
+  ],
+  "statements": [
+    {
+      "id": "s1",
+      "text": "周屿的事，是宋砚自己改的记录！我什么都不知道！",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s1-1",
+          "accepts": [
+            "E24",
+            "T13",
+            "E43"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "2024 年 11 月 21 日，是宋砚那封邮件草稿的标题。你要是不认识周屿，宋砚拿什么勒索你？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "boss",
+              "text": "那是宋砚自己干的！我什么都——",
+              "expr": "angry"
+            },
+            {
+              "speaker": "laohan",
+              "text": "他自己说了。‘那是宋砚自己干的。’",
+              "expr": "suspicious"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s1-2",
+          "accepts": [
+            "E36",
+            "T12"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "宋砚的便签：‘11.21 周屿——改 19:12 下班（贺总口头，原件在卡里）’。你还问我，宋砚有没有给过我什么东西，U 盘之类的。"
+            },
+            {
+              "speaker": "boss",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s1-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s1-3",
+          "accepts": [
+            "E23"
+          ],
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "录音，在这儿。",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "narration",
+              "text": "投影上，响起老板的声音：“把她的下班时间，改成七点。”"
+            },
+            {
+              "speaker": "boss",
+              "text": "那、那是……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s1-2"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "text": "老刘是我司机，让他去工位找我的文件，有什么问题？",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s2-1",
+          "accepts": [
+            "E34"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第三天 12:40，你的备用门禁卡，刷开了 17 层的玻璃门，持卡人戴着棒球帽，是老刘。同一个时段，我的抽屉，被人翻过。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "boss",
+              "text": "……找文件，也要翻抽屉吗？",
+              "expr": "angry"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s2-2",
+          "accepts": [
+            "T33",
+            "E35"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "第四天晚上，有人在我家楼下拦我，要‘宋砚给你的东西’。右手，会说话，檀香味。小区门口的监控，是一辆黑色轿车，车牌，和你的用车一致。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "boss",
+              "text": "我……只是让他找东西。",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s2-1"
+          ]
+        }
+      ]
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "boss",
+        "text": "你拿这种东西来冤枉我？",
+        "expr": "angry"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，这不是他的问题。想清楚再拿出来。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "boss",
+        "text": "胡闹！这跟我有什么关系！",
+        "expr": "angry"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问题问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "同一样东西你要拿几遍？",
+        "expr": "angry"
+      }
+    ]
+  ]
+}

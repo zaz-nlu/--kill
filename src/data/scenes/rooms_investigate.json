@@ -1,0 +1,1766 @@
+{
+  "intro_hr_night": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "夜里，17 层只剩几盏应急灯。你绕开保安的值班室，停在人事办公室的门前。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "交叉的封条还贴在玻璃门上。白天有警察守在这里，晚上撤了岗，只剩这两条白色的纸。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "就看一眼。不拿，不动。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你贴着封条的缝隙，侧身挤了进去。屋里很暗，只有窗外的光，和桌上那盏没关的台灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你知道自己待不了多久。保安十几分钟就会巡一次。"
+    }
+  ],
+  "cutoff_hr_night": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊上，有手电的光柱一晃一晃地扫过来。还有脚步声，不紧不慢。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "保安回来了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你屏住呼吸，贴着墙根从封条的缝隙里挤出去，心脏擂鼓一样跳。"
+    }
+  ],
+  "inspect_hn_notes": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "笔记本屏幕的边缘，贴着三张黄色便签。字很小，是宋砚的笔迹。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "技术科翻拍过，你在照片里看过，可那时候字糊成一团。现在凑近了，一个字一个字都认得出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "第一张：“郑 — 账本 / 外包合同 / 19:30”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "第二张：“贺 — 期权 2% / 明早十点 / 录音别丢”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "第三张：“11.21 周屿 — 改 19:12 下班（贺总口头，原件在卡里）”。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E36"
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周屿……11.21……还有，“原件在卡里”？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起邮件草稿的标题：《关于 2024 年 11 月 21 日的情况说明》。日期，对上了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "卡……什么卡？"
+    }
+  ],
+  "inspect_hn_shelf": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "书架的第二层，有一块位置特别干净。灰尘在四周印出一个方框，大小像个奖座。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这里原来摆着什么？……宋砚每天都要擦的那座奖杯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "现场照片里，桌角也有一块一模一样的无尘印。奖杯这两天，都不在这间屋子里。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "saw_empty_shelf",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "inspect_hn_papers": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌面上的文件被警察翻过，又原样摆了回去，摆得很规整。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "最上面是《外包人员考勤异常名单》，周一尽调要用的纸质签字稿。名单后面贴着一张便条：“尽调前，让孟遥再核一遍。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她连周一的事都安排好了。……谁会想到，她根本等不到周一。"
+    }
+  ],
+  "inspect_hn_drawer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "抽屉上了锁，锁孔边缘有一圈新鲜的划痕：警察开过，又锁上了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "里面的东西，应该早就被他们拿走了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你拉了两下，纹丝不动。"
+    }
+  ],
+  "inspect_hn_cabinet": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "矮柜里是整整齐齐的外包合同归档，鼎越人力的名字印在每一份的封面上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "最上面那份的页脚，有一行铅笔字：“回扣？——问郑”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚怀疑过郑岑。这就是她那天拿“账本”威胁他的底气。"
+    }
+  ],
+  "inspect_hn_umbrella": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "伞架上插着那把墨绿色的长柄伞。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她那天晚上，没有拿伞。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起 21:12 敲门时看到的那一幕：伞还在伞架上，门里一片漆黑。"
+    }
+  ],
+  "intro_hr_outer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "人事外间。孟遥的工位在最靠窗的位置，桌上的绿植有点蔫了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这几天，她见人就躲。你想弄明白，她到底在躲什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "对不起了，孟遥。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外间的门是刷卡的。你从前台的挂钩上，取下了她落下的那张备用工牌。"
+    }
+  ],
+  "cutoff_hr_outer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里传来了巡逻保安的脚步声，一步一步，朝这边来了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "该走了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把工牌放回挂钩，把抽屉推回原位，从后门溜了出去。"
+    }
+  ],
+  "inspect_ho_trash": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌边的纸篓里，有一团被揉皱的纸。你展开它。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "是一张《门禁卡挂失申请单》，只填了一半：卡号“孟遥-临时 02”，挂失原因一栏，写着“遗失”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "日期栏填的是 9 月 15 日，后面有一行被划掉的时间：08:50。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "九月十五日，早上八点五十。那是她发现宋砚之后。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "卡是前一天下午发的。她要是真的弄丢了卡，为什么要等到出事以后，才想起来挂失？"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E42"
+        },
+        {
+          "kind": "flag",
+          "key": "knows_card_story",
+          "value": true
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    }
+  ],
+  "inspect_ho_drawer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "拉开的抽屉里，放着一本蓝皮的《临时门禁卡领用登记》。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E18"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "9 月 14 日，17:40：临时卡 02。签发人孟遥，领用人那一栏，空着。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "和苏闻给我看的那一页，一模一样。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "9 月 14 日，17:40：临时卡 02。签发人孟遥。领用人那一栏，空着。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "发出去的卡，不写领用人。这不是疏忽。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E18"
+            },
+            {
+              "kind": "flag",
+              "key": "knows_card_story",
+              "value": true
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_ho_shred": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "碎纸机里塞着半袋纸条，都是今天白天的碎纸。你用手指拨了拨，全是细得拼不起来的丝。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有些东西，碎了就是碎了。"
+    }
+  ],
+  "inspect_ho_printer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "卡片打印机的墨带用到了一半，电源灯亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你按了一下屏幕，调出最近的任务记录：“9/14 17:38，打印 ×1”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "只打印了一张。……就这一张，后来去了哪里？"
+    }
+  ],
+  "inspect_ho_box": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "墙上的灰色盒子，指示灯一闪一闪。屏幕上弹出一个登录框。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E17"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "里面的日志，苏闻已经替我读过了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "要管理员密码……这种东西，得找懂行的人。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你想起苏闻蹲在墙角，对着一个小盒子敲命令的样子。"
+        }
+      ]
+    }
+  ],
+  "inspect_ho_pc": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥的电脑锁着屏，锁屏壁纸是一张病房窗外的夕阳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "键盘旁边压着一张医院缴费单：“住院押金 ¥20,000”，被反复折过很多次。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她需要这份工作。……需要到，什么都肯做。"
+    }
+  ],
+  "inspect_ho_door": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "玻璃门上交叉的封条，像一个大大的叉。门里面，宋砚桌上的台灯还亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "里面还有东西。……等警察晚上撤了岗，也许能进去看看。"
+    }
+  ],
+  "intro_server_room": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "机房。苏闻被郑岑叫去开周会了，椅子上的外套还搭着，门没有锁。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他说过，机房的灯是单独线路，谁都别乱动。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你轻轻带上门。这里只有风扇的声音，和一排排闪着绿光的指示灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你不知道他开多久的会。"
+    }
+  ],
+  "cutoff_server_room": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里传来脚步声，一高一低，一瘸一拐。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏闻回来了！"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你抓起椅背上的外套，装作是来送东西的，从他身边挤了出去。他狐疑地看了你一眼，没有说话。"
+    }
+  ],
+  "inspect_sr_router": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E14"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "宋砚的手机，什么时候离开的人事区，什么时候出现在会议室 B……这份日志，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "墙角的机架上，挂着路由器和一排 AP 控制器。屏幕上的后台，没有退出登录。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你用型号搜索宋砚的手机，跳出来一串漫游记录。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "21:04:45，断开“人事区”。21:06:40，连上“会议室 B”。21:20，离线。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "它没有离开过这层楼，一直到九点二十。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "九点过后，有人带着它，从人事办公室，走进了会议室 B。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E14"
+            },
+            {
+              "kind": "danger",
+              "delta": 15
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_sr_pc": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E12"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "草稿的最后一次保存时间，20:59:31。我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "e12_lost"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "邮件服务器的管理页面开着，可那天的日志，已经被清空了。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "有人动过它。……就在今天中午。"
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "苏闻的电脑没有锁屏，开着邮件服务器的管理页面。"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你在日志里翻到宋砚的账号：草稿自动保存，每 30 秒一次。最后一条，20:59:31。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "九点差二十九秒。"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "evidence",
+                  "id": "E12"
+                },
+                {
+                  "kind": "danger",
+                  "delta": 10
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_sr_phone": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌上放着一台旧手机，插着贴了公司标签的测试卡。屏幕上，一条未发送的短信草稿。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“再查下去，你会和她一样。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……那条短信，是他发的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起第二天夜里，手机震的那一下。原来，发信人一直在这间屋里。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "knows_suwen_sms",
+          "value": true
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "inspect_sr_cam": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "对角的天花板上，一只半球形摄像头，正对着整面玻璃墙。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这就是 C2。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站到玻璃墙边往外看：转角，走廊，一直到会议室 B 门口，一览无余。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没有死角。从这里到那儿，有人经过，一定拍得到。"
+    }
+  ],
+  "inspect_sr_glass": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "玻璃墙外，是通往南翼的走廊拐角。雨水顺着对面的落地窗往下淌，走廊的灯一格一格亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "九点以后，那些灯全灭了，只有这间屋子的灯是亮的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "从外面看这里，像一座孤岛。"
+    }
+  ],
+  "inspect_sr_gloves": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E27"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "纸箱里是一叠黑色的防静电手套，碳纤维的手感。箱子上贴着标签：“测试间 / 机房 共用”。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "谁都能来拿。宋砚指甲里的纤维，不一定出自这间屋子的主人。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E28"
+            },
+            {
+              "kind": "danger",
+              "delta": 5
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "一箱黑色的手套，摸上去涩涩的。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "测试间里，也放着一模一样的。"
+        }
+      ]
+    }
+  ],
+  "inspect_sr_drawer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "抽屉里，一排药盒，旁边是一副旧护膝。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他的腿……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起苏闻拖着腿走路的样子。这样的人，追不上谁，也跑不快。"
+    }
+  ],
+  "intro_security": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "B1 监控室。老王去楼上巡楼了，桌上的保温杯还冒着热气。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，对不住了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你只来得及看几样东西。他巡一圈，大概要二十分钟。"
+    }
+  ],
+  "cutoff_security": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里有咳嗽声，还有一串钥匙叮叮当当地响。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老王回来了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你从侧门溜出去，把门虚掩上。身后传来一声：“哎，谁动我杯子了？”"
+    }
+  ],
+  "inspect_sc_wall": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一面墙的小屏幕，轮流显示各层的走廊、电梯和车库。东楼梯那一格，灯一亮一灭。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "楼梯的灯是感应的，每亮一次，都会留下记录。"
+    }
+  ],
+  "inspect_sc_pc": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E15"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "东楼梯感应灯的记录，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "旧电脑的屏幕上，是楼梯感应灯的管理页面。你选了东楼梯，日期 9 月 14 日。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "21:04:40，17 层。21:05:00，16 层。21:06:10，16 层。21:06:25，17 层。20:30 之后，其他楼层，没亮过。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "九点过后，有人下到十六层，又回到十七层。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "十六层……周屿倒下的那个平台，就在十六层和十七层之间。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E15"
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_sc_book": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌上摊着值班登记本，9 月 14 日那一页，字迹潦草。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“19:12，公务车出库（刘）。20:28，黑色轿车出库（老板自驾）。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老刘 19:12 就下班了。那天晚上，老板是自己开的车。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E41"
+        },
+        {
+          "kind": "evidence",
+          "id": "E37"
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "inspect_sc_keys": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "钥匙柜里挂着一排钥匙牌。你的目光停在一把黄铜钥匙上，牌子上写着“灯控面板”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "顺手一放的东西，最容易被人顺手拿走。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把它揣进了口袋。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "sec_key",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "inspect_sc_panel": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E16"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "灯光系统的日志，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "sec_key"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你用黄铜钥匙打开面板，调出灯光系统的操作日志。"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "9 月 14 日 21:00:00：会议室 B、人事区，全部关灯。之后，没有任何手动开灯的记录。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "一盏灯都没有开过。……会议室 B 里的人，是在黑暗里，待了整整三十分钟。"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "evidence",
+                  "id": "E16"
+                },
+                {
+                  "kind": "danger",
+                  "delta": 10
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "面板上了锁。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "得找把钥匙。"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_sc_shelf": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "架子上，一排排值班本按年份贴着标签。你的手指划过去，在 2024 年那一排，停住了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "十一月那一本，不见了。其他月份都在，只有它的位置是空的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人把它拿走了。"
+    }
+  ],
+  "inspect_sc_flask": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "保温杯旁边，是半个没吃完的煎饼果子，加了两个蛋。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔还是老样子。"
+    }
+  ],
+  "intro_outsource": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区。三个人都被叫去会议室 A 听合同通知，工位空着，灯还亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "趁现在。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "每张桌子都有各自的样子。你站在中间，不知道先看哪一张。"
+    }
+  ],
+  "cutoff_outsource": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里传来说话声，是邵晓阳的大嗓门：“……那我们回去等通知。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "会开完了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你拿起一份不知道是谁的文件，装作是来送东西的，低着头走了出去。"
+    }
+  ],
+  "inspect_os_board": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "白板上贴满了彩色便签，是外包组的迭代看板。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把 9 月 14 日那一列，从头看到尾。全天只有三张工单，都是接口联调，没有一张写着“复现视频”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天，没有任何需要录复现视频的 bug。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E33"
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "inspect_os_left": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "左边的桌子上，摞着一座易拉罐小山，红牛、东鹏，全是空的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "键盘旁边压着一份文件，标题是《劳动仲裁申请书（草稿）》。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这张桌子的主人，真的在准备仲裁。"
+    }
+  ],
+  "inspect_os_mid": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "中间那张桌子，整洁得过分。显示器锁着屏，键盘上一点灰都没有，耳机放得端端正正。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "抽屉没关严：一盒酒精棉片，一盒备用手套，一块擦屏幕的绒布。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "做测试的人，都备着这些。……整个外包组，应该都一样。"
+    }
+  ],
+  "inspect_os_right": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "右边的桌子上，放着一盒红塔山，烟灰缸里摁着半根烟。手机亮了一下，锁屏上是三个未接来电：“郑副总”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "副总，三个电话，找一个外包做什么？"
+    }
+  ],
+  "inspect_os_shelf": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "货架上插满了测试用的手机和平板，每台底下贴着编号。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你数了一遍：十二个位置，少了一台。编号 11，空着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁借走了？"
+    }
+  ],
+  "inspect_os_gloves": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E27"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "一个敞口的纸箱，里面是一大盒黑色的防静电手套，旁边贴着一张纸条：“用完放回，别带走。”"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "测试间门口，谁都能拿。指甲里的纤维，并不能指向某一个人。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E28"
+            },
+            {
+              "kind": "danger",
+              "delta": 5
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "一个敞口的纸箱，里面是一大盒黑色的手套。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "外包组的东西……跟我有什么关系？"
+        }
+      ]
+    }
+  ],
+  "inspect_os_jackets": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "三把椅子的靠背上，各搭着一件橙色的外包外套。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一样的颜色，一样的款式，连尺码贴都缝在同一个位置。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "黑暗里，一截橙色的袖子……谁穿着，都像。"
+    }
+  ],
+  "inspect_os_pantry": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊尽头，茶水间的灯亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天晚上九点刚过，有人躲进去接了一通电话。"
+    }
+  ],
+  "intro_boss_office": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板办公室的门，居然没锁。他下午去投资方那边了，助理在楼下抽烟。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "进去，看一眼，出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这间屋子比整个外包区都大。落地窗外，是海河，和那架巨大的摩天轮。"
+    }
+  ],
+  "cutoff_boss_office": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "电梯“叮”的一声。助理的声音从走廊那头传来：“贺总，您回来了！”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你从侧门挤出去，混进了办公区的人群里，手心全是汗。"
+    }
+  ],
+  "inspect_bo_desk": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "宽大的书桌上，只放着一份文件，边角被手指捻得发毛。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "《股权激励补充协议（草稿）》。条款里，被人用红笔圈出一处：“员工持股 2%，授予条件：宋砚女士于 9 月 15 日上午十点前签署确认。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚要的，是 2%。还有，一个“明早十点”的期限。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这和便签上写的，对上了。他有动机……也有理由，不想让她开口。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E43"
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    }
+  ],
+  "inspect_bo_safe": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "墙里嵌着一个保险柜，数字锁，六位。门把手上有一圈新鲜的指印，是被人反复拧过的痕迹。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他在找东西。……自己的东西，还是别人的？"
+    }
+  ],
+  "inspect_bo_cabinet": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "展示柜里摆满了奖座，大大小小几十个。你一个一个看过去，没有一个是星形的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚的“贝塔之星”，不在这里。"
+    }
+  ],
+  "inspect_bo_club": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "墙角的球包里，斜插着一支推杆，擦得锃亮。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "钝器……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着球杆头看了很久，一点痕迹都没有，连指纹也没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "太干净了。干净得像是刚擦过。"
+    }
+  ],
+  "inspect_bo_tea": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶台上摆着两只茶杯，一只倒扣着，一只里面还剩半杯凉茶。壶里的茶叶泡得发白，是前一天的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他最近，没有睡好。"
+    }
+  ],
+  "inspect_bo_shelf": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "书架上，一排合影。年会，团建，剪彩。每一张里，老板都站在正中间。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "只有一张被翻了过去，扣在架子上。你把它翻回来，背面写着：“2024.12，贝塔三周年。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "周屿出事，是 2024 年 11 月。……三周年，就在她走后的下个月。"
+    }
+  ],
+  "intro_vp_office": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "副总办公室。郑岑刚拿着小本本下楼打电话，门还没锁，屋里一股烟味。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "软中华。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "红色的花瓶，红色的靠垫，连墙上的挂画都带着红。"
+    }
+  ],
+  "cutoff_vp_office": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里传来皮鞋声，还有一声咳嗽。“……谁在我屋里？”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你转身从另一边的门溜出去，后背湿透了。"
+    }
+  ],
+  "inspect_vo_shred": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "碎纸机旁边的地上，散落着一些没落进去的纸条。你蹲下来，一片一片地拼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "拼了十分钟，勉强拼出一页：“鼎越人力 / 管理费返点 / 8% / 现金 / 经手：陆”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "返点，现金，经手人姓陆。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚的“账本”，不是空话。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E44"
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        }
+      ]
+    }
+  ],
+  "inspect_vo_phone": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌上的手机亮着，一条微信弹了出来：“舅，那边问最近能不能少来几次。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "舅？……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "发信人的备注，是“阿诚”。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "knows_nephew",
+          "value": true
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "inspect_vo_docs": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一摞外包合同评估表，每一页的右上角，都有郑岑的小字批注：“压价”“换人”“尽快”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他想换掉整个外包组。"
+    }
+  ],
+  "inspect_vo_coat": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "衣架上挂着一件海军蓝西装，不是红的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "口袋里，一包软中华，只剩两根，还有一张便利店的小票：21:06。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "21:06，他在楼下买烟。这张小票，替他做了不在场证明。"
+    }
+  ],
+  "inspect_vo_golf": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "球包里插着一排铁杆，七号铁的杆头沾着草屑。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "又是一根球杆。……这栋楼里，有球杆的人，还真不少。"
+    }
+  ],
+  "intro_parking": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "B2。雨水从出风口一滴一滴往下落，日光灯有一半是坏的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在电梯厅站了一会儿，才敢往里走。"
+    }
+  ],
+  "cutoff_parking": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后传来一声很轻的脚步声。你停，它也停。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你头皮一炸，转身往电梯厅快步走去，再没回头。"
+    }
+  ],
+  "inspect_pk_gate": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E37"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "那天晚上，老板的车是 20:28 出库的。这条记录，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "出口闸机旁边，立着车牌识别的摄像头，下面一块小屏幕，滚动着最近的通行记录。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你翻到 9 月 14 日：“20:28，黑色轿车，出库。”车牌，是老板的用车。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "20:28 出库。和 C1 拍到他 20:20 离开，对得上。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E37"
+            },
+            {
+              "kind": "danger",
+              "delta": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspect_pk_car": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黑色轿车停在老板的专属车位上，车头对着墙，漆面落了一层细灰。你摸了摸引擎盖，冰凉。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "它这两天，没动过。"
+    }
+  ],
+  "inspect_pk_slot": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "旁边的空车位上，有一圈干了一半的水渍。车位牌上写着：“公务车·刘”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老刘的车位。……车早就走了。"
+    }
+  ],
+  "inspect_pk_hydrant": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "柱子上的消防栓箱，玻璃完好，封条没动。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这栋楼里，不止一个消防栓箱。"
+    }
+  ],
+  "inspect_pk_door": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "铁门上写着“设备间”，门缝里透出一线光。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这是监控室的后门。老王应该在里面。"
+    }
+  ],
+  "intro_pantry": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶水间里没有人。咖啡机的指示灯一闪一闪，像是刚有人走。"
+    }
+  ],
+  "inspect_pa_fridge": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "冰箱上贴着一排便利贴：值日表，“水果别乱动”，“谁偷喝了我的酸奶”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "值日表上，9 月 14 日：“洗杯子 — 陆诚”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天九点刚过，他躲进来接电话，大概就是站在这儿。"
+    }
+  ],
+  "inspect_pa_coffee": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "咖啡壶里还剩半壶黑咖啡，没加糖，已经凉透了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这个点，还在喝黑咖啡的人，不止我一个。"
+    }
+  ],
+  "inspect_pa_cup": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "圆桌上放着一杯咖啡，杯套上写着一个“孟”字。杯沿有一圈淡淡的口红印，咖啡已经结了一层膜。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她哭完，就走了。"
+    }
+  ],
+  "inspect_pa_trash": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "垃圾桶里塞满了一次性纸杯和外卖盒。最上面，压着一个鱼形小饼干的空包装。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把它翻过来，看了一眼生产日期。是前天的。"
+    }
+  ],
+  "intro_smoking": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "吸烟区在大楼侧面，有个遮雨的棚子。雨点打在棚顶，噼里啪啦的。"
+    }
+  ],
+  "inspect_sm_ash": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "烟灰桶里堆满了烟头，大半是红塔山，滤嘴都被咬得扁扁的。其中夹着一根软中华，只抽了一半。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这个点，来这儿的人，不止一个。"
+    }
+  ],
+  "inspect_sm_lighter": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一只金属打火机落在地上，火苗在雨里没灭。你捡起来，翻到底下，刻着一个“诚”字。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "陆诚的。……他今天忘带了。"
+    }
+  ],
+  "inspect_sm_vend": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "自动售货机里，红牛那一排已经空了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老板最爱的东西。……加班的人，都爱。"
+    }
+  ],
+  "intro_lobby": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一楼大堂。大理石地面倒映着灯，空荡荡的，像一个很大的水池。"
+    }
+  ],
+  "inspect_lb_book": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "前台的访客登记簿摊开着，9 月 14 日那一页，只有零星几行。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“21:35，外包三人，一起离开。”“21:40，苏闻。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "和 C1 的出入表，是一回事。"
+    }
+  ],
+  "inspect_lb_lift": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "电梯的楼层显示屏，数字停在“17”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那天晚上，郑岑那一趟，是直接下到一楼的。"
+    }
+  ],
+  "inspect_lb_cam": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "天花板上的半球形摄像头，镜头对着大堂门口和便利店。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "C3。孟遥 20:43 走出大堂，郑岑在这里站了半个钟头，都在这个镜头里。"
+    }
+  ],
+  "inspect_lb_shop": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "便利店的灯还亮着，货架上摆满了饮料和零食。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "店员那天，见过一个打了很久电话的高个子。"
+    }
+  ],
+  "inspect_lb_umb": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "雨伞架上插着几把雨伞，一把白的，几把黑的。没有一把是墨绿色的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "宋砚的那把，还立在十七楼的伞架上。"
+    }
+  ]
+}

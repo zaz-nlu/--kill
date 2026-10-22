@@ -1,119 +1,3438 @@
 {
   "day2_desk": [
-    { "type": "bg", "id": "office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "【9 月 16 日 09:20】黎默从斜后方探过头来，丢给林一程一个包子。" },
-    { "type": "say", "speaker": "limo", "text": "吃了没。" },
-    { "type": "say", "speaker": "narration", "text": "路过人事办公室的封条，黎默嘟囔了一句。" },
-    { "type": "say", "speaker": "limo", "text": "封得真严。听说两年前出事的时候，也是这样封了好几天。", "tag": "G2" },
-    { "type": "say", "speaker": "lyc", "text": "两年前？" },
-    { "type": "say", "speaker": "limo", "text": "没什么，吃你的。", "expr": "nervous" }
-  ],
-  "day2_pantry": [
-    { "type": "bg", "id": "office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "【09:40 茶水间】黎默递来一杯咖啡。" },
-    { "type": "say", "speaker": "limo", "text": "昨天没睡好吧？" },
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【9 月 16 日 09:20】你在工位坐下。黎默从斜后方探过头来，丢给你一个包子。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "吃了没。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "人事办公室的封条还贴着，隔着磨砂玻璃，里面灰蒙蒙的。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "封得真严。听说两年前这层出事，也封了好几天。",
+      "tag": "G2"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "两年前？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "早过去的事了。你先把包子吃了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他起身去了茶水间，回来时手里多了两杯咖啡，往你手边放了一杯。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "昨晚没睡好吧？"
+    },
     {
       "type": "branch",
-      "when": { "kind": "intelClean", "intel": "draft" },
+      "when": {
+        "kind": "intelClean",
+        "intel": "draft"
+      },
       "then": [
-        { "type": "say", "speaker": "limo", "text": "宋砚那台电脑，不是一直开着吗？她有没有什么来不及发出去的东西？我是说……万一和你的申诉有关呢。", "tag": "T27" }
+        {
+          "type": "say",
+          "speaker": "limo",
+          "text": "宋砚那台电脑，不是一直开着吗？她有没有什么来不及发出去的东西？我是说……万一和你的申诉有关呢。",
+          "tag": "T27"
+        }
       ],
       "else": [
-        { "type": "say", "speaker": "limo", "text": "你说有封没发完的邮件？会不会和你的申诉有关？" }
+        {
+          "type": "say",
+          "speaker": "limo",
+          "text": "你说有封没发完的邮件？会不会和你的申诉有关？"
+        }
       ]
     },
-    { "type": "say", "speaker": "limo", "text": "要不要加糖？" },
-    { "type": "end" }
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "要不要加糖？"
+    }
   ],
   "day2_lunch": [
-    { "type": "bg", "id": "office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "【12:00 午饭】黎默端着餐盘坐过来。他解锁手机时，壁纸是一座海岛；背包拉链上挂着一个小银鱼铃铛。他的餐盘边放着一包鱼形小饼干，有人伸手他会拍开。" },
-    { "type": "say", "speaker": "limo", "text": "查到什么了？要不要我帮你一起想？" },
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【12:00 午饭】黎默端着餐盘坐过来。他解锁手机时，壁纸是一座海岛；背包拉链上挂着一个小银鱼铃铛。他的餐盘边放着一包鱼形小饼干，有人伸手他会拍开。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "查到什么了？要不要我帮你一起想？"
+    },
     {
       "type": "choice",
       "options": [
         {
           "text": "全说了",
           "effects": [
-            { "kind": "danger", "delta": 10 },
-            { "kind": "affinity", "npc": "limo", "delta": 5 }
+            {
+              "kind": "danger",
+              "delta": 10
+            },
+            {
+              "kind": "affinity",
+              "npc": "limo",
+              "delta": 5
+            }
           ],
           "leak": "lunchTellAll",
           "goto": "day2_lunch_talk"
         },
         {
           "text": "还没什么头绪。",
-          "effects": [{ "kind": "affinity", "npc": "limo", "delta": -3 }],
+          "effects": [
+            {
+              "kind": "affinity",
+              "npc": "limo",
+              "delta": -3
+            }
+          ],
           "goto": "day2_lunch_talk"
         }
       ]
     }
   ],
   "day2_lunch_talk": [
-    { "type": "say", "speaker": "limo", "text": "行了，别绷着。" },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "行了，别绷着。"
+    },
     {
       "type": "branch",
-      "when": { "kind": "intelClean", "intel": "phone" },
+      "when": {
+        "kind": "intelClean",
+        "intel": "phone"
+      },
       "then": [
-        { "type": "say", "speaker": "limo", "text": "手机别是已经沉海河了吧，那就真的什么都查不到了。", "tag": "T26" }
+        {
+          "type": "say",
+          "speaker": "limo",
+          "text": "手机别是已经沉海河了吧，那就真的什么都查不到了。",
+          "tag": "T26"
+        }
       ],
       "else": [
-        { "type": "say", "speaker": "limo", "text": "你说手机不见了？那肯定是凶手带走了。" }
+        {
+          "type": "say",
+          "speaker": "limo",
+          "text": "你说手机不见了？那肯定是凶手带走了。"
+        }
       ]
     },
-    { "type": "say", "speaker": "limo", "text": "你黑眼圈好重，今晚早点睡。" },
-    { "type": "say", "speaker": "limo", "text": "有些公司死人不稀奇。稀奇的是死了人，还能什么事都没有。", "tag": "G3" },
-    { "type": "say", "speaker": "narration", "text": "然后他低头扒饭。" },
-    { "type": "end" }
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你黑眼圈好重，今晚早点睡。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "有些公司死人不稀奇。稀奇的是死了人，还能什么事都没有。",
+      "tag": "G3"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "然后他低头扒饭。"
+    },
+    {
+      "type": "end"
+    }
   ],
   "act_2_3": [
-    { "type": "bg", "id": "office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "你帮邵晓阳修了一个前端 bug。" },
-    { "type": "say", "speaker": "shaoxy", "text": "……谢了。" },
-    { "type": "say", "speaker": "narration", "text": "他的手机放在桌上，锁屏是一只橘猫。" },
-    { "type": "say", "speaker": "shaoxy", "text": "家里那位又在抓沙发。" },
-    { "type": "effect", "effects": [{ "kind": "affinity", "npc": "shaoxy", "delta": 15 }] },
-    { "type": "end" }
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区在 17 层的另一头，一排灯管比你们这边亮一点，桌上全是泡面桶和能量饮料。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳正对着屏幕皱眉，眼镜片上映着一团白光。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "晓阳，叫我？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "……你来得正好。（他没抬头）前端那个下拉框，在 Safari 里点不开，我看了两个小时了，眼睛都花了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我看看。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你坐到他旁边。代码不难，就是一个 z-index 的问题。你敲了几行，又改了两处样式。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "……谢了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他长出一口气，往椅背上一靠，揉了揉眼睛。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的手机放在桌上，锁屏是一只橘猫，趴在沙发上，一脸无辜。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "家里那位又在抓沙发。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他递键盘过来的时候，你注意到他右手背上有几道细细的红印。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "手怎么了？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "猫抓的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你凑过去看屏幕，他不动声色地切走了一个网页。标题里好像有“仲裁”两个字。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你最近……是不是压力挺大？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "装修款还差三万。（他苦笑了一下）刚结婚，哪哪都是钱。能不丢这份工作，就不丢。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没说是谁想让他丢工作。但你知道，外包要被“重新评估”的传闻，已经在楼里传了好几天。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你们沉默了一会儿。键盘声里，外包区另一头传来黎默的声音，像是在跟谁争一个接口的字段名。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，要是警察再找你，别怕。你不是那种人。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谢了，晓阳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他点点头，重新把脸转向屏幕。你站起来的时候，听见他在身后很轻地叹了口气。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 15
+        }
+      ]
+    }
   ],
   "act_2_6": [
-    { "type": "bg", "id": "street", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "你去了 1 楼吸烟区，陆诚正靠着墙。" },
+    {
+      "type": "bg",
+      "id": "street"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "1 楼大堂后面有一个小小的吸烟区，一个红色的垃圾桶，一把褪了色的伞。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚靠着墙，指间的烟烧了一半，烟灰长得快要掉下来，他也没弹。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "陆哥。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "嗯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在他旁边站了一会儿，雨丝飘进来，落在你的袖口。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你……还好吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "还行。就是楼上待不住。"
+    },
     {
       "type": "branch",
-      "when": { "kind": "affinityAtLeast", "npc": "lucheng", "value": 60 },
+      "when": {
+        "kind": "affinityAtLeast",
+        "npc": "lucheng",
+        "value": 60
+      },
       "then": [
-        { "type": "say", "speaker": "lucheng", "text": "九点灯一下全灭了，我们还以为跳闸了。磁铁是我贴的，抽烟的都知道。" }
+        {
+          "type": "say",
+          "speaker": "lucheng",
+          "text": "九点灯一下全灭了，我们还以为跳闸了。磁铁是我贴的，抽烟的都知道。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "磁铁？"
+        },
+        {
+          "type": "say",
+          "speaker": "lucheng",
+          "text": "东边消防门。外包的人想下楼抽烟，贴块磁铁，门就不响了。大家都知道，物业也睁一只眼闭一只眼。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "宋砚知道吗？"
+        },
+        {
+          "type": "say",
+          "speaker": "lucheng",
+          "text": "她不管这个。她只管考勤。"
+        }
       ],
       "else": [
-        { "type": "say", "speaker": "lucheng", "text": "九点灯一下全灭了，我们还以为跳闸了。" }
+        {
+          "type": "say",
+          "speaker": "lucheng",
+          "text": "九点灯一下全灭了，我们还以为跳闸了。"
+        },
+        {
+          "type": "branch",
+          "when": {
+            "kind": "hasEvidence",
+            "id": "E10"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "17 层东边的消防门上，有块磁铁，你知道是谁贴的吗？"
+            },
+            {
+              "type": "say",
+              "speaker": "lucheng",
+              "text": "什么磁铁。不知道。",
+              "expr": "nervous"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "他答得太快，快得像是背熟的。"
+            }
+          ],
+          "else": []
+        }
       ]
     },
-    { "type": "effect", "effects": [{ "kind": "testimony", "id": "T08" }] },
-    { "type": "say", "speaker": "narration", "text": "陆诚摸了摸口袋。" },
-    { "type": "say", "speaker": "lucheng", "text": "烟瘾上来了，早上那包早抽完了。" },
-    { "type": "end" }
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T08"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚摸了摸口袋，掏出一个空烟盒，捏扁了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "烟瘾上来了，早上那包早抽完了。红塔山，别的抽不惯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你们站了一会儿，谁也没说话。玻璃后面，楼上的人影来来往往。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "你知道吗，这楼里九点以后，从来没这么安静过。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "什么意思？"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……没什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把烟头摁灭在垃圾桶沿上，转身走了。临走前，他又回头看了你一眼，像是想说什么，终究没说。"
+    }
   ],
   "act_2_9": [
-    { "type": "bg", "id": "hr_office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "你找孟遥聊了聊。" },
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "人事区。孟遥的工位在最外面，桌上摆着一排没拆封的档案盒。宋砚办公室的磨砂玻璃门上，贴着交叉的封条。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥一看见你，下意识地把手里的一张纸扣在了桌上。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥。……你怎么来了？",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "过来看看你。"
+    },
     {
       "type": "branch",
-      "when": { "kind": "affinityAtLeast", "npc": "mengyao", "value": 40 },
+      "when": {
+        "kind": "affinityAtLeast",
+        "npc": "mengyao",
+        "value": 40
+      },
       "then": [
-        { "type": "say", "speaker": "mengyao", "text": "宋砚经理每天九点熄灯以后，都会开台灯接着干活。说灯是给你们关的，不是给她自己关的。" },
-        { "type": "effect", "effects": [{ "kind": "testimony", "id": "T05" }] },
-        { "type": "say", "speaker": "mengyao", "text": "宋砚经理发消息，给谁都要先叫一声“亲爱的”，对你也一样。那条 21:08 的消息里，一个“亲爱的”都没有。" },
-        { "type": "effect", "effects": [{ "kind": "testimony", "id": "T32" }] }
+        {
+          "type": "say",
+          "speaker": "mengyao",
+          "text": "我这两天，一闭眼就是……算了，不说这个。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "你要是想说，我听着。"
+        },
+        {
+          "type": "say",
+          "speaker": "mengyao",
+          "text": "宋砚经理每天九点熄灯以后，都会开台灯接着干活。说灯是给你们关的，不是给她自己关的。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T05"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "台灯……可是那天晚上，我路过的时候，里面是黑的。"
+        },
+        {
+          "type": "say",
+          "speaker": "mengyao",
+          "text": "是啊。所以我才一直在想……",
+          "expr": "nervous"
+        },
+        {
+          "type": "branch",
+          "when": {
+            "kind": "any",
+            "conds": [
+              {
+                "kind": "flag",
+                "key": "noticed_no_dear"
+              },
+              {
+                "kind": "affinityAtLeast",
+                "npc": "mengyao",
+                "value": 60
+              }
+            ]
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "mengyao",
+              "text": "宋砚经理发消息，给谁都要先叫一声“亲爱的”，对你也一样。那条 21:08 的消息里，一个“亲爱的”都没有。"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "testimony",
+                  "id": "T32"
+                }
+              ]
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "对啊……她从来不会这么说话。"
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "mengyao",
+              "text": "她这个人，发消息有个习惯……算了。你要是留心看过那条 21:08 的消息，自己会发现的。",
+              "expr": "nervous"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "（习惯？……我得再看看那条消息。）"
+            }
+          ]
+        }
       ],
       "else": [
-        { "type": "say", "speaker": "mengyao", "text": "我……我不太想聊这个。" }
+        {
+          "type": "say",
+          "speaker": "mengyao",
+          "text": "我……不太想聊这个。",
+          "expr": "nervous"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "她把脸转向另一边，假装在整理档案盒。"
+        }
       ]
     },
-    { "type": "say", "speaker": "mengyao", "text": "我妈吃不下饭，就想吃点水果。" },
-    { "type": "end" }
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "我妈吃不下饭，就想吃点水果。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "阿姨好点了吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "医生说得慢慢来。我现在每天一下班就往医院跑。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这时，老板的助理抱着一摞材料走过来，往孟遥桌上一放：“老板要的，下班前弄出来。”"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "……好。",
+      "expr": "nervous"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“这个我来弄，你先回医院吧。”",
+          "goto": "act_2_9_help"
+        },
+        {
+          "text": "（什么也没说）",
+          "goto": "act_2_9_after"
+        }
+      ]
+    }
   ],
   "day2_end": [
-    { "type": "say", "speaker": "narration", "text": "这一天结束了。" },
-    { "type": "end" }
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这一天结束了。"
+    },
+    {
+      "type": "end"
+    }
+  ],
+  "day2_meeting": [
+    {
+      "type": "bg",
+      "id": "meeting_a",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【9 月 16 日 09:00 大会议室 A】"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "长桌两边坐满了人。宋砚的位置空着，椅子被人悄悄推到了墙边。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板站在投影前，西装笔挺，眼底却有一圈浓重的黑。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "各位，宋砚经理的事，公司很痛心。但我们是一家人，越是这个时候，越要把事情做好。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "一切照常。周一的尽调，照常。另外——任何人，不准接受采访，不准在网上乱说。违者，按泄露商业机密处理。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（网上乱说……说的是我吧。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板的目光，在你脸上停了一秒。"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "贺总，外包那边的合同，我建议重新评估一下。出了这样的事，风险太大了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "郑岑笑眯眯的，手里的小本本合着，指尖在封面上轻轻敲了两下。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区那一排，邵晓阳垂着眼，陆诚把笔转得飞快，黎默皱着眉，没抬头。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "合同的事，会后再说。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室里没人再说话。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "散会后，人群陆陆续续往外走。你在走廊尽头看见郑岑，他一边打着电话，一边在小本本上写着什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（他在记什么？）"
+    }
+  ],
+  "day2_anon": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:00】手机震了一下，是一个陌生号码。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“想知道真相，来西楼梯 10 层。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……谁？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你回拨过去，听筒里只有一个冷冰冰的女声：“您拨打的号码是空号。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着那行字，手心慢慢出了汗。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "去西楼梯 10 层",
+          "goto": "attack1_go"
+        },
+        {
+          "text": "不去",
+          "goto": "attack1_skip"
+        },
+        {
+          "text": "把消息转给老韩",
+          "goto": "attack1_tell"
+        }
+      ]
+    }
+  ],
+  "attack1_go": [
+    {
+      "type": "bg",
+      "id": "stairwell",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:00 西楼梯 10 层】"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "白天的西楼梯也静得过分。消防门在你身后“咔哒”一声合上，楼梯间里只剩下你自己的脚步声。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "10 层的平台上空无一人。墙角的垃圾桶里塞着几个外卖盒，空气里有一股淡淡的烟味。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "没有人回答。你站了一会儿，忽然觉得头顶的感应灯，亮得有点不对劲。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "limo_away:2:15",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“啪。”灯灭了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "身后，有脚步声贴了上来。一只手，重重推在你的背上！"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "抓住扶手",
+          "goto": "attack1_good"
+        },
+        {
+          "text": "回头看",
+          "goto": "attack1_bad"
+        }
+      ]
+    }
+  ],
+  "attack1_good": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你一把攥住扶手，只是手掌擦破了皮。黑暗里，传来一声很轻的“叮”，那个人往楼上去了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "空气里有一股烟味。（这栋楼里躲在楼梯间抽烟的人，可不止一个。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T15"
+        },
+        {
+          "kind": "learnIntel",
+          "intel": "attack"
+        },
+        {
+          "kind": "flag",
+          "key": "trace_stairs_good",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "attack1_after"
+    }
+  ],
+  "attack1_bad": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你下意识回头，脚下一空，滚下了半层楼梯。昏暗里，只看到一截橙色的袖子。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "learnIntel",
+          "intel": "attack"
+        },
+        {
+          "kind": "flag",
+          "key": "trace_stairs_bad",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "attack1_after"
+    }
+  ],
+  "attack1_after": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "脚步声一路往楼上去了，消防门“砰”地一声撞上。楼梯间重新亮起了灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……是谁？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你坐在台阶上缓了一会儿，手掌火辣辣地疼。平台的角落里，有个什么东西，亮了一下。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "立刻在 10 层平台搜一搜",
+          "goto": "attack1_search"
+        },
+        {
+          "text": "先离开这儿"
+        }
+      ]
+    }
+  ],
+  "attack1_search": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你一瘸一拐地走过去，蹲下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "平台的角落里，躺着一个撕开的独立包装袋——酒精棉片，是测试间常用的那种。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E31"
+        },
+        {
+          "kind": "danger",
+          "delta": 10
+        },
+        {
+          "kind": "time",
+          "hour": 16
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "擦手用的……这种东西，谁会随身带着？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你用手帕把它包起来，揣进兜里。第二天保洁一来，这东西就会被清走了。"
+    }
+  ],
+  "attack1_skip": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着那条消息看了很久，把手机扣在桌上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "不去。这种信，十有八九是钓鱼。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "可你心里一直在想，那条消息到底是谁发的，又为什么偏偏是 10 层。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "attack1_pending",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "attack1_tell": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把那条短信转给了老韩。他看了一眼，眉头皱起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "空号。（他把手机还给你）小许，去西楼梯 10 层看一眼。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "二十分钟后，小许回来了，一脸茫然。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "韩队，10 层没人，就地上有点水渍。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你这几天少一个人乱跑。对方既然敢发这种消息，说明一直盯着你。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你点点头，心里却发凉：如果自己去了呢？"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "attack1_pending",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "day2_street": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【19:00 地铁站出口】"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "雨又下大了。下班的人潮从站口涌出来，伞挤着伞，谁也没看谁。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你刚走出站口，想去路边买一杯热的东西，背后忽然一股力气，狠狠把你推了出去。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "limo_away:2:19",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "attack_street"
+    }
+  ],
+  "day2_dinner": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【18:00 晚饭】"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "加班的人把外卖摆满了半张桌子，空气里一股酱油和香菜的味儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "苏闻端着一碗面从你身边走过，走了两步，又停下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "你……",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏哥？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……没什么。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他欲言又止，眼神躲了一下，又把话咽了回去。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "你……别太拼了。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他走远了。面碗里的汤晃了一下，洒在手背上，他也没躲。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（他到底想说什么？）"
+    }
+  ],
+  "day2_boss_msg": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【20:30】手机又震了一下。是老板的私聊。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "明天下午两点来我办公室，谈谈你的奖金。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "奖金？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着这条消息看了很久。宋砚在世的时候，这笔钱一毛都要不回来。人刚走，反倒有人想起来要“谈谈”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这是橄榄枝，还是……？"
+    }
+  ],
+  "day2_sms": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00】不是灯灭了，是你的手机亮了。又是一条匿名短信，发信人是一串数字。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“再查下去，你会和她一样。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的手心一阵冰凉。你想起昨天路过人事办公室的黑玻璃，想起那把没被带走的伞。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人想吓退我。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把手机反扣在桌上。窗外的雨敲着玻璃，一下一下，像在数你还有多少时间。"
+    }
+  ],
+  "day2_night": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00】屏幕黑了，雨声一阵一阵地涌进来。你关了灯，坐在黑暗里。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "今天的东西，比昨天多了：熄灯令、台灯、那间漆黑的屋子……"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "九点以后，那间屋子里，到底发生了什么？"
+    },
+    {
+      "type": "deduce",
+      "id": "night2"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "bossTheory"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你的目光落在“宋砚有没有给过你什么东西”这句话上。老板急着掩盖，急着找东西，急着让所有人闭嘴……"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "……好像说得通。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你把这条线记下来，竟隐隐松了一口气——终于有一个答案了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "deduce:night2:solved"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "熄灯令只发给正式员工。灯一灭，整层都黑了。可孟遥说过，宋砚每天九点以后，都会开台灯接着干活。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "那天晚上，我路过的时候，屋里是黑的，台灯没亮。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "如果九点以后她还在写东西，就算灯被统一关了，也一定会开台灯……可她没有。"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你想起第一天老韩给你看的照片：台灯没开。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "也就是说，九点整，她就已经……"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "flag",
+                  "key": "unlock_suwen_lie2",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "type": "branch",
+              "when": {
+                "kind": "flag",
+                "key": "deduce:night2:forced"
+              },
+              "then": [
+                {
+                  "type": "say",
+                  "speaker": "narration",
+                  "text": "（你几乎是被一点一点推着，才终于想通的。）"
+                }
+              ],
+              "else": []
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你盯着天花板，想了很久，什么也没理出来。雨声一阵一阵地涌进来。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你终于合上眼睛。第二天，就这样结束了。"
+    }
+  ],
+  "act_2_1": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你打开公司邮箱，在收件箱和“行政通知”文件夹里翻了半个钟头，终于找到了那封邮件。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "主题：《关于规范晚间办公区用电及照明管理的通知》。9 月 11 日发出，9 月 14 日生效，落款：人事行政部，宋砚。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "正文很短：“自 9 月 14 日起，每晚 21:00，办公区、会议室、走廊统一熄灯。请各位同事合理安排工作时间，避免加班。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……避免加班。呵。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你点开收件人列表，一行一行往下数。一百多个名字，全是正式员工。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "外包呢？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把列表从头翻到尾，又从尾翻到头。邵晓阳、陆诚、黎默——一个都不在名单里。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "也就是说，外包的人根本不知道，从周一开始，晚上九点整层会灭灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起周一那天晚上，陆诚那句“跳闸了？”，说得那么自然。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E09"
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "九点灯一灭，他们会是什么反应……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这个念头，你没有再往下想。"
+    }
+  ],
+  "act_2_4": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区里，邵晓阳正把一碗泡面往嘴里倒，汤汁溅到了键盘上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "晓阳，有空吗？想聊聊那天晚上。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "affinityAtLeast",
+        "npc": "shaoxy",
+        "value": 60
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "……行。出去说。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他拿起杯子，把你带到消防门边。这里没有摄像头，只有一股淡淡的烟味。"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "那天晚上的站会，开得有点怪。有个人抢在最前面汇报，平时他都是最后一个。我当时还奇怪来着。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T07a"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "谁？"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "……你自己想想，外包就那几个人。我不想乱说。"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "九点刚过，陆诚接了个电话，躲到茶水间去了。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T21"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "你怎么现在才说？"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "你前两天刚被警察带走，谁敢说。"
+        },
+        {
+          "type": "branch",
+          "when": {
+            "kind": "hasEvidence",
+            "id": "E26"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "晓阳，再问你一件事：那天有没有人报过什么 bug？"
+            },
+            {
+              "type": "say",
+              "speaker": "shaoxy",
+              "text": "没有。我组里的工单我最清楚，那天一个都没报。"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "evidence",
+                  "id": "E33"
+                }
+              ]
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "一个都没有？"
+            },
+            {
+              "type": "say",
+              "speaker": "shaoxy",
+              "text": "一个都没有。有人说他在录“复现视频”，可我没见谁交过。"
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你隐约觉得，他还有话没说完。他的目光在你空着的手上停了一下，像是在等你拿出点什么。"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你们沉默了一会儿。你想了想，要不要把自己查到的东西告诉他。"
+        },
+        {
+          "type": "choice",
+          "options": [
+            {
+              "text": "把手机和草稿的事告诉他",
+              "goto": "act_2_4_tell",
+              "leak": {
+                "toNpc": "shaoxy",
+                "intel": [
+                  "phone",
+                  "draft"
+                ]
+              }
+            },
+            {
+              "text": "先不说",
+              "goto": "act_2_4_end"
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "not",
+            "cond": {
+              "kind": "any",
+              "conds": [
+                {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "affinityAtLeast",
+                    "npc": "shaoxy",
+                    "value": 30
+                  }
+                },
+                {
+                  "kind": "not",
+                  "cond": {
+                    "kind": "hasEvidence",
+                    "id": "E26"
+                  }
+                }
+              ]
+            }
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "shaoxy",
+              "text": "……你手里是会议室的预订记录？谁给你的？"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "他的眼神闪了一下，又很快移开。"
+            },
+            {
+              "type": "say",
+              "speaker": "shaoxy",
+              "text": "我没什么好说的。你要是真想知道那天的事，先让我信得过你。"
+            }
+          ],
+          "else": [
+            {
+              "type": "branch",
+              "when": {
+                "kind": "affinityAtLeast",
+                "npc": "shaoxy",
+                "value": 30
+              },
+              "then": [
+                {
+                  "type": "say",
+                  "speaker": "shaoxy",
+                  "text": "就正常开会，大家都在。"
+                },
+                {
+                  "type": "say",
+                  "speaker": "lyc",
+                  "text": "没有什么不对劲的地方？"
+                },
+                {
+                  "type": "say",
+                  "speaker": "shaoxy",
+                  "text": "没有。……你问这个干嘛？"
+                },
+                {
+                  "type": "say",
+                  "speaker": "narration",
+                  "text": "他嘴上敷衍，眼睛却一直没离开屏幕。你知道，他有话没说完。"
+                }
+              ],
+              "else": [
+                {
+                  "type": "say",
+                  "speaker": "shaoxy",
+                  "text": "你自己的事自己查，别把我们外包扯进来。"
+                },
+                {
+                  "type": "say",
+                  "speaker": "narration",
+                  "text": "他戴上耳机，不再看你。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_4_end"
+    }
+  ],
+  "act_2_4_tell": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你听我说，宋砚的手机不见了，她电脑上还有一封没发完的邮件。警察没往外说。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "……真的？",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的脸色变了变，没再说话，只是慢慢点了点头。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 3
+        }
+      ]
+    }
+  ],
+  "act_2_4_end": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "affinityAtLeast",
+        "npc": "shaoxy",
+        "value": 60
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "req_video"
+            }
+          },
+          "then": [
+            {
+              "type": "choice",
+              "options": [
+                {
+                  "text": "顺口请他向唐经理申请站会录像",
+                  "goto": "act_req_video_d2"
+                },
+                {
+                  "text": "先不提"
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你离开外包区的时候，天已经快黑了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "act_2_5": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "机房在 17 层最里面，门口贴着一张“非请勿入”。你敲了敲门。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "苏闻瘸着腿过来开门，手里端着半杯凉透的咖啡，眼睛红红的。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "又干嘛？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏哥，宋砚那台电脑上，那封没发完的邮件，最后一次保存是几点？"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "affinityAtLeast",
+        "npc": "suwen",
+        "value": 60
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "suwen",
+          "text": "草稿？你说宋砚那台？……自动保存的日志，我有。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他犹豫了一会儿，还是回到桌前，敲了几行命令。屏幕上滚出一行行时间戳。"
+        },
+        {
+          "type": "say",
+          "speaker": "suwen",
+          "text": "最后一次自动保存，20:59:31。之后就再没动过。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E12"
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "也就是说，她九点前的最后一分钟，还在打字。"
+        },
+        {
+          "type": "say",
+          "speaker": "suwen",
+          "text": "我可没说什么，你别往外乱传。服务器日志，本来也不归我管。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他又打了个哈欠，嗓子沙沙的。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "suwen",
+          "text": "服务器日志不归我管……你找别人去。",
+          "expr": "angry"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他把门关了一半，只留一条缝，屋里风扇的嗡嗡声涌出来。"
+        }
+      ]
+    }
+  ],
+  "act_2_7": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "郑岑的办公室在 17 层最里面，门口摆着一盆长得很大的绿萝。"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "哎哟，小林，来来来，坐。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他笑得很客气。小本本合着，放在桌角，他的手指一直压着封面。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "郑总，我想问问昨晚的事。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "clue_e25"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "郑总，昨晚您是不是在 1 楼便利店门口打了很久的电话？"
+        },
+        {
+          "type": "say",
+          "speaker": "zhengcen",
+          "text": "（笑容僵了一下）",
+          "expr": "nervous"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "本子翻开了。他握着笔，飞快地写着什么。"
+        },
+        {
+          "type": "say",
+          "speaker": "zhengcen",
+          "text": "我在楼下打了几个电话，私事。公司要查我的私事吗？",
+          "expr": "nervous"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他的声音还是软的，可你看见，笔尖已经把纸划破了。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "affinity",
+              "npc": "zhengcen",
+              "delta": -10
+            },
+            {
+              "kind": "danger",
+              "delta": 5
+            }
+          ]
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "zhengcen",
+          "text": "我 8 点 50 就走了，直接回家。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "直接回家？"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他的笑容没变，可手里的笔转了一圈。"
+        },
+        {
+          "type": "say",
+          "speaker": "zhengcen",
+          "text": "怎么，你怀疑我？"
+        },
+        {
+          "type": "choice",
+          "options": [
+            {
+              "text": "再追问一句：“真的直接回家了吗？”",
+              "goto": "act_2_7_press"
+            },
+            {
+              "text": "“不是，随便问问。”",
+              "goto": "act_2_7_end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_7_end"
+    }
+  ],
+  "act_2_7_press": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "郑总，真的直接回家了吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "（笑容没动）小林，你这是在问话吗？",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把小本本往身前挪了挪，像是要挡住什么。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "zhengcen",
+          "delta": -5
+        },
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "act_2_7_end": [
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "回去好好休息，别想太多。有什么事，随时来找我。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他送你到门口，笑眯眯的。你走出老远，回头一看，他还站在门边，手里的笔在小本本上一下一下地点着。"
+    }
+  ],
+  "act_2_8": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板的办公室在 17 层东南角。办公桌上堆着一排红牛空罐，像一排阵亡的小兵。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "来了？坐。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没抬头，一直在划手机。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "年轻人要有精神，加班要有状态。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老板，我想问问宋砚的事。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "宋砚的事，警察在办。你只要把你手上的活做好。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "visited_boss_home"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他终于抬起眼来。"
+        },
+        {
+          "type": "say",
+          "speaker": "boss",
+          "text": "我听说你前两天，跑到我家楼下去了？"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "我……"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "他笑了笑，笑意没到眼睛。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "这样吧。你主动离职，公司给你 N+1，这个事，公司就不追究了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "不追究什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "不追究你当晚的一些……不太方便的行为。你自己想想。",
+      "expr": "sneer"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把一份《离职协议》推到你面前，笔帽已经拔开了。"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "签字",
+          "goto": "bad_end_3"
+        },
+        {
+          "text": "拒绝",
+          "goto": "act_2_8_refuse"
+        }
+      ]
+    }
+  ],
+  "act_2_8_refuse": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "老板，这个字，我不签。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "（笑容慢慢收起）",
+      "expr": "sneer"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把协议收回去，指节在桌面上敲了两下。办公室里，只剩红牛罐轻轻碰撞的声音。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "……宋砚，有没有给过你什么东西？U 盘之类的？",
+      "expr": "sneer"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "什么东西？"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "没什么。你出去吧。",
+      "expr": "angry"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T12"
+        },
+        {
+          "kind": "affinity",
+          "npc": "boss",
+          "delta": -5
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你走出办公室，背后的目光一直没挪开。"
+    }
+  ],
+  "bad_end_3": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在协议上签了字。老板接过去，看也没看就收进了抽屉。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "不错，有觉悟。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你收拾东西的时候，没有人跟你说话。邵晓阳偷偷看了你一眼，又低下了头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "雨还在下。你抱着纸箱走出大楼，回头看了一眼 17 层。灯，一盏一盏地亮着，像什么都没发生过。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:bad3",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "act_2_10": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许在分局门口拦住你，手里的奶茶晃了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "林哥，韩队在里面。你带了啥新东西？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩坐在桌后，保温杯盖拧开着，茉莉花茶的苦味一阵一阵地飘过来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "说吧。有什么新的？"
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_a"
+    }
+  ],
+  "act_2_10_e10": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "东边消防门的门磁上，贴着一块小磁铁。这样一来，门开关都不会响。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（在本子上写了几笔）我们查过消防门的报警记录，一条都没有。原来是这样。",
+      "expr": "surprised"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "这一条，对我们有用。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": 10
+        },
+        {
+          "kind": "flag",
+          "key": "trust_e10",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_b"
+    }
+  ],
+  "act_2_10_e11": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "会议室 B 投影仪上的黑色防尘袋，不见了。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "防尘袋？……什么时候的事？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我去看过，挂钩上只剩一道灰痕。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（若有所思）我让人查一下。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": 10
+        },
+        {
+          "kind": "flag",
+          "key": "trust_e11",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_c"
+    }
+  ],
+  "act_2_10_trophy": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "韩队，桌角那块没有灰的印子，是奖杯放过的地方。奖杯也被人带走了。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "……这样的推断，我们没有对外说过。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的目光在你脸上停了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你是怎么想到的？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "照片里桌角的印子，加上宋砚说过‘最重要的东西放在荣誉底下’。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（慢慢点了点头）有点意思。",
+      "expr": "soft"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": 10
+        },
+        {
+          "kind": "flag",
+          "key": "trust_trophy",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "trustAtLeast",
+        "value": 30
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "laohan",
+          "text": "我跟你说一件事。手机、奖杯、邮件草稿，这几样，警方从来没有对外公布过。别往外说，也别拿来试探任何人。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T30"
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_d"
+    }
+  ],
+  "act_2_10_t06": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人说，郑岑昨晚 8 点 50 没坐电梯，往西楼梯那边走了。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "（翻开本子）电梯楼层日志我查过，郑岑坐的是电梯，直达 1 楼。你这条，不对。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "说这话的人是谁？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你张了张嘴，没把名字说出来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": -5
+        },
+        {
+          "kind": "flag",
+          "key": "trust_t06",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_end"
+    }
+  ],
+  "act_2_11": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你没回家。八点多，整层楼的人陆续走光了，只剩下几盏孤零零的顶灯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你坐在工位上，面前的屏幕亮着。你一边假装写代码，一边盯着右下角的时间：20:58。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "20:59。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "……21:00。"
+    },
+    {
+      "type": "sfx",
+      "id": "lights_out"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“啪。”整层顶灯同时熄灭。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黑暗像一桶墨，从天花板上泼下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……真的全灭了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你摸黑站起来，往外走。会议室 B 的磨砂玻璃、人事办公室的门、走廊……全部一片漆黑。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "只有一个地方亮着：机房的方向，透出一线白光。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站在转角，朝机房那边望了望。从那个位置，能把转角的每一步，看得清清楚楚。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "机房的灯是单独的线路，一直亮着……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你想起宋砚每天九点以后，都会开台灯。可那天晚上，没有。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 5
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黑暗里，有一种说不出的静。你屏住呼吸，听了很久，什么也没有听见。"
+    }
+  ],
+  "act_2_12": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在工位上坐了一下午，假装认真写代码。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "光标在屏幕上一闪一闪，你敲几个字，又删掉。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "写点什么好呢……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板路过你工位，脚步停了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "boss",
+      "text": "嗯，不错，有觉悟。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他点点头，走了。你不知道自己是该高兴，还是该更难受。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "boss",
+          "delta": 3
+        }
+      ]
+    }
+  ],
+  "act_2_13": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶水间里，几个同事围在一起，压低声音说话。你端着杯子凑过去。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你们听说什么没有？宋砚她……私底下，是什么样的人？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "没人回答。过了一会儿，有人小声说：“听说她跟老板……”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "话说到一半，门口传来“啪”的一声。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥端着杯子站在那里，脸色很难看。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥，宋砚经理刚走几天……你们在这儿说这些，合适吗？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我……我就是随口问问。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "我先走了。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她把杯子重重放在台面上，转身走了。你们几个人面面相觑，谁也没再说话。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": -10
+        }
+      ]
+    }
+  ],
+  "act_2_14": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "办公区里人不多，大多数人都去吃饭了。你站在人事办公室的门前，盯着那两道交叉的封条。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "就撕一角，看一眼，马上贴回去……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你的手指刚碰到封条的边缘，身后传来一个年轻的声音："
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "林哥？你这是……",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你猛地回头。小许站在走廊那头，手里的奶茶掉在了地上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我……我就是看看。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "林哥，这是封条啊！",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "两个钟头以后，你坐在分局的长椅上，老韩的声音像一块冰："
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "破坏现场。你知道这是什么性质吗？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你低着头，一句话也说不出来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "trust",
+          "delta": -30
+        }
+      ]
+    }
+  ],
+  "act_2_15": [
+    {
+      "type": "bg",
+      "id": "stairwell",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "夜里，你又一次推开了东楼梯的防火门。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这一次，你爬得很慢，一层一层地看：墙角、台阶、扶手的缝隙。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "昨晚到底落下了什么东西……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "平台上，除了那枝枯萎的白菊，什么也没有。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在楼梯间站了很久，直到头顶的感应灯“啪”地熄灭。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "什么也没找到。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你扶着扶手，慢慢往下走。黑暗里，你听见自己的脚步声，一下一下，空空的。"
+    }
+  ],
+  "act_2_18": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "外包区，黎默正对着屏幕黑脸，鼠标点得“咔咔”响。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "这谁写的？变量名叫 a1、a2？是想让后面接手的人去死吗？",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "黎默。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（头也没回）干嘛。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没事，就是……过来坐坐。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他转过头，打量了你一眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你一天没吃饭了吧？脸跟纸一样。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他从抽屉里翻出一个外卖盒，推到你面前，是还没动过的盒饭。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你一天不吃饭想成仙啊。吃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你打开盒饭。他一边看着你吃，一边低头敲了几行代码，忽然开口："
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "你知道吗，这栋楼，两年前也死过一个外包。就在东楼梯。",
+      "tag": "G4"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……啊？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "十一月份的事。公司说她是自己半夜回来加班的，你信吗？"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“不信。哪有人半夜自己回来加班的。”",
+          "effects": [
+            {
+              "kind": "affinity",
+              "npc": "limo",
+              "delta": 3
+            }
+          ]
+        },
+        {
+          "text": "“公司的事，我哪知道。”"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他没接话，只是把键盘敲得更响了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我就是在想，宋砚死前那几天，是不是在逼谁？能逼得她非死不可的人，不会太多。",
+      "tag": "G5"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你……是不是知道点什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我知道个屁。我就一写代码的。",
+      "expr": "angry"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把脸转回屏幕，耳朵尖有点红。你没再追问，把饭吃完，收拾好饭盒，说了声谢谢。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "别谢。以后少让我看见你不吃饭。"
+    }
+  ],
+  "act_2_9_help": [
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这个我来弄，你先回医院吧。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥……（她的眼眶红了）我妈会高兴的。我晚一点把东西给你发过去。",
+      "expr": "nervous"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": 10
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_9_after"
+    }
+  ],
+  "act_2_9_after": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊那头，有几个人端着杯子说笑着走过来。孟遥像被烫到一样站起身：“我去趟洗手间。”她几乎是小跑着走的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你看着她的背影，又看看那几个人。没人注意到她，也没人看你。你不知道，她是在躲谁。"
+    }
+  ],
+  "act_2_10_a": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "flag",
+          "key": "trust_e10"
+        }
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "hasEvidence",
+            "id": "E10"
+          },
+          "then": [
+            {
+              "type": "choice",
+              "options": [
+                {
+                  "text": "说说东边消防门上的磁铁",
+                  "goto": "act_2_10_e10"
+                },
+                {
+                  "text": "先不说这个",
+                  "goto": "act_2_10_b"
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_b"
+    }
+  ],
+  "act_2_10_b": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "flag",
+          "key": "trust_e11"
+        }
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "hasEvidence",
+            "id": "E11"
+          },
+          "then": [
+            {
+              "type": "choice",
+              "options": [
+                {
+                  "text": "说说会议室 B 失踪的防尘袋",
+                  "goto": "act_2_10_e11"
+                },
+                {
+                  "text": "先不说这个",
+                  "goto": "act_2_10_c"
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_c"
+    }
+  ],
+  "act_2_10_c": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "flag",
+          "key": "trust_trophy"
+        }
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "deduce:night1:solved"
+          },
+          "then": [
+            {
+              "type": "choice",
+              "options": [
+                {
+                  "text": "说出你的推断：奖杯也被凶手带走了",
+                  "goto": "act_2_10_trophy"
+                },
+                {
+                  "text": "先不说这个",
+                  "goto": "act_2_10_d"
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_d"
+    }
+  ],
+  "act_2_10_d": [
+    {
+      "type": "branch",
+      "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "flag",
+          "key": "trust_t06"
+        }
+      },
+      "then": [
+        {
+          "type": "branch",
+          "when": {
+            "kind": "hasTestimony",
+            "id": "T06"
+          },
+          "then": [
+            {
+              "type": "choice",
+              "options": [
+                {
+                  "text": "转告黎默说的：郑岑往西楼梯走了",
+                  "goto": "act_2_10_t06"
+                },
+                {
+                  "text": "先不说这个",
+                  "goto": "act_2_10_end"
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_10_end"
+    }
+  ],
+  "act_2_10_end": [
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "没别的了？那就回去吧。想起什么，随时来。"
+    }
+  ],
+  "m2_lunch_outsourcers": [
+    {
+      "type": "bg",
+      "id": "cafe"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "午饭点。外包的邵晓阳和陆诚正要下楼，见你站在走廊上，邵晓阳招了招手。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，一起吧？楼下那家拉面，加蛋不要钱。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "三个人挤进一张小方桌。热气把眼镜糊了一层白。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "嗯。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你们这几天，还好吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "能好吗。合同要重新评估，每个人都盯着手机。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚的手机在桌上震了一下，屏幕上跳出两个字：“舅舅”。他看了一眼，按掉了。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你舅这几天打得挺勤。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……别提。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（舅舅？）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚夹了一筷子面，没再抬头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "吃完饭，陆诚先下楼抽烟。邵晓阳抢着把你那一份也付了：“我请，你最近不容易。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谢了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 5
+        },
+        {
+          "kind": "affinity",
+          "npc": "lucheng",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "m2_lunch_alone": [
+    {
+      "type": "bg",
+      "id": "cafe"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你没跟任何人一起，一个人走进巷口那家面馆。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邻桌坐着几个别家公司的人，一边吃一边聊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“听说贝塔那个事了没？死了个经理。”“他们不是要上 B 轮了吗，这下好了。”“反正跟咱们没关系，赶紧吃。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……在别人眼里，不过是一条新闻。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把面条挑了半天，一口也没咽下去。你拿出手机，把今天看过的东西重新翻了一遍。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "熄灯令，外包不知道。可那天晚上，外包区为什么一直有人？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "这个问题像一根刺，扎在那里，拔不出来，也想不明白。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "先吃饭。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你强迫自己把那碗面吃完了。汤都是凉的。"
+    }
+  ],
+  "m2_lunch_mengyao": [
+    {
+      "type": "bg",
+      "id": "office"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "午饭点，人事区只剩孟遥一个人。她的盒饭只吃了两口，已经凉透了。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥？……你怎么来了。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你吃这么少，不行。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "吃不下。我妈今天又做了一次检查，医生说……（声音发哑）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她的手机又响了，屏幕上写着“住院部”。她接起来，嗯嗯了几声，眼圈慢慢红了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "要不要我陪你去医院？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "不用，不用。你……你自己的事还没完呢。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她挂了电话，抹了抹眼睛，忽然笑了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "你说怪不怪，宋砚经理在的时候，我天天盼着她倒霉。现在她真没了……我反而……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她没说完。你也没有追问。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "m2_dinner_office": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "加班的人把外卖拼在一张长桌上，空气里一股酱油和香菜的味儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "苏闻抱着一杯冰美式，眼睛红红的，一言不发。邵晓阳把一个饭盒推到你面前。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "别客气，点多了。"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "（嘟囔）加班加班，加了也没人给钱。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "苏闻把冰美式捧在手里，像是捧着最后一点热气。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "苏哥，你昨晚熬到几点？"
+    },
+    {
+      "type": "say",
+      "speaker": "suwen",
+      "text": "……三点。又一个三点。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他看了你一眼，欲言又止，又低头去吸那杯咖啡。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（他一个人在机房，到底在忙什么？）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "suwen",
+          "delta": 3
+        }
+      ]
+    }
+  ],
+  "m2_dinner_walk": [
+    {
+      "type": "bg",
+      "id": "street",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你没带伞，在楼下的雨里走了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "路灯的光在积水里碎成一片一片。地铁口的人潮涌出来，又散去。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "九点以后，这栋楼里，到底发生了什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你走到街角，下意识回头。大厦 17 层的灯，一盏一盏地亮着。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "路灯下，好像站着一个背双肩包的人影。你定睛再看，只剩一片雨雾。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站了很久，直到浑身都湿透了。"
+    }
+  ],
+  "m2_dinner_mengyao": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你在楼下买了一份热乎的饭，提着上楼。孟遥还在工位上，对着一堆档案发愣。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "给你的。趁热。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "程哥……（愣住）我、我不饿。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她嘴上这么说，手却已经接过了饭盒。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "谢谢你。宋砚经理在的时候，从来没人想起我吃没吃饭。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她低头扒了几口，眼泪掉进了饭盒里。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "mengyao",
+          "delta": 5
+        }
+      ]
+    }
+  ],
+  "m1_dinner_home": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你煮了一碗面，卧了一个蛋，坐在桌前吃。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "手机屏幕亮了一下，是邵晓阳发来的消息：“程哥，我们都信你。别硬撑。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你盯着这条消息看了很久，没有回复，只是把面里的那个蛋，一点一点夹碎了吃掉。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 3
+        }
+      ]
+    }
+  ],
+  "m1_dinner_store": [
+    {
+      "type": "bg",
+      "id": "store",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "晚上六点，便利店里人不多。热食柜里还剩两个包子。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员小彤认出了你，没说话，只是把最后两个包子装进袋子，递过来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“热的，别凉了。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……谢谢。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你站在门口吃了一个，另一个揣进兜里。大堂的灯很亮，亮得有点不真实。"
+    }
   ]
 }
