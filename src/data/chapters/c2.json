@@ -1,0 +1,71 @@
+{
+  "id": "c2",
+  "title": "案二·苏闻",
+  "sub": "11 月 19 日起",
+  "order": 2,
+  "calendar": [
+    { "label": "第 1 天", "date": "11 月 19 日", "startHour": 8, "lastHour": 21 },
+    { "label": "第 2 天", "date": "11 月 20 日", "startHour": 8, "lastHour": 21 },
+    { "label": "第 3 天", "date": "11 月 21 日", "startHour": 8, "lastHour": 21 }
+  ],
+  "prologue": "c2_prologue",
+  "trial": { "scene": "c2_trial", "firstExam": "c2_act1" },
+  "lastDay": 3,
+  "startState": {
+    "hour": 8,
+    "money": 150,
+    "hp": 3,
+    "danger": 0,
+    "trust": 50,
+    "affinity": {
+      "boss": 25,
+      "mengyao": 50,
+      "suwen": 60,
+      "zhengcen": 40,
+      "shaoxy": 45,
+      "lucheng": 50,
+      "limo": 70,
+      "laohan": 0,
+      "xiaoxu": 50,
+      "laowang": 50,
+      "tang": 0,
+      "laoliu": 0
+    },
+    "intel": {}
+  },
+  "startKit": { "evidence": [], "testimony": [] },
+  "endings": {},
+  "mechanics": { "danger": false, "shop": true, "gifts": true },
+  "recap": [
+    {
+      "title": "九月十四日，雨夜",
+      "text": "贝塔 17 层，人事经理宋砚死在办公室。灯灭的那一刻，所有人都有不在场的理由，除了你。",
+      "image": "hr_office"
+    },
+    {
+      "title": "灯亮之后",
+      "text": "凶手是外包后端黎默。他说，他是为了周屿。他带走了那座“贝塔之星”，却从没打开过它的底座。",
+      "image": "meeting_a"
+    },
+    {
+      "title": "五年前",
+      "text": "周屿，某通派驻贝塔的测试。2021 年 11 月 4 日凌晨，她死在东楼梯 16 到 17 层之间的平台。贝塔把她的考勤改成了“私自返回”，家属只拿到三万元。",
+      "image": "stairwell"
+    },
+    {
+      "title": "之后",
+      "text": "贺川被行政处罚，没有起诉。郑岑停职、接受内部调查，十月中复职。苏闻因评测造假留职察看、降权。孟遥自首，未被追究。熄灯令废除，贝塔限期整顿，11 月 16 日恢复营业。",
+      "image": "office"
+    },
+    {
+      "title": "林一程",
+      "text": "你仍然是贝塔的程序员，不是警察。老韩从怀疑你，变成愿意听你说两句；小许跑腿，也信你。",
+      "image": "police"
+    },
+    {
+      "title": "十一月十九日，周四",
+      "text": "清晨 8 点 10 分，物业撬开了机房的门。",
+      "image": "server_room"
+    }
+  ]
+}

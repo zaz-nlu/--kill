@@ -164,7 +164,7 @@ describe('save slots', () => {
     expect(store.slotList).toHaveLength(10)
     expect(store.slotList[2].meta?.day).toBe(1)
     expect(store.slotList[3].meta).toBeNull()
-    expect(localStorage.getItem('jiudian-save')).not.toBeNull()
+    expect(localStorage.getItem('jiudian-save:c1:1')).not.toBeNull()
     store.state.money = 99
     store.loadGame(3)
     expect(store.state.money).toBe(11)

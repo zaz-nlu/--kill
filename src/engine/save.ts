@@ -1,15 +1,14 @@
-import type { GameState, IntelId, NpcId } from './types'
+import type { GameState, NpcId } from './types'
 
-const SAVE_VERSION = 1
+const SAVE_VERSION = 2
 const NPC_IDS: NpcId[] = [
-  'boss', 'mengyao', 'suwen', 'zhengcen', 'shaoxy', 'lucheng', 'limo', 'laohan', 'xiaoxu', 'laowang', 'tang',
+  'boss', 'mengyao', 'suwen', 'zhengcen', 'shaoxy', 'lucheng', 'limo', 'laohan', 'xiaoxu', 'laowang', 'tang', 'laoliu',
 ]
-const INTEL_IDS: IntelId[] = ['phone', 'draft', 'trophy', 'card', 'attack']
 const INTEL_STATUSES = ['unknown', 'clean', 'leaked']
 
 export type LoadResult =
   | { ok: true; state: GameState }
-  | { ok: false; reason: 'empty' | 'corrupt' | 'version' }
+  | { ok: false; reason: 'empty' | 'corrupt' | 'version' | 'chapter' }
 
 export function serializeState(state: GameState): string {
   return JSON.stringify({ version: SAVE_VERSION, state })
@@ -33,11 +32,13 @@ function isLogLine(v: unknown): boolean {
 function isValidState(s: unknown): s is GameState {
   if (!isObject(s)) return false
   if (s.version !== SAVE_VERSION) return false
+  if (!isStr(s.chapter) || s.chapter === '') return false
   for (const k of ['day', 'hour', 'money', 'hp', 'danger', 'trust', 'shopItemsLeft']) {
     if (!isNum(s[k])) return false
   }
   if (!isObject(s.affinity) || !NPC_IDS.every(id => isNum((s.affinity as Record<string, unknown>)[id]))) return false
-  if (!isObject(s.intel) || !INTEL_IDS.every(id => INTEL_STATUSES.includes((s.intel as Record<string, unknown>)[id] as string))) return false
+  // Each chapter has its own little set of secrets, so any string key is allowed; only the status is checked.
+  if (!isObject(s.intel) || !Object.values(s.intel).every(v => INTEL_STATUSES.includes(v as string))) return false
   if (!isStrArray(s.evidence) || !isStrArray(s.testimony) || !isStrArray(s.notes) || !isStrArray(s.giftedToday)) return false
   if (!isRecordOf(s.flags, v => typeof v === 'boolean')) return false
   if (!Array.isArray(s.backlog) || !s.backlog.every(isLogLine)) return false

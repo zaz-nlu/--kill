@@ -1,0 +1,89 @@
+{
+  "id": "c1",
+  "title": "案一·熄灯",
+  "sub": "9 月 15 日起",
+  "order": 1,
+  "calendar": [
+    { "label": "第 1 天", "date": "9 月 15 日", "startHour": 13, "lastHour": 21 },
+    { "label": "第 2 天", "date": "9 月 16 日", "startHour": 8, "lastHour": 21 },
+    { "label": "第 3 天", "date": "9 月 17 日", "startHour": 8, "lastHour": 21 },
+    { "label": "第 4 天", "date": "9 月 18 日", "startHour": 8, "lastHour": 21 },
+    { "label": "第 5 天", "date": "9 月 19 日", "startHour": 8, "lastHour": 11 }
+  ],
+  "prologue": "prologue",
+  "trial": { "scene": "finale_intro", "firstExam": "finale_act1" },
+  "lastDay": 5,
+  "startState": {
+    "hour": 9,
+    "money": 150,
+    "hp": 3,
+    "danger": 0,
+    "trust": 20,
+    "affinity": {
+      "boss": 25,
+      "mengyao": 50,
+      "suwen": 60,
+      "zhengcen": 40,
+      "shaoxy": 45,
+      "lucheng": 50,
+      "limo": 70,
+      "laohan": 0,
+      "xiaoxu": 50,
+      "laowang": 50,
+      "tang": 0,
+      "laoliu": 0
+    },
+    "intel": {
+      "phone": "unknown",
+      "draft": "unknown",
+      "trophy": "unknown",
+      "card": "unknown",
+      "attack": "unknown"
+    }
+  },
+  "startKit": { "evidence": [], "testimony": [] },
+  "endings": {
+    "hp": {
+      "title": "BAD END 1「熄灭」",
+      "text": "你没能撑到真相大白的那一天。\n新闻快讯：贝塔公司再发命案。",
+      "clears": false
+    },
+    "bad2": {
+      "title": "BAD END 2「批捕」",
+      "text": "黎默看着你，什么都没说。\n周六 16:00，检察院批准逮捕林一程。",
+      "clears": false
+    },
+    "bad3": {
+      "title": "BAD END 3「沉默的离职」",
+      "text": "你签了字，收拾东西走出大楼。雨还在下，没有人来送你。\n协议里夹着一条“承认严重违纪”。老板把它交给了警方。",
+      "clears": false
+    },
+    "true": {
+      "title": "TRUE END「灯亮之后」",
+      "text": "黎默被捕。警方扣押了他的电脑，恢复出被删掉的循环视频。\n周屿的原始记录公开，劳动仲裁重新启动，她被认定为视同工伤。贺川因指使篡改记录被行政处罚，未被起诉；郑岑被公司停职、接受内部调查，未被立案；苏闻因评测造假留职察看、降权，仍留在贝塔；孟遥主动自首并配合调查，未被追究；B 轮搁置。熄灯令被废除。贝塔之星作为证物被警方扣押。\n深夜的 17 层灯火通明，林一程递交了辞职信。离开前，他在 16 层的楼梯平台，放了一枝新的白菊。\n散场后，外包区只剩一盏灯。邵晓阳把那盘残局收进棋盒，数了一遍白子，少一颗。他没找，把盒盖扣上，揣进了口袋。",
+      "clears": true
+    },
+    "a": {
+      "title": "NORMAL END A「熄灯之后」",
+      "text": "黎默被刑拘，但拒不认罪。周屿的记录，始终没有找到。\n老板松了一口气，B 轮照常推进。\n林一程站在楼梯间，感应灯闪了两下，灭了。\n散场后，外包区只剩一盏灯。邵晓阳把那盘残局收进棋盒，数了一遍白子，少一颗。他没找，把盒盖扣上，揣进了口袋。",
+      "clears": true
+    },
+    "b": {
+      "title": "NORMAL END B「错误的灯」",
+      "text": "被指认的人被带走，林一程暂时脱罪。如果被指认的是邵晓阳，第二天他就被放回来了，照常主持外包站会，见了林一程还是那句“没事，程哥”。\n一个月后，林一程收到一条陌生号码的消息：“谢谢你。”\n发信时间：21:08。\n散场后，外包区只剩一盏灯。邵晓阳把那盘残局收进棋盒，数了一遍白子，少一颗。他没找，把盒盖扣上，揣进了口袋。",
+      "clears": true
+    },
+    "c": {
+      "title": "NORMAL END C「借刀」",
+      "text": "老板因篡改记录、阻碍调查、指使袭击被批捕。宋砚案被并入他名下继续侦查，警方对外宣布“取得重大进展”。真正的凶手，从来没有被怀疑过。\n下周一，外包三人离场。黎默的工位已经空了，桌上只留着一封信：\n“你替她讨回了公道。别愧疚，也别再往下查了。以后别熬夜。”\n林一程独自站在东楼梯 16 层的平台上，一枝新的白菊旁边。感应灯亮了，灭了。\n散场后，外包区只剩一盏灯。邵晓阳把那盘残局收进棋盒，数了一遍白子，少一颗。他没找，把盒盖扣上，揣进了口袋。",
+      "clears": true
+    },
+    "hidden": {
+      "title": "隐藏结局「最后一班地铁」",
+      "text": "黎默把那张临时卡，放在了台阶上。\n他自己走去了分局。\n最后一班地铁驶过海河的时候，林一程在 16 层的平台坐了很久。",
+      "clears": true
+    }
+  },
+  "mechanics": { "danger": true, "shop": true, "gifts": true },
+  "recap": []
+}

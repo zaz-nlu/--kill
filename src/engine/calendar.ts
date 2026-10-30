@@ -1,13 +1,20 @@
-import type { Condition, GameState, NpcId } from './types'
+import type { ChapterDef, Condition, GameState, NpcId } from './types'
 import { evalCondition } from './script'
 import type { Risk } from './danger'
+import { DEFAULT_CHAPTER } from './state'
 
 // 12:00 (lunch) and 18:00 (dinner) are fixed-event hours: no investigation, only the shop and moving on.
 export const EVENT_HOURS = [12, 18]
 // From day 2 on the day opens at 08:00: one hour before the 09:00 meeting that starts the fixed events, for an early arrival.
+// (Case 1's numbers; every chapter's own hours come from its `calendar`.)
 export const DAY_START = 8
 // The last hour you can still act in on days 1-4: 21:00, after the lights go out. (Day 5 stops at 11:00.)
 export const LAST_HOUR = 21
+
+// One entry of a chapter's calendar; `day` is 1-based as the game counts it.
+function dayOf(chapter: ChapterDef, day: number) {
+  return chapter.calendar[day - 1]
+}
 
 export interface ActionDef {
   id: string
@@ -41,7 +48,7 @@ export function advanceHour(state: GameState, n = 1): void {
   state.hour += n
 }
 
-export function endDay(state: GameState, opts: { rested: boolean }): void {
+export function endDay(state: GameState, opts: { rested: boolean }, chapter: ChapterDef = DEFAULT_CHAPTER): void {
   let danger = state.danger - 15
   if (opts.rested) {
     danger -= 10
@@ -49,7 +56,7 @@ export function endDay(state: GameState, opts: { rested: boolean }): void {
   }
   state.danger = Math.max(0, danger)
   state.day += 1
-  state.hour = DAY_START
+  state.hour = dayOf(chapter, state.day)?.startHour ?? DAY_START
   state.giftedToday = []
 }
 
@@ -112,10 +119,11 @@ export function menuFor(state: GameState, pool: ActionDef[], size = MENU_SIZE): 
   return pool.filter(a => chosen.includes(a)) // keep the order of the file
 }
 
-// How many more hours today you can still act in (12:00 and 18:00 are events, day 5 stops at 11:00).
-export function slotsLeft(state: GameState): number {
-  const first = state.day === 1 ? 13 : DAY_START
-  const last = state.day === 5 ? 11 : LAST_HOUR
+// How many more hours today you can still act in (12:00 and 18:00 are events; case 1's last day stops at 11:00).
+export function slotsLeft(state: GameState, chapter: ChapterDef = DEFAULT_CHAPTER): number {
+  const today = dayOf(chapter, state.day)
+  const first = today?.startHour ?? DAY_START
+  const last = today?.lastHour ?? LAST_HOUR
   let n = 0
   for (let h = Math.max(state.hour, first); h <= last; h++) if (!EVENT_HOURS.includes(h)) n += 1
   return n

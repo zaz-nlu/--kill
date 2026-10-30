@@ -31,6 +31,15 @@ def load_dir(root, rel):
     return out
 
 
+def load_files(root, rel):
+    """[(file name, parsed json)] for every file in a folder, in a stable order."""
+    out = []
+    for path in sorted(glob.glob(os.path.join(root, rel, '*.json'))):
+        with open(path, encoding='utf-8') as f:
+            out.append((os.path.basename(path), json.load(f)))
+    return out
+
+
 def walk_nodes(nodes, in_then=False):
     """Yield (node, in_then) for every node, descending into branches."""
     for n in nodes:
@@ -59,9 +68,23 @@ def main(root):
     testimony_list = load(root, 'testimony.json', [])
     testimony = {t['id'] for t in testimony_list}
     scenes = {}
-    for chunk in load_dir(root, 'scenes'):
-        scenes.update(chunk)
-    exams = load_dir(root, 'exams')
+    for name, chunk in load_files(root, 'scenes'):
+        for sid, nodes in chunk.items():
+            if sid in scenes:
+                if scenes[sid] != nodes:
+                    errors.append(f"scenes: duplicate id '{sid}' with different content (in {name})")
+                continue
+            scenes[sid] = nodes
+    exams = []
+    exam_by_id = {}
+    for name, ex in load_files(root, 'exams'):
+        prev = exam_by_id.get(ex.get('id'))
+        if prev is not None:
+            if prev != ex:
+                errors.append(f"exams: duplicate id '{ex.get('id')}' with different content (in {name})")
+            continue
+        exam_by_id[ex['id']] = ex
+        exams.append(ex)
 
     def known_ref(i):
         return i in evidence or i in testimony or bool(QUOTE_TAG.match(i))
@@ -229,6 +252,27 @@ def main(root):
                 for acc in s.get('accepts', []):
                     if not known_ref(acc):
                         errors.append(f"exam {ex['id']}/{st['id']}: unknown accepts id '{acc}'")
+
+    # chapters: every one carries its whole definition; case 1's scenes and exams must be real
+    chapters = {}
+    for name, ch in load_files(root, 'chapters'):
+        for field in ('id', 'title', 'sub', 'order', 'calendar', 'prologue', 'trial', 'lastDay', 'startState',
+                      'startKit', 'endings', 'mechanics', 'recap'):
+            if field not in ch:
+                errors.append(f"chapter {name}: missing '{field}'")
+        chapters[ch.get('id', name)] = ch
+        calendar = ch.get('calendar') or []
+        if ch.get('lastDay') != len(calendar):
+            errors.append(f"chapter {ch.get('id', name)}: lastDay {ch.get('lastDay')} does not match {len(calendar)} calendar days")
+    c1 = chapters.get('c1')
+    if c1:
+        if c1.get('prologue') not in scenes:
+            errors.append(f"chapter c1: prologue '{c1.get('prologue')}' does not exist")
+        trial = c1.get('trial') or {}
+        if trial.get('scene') not in scenes:
+            errors.append(f"chapter c1: trial scene '{trial.get('scene')}' does not exist")
+        if trial.get('firstExam') not in exam_ids:
+            errors.append(f"chapter c1: trial exam '{trial.get('firstExam')}' does not exist")
 
     # 6. slice slips must be reachable through a branch.then
     for t in testimony_list:

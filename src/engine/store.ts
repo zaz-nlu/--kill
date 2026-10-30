@@ -20,7 +20,7 @@ import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './
 import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
 import type { TimeOfDay } from './backgrounds'
-import { allSlots, anySave, clearSlot, readSlot, slotInfo, writeSlot, type SlotId } from './saves'
+import { allSlots, anySave, clearSlot, migrateLegacySaves, readSlot, slotInfo, writeSlot, type SlotId } from './saves'
 import {
   flatten, getNode, isImportantChoice, newTimeline, parseTimeline, record, restoreState, serializeTimeline,
   type NodeKind, type Timeline, type TreeNode, type Trigger,
@@ -50,11 +50,26 @@ const FIXED_NAMES: Record<string, string> = { lyc: '林一程', songyan: '宋砚
 const ALWAYS_LISTED = ['boss', 'mengyao', 'suwen', 'zhengcen', 'shaoxy', 'lucheng', 'limo', 'laohan']
 const UNLISTED = ['tang', 'laoliu'] // a voice on a screen and a man in an alley: not people you can win over
 const EXAM_WITNESS: Speaker = 'limo'
-const TIMELINE_KEY = 'jiudian-timeline'
 
-function readStoredTimeline(): Timeline | null {
+// Every chapter keeps its own rewind tree; the single tree the game used to have belongs to case 1.
+const LEGACY_TIMELINE_KEY = 'jiudian-timeline'
+function timelineKey(chapter: string): string {
+  return `jiudian-timeline:${chapter}`
+}
+
+function migrateTimelineKey(): void {
   try {
-    return parseTimeline(localStorage.getItem(TIMELINE_KEY))
+    const legacy = localStorage.getItem(LEGACY_TIMELINE_KEY)
+    if (legacy === null) return
+    const target = timelineKey('c1')
+    if (localStorage.getItem(target) === null) localStorage.setItem(target, legacy)
+    localStorage.removeItem(LEGACY_TIMELINE_KEY)
+  } catch { /* storage blocked */ }
+}
+
+function readStoredTimeline(chapter: string): Timeline | null {
+  try {
+    return parseTimeline(localStorage.getItem(timelineKey(chapter)))
   } catch {
     return null
   }
@@ -79,8 +94,14 @@ export interface ExamEvent {
 }
 
 export const useGameStore = defineStore('game', () => {
+  // Saves and the rewind tree were single-chapter once: move them to case 1's keys the first time the new build runs.
+  migrateTimelineKey()
+  migrateLegacySaves()
   const data = loadData()
   const state = reactive(createInitialState()) as GameState
+  // The chapter this run belongs to, and the endings it can reach.
+  const chapter = computed(() => data.chapters[state.chapter] ?? data.chapters.c1)
+  const endings = computed(() => chapter.value.endings)
   const screen = ref<Screen>('title')
   const runner = shallowRef<SceneRunner | null>(null)
   const tick = ref(0) // bumped after every runner change so `currentNode` recomputes
@@ -275,7 +296,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const loadError = ref('')
-  const hasSave = ref(anySave())
+  const hasSave = ref(anySave(state.chapter))
 
   // cross-examination
   const exam = ref<ExamState | null>(null)
@@ -342,7 +363,7 @@ export const useGameStore = defineStore('game', () => {
   const actions = computed(() => menuFor(state, pool.value))
   // Actions whose gift button should stand out: the person refused to talk until they were given something.
   const urged = computed(() => actions.value.filter(a => state.flags['urge:' + a.id]).map(a => a.id))
-  const slotsLeft = computed(() => slotsLeftIn(state))
+  const slotsLeft = computed(() => slotsLeftIn(state, chapter.value))
   // The shop is downstairs, not a meal-time errand: from the hub it is always open (each hour still allows two items).
   const canShop = computed(() => screen.value === 'hub')
   // The lunch and dinner hours: the hub still treats them differently (a quiet pause, even with nothing to do).
@@ -496,10 +517,13 @@ export const useGameStore = defineStore('game', () => {
     settle()
   }
 
-  function newGame(): void {
+  // A chapter starts from its own numbers, with its own empty rewind tree, and plays its own prologue.
+  function startChapter(id: string): void {
+    const ch = data.chapters[id]
+    if (!ch) return
     demoMode.value = false
     demoMessage.value = ''
-    Object.assign(state, createInitialState())
+    Object.assign(state, createInitialState(ch))
     notice.value = ''
     exam.value = null
     examFailed.value = false
@@ -509,7 +533,11 @@ export const useGameStore = defineStore('game', () => {
     timelineRef.value = newTimeline()
     recordNode('start', '故事开始', state)
     screen.value = 'scene'
-    playScene('prologue', toHub)
+    playScene(ch.prologue, toHub)
+  }
+
+  function newGame(): void {
+    startChapter('c1')
   }
 
   function restart(): void {
@@ -734,8 +762,8 @@ ${gate.tip}
     lastDoneLabel = '回家休息'
     state.hour = Math.max(state.hour, 22) // going home does not skip the evening: whatever is due tonight still happens
     playDueEvents(() => {
-      endDay(state, { rested: true })
-      if (state.day >= 6) screen.value = 'end' // nothing comes after the fifth day
+      endDay(state, { rested: true }, chapter.value)
+      if (state.day > chapter.value.lastDay) screen.value = 'end' // nothing comes after the last day
       else toHub()
     })
   }
@@ -761,14 +789,14 @@ ${gate.tip}
     return false
   }
 
-  function loadGame(slot: SlotId = 1): void {
+  function loadGame(slot: SlotId = 1, chapterId: string = state.chapter): void {
     demoMode.value = false
     demoMessage.value = ''
-    const r = readSlot(slot)
+    const r = readSlot(slot, chapterId)
     if (r.ok) {
-      const mark = slotInfo(slot)?.timeline
+      const mark = slotInfo(slot, chapterId)?.timeline
       if (mark) {
-        const tl = timelineRef.value.uid === mark.uid ? timelineRef.value : readStoredTimeline()
+        const tl = timelineRef.value.uid === mark.uid ? timelineRef.value : readStoredTimeline(r.state.chapter)
         if (tl && tl.uid === mark.uid && getNode(tl, mark.node)) {
           timelineRef.value = tl
           rewindTo(mark.node)
@@ -782,25 +810,34 @@ ${gate.tip}
       toHub()
       return
     }
-    loadError.value = r.reason === 'empty' ? '没有存档' : '存档无法读取'
+    loadError.value = r.reason === 'empty' ? '没有存档'
+      : r.reason === 'chapter' ? '这是其他章节的存档，不能在当前章节里读取'
+      : '存档无法读取'
     screen.value = 'title'
   }
 
   function deleteSlot(slot: number): void {
-    clearSlot(slot)
-    hasSave.value = anySave()
+    clearSlot(slot, state.chapter)
+    hasSave.value = anySave(state.chapter)
     slotsTick.value += 1
   }
 
   // "Continue": back to where the last session ended, with its whole rewind tree.
   function continueAuto(): void {
-    const stored = readStoredTimeline()
+    continueChapter(state.chapter)
+  }
+
+  // Opens a chapter again: its own rewind tree if there is one, otherwise its automatic save.
+  function continueChapter(id: string): void {
+    if (!data.chapters[id]) return
+    const stored = readStoredTimeline(id)
     if (stored && stored.head !== null) {
+      state.chapter = id
       timelineRef.value = stored
       rewindTo(stored.head)
       return
     }
-    loadGame('auto')
+    loadGame('auto', id)
   }
 
   // ---- the rewind tree ----
@@ -808,7 +845,7 @@ ${gate.tip}
   function persistTimeline(): void {
     if (demoMode.value) return // the demo leaves the saved run's rewind tree alone
     try {
-      localStorage.setItem(TIMELINE_KEY, serializeTimeline(timelineRef.value))
+      localStorage.setItem(timelineKey(state.chapter), serializeTimeline(timelineRef.value))
     } catch { /* storage full or blocked: the tree lives on in memory */ }
   }
 
@@ -900,13 +937,18 @@ ${gate.tip}
     const node = getNode(tl, id)
     if (!node) return
     Object.assign(state, restoreState(tl, id))
+    // A node recorded before chapters carries no chapter of its own: that tree is case 1's run.
+    if (!data.chapters[state.chapter]) {
+      state.chapter = 'c1'
+      state.version = 2
+    }
     resetRuntime()
     tl.head = id
     triggerRef(timelineRef)
     persistTimeline()
     if (node.kind === 'start') {
       screen.value = 'scene'
-      playScene('prologue', toHub)
+      playScene(chapter.value.prologue, toHub)
     } else if (node.kind === 'choice' && node.resume) {
       replay(node.resume)
     } else {
@@ -917,18 +959,19 @@ ${gate.tip}
 
   const timelineRows = computed(() => flatten(timelineRef.value))
   const slotsTick = ref(0)
-  const slotList = computed(() => { void slotsTick.value; return allSlots() })
-  const autoSlot = computed(() => { void slotsTick.value; return slotInfo('auto') })
+  const slotList = computed(() => { void slotsTick.value; return allSlots(state.chapter) })
+  const autoSlot = computed(() => { void slotsTick.value; return slotInfo('auto', state.chapter) })
   function refreshSlots(): void {
     slotsTick.value += 1
   }
 
   // The dev jump to the finale is only offered once the story is over (and the UI keeps it hidden for now).
-  const canJumpToFinale = computed(() => state.day === 6 && exam.value === null)
+  const canJumpToFinale = computed(() => state.day === chapter.value.lastDay + 1 && exam.value === null)
 
   function jumpToFinale(): void {
-    Object.assign(state, createInitialState())
-    state.day = 5
+    const ch = chapter.value
+    Object.assign(state, createInitialState(ch))
+    state.day = ch.lastDay
     state.hour = 14
     const kit = data.debugKit
     for (const id of kit.evidence) applyEffect(state, { kind: 'evidence', id })
@@ -940,14 +983,15 @@ ${gate.tip}
     examFailed.value = false
     notice.value = ''
     screen.value = 'scene'
-    playScene('finale_intro', () => startExamById('finale_act1'))
+    playScene(ch.trial.scene, () => startExamById(ch.trial.firstExam))
   }
 
   // The title screen's demo: the first act of the finale, played from the debug kit, then back to the title.
   function startDemoExam(): void {
     if (screen.value !== 'title') return
-    Object.assign(state, createInitialState())
-    state.day = 5
+    const ch = data.chapters.c1 ?? chapter.value // the demo is case 1's first act, whichever chapter is loaded
+    Object.assign(state, createInitialState(ch))
+    state.day = ch.lastDay
     state.hour = 14
     const kit = data.debugKit
     for (const id of kit.evidence) applyEffect(state, { kind: 'evidence', id })
@@ -961,7 +1005,7 @@ ${gate.tip}
     demoMode.value = true
     demoMessage.value = ''
     screen.value = 'scene'
-    playScene('demo_exam_intro', () => startExamById('finale_act1'))
+    playScene('demo_exam_intro', () => startExamById(ch.trial.firstExam))
   }
 
   // ---- cross-examination ----
@@ -1284,8 +1328,8 @@ ${gate.tip}
   }
 
   return {
-    data, state, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, deductionResult, submitDeduction, continueDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, tip, dismissTip, actions, urged, canShop, mealHour,
-    playScene, newGame, restart, advance, note, speakerName, itemName,
+    data, state, chapter, endings, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, deductionResult, submitDeduction, continueDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, tip, dismissTip, actions, urged, canShop, mealHour,
+    playScene, newGame, startChapter, continueChapter, restart, advance, note, speakerName, itemName,
     startAction, waitAnHour, room, hotspots, looksLeft, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, rewindTo, timelineRows, slotList, autoSlot, refreshSlots, canJumpToFinale, jumpToFinale,
     exam, examIndex, examFailed, examPresenting, setExamPresenting, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,

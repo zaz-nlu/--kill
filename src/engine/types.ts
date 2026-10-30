@@ -2,7 +2,8 @@ export type NpcId =
   | 'boss' | 'mengyao' | 'suwen' | 'zhengcen' | 'shaoxy' | 'lucheng'
   | 'limo' | 'laohan' | 'xiaoxu' | 'laowang' | 'tang' | 'laoliu'
 export type Speaker = NpcId | 'lyc' | 'songyan' | 'narration'
-export type IntelId = 'phone' | 'draft' | 'trophy' | 'card' | 'attack'
+// Each chapter brings its own little set of secrets (`phone`, `draft`, … in case 1); the id is just a string.
+export type IntelId = string
 export type IntelStatus = 'unknown' | 'clean' | 'leaked'
 
 export interface Line { speaker: Speaker; text: string; tag?: string; expr?: string }
@@ -44,7 +45,8 @@ export interface Npc {
 }
 
 export interface GameState {
-  version: 1
+  version: 2
+  chapter: string                       // the chapter this run belongs to (see ChapterDef)
   day: number
   hour: number
   money: number
@@ -101,4 +103,51 @@ export interface ExamDef {
   clearedReplies?: Line[][]     // anything tried on a line that is already settled
   intro?: string
   onClear?: string
+}
+
+// ---- a chapter: one self-contained case ----
+// Every chapter brings its own calendar, opening numbers, endings and secrets. Only the profile (which chapters were
+// cleared, which recaps were seen) survives from one to the next; see profile.ts.
+
+export interface CalendarDay {
+  label: string          // "第 1 天"
+  date: string           // "9 月 15 日"
+  startHour: number
+  lastHour: number
+  fixedEvents?: string[]
+}
+
+// Where a chapter begins: its own numbers, never inherited from the chapter before.
+export interface ChapterStartState {
+  hour: number
+  money: number
+  hp: number
+  danger: number
+  trust: number
+  affinity: Partial<Record<NpcId, number>>
+  intel: Record<IntelId, IntelStatus>
+}
+
+export interface EndingDef { title: string; text: string; clears: boolean }
+
+// One card of the "previously on…" shown before a chapter (empty for case 1, which opens cold).
+export interface RecapCard { title: string; text: string; image?: string; speaker?: string }
+
+// The trial part: the scene that opens it and the first cross-examination it leads into.
+export interface ChapterTrial { scene: string; firstExam: string }
+
+export interface ChapterDef {
+  id: string
+  title: string
+  sub: string
+  order: number
+  calendar: CalendarDay[]
+  prologue: string
+  trial: ChapterTrial
+  lastDay: number
+  startState: ChapterStartState
+  startKit: { evidence: string[]; testimony: string[] }
+  endings: Record<string, EndingDef>
+  mechanics: { danger: boolean; shop: boolean; gifts: boolean }
+  recap: RecapCard[]
 }

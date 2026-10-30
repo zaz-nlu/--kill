@@ -45,7 +45,7 @@ describe('save / load', () => {
     expect(loadSave('[]')).toEqual({ ok: false, reason: 'corrupt' })
     expect(loadSave('123')).toEqual({ ok: false, reason: 'corrupt' })
     const wrapped = JSON.parse(serializeState(createInitialState()))
-    wrapped.version = 2
+    wrapped.version = 3
     expect(loadSave(JSON.stringify(wrapped))).toEqual({ ok: false, reason: 'version' })
   })
 
