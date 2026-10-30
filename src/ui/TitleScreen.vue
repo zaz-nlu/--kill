@@ -1,6 +1,6 @@
 <script setup lang="ts">
 withDefaults(defineProps<{ error?: string; devFinale?: boolean; message?: string; demo?: boolean }>(), { devFinale: true, demo: true })
-defineEmits<{ start: []; continue: []; debugFinale: []; demoExam: [] }>()
+defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: [] }>()
 </script>
 
 <template>
@@ -9,6 +9,7 @@ defineEmits<{ start: []; continue: []; debugFinale: []; demoExam: [] }>()
     <p>每晚九点，整层熄灯。</p>
     <button type="button" data-testid="start" @click="$emit('start')">开始游戏</button>
     <button type="button" class="secondary" data-testid="continue" @click="$emit('continue')">继续游戏</button>
+    <button type="button" class="secondary" data-testid="chapters" @click="$emit('chapters')">章节选择</button>
     <button v-if="demo" type="button" class="secondary" data-testid="demo-exam" @click="$emit('demoExam')">试玩对峙<small>2 分钟，体验对质</small></button>
     <p v-if="message" class="notice" data-testid="title-message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>

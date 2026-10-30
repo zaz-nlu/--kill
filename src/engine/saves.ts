@@ -117,16 +117,22 @@ function upgradeLegacy(raw: string): string | null {
 }
 
 // Copies every old-key save to case 1's new key once. The old keys are left alone.
-export function migrateLegacySaves(): void {
+// Returns true when at least one old save was actually copied (the chapter list says so, once).
+export function migrateLegacySaves(): boolean {
+  let migrated = false
   try {
-    if (localStorage.getItem(MIGRATION_KEY) !== null) return
+    if (localStorage.getItem(MIGRATION_KEY) !== null) return false
     for (const [legacy, slot] of LEGACY_KEYS) {
       const raw = localStorage.getItem(legacy)
       if (raw === null) continue
       const target = slotKey(slot, DEFAULT_CHAPTER.id)
       const upgraded = upgradeLegacy(raw)
-      if (upgraded !== null && localStorage.getItem(target) === null) localStorage.setItem(target, upgraded)
+      if (upgraded !== null && localStorage.getItem(target) === null) {
+        localStorage.setItem(target, upgraded)
+        migrated = true
+      }
     }
     localStorage.setItem(MIGRATION_KEY, '1')
   } catch { /* storage blocked: try again next time */ }
+  return migrated
 }

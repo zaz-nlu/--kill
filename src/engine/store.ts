@@ -21,6 +21,7 @@ import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
 import type { TimeOfDay } from './backgrounds'
 import { allSlots, anySave, clearSlot, migrateLegacySaves, readSlot, slotInfo, writeSlot, type SlotId } from './saves'
+import { loadProfile, markChapterNoteSeen } from './profile'
 import {
   flatten, getNode, isImportantChoice, newTimeline, parseTimeline, record, restoreState, serializeTimeline,
   type NodeKind, type Timeline, type TreeNode, type Trigger,
@@ -32,7 +33,7 @@ import {
 } from './crossexam'
 import { nudgeLine, shouldNudge } from './examHint'
 
-export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'investigate' | 'exam' | 'end'
+export type Screen = 'title' | 'chapters' | 'card' | 'recap' | 'scene' | 'hub' | 'shop' | 'investigate' | 'exam' | 'end'
 
 export interface StageSlot { id: string; expr: string }
 export interface StageState {
@@ -96,7 +97,10 @@ export interface ExamEvent {
 export const useGameStore = defineStore('game', () => {
   // Saves and the rewind tree were single-chapter once: move them to case 1's keys the first time the new build runs.
   migrateTimelineKey()
-  migrateLegacySaves()
+  const migratedLegacy = migrateLegacySaves()
+  // Shown once on the title screen: the saves the player already had now live in case 1.
+  const migrationNotice = ref(migratedLegacy ? '已把你之前的存档归入【案一·熄灯】。' : '')
+  function dismissLegacyNotice(): void { migrationNotice.value = '' }
   const data = loadData()
   const state = reactive(createInitialState()) as GameState
   // The chapter this run belongs to, and the endings it can reach.
@@ -107,7 +111,25 @@ export const useGameStore = defineStore('game', () => {
   const tick = ref(0) // bumped after every runner change so `currentNode` recomputes
   const notice = ref('')
   const tip = ref<{ title: string; text: string } | null>(null) // a one-off explanation shown over the hub
-  function dismissTip(): void { tip.value = null }
+  // The once-only note that saves and the rewind tree are kept per chapter (shown from chapter 2 on).
+  const chapterNote = ref(false)
+  function dismissTip(): void {
+    if (chapterNote.value) {
+      chapterNote.value = false
+      markChapterNoteSeen()
+    }
+    tip.value = null
+  }
+  // From the second chapter on, tell the player once that each chapter keeps its own saves and rewinds.
+  function maybeChapterNote(): void {
+    if (chapter.value.order <= 1 || chapterNote.value) return
+    if (loadProfile().seenChapterNote) return
+    chapterNote.value = true
+    tip.value = {
+      title: '存档按章节分开',
+      text: '从本章起，存档与回溯按章节分开保存。随时可以在章节选择里回到之前的章节，它们的存档不会被覆盖。',
+    }
+  }
   // An explanation that waits for the hub: it should not talk over a scene that is still playing.
   let pendingTip: { title: string; text: string } | null = null
   let onSceneEnd: (() => void) | null = null
@@ -534,6 +556,7 @@ export const useGameStore = defineStore('game', () => {
     recordNode('start', '故事开始', state)
     screen.value = 'scene'
     playScene(ch.prologue, toHub)
+    maybeChapterNote()
   }
 
   function newGame(): void {
@@ -827,6 +850,18 @@ ${gate.tip}
     continueChapter(state.chapter)
   }
 
+  // "Continue" on the title screen: the most recent automatic save across every chapter.
+  function continueLatest(): boolean {
+    let best: { id: string; at: number } | null = null
+    for (const ch of Object.values(data.chapters)) {
+      const info = slotInfo('auto', ch.id)
+      if (info && (!best || info.at > best.at)) best = { id: ch.id, at: info.at }
+    }
+    if (!best) return false
+    continueChapter(best.id)
+    return true
+  }
+
   // Opens a chapter again: its own rewind tree if there is one, otherwise its automatic save.
   function continueChapter(id: string): void {
     if (!data.chapters[id]) return
@@ -835,9 +870,38 @@ ${gate.tip}
       state.chapter = id
       timelineRef.value = stored
       rewindTo(stored.head)
+      maybeChapterNote()
       return
     }
     loadGame('auto', id)
+    if (screen.value !== 'title') maybeChapterNote()
+  }
+
+  // [重新开始] on a chapter card: the chapter's automatic save and its rewind tree go; the manual slots stay.
+  function resetChapter(id: string): void {
+    clearSlot('auto', id)
+    try {
+      localStorage.removeItem(timelineKey(id))
+    } catch { /* storage blocked */ }
+    slotsTick.value += 1
+    hasSave.value = anySave(state.chapter)
+  }
+
+  // Reading another chapter's save: the run being left first gets an automatic save of its own.
+  function loadOther(slot: SlotId, chapterId: string): void {
+    if (!data.chapters[chapterId]) return
+    if (chapterId === state.chapter) {
+      loadGame(slot, chapterId)
+      return
+    }
+    if (!demoMode.value) {
+      if (writeSlot('auto', state)) {
+        hasSave.value = anySave(state.chapter)
+        slotsTick.value += 1
+      }
+    }
+    loadGame(slot, chapterId)
+    if (screen.value !== 'title') maybeChapterNote()
   }
 
   // ---- the rewind tree ----
@@ -872,10 +936,23 @@ ${gate.tip}
     lastDoneLabel = ''
     recordNode('hub', done ? `刚才：${done}` : state.hour <= 9 ? '新的一天' : '行动菜单', state)
     if (!demoMode.value) {
-      writeSlot('auto', state, { uid: timelineRef.value.uid, node: timelineRef.value.head! })
+      if (writeSlot('auto', state, { uid: timelineRef.value.uid, node: timelineRef.value.head! })) flashAutoSave()
       hasSave.value = true
       slotsTick.value += 1
     }
+  }
+
+  // The little "saved" toast: once per chapter/day/hour, so walking in and out of the shop does not stack them.
+  const saveNote = ref('')
+  let saveNoteTimer: ReturnType<typeof setTimeout> | null = null
+  let lastAutoSaveKey = ''
+  function flashAutoSave(): void {
+    const key = `${state.chapter}:${state.day}:${state.hour}`
+    if (key === lastAutoSaveKey) return
+    lastAutoSaveKey = key
+    saveNote.value = `已自动保存（${chapter.value.title}·第 ${state.day} 天）`
+    if (saveNoteTimer) clearTimeout(saveNoteTimer)
+    saveNoteTimer = setTimeout(() => { saveNote.value = '' }, 3000)
   }
 
   function maybeRecordChoice(node: Extract<SceneNode, { type: 'choice' }>): void {
@@ -1331,7 +1408,8 @@ ${gate.tip}
     data, state, chapter, endings, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, deductionResult, submitDeduction, continueDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, tip, dismissTip, actions, urged, canShop, mealHour,
     playScene, newGame, startChapter, continueChapter, restart, advance, note, speakerName, itemName,
     startAction, waitAnHour, room, hotspots, looksLeft, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
-    loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, rewindTo, timelineRows, slotList, autoSlot, refreshSlots, canJumpToFinale, jumpToFinale,
+    loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, continueLatest, resetChapter, loadOther, rewindTo, timelineRows, slotList, autoSlot, slotInfo, refreshSlots, canJumpToFinale, jumpToFinale,
+    saveNote, migrationNotice, dismissLegacyNotice,
     exam, examIndex, examFailed, examPresenting, setExamPresenting, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     recordInfo, examView, examTarget, setExamTarget, examEvent, examHold, stageExam, examContinue,
     startExamById, examGoto, examPresent, examPress, examChoose,

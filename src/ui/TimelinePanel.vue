@@ -1,9 +1,22 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import type { TimelineRow } from '../engine/timeline'
+import type { CalendarDay } from '../engine/types'
+import { DEFAULT_CHAPTER } from '../engine/state'
 
-const props = defineProps<{ rows: TimelineRow[] }>()
+const props = withDefaults(defineProps<{
+  rows: TimelineRow[]
+  chapterTitle?: string
+  calendar?: CalendarDay[]
+}>(), { chapterTitle: '', calendar: () => DEFAULT_CHAPTER.calendar })
 const emit = defineEmits<{ rewind: [id: number]; close: [] }>()
+
+// Only the chapter being played is drawn here; its day names and dates come from the chapter's own calendar.
+const title = computed(() => (props.chapterTitle ? `回溯 · ${props.chapterTitle}` : '回溯'))
+
+function dayOf(key: number): CalendarDay | null {
+  return key === 0 ? null : props.calendar[key - 1] ?? null
+}
 
 // Rows written before the tree panel (or hand-built in a test) may not carry a parent: read the list as one line.
 const rows = computed<TimelineRow[]>(() =>
@@ -36,8 +49,8 @@ const chapters = computed<Chapter[]>(() => {
     .sort((a, b) => a[0] - b[0])
     .map(([key, list]) => ({
       key,
-      title: key === 0 ? '序章' : `第 ${key} 天`,
-      sub: key === 0 ? '' : `9 月 ${14 + key} 日`,
+      title: key === 0 ? '序章' : dayOf(key)?.label ?? `第 ${key} 天`,
+      sub: key === 0 ? '' : dayOf(key)?.date ?? '',
       rows: list,
       current: list.some(r => r.isHead),
       branched: list.some(r => r.forks),
@@ -174,9 +187,10 @@ watch(activeKey, () => { nextTick(centerOnHead) })
   <div class="veil" data-testid="timeline-panel" @click.self="emit('close')">
     <section class="glass box">
       <header>
-        <h3>回溯</h3>
+        <h3>{{ title }}</h3>
         <button type="button" data-testid="timeline-close" @click="emit('close')">关闭</button>
       </header>
+      <p class="scope" data-testid="timeline-scope">这里只显示本章的选择，其他章节请在章节选择里回溯。</p>
 
       <p v-if="fromSave" class="tip" data-testid="timeline-from-save">这一局是从存档读取的：读档之前的经过没有记录，只能回到读档之后的时刻。</p>
       <div class="chapters" role="tablist">
@@ -250,6 +264,7 @@ header { display: flex; justify-content: space-between; align-items: center; fle
 h3 { margin: 0; letter-spacing: 3px; }
 
 .tip { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: #d9c7b4; flex: none; }
+.scope { margin: 6px 0 0; font-size: 12px; line-height: 1.5; color: #b9ad9d; flex: none; }
 .chapters { display: flex; gap: 8px; padding: 10px 0 12px; flex: none; overflow-x: auto; }
 .chapter { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; white-space: nowrap; background: rgba(255, 255, 255, 0.04); border-color: transparent; }
 .chapter .sub { font-size: 11px; color: #b9ad9d; }
