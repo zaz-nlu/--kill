@@ -7,7 +7,7 @@ import { SceneRunner, evalCondition } from '../src/engine/script'
 import { availableActions } from '../src/engine/calendar'
 import { nextEvent } from '../src/engine/events'
 import { logLines } from '../src/engine/log'
-import { computePersuasion } from '../src/engine/crossexam'
+import { computeGuard, computePersuasion } from '../src/engine/crossexam'
 import { availableSteps } from '../src/engine/crossexam'
 import type { GameState } from '../src/engine/types'
 import { playOut } from './helpers'
@@ -156,12 +156,13 @@ describe('day 5 actions', () => {
 describe('12:00 the challenge letter', () => {
   const answer = (s: GameState, q1: number, q2: number, q3: number) => play(s, 'day5_challenge', [q1, q2, q3])
 
-  it('three questions; the right three, naming Limo, earn a point of persuasion', () => {
+  it('three questions; the right three, naming Limo, earn a guard against one mistake in the finale', () => {
     const s = day5(12)
     answer(s, 2, 1, 0)
     expect(s.flags['route:limo']).toBe(true)
     expect(s.flags.challengeAllCorrect).toBe(true)
-    expect(computePersuasion(s)).toBe(6)
+    expect(computePersuasion(s)).toBe(8)
+    expect(computeGuard(s)).toBe(1)
   })
 
   it('a wrong answer is not announced, it just costs the bonus', () => {
@@ -300,25 +301,37 @@ describe('the gathering', () => {
     expect(['true', 'a', 'bad2']).toContain(store.gameOver)
   })
 
-  it('wrong cards run the persuasion down: BAD END 2', () => {
+  // something the player holds that no step of the act asks for (it is put in the bag if need be)
+  const junkFor = (store: ReturnType<typeof useGameStore>) => {
+    const used = new Set(store.exam!.def.statements.flatMap(s => s.steps.flatMap(st => (st.kind === 'present' ? st.accepts : []))))
+    const id = store.data.evidence.map(e => e.id).find(x => !used.has(x))!
+    if (!store.state.evidence.includes(id)) store.state.evidence.push(id)
+    return id
+  }
+
+  it('wrong cards run the persuasion down, and then the act starts over rather than ending the finale', () => {
     const store = gathering()
     playOut(store)
     expect(store.exam?.def.id).toBe('finale_act1')
     store.examGoto(1)
-    for (let i = 0; i < 6; i++) store.examPresent('E12')
-    expect(store.gameOver).toBe('bad2')
-    expect(store.screen).toBe('end')
+    const junk = junkFor(store)
+    const mistakes = store.exam!.persuasion + store.exam!.guard
+    for (let i = 0; i < mistakes; i++) store.examPresent(junk)
+    expect(store.gameOver).toBeNull()
+    expect(store.screen).toBe('exam')
+    expect(store.tip?.title).toBe('说服力耗尽')
+    expect(store.examIndex).toBe(0)
   })
 
-  it('the persuasion lost in one act is still lost in the next', () => {
+  it('every act starts afresh: the persuasion lost in one is not lost in the next', () => {
     const store = gathering()
     playOut(store)
     store.examGoto(1)
-    store.examPresent('E12')
+    store.examPresent(junkFor(store))
     solve(store)
     while (store.screen === 'scene') playOut(store)
     expect(store.exam?.def.id).toBe('finale_act2')
-    expect(store.exam?.persuasion).toBeLessThanOrEqual(5)
+    expect(store.exam?.persuasion).toBe(computePersuasion(store.state))
   })
 })
 

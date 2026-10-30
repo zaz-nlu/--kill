@@ -112,7 +112,7 @@ export const MOODS: Record<MoodId, Mood> = {
   // It speeds up and thickens as 说服力 runs out (see `examIntensity`).
   exam: mood('exam', {
     drone: { notes: [33, 45], wave: 'triangle', level: 0.18, cutoff: 320 },
-    reverb: 0.4, fade: 1.1,
+    reverb: 0.4, fade: 0.5, // quick: it has to cut in the moment a weak point is clicked
     beat: {
       bpm: 148, maxBpm: 164, root: 45, level: 0.8,
       // Am | F | G | E  Am | F | Dm | E
@@ -294,7 +294,8 @@ export function moodIdFor(c: MoodContext): MoodId {
     if (id.startsWith('bad_end')) return 'bad_end'
     const attack = attackKind(id)
     if (attack) return attack === 'after' ? 'aftermath' : 'ambush'
-    if (/^finale_(intro|act\d_end)$/.test(id)) return 'limo'            // 黎默 on his feet, and his masks coming off
+    if (/^finale_act\d_end$/.test(id)) return 'comeback'                 // the act is won: the last blow lands on the anthem
+    if (id === 'finale_intro') return 'limo'                             // 黎默 on his feet
     if (id === 'finale_boss_b_end') return 'comeback'                    // the boss is taken away
     if (id.startsWith('finale')) return 'resolve'
     if (/parking|^act_3_17/.test(id)) return 'parking'
@@ -320,11 +321,11 @@ export function resolveMood(c: MoodContext): Mood {
   return out
 }
 
-// 说服力 starts at 5 and tops out at 7. The less is left, the harder the music hits: 0 (safe) .. 1 (one mistake from losing).
+// 说服力 starts every act at 6. The less is left, the harder the music hits: 0 (safe) .. 1 (one mistake from losing).
 // It is not part of the mood on purpose: the track keeps playing and only its tempo and thickness change.
 export function examIntensity(persuasion: number | null): number {
   if (persuasion === null) return 0
-  return 1 - Math.max(0, Math.min(7, persuasion)) / 7
+  return 1 - Math.max(0, Math.min(8, persuasion)) / 8
 }
 
 // A stable key: the director only re-applies a mood when this changes.

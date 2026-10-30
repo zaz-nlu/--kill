@@ -94,10 +94,22 @@
     "scene": "day3_noon"
   },
   {
+    "id": "day3_s6a",
+    "day": 3,
+    "hour": 12,
+    "scene": "day3_s6a"
+  },
+  {
     "id": "day3_boss_offer",
     "day": 3,
     "hour": 14,
     "scene": "day3_boss_offer"
+  },
+  {
+    "id": "day3_s6b",
+    "day": 3,
+    "hour": 15,
+    "scene": "day3_s6b"
   },
   {
     "id": "day3_desk_searched",
@@ -148,6 +160,12 @@
     "day": 4,
     "hour": 9,
     "scene": "day4_news"
+  },
+  {
+    "id": "day4_s6c",
+    "day": 4,
+    "hour": 10,
+    "scene": "day4_s6c"
   },
   {
     "id": "day4_video",

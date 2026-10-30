@@ -7,7 +7,11 @@ export interface DeductionDef {
   pick: number                 // how many clues fit in the slots (at least two must be chosen)
   answer: string[]             // the right set, in any order
   hints: string[]              // shown one at a time after each wrong guess
+  intro?: string[]             // what Lin says to himself when the question opens
+  aha?: string                 // his line of insight when the pieces finally fit
   trap?: { items: string[]; flag: string; line: string }  // a tempting wrong theory: never marked wrong, it just ends the evening
+  tier?: number                // a merge question: from which night on it may come up
+  free?: boolean               // a merge question: being handed the answer costs nothing in the finale
 }
 
 export const MAX_MISSES = 3
@@ -26,6 +30,13 @@ export function startDeduction(def: DeductionDef): DeductionSession {
 }
 
 const sameSet = (a: string[], b: string[]) => a.length === b.length && a.every(x => b.includes(x))
+
+// What Lin says to himself when the pieces he chose do not make the answer: `overlap` of them do belong.
+export function leadLine(overlap: number, pick: number): string {
+  if (overlap === 0) return '……不对。这几样，连不到一块。'
+  if (overlap === pick - 1) return '差一点。有一样，不该放在这儿。'
+  return '有对得上的，可还缺点什么。'
+}
 
 // If you never found one of the pieces the reasoning simply does not happen (and costs you nothing).
 export function canDeduce(state: GameState, def: DeductionDef): boolean {
@@ -46,7 +57,8 @@ export function submitDeduction(state: GameState, session: DeductionSession, pic
   session.misses += 1
   if (session.misses >= MAX_MISSES) {
     state.flags[`deduce:${d.id}:solved`] = true
-    state.flags[`deduce:${d.id}:forced`] = true // you were handed the answer: it will cost persuasion in the finale
+    // you were handed the answer: it will cost persuasion in the finale (unless this one is free)
+    if (!d.free) state.flags[`deduce:${d.id}:forced`] = true
     return { kind: 'forced' }
   }
   return { kind: 'wrong', hint: d.hints[Math.min(session.misses - 1, d.hints.length - 1)] ?? '再想想。', left: MAX_MISSES - session.misses }
@@ -54,4 +66,11 @@ export function submitDeduction(state: GameState, session: DeductionSession, pic
 
 export function forcedCount(state: GameState): number {
   return Object.keys(state.flags).filter(k => /^deduce:.+:forced$/.test(k) && state.flags[k]).length
+}
+
+// The next merge question available tonight: one whose tier has come, that is not yet solved, and whose pieces the
+// player holds. `defs` is taken in data order, so the questions keep their intended sequence.
+export function pendingMerge(state: GameState, defs: DeductionDef[], tier: number): DeductionDef | null {
+  return defs.find(def => def.tier !== undefined && def.tier <= tier
+    && !state.flags[`deduce:${def.id}:solved`] && canDeduce(state, def)) ?? null
 }

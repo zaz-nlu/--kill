@@ -29,6 +29,12 @@ export interface ActionDef {
   attack?: string // scene played if an attack lands after this action
   away?: boolean  // the scene is an attack by Limo: his desk is empty in the hour it happens
   until?: string  // the action stays on offer (a try costs the hour) until this flag is set
+  // The person will not talk until their affinity reaches `affinity` (a gift handed over first counts). Short of that, `scene`
+  // plays instead, no hour is spent, the action stays on offer, its gift button turns red and `tip` is shown once.
+  // `give` names an item put in the bag if there is none (and it was never given to this person), so nobody is left stuck.
+  // `rescue`: the first time, a short visit can still go ahead — the item turns up in the bag and is handed over on the
+  // spot, so the scene plays in the same action. If the gift still leaves the affinity short, the rescue is undone whole.
+  gate?: { affinity: number; scene: string; give?: string; tip?: string; rescue?: boolean }
 }
 
 export function advanceHour(state: GameState, n = 1): void {

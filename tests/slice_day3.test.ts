@@ -164,9 +164,10 @@ describe('day 3 actions: what they give and what they ask for', () => {
     expect(s.testimony).toContain('T09')
     expect(said(s)).toContain('郑岑，是我舅')
     expect(said(s)).not.toContain('黎默')
+    // two ways in: being on good terms, or having found the magnet yourself — it does not take both
     const cold = day3(); cold.affinity.lucheng = 40; cold.evidence.push('E10')
     play(cold, 'act_3_7')
-    expect(cold.testimony).not.toContain('T09')
+    expect(cold.testimony).toContain('T09')
   })
 
   it('3-7 without the magnet he will not talk about Friday, and without a reason he does not mention his uncle', () => {
@@ -297,7 +298,7 @@ describe('day 3 actions: what they give and what they ask for', () => {
 describe('day 3 fixed events', () => {
   it('come in the order the day unfolds', () => {
     expect(data.events.filter(e => e.day === 3).map(e => e.id)).toEqual([
-      'day3_call', 'day3_morning', 'day3_noon', 'day3_boss_offer', 'day3_desk_searched',
+      'day3_call', 'day3_morning', 'day3_noon', 'day3_s6a', 'day3_boss_offer', 'day3_s6b', 'day3_desk_searched',
       'day3_mengyao_taken', 'day3_laohan_call', 'day3_attack2', 'day3_night', 'day3_g8',
     ])
   })
@@ -426,7 +427,7 @@ describe('store: the third evening', () => {
     const store = useGameStore()
     store.state.day = 3
     store.state.hour = 17
-    for (const id of ['day3_call', 'day3_morning', 'day3_noon', 'day3_boss_offer', 'day3_desk_searched', 'day3_mengyao_taken', 'day3_laohan_call']) store.state.flags['event:' + id] = true
+    for (const id of ['day3_call', 'day3_morning', 'day3_noon', 'day3_s6a', 'day3_boss_offer', 'day3_s6b', 'day3_desk_searched', 'day3_mengyao_taken', 'day3_laohan_call']) store.state.flags['event:' + id] = true
     store.state.evidence.push('E13', 'E15', 'E17', 'E24', 'E36')
     store.state.testimony.push('T12')
     return store

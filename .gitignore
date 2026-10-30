@@ -4,3 +4,4 @@ release*
 .superpowers
 dist-web.zip
 *.exe
+dist-web*.zip

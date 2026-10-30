@@ -90,14 +90,26 @@ describe('day 1 flow', () => {
     expect(ids20.length).toBeGreaterThanOrEqual(8)
   })
 
-  it('the shop opens at 18 on day 1, and there are meal things to do too', () => {
+  it('the shop is open from the hub at any hour, and 18 is still dinner with only meal things to do', () => {
     const store = atHub()
+    for (const h of [13, 15, 20]) {
+      store.state.hour = h
+      expect(store.canShop, `hour ${h}`).toBe(true)
+    }
     store.state.hour = 17
     store.state.flags['event:day1_wechat'] = true
     store.waitAnHour()
     expect(store.canShop).toBe(true)
     expect(store.actions.length).toBeGreaterThan(0)
     expect(store.actions.every(a => a.meal)).toBe(true)
+  })
+
+  it('the shop can be entered at an ordinary hour, and the screen is no longer the hub', () => {
+    const store = atHub()
+    store.state.hour = 15
+    store.goShop()
+    expect(store.screen).toBe('shop')
+    expect(store.state.shopItemsLeft).toBe(2)
   })
 
   it('every day 1 action plays to its end with the first option', () => {

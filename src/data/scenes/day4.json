@@ -950,6 +950,25 @@
     {
       "type": "say",
       "speaker": "narration",
+      "text": "还有些东西，说不清为什么记下来：旁听来的话，随手拍的画面，门上的一块磁铁，一副旧棋。你把它们收进脑子的一个角落。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "deduce:archive:solved",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "deduce",
+      "id": "tier:4"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
       "text": "你终于合上眼睛。第四天，就这样结束了。"
     }
   ],
@@ -957,7 +976,7 @@
     {
       "type": "say",
       "speaker": "mengyao",
-      "text": "周屿……是两年前，死在楼梯间的那个外包。",
+      "text": "周屿……是五年前，死在楼梯间的那个外包。",
       "expr": "nervous"
     },
     {
@@ -978,7 +997,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "2024 年 11 月 21 日，凌晨 02:10。东楼梯 16 层和 17 层之间的平台，声控灯一盏一盏灭掉。"
+      "text": "2021 年 11 月 4 日，凌晨 02:10。东楼梯 16 层和 17 层之间的平台，声控灯一盏一盏灭掉。"
     },
     {
       "type": "say",
@@ -1034,7 +1053,12 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "那个人压低了声音：“等宋砚九点半走了，我就去拷。拷完就还你。”"
+      "text": "孟遥小声说：“她平时八点半前就走，最晚不过九点。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "那个人压低了声音：“等宋砚走了，我就去拷。拷完就还你。”"
     },
     {
       "type": "say",
@@ -1070,7 +1094,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "“她今晚九点半才走，原件明天就要被处理掉。”"
+      "text": "“原件明天就要被处理掉。”"
     },
     {
       "type": "memory",
@@ -1247,6 +1271,35 @@
       "type": "say",
       "speaker": "narration",
       "text": "画面一格一格地走，七个人的小方块，坐在各自的角落里。你看到黎默的那一格，他推了推眼镜，端起一只蓝色的保温杯。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E20"
+      },
+      "then": [],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "tang",
+          "text": "对了，邵晓阳那天晚上还发给我几张“加班存证”的照片，21:20 拍的，说是给我看外包加班的证明。你要的话，我一并转你。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "好，麻烦您。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E20"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "branch",
@@ -1868,7 +1921,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "对啊。仲裁要用的，我每天都拍。"
+      "text": "对啊。给唐经理看的，我每天拍一张，万一哪天说我们没加班。"
     },
     {
       "type": "say",
@@ -1883,7 +1936,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "他翻了好一会儿相册，递给你一张照片。21:20 拍摄，会议室 B，一片漆黑，只有一块屏幕亮着。"
+      "text": "他翻了好一会儿相册。往前翻，全是熄灯后的工位和走廊，一天一张。最后递给你一张照片。21:20 拍摄，会议室 B，一片漆黑，只有一块屏幕亮着。"
     },
     {
       "type": "effect",
@@ -2365,7 +2418,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你打开微博，搜索“小鱼的岛”。账号很安静，最后一条，停在两年前的 11 月。"
+      "text": "你打开微博，搜索“小鱼的岛”。账号很安静，最后一条，停在五年前的 11 月。"
     },
     {
       "type": "say",
@@ -2395,7 +2448,7 @@
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "……等了她两年的人。会是谁？"
+      "text": "……等了她五年的人。会是谁？"
     },
     {
       "type": "effect",
@@ -2431,7 +2484,7 @@
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "2024 年 11 月 21 日，她加班到凌晨 02:10，门禁记录却写着 19:12 下班。是谁让改的？"
+      "text": "2021 年 11 月 4 日，她加班到凌晨 02:10，门禁记录却写着 19:12 下班。是谁让改的？"
     },
     {
       "type": "say",
@@ -2552,12 +2605,12 @@
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "仲裁的事，需要我帮忙吗？"
+      "text": "存证的事，需要我帮忙吗？"
     },
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "你要是有空，帮我看看材料。别的，不用。"
+      "text": "你要是有空，帮我看看照片怎么归档。别的，不用。"
     },
     {
       "type": "say",
@@ -2729,6 +2782,82 @@
     {
       "type": "goto",
       "scene": "act_2_4_end"
+    }
+  ],
+  "day4_s6c": [
+    {
+      "type": "bg",
+      "id": "outsource",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【10:20】郑岑转着小本本晃进外包区，红衬衫在一排泡面桶中间格外扎眼。"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "小黎啊，测试机那批耗材，就按上次那家报吧。差不多就行。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（抬头）差多少？"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "什么差多少？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "上次那家比另外两家贵百分之三十一。您说差不多，是差三百一，还是差三千一？"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T40"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "郑岑笑了一下，笑容停在脸上。"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "小黎，你这个较真劲儿，用在工作上挺好。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "我就是用在工作上。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "（打圆场，笑着）郑总，黎哥是怕您回头被财务问。他这人，账比谁都清。"
+    },
+    {
+      "type": "say",
+      "speaker": "zhengcen",
+      "text": "（合上小本本）行，那就按便宜的报。小黎，你盯着。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "嗯。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "郑岑走了。邵晓阳看了黎默一眼，什么也没说，低头继续改他的页面。"
     }
   ]
 }

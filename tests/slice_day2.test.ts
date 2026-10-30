@@ -136,7 +136,7 @@ describe('day 2', () => {
 
   it('the three action scenes behave as written', () => {
     const s = createInitialState()
-    play(s, 'act_2_3')
+    play(s, 'act_2_3', [1])
     expect(s.affinity.shaoxy).toBe(60)
 
     const warm = createInitialState()

@@ -115,6 +115,7 @@ export function pathTo(tl: Timeline, id: number | null): number[] {
 
 export interface TimelineRow {
   id: number
+  parent?: number | null   // the node this one grew out of; the panel draws the branch tree from it
   label: string
   kind: NodeKind
   day: number
@@ -144,7 +145,7 @@ export function flatten(tl: Timeline): TimelineRow[] {
   while (stack.length > 0) {
     const { node, depth } = stack.pop()!
     rows.push({
-      id: node.id, label: node.label, kind: node.kind, day: node.day, hour: node.hour, depth,
+      id: node.id, parent: node.parent, label: node.label, kind: node.kind, day: node.day, hour: node.hour, depth,
       onPath: onPath.has(node.id), isHead: node.id === tl.head, forks: (kids.get(node.id) ?? []).length > 1,
     })
     push(node.id, depth)

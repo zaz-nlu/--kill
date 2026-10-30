@@ -55,11 +55,11 @@ describe('a deduction session', () => {
 
   it('every forced conclusion costs one point of persuasion in the finale', () => {
     const s = createInitialState()
-    expect(computePersuasion(s)).toBe(5)
+    expect(computePersuasion(s)).toBe(8)
     s.flags['deduce:night1:forced'] = true
-    expect(computePersuasion(s)).toBe(4)
+    expect(computePersuasion(s)).toBe(7)
     s.flags['deduce:night2:forced'] = true
-    expect(computePersuasion(s)).toBe(3)
+    expect(computePersuasion(s)).toBe(6)
   })
 
   it('the tempting wrong theory is never marked wrong: it ends the evening and sets its flag', () => {

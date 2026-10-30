@@ -3,7 +3,7 @@ import { createInitialState } from '../src/engine/state'
 import { addLog, toggleNote } from '../src/engine/log'
 import type { ExamDef, Line } from '../src/engine/types'
 import {
-  startExam, present, press, chooseOption, availableSteps, computePersuasion,
+  startExam, present, press, chooseOption, availableSteps, computePersuasion, computeGuard,
 } from '../src/engine/crossexam'
 
 const line = (text: string): Line => ({ speaker: 'limo', text })
@@ -157,15 +157,18 @@ describe('cross-examination', () => {
   })
 })
 
-describe('computePersuasion', () => {
-  it('is 5 by default, +1 for noticing a slip, +1 for a perfect challenge, capped at 7', () => {
+describe('computePersuasion and computeGuard', () => {
+  it('persuasion is 8 however well the investigation went; noticing a slip and a perfect challenge each cover one mistake instead', () => {
     const s = createInitialState()
-    expect(computePersuasion(s)).toBe(5)
+    expect(computePersuasion(s)).toBe(8)
+    expect(computeGuard(s)).toBe(0)
     const slip = addLog(s, { speaker: 'limo', text: 'x', tag: 'T26' })
     toggleNote(s, slip.id)
-    expect(computePersuasion(s)).toBe(6)
+    expect(computePersuasion(s)).toBe(8)
+    expect(computeGuard(s)).toBe(1)
     s.flags.challengeAllCorrect = true
-    expect(computePersuasion(s)).toBe(7)
+    expect(computePersuasion(s)).toBe(8)
+    expect(computeGuard(s)).toBe(2)
   })
 })
 

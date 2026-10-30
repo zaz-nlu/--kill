@@ -66,12 +66,18 @@ export interface GameState {
   examGaps?: number                    // finale steps passed over for want of evidence, over all acts (old saves: absent)
 }
 
+// What a step does to the line it is about once it lands: `revise` replaces the whole line with the witness's corrected
+// version, `append` adds a sentence after it. Both may carry weak points, written {{id:phrase}} (see markup.ts); a present
+// step's `target` names the weak point it breaks.
+export interface StepEffect { revise?: string; append?: string }
+
 export type Step =
-  | { kind: 'present'; id: string; accepts: string[]; after?: string[]; required?: boolean; reply: Line[]; bonus?: number;
-      replyFor?: Record<string, Line[]> }          // when the presented id has an entry here, use it instead of reply
-  | { kind: 'press'; id: string; after?: string[]; required?: boolean; reply: Line[] }
-  | { kind: 'argument'; id: string; after?: string[]; required?: boolean; prompt: string;
-      options: { text: string; correct: boolean; reply: Line[] }[] }
+  | ({ kind: 'present'; id: string; accepts: string[]; after?: string[]; required?: boolean; reply: Line[]; bonus?: number;
+      replyFor?: Record<string, Line[]>;          // when the presented id has an entry here, use it instead of reply
+      target?: string } & StepEffect)
+  | ({ kind: 'press'; id: string; after?: string[]; required?: boolean; reply: Line[] } & StepEffect)
+  | ({ kind: 'argument'; id: string; after?: string[]; required?: boolean; prompt: string;
+      options: { text: string; correct: boolean; reply: Line[] }[] } & StepEffect)
 
 export interface Statement {
   id: string
@@ -89,6 +95,10 @@ export interface ExamDef {
   wrongReplies?: Line[][]       // taken in turn: the witness and the detective can both lose patience
   prematureReplies?: Line[][]   // right item, wrong moment: answered, no penalty
   repeatReplies?: Line[][]      // the same item shown twice: answered, no penalty
+  missReplies?: Line[][]        // a useful item aimed at the wrong weak point of the line: answered, no penalty
+  elsewhereReplies?: Line[][]   // a useful item, but for another line of this act: answered, no penalty
+  pressReplies?: Line[][]       // pressing a line that has nothing more to give
+  clearedReplies?: Line[][]     // anything tried on a line that is already settled
   intro?: string
   onClear?: string
 }

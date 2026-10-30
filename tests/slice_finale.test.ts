@@ -54,9 +54,18 @@ describe('finale act 1 content', () => {
     expect(ex.persuasion).toBe(5)
   })
 
-  it('evidence that does not belong to statement 2 costs a point', () => {
+  it('evidence that belongs to another line of the act is answered, and costs nothing', () => {
     const ex = startExam(def, 5)
     const r = present(ex, 's2', 'E12', OWNED)
+    expect(r.outcome).toBe('elsewhere')
+    expect(r.persuasion).toBe(5)
+  })
+
+  it('evidence that belongs nowhere in the act costs a point', () => {
+    const used = new Set(def.statements.flatMap(s => s.steps.flatMap(st => (st.kind === 'present' ? st.accepts : []))))
+    const junk = data.evidence.map(e => e.id).find(id => !used.has(id))!
+    const ex = startExam(def, 5)
+    const r = present(ex, 's2', junk, [...OWNED, junk])
     expect(r.outcome).toBe('wrong')
     expect(r.persuasion).toBe(4)
   })
@@ -97,7 +106,7 @@ describe('finale act 1 content', () => {
   })
 
   it('persuasion for the finale starts from computePersuasion', () => {
-    expect(computePersuasion(createInitialState())).toBe(5)
+    expect(computePersuasion(createInitialState())).toBe(8)
   })
 
   it('the intro and the act-1 ending scenes play to the end', () => {

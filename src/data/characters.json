@@ -34,7 +34,8 @@
     "normal": "characters/shaoxy/normal.webp",
     "angry": "characters/shaoxy/angry.webp",
     "nervous": "characters/shaoxy/nervous.webp",
-    "guilty": "characters/shaoxy/guilty.webp"
+    "guilty": "characters/shaoxy/guilty.webp",
+    "teary": "characters/shaoxy/teary.webp"
   },
   "lucheng": {
     "normal": "characters/lucheng/normal.webp",

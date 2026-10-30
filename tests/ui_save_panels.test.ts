@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SavePanel from '../src/ui/SavePanel.vue'
 import TimelinePanel from '../src/ui/TimelinePanel.vue'
+import HelpPanel from '../src/ui/HelpPanel.vue'
 import type { TimelineRow } from '../src/engine/timeline'
 
 const meta = { day: 3, hour: 14, evidence: 9, testimony: 4, at: 1760000000000 }
@@ -47,9 +48,9 @@ describe('TimelinePanel', () => {
     { id: 4, label: '刚才：另一件事', kind: 'hub', day: 1, hour: 15, depth: 1, onPath: true, isHead: true, forks: false },
   ]
 
-  it('lists the nodes, indents the branch, and rewinds only after a second click on the node', async () => {
+  it('draws the nodes of the chapter, and rewinds only after a second click on the node', async () => {
     const w = mount(TimelinePanel, { props: { rows } })
-    expect(w.findAll('li')).toHaveLength(4)
+    expect(w.findAll('[data-testid^="node-"]')).toHaveLength(3)   // day 1 holds three of them; the start node is the prologue chapter
     expect(w.find('[data-testid="node-4"]').text()).toContain('当前')
     expect(w.find('[data-testid="go-2"]').exists()).toBe(false)
     await w.find('[data-testid="node-2"]').trigger('click')
@@ -61,6 +62,21 @@ describe('TimelinePanel', () => {
     const w = mount(TimelinePanel, { props: { rows } })
     await w.find('[data-testid="node-4"]').trigger('click')
     expect(w.find('[data-testid="go-4"]').exists()).toBe(false)
+  })
+})
+
+describe('HelpPanel', () => {
+  it('renders the title and a handful of tips', () => {
+    const w = mount(HelpPanel)
+    expect(w.find('[data-testid="help-panel"]').exists()).toBe(true)
+    expect(w.text()).toContain('操作说明')
+    expect(w.findAll('li').length).toBeGreaterThanOrEqual(4)
+  })
+
+  it('the close button emits close', async () => {
+    const w = mount(HelpPanel)
+    await w.find('[data-testid="help-close"]').trigger('click')
+    expect(w.emitted('close')).toHaveLength(1)
   })
 })
 

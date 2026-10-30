@@ -30,14 +30,33 @@
               "expr": "angry"
             }
           ],
-          "required": false
+          "required": false,
+          "append": "……我说的是线上会议。线上的会，难道不算在会上吗？"
         }
       ]
     },
     {
       "id": "s2",
-      "text": "灯一灭，我就手动开了灯。画面里灯是亮着的，这很正常。",
+      "text": "灯一灭，我就{{m1:手动开了灯}}。画面里灯是亮着的，这很正常。",
       "steps": [
+        {
+          "kind": "press",
+          "id": "s2-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "你确定，是“手动”开的灯？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "确定。你不信，去问那晚在场的人。",
+              "expr": "angry"
+            }
+          ],
+          "append": "……不信，去问那晚在场的人。",
+          "required": false
+        },
         {
           "kind": "present",
           "id": "s2-1",
@@ -64,7 +83,9 @@
               "text": "我手动开了灯！",
               "expr": "angry"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "行，我是没收到熄灯令。可灯一灭，我就手动开了灯，{{m2:系统漏记}}一次，这很正常。"
         },
         {
           "kind": "present",
@@ -85,7 +106,9 @@
           ],
           "after": [
             "s2-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "灯光日志有漏记。再说，我开的也许只是{{m3:台灯}}，系统本来就不管台灯。"
         },
         {
           "kind": "present",
@@ -113,7 +136,9 @@
           ],
           "after": [
             "s2-2"
-          ]
+          ],
+          "target": "m3",
+          "revise": "那是我 21:10 以后又关了灯，{{m4:靠屏幕的光}}继续开会。行了吧？"
         },
         {
           "kind": "present",
@@ -136,14 +161,33 @@
             "s2-3"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m4"
         }
       ]
     },
     {
       "id": "s3",
-      "text": "录像里的我，一直在动，打字，喝水。难道这也能造假？",
+      "text": "录像里的我，一直在动，打字，喝水。{{m1:难道这也能造假}}？",
       "steps": [
+        {
+          "kind": "press",
+          "id": "s3-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "那两段动作，为什么能一模一样？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "因为我的习惯，就是这样！",
+              "expr": "angry"
+            }
+          ],
+          "append": "——录像是唐经理亲自调的，你们别想赖。",
+          "required": false
+        },
         {
           "kind": "present",
           "id": "s3-1",
@@ -165,7 +209,9 @@
               "text": "云录像的编码问题，重复帧很常见。",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "云录像的编码问题而已，{{m2:重复帧}}很常见。录像里的人就是我。"
         },
         {
           "kind": "present",
@@ -205,7 +251,9 @@
                 "expr": "angry"
               }
             ]
-          }
+          },
+          "target": "m2",
+          "revise": "我的习惯动作，每次都一样。"
         },
         {
           "kind": "argument",
@@ -264,8 +312,26 @@
     },
     {
       "id": "s4",
-      "text": "我订会议室录视频，是为了工作。录完，我就删了。",
+      "text": "我订会议室录视频，是为了{{m1:工作}}。录完，我就删了。",
       "steps": [
+        {
+          "kind": "press",
+          "id": "s4-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "录的什么视频？谁要的？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "给我自己录的。",
+              "expr": "nervous"
+            }
+          ],
+          "append": "……录个视频而已，还要向谁汇报吗？",
+          "required": false
+        },
         {
           "kind": "present",
           "id": "s4-1",
@@ -284,7 +350,9 @@
               "text": "是我自己练习。没有工单，也不犯法。",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "是我自己{{m2:练习}}。没有工单，也不犯法。录完就删了。"
         },
         {
           "kind": "present",
@@ -309,14 +377,34 @@
           ],
           "after": [
             "s4-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "OBS，是我们录演示的日常工具。录完就删了，仅此而已。"
         }
       ]
     },
     {
       "id": "s5",
-      "text": "就算视频有问题，我在会上被点了三次名，21:12，21:18，21:25，每次都秒回。死的是 21:08 以后的宋砚，对吧？",
+      "text": "就算视频有问题，我在会上被点了三次名，21:12，21:18，21:25，每次都秒回。死的是{{m1:21:08 以后}}的宋砚，对吧？",
       "steps": [
+        {
+          "kind": "press",
+          "id": "s5-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "被点名的三次，你都是秒回？",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "秒回，怎么了？",
+              "expr": "nervous"
+            }
+          ],
+          "append": "……我 21:08 前后一直在会上，不信，去看会议记录。",
+          "required": false
+        },
         {
           "kind": "present",
           "id": "s5-1",
@@ -335,7 +423,9 @@
               "text": "……",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "草稿的保存时间，说明不了什么。她的手机，{{m2:21:08}} 还在发消息，不是吗？"
         },
         {
           "kind": "present",
@@ -361,7 +451,9 @@
           ],
           "after": [
             "s5-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "WiFi 漫游日志，本来就不准。差几分钟，是常事。"
         },
         {
           "kind": "argument",
@@ -409,7 +501,8 @@
           ],
           "after": [
             "s5-2"
-          ]
+          ],
+          "revise": "就算我 21:06 发现了什么，{{m3:21:06 的录像}}，不就是一段普通的会议录像吗？"
         },
         {
           "kind": "present",
@@ -437,11 +530,11 @@
             },
             {
               "speaker": "lyc",
-              "text": "给我发消息，把我引到现场，本来就在你的计划里。你只是没想到，21:06 你就必须发。"
+              "text": "给我发消息，把我引到现场，不在你的计划里。你偷数据，用不着我。是 21:06，你发现录像经不起看，才抓起手边现成的东西：我和她吵过架，线是我的。"
             },
             {
               "speaker": "lyc",
-              "text": "而且，你没有时间犹豫。你是那种在危机里，能立刻做决定的人，所以你只用了两分钟，就把整个计划改了。"
+              "text": "而且，你没有时间犹豫。你是那种在危机里，能立刻做决定的人，所以你只用了几分钟，就把一个偷数据的计划，改成了栽赃的局。"
             },
             {
               "speaker": "limo",
@@ -455,7 +548,8 @@
           ],
           "after": [
             "s5-3"
-          ]
+          ],
+          "target": "m3"
         }
       ]
     }
@@ -532,6 +626,70 @@
         "speaker": "limo",
         "text": "同一样东西你要拿几遍？",
         "expr": "angry"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这句话，没什么可追问的。",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间，问点实在的。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经被你拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可你打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你到底想说我哪一句有问题？说清楚。",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
       }
     ]
   ]

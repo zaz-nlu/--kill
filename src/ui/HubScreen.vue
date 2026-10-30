@@ -4,7 +4,8 @@ import type { ActionDef } from '../engine/calendar'
 import type { Item } from '../engine/types'
 import GiftPicker from './GiftPicker.vue'
 
-const props = defineProps<{ actions: ActionDef[]; canShop: boolean; inventory: Record<string, number>; items: Item[]; slotsLeft?: number; restLabel?: string }>()
+// `mealHour` is left undefined (not false) when absent, so the old callers keep reading the shop as the meal-hour signal.
+const props = withDefaults(defineProps<{ actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]; slotsLeft?: number; restLabel?: string; urge?: string[] }>(), { mealHour: undefined })
 const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] }>()
 
 const picking = ref<string | null>(null)              // action id whose gift picker is open
@@ -18,12 +19,12 @@ function pick(actionId: string, itemId: string) {
 // Why the list is empty, and what you can do about it. You must never be left with only "go home".
 const emptyHint = computed(() => {
   if (props.actions.length > 0) return ''
-  if (props.canShop) return '现在是饭点，没有要紧的事。可以下楼去超商买点东西，或者继续。'
+  if (props.mealHour ?? props.canShop) return '现在是饭点，没有要紧的事。可以下楼去超商买点东西，或者继续。'
   if ((props.slotsLeft ?? 1) > 0) return '这个时段没有能做的事。可以让这一个钟头过去，或者回家休息。'
   return '今天没有能做的事了，回家休息吧。'
 })
 // Moving on is offered at meal hours, and whenever the hour is empty but the day is not over.
-const canWait = computed(() => props.canShop || (props.actions.length === 0 && (props.slotsLeft ?? 1) > 0))
+const canWait = computed(() => (props.mealHour ?? props.canShop) || (props.actions.length === 0 && (props.slotsLeft ?? 1) > 0))
 
 function run(actionId: string) {
   const gift = chosenGift[actionId]
@@ -53,7 +54,7 @@ function run(actionId: string) {
               v-if="a.npc"
               type="button"
               class="gift"
-              :class="{ chosen: chosenGift[a.id] }"
+              :class="{ chosen: chosenGift[a.id], urge: urge?.includes(a.id) && !chosenGift[a.id] }"
               :data-testid="'gift-' + a.id"
               @click="picking = picking === a.id ? null : a.id"
             >送礼{{ chosenGift[a.id] ? '（已选）' : '' }}</button>
@@ -91,6 +92,8 @@ li { margin: 0 0 8px; }
 .cost { font-size: 12px; color: #bdb3a6; white-space: nowrap; }
 .gift { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 3px 14px; font-size: 12px; border-radius: 999px; }
 .gift.chosen { border-color: var(--accent); color: var(--accent); }
+.gift.urge { border-color: #ff5a4f; color: #fff; background: #c8352c; animation: urge 1.2s ease-in-out infinite; }
+@keyframes urge { 50% { box-shadow: 0 0 0 4px #ff5a4f55; } }
 .bar { display: flex; gap: 8px; align-items: center; flex: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--glass-line); }
 .grow { flex: 1; }
 .rest { border-color: rgba(232, 160, 112, 0.6); }

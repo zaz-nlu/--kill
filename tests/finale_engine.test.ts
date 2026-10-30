@@ -67,33 +67,53 @@ describe('store: acts follow each other', () => {
     expect(store.exam?.def.id).toBe('t2')
   })
 
-  it('what you lost in one act stays lost in the next', () => {
+  it('every act starts afresh: what one act cost is not carried into the next', () => {
     const store = rig()
     store.startExamById('t1')
     store.examPresent('E02')
     store.examPresent('E02')
-    expect(store.exam?.persuasion).toBe(3)
+    expect(store.exam?.persuasion).toBe(6)
     store.examPresent('E01')
     playOut(store)
     expect(store.exam?.def.id).toBe('t2')
-    expect(store.exam?.persuasion).toBe(3)
+    expect(store.exam?.persuasion).toBe(8)
   })
 
-  it('a loss in a scene counts too, and a gain in a scene is capped at 7', () => {
+  it('what a scene takes away counts, and a gain in a scene is capped at 9', () => {
     const s = createInitialState()
     applyEffect(s, { kind: 'persuasion', delta: -2 })
-    expect(computePersuasion(s)).toBe(3)
+    expect(computePersuasion(s)).toBe(6)
     const g = createInitialState()
-    g.flags.challengeAllCorrect = true
     applyEffect(g, { kind: 'persuasion', delta: 5 })
-    expect(computePersuasion(g)).toBe(7)
+    expect(computePersuasion(g)).toBe(9)
   })
 
-  it('running out of persuasion in any act is BAD END 2', () => {
+  it('running out of persuasion does not lose the finale: the act starts over, and says so', () => {
     const store = rig()
     store.startExamById('t1')
-    for (let i = 0; i < 5; i++) store.examPresent('E02')
-    expect(store.examFailed).toBe(true)
+    for (let i = 0; i < 8; i++) store.examPresent('E02')
+    expect(store.examFailed).toBe(false)
+    expect(store.gameOver).toBeNull()
+    expect(store.screen).toBe('exam')
+    expect(store.exam?.def.id).toBe('t1')
+    expect(store.exam?.persuasion).toBe(8)
+    expect(store.tip?.title).toBe('说服力耗尽')
+  })
+
+  it('too many holes in the evidence still lose it, however much persuasion is left', () => {
+    const store = rig()
+    store.state.examGaps = 2
+    store.state.evidence.splice(0)         // nothing in hand: the first step is passed over at once
+    store.startExamById('t1')
+    expect(store.gameOver).toBe('bad2')
+    expect(store.screen).toBe('end')
+  })
+
+  it('an act that is lost before it begins is BAD END 2, not an endless loop of retries', () => {
+    const store = rig()
+    applyEffect(store.state, { kind: 'persuasion', delta: -6 })   // only 2 to start with…
+    store.state.evidence.splice(0)                                // …and the evidence for the first step is missing: −2 at once
+    store.startExamById('t1')
     expect(store.gameOver).toBe('bad2')
     expect(store.screen).toBe('end')
   })
@@ -111,12 +131,12 @@ describe('store: acts follow each other', () => {
     const store = rig()
     applyEffect(store.state, { kind: 'persuasion', delta: -3 })
     store.newGame()
-    expect(computePersuasion(store.state)).toBe(5)
+    expect(computePersuasion(store.state)).toBe(8)
   })
 })
 
 describe('steps and statements: bonus and any-of', () => {
-  it('a step can win persuasion back, up to seven', () => {
+  it('a step can win persuasion back, up to nine', () => {
     const def = tiny('b', {
       statements: [{ id: 's1', text: 'x', steps: [{ kind: 'present', id: 'a', accepts: ['E01'], bonus: 1, reply: [] }, { kind: 'present', id: 'b', accepts: ['E02'], bonus: 3, reply: [] }] }],
     })
@@ -124,7 +144,7 @@ describe('steps and statements: bonus and any-of', () => {
     present(e, 's1', 'E01', ['E01', 'E02'])
     expect(e.persuasion).toBe(6)
     present(e, 's1', 'E02', ['E01', 'E02'])
-    expect(e.persuasion).toBe(7)
+    expect(e.persuasion).toBe(9)
   })
 
   it('a statement with anyOf is cleared when any one of those steps is done', () => {
@@ -253,7 +273,7 @@ describe('nobody is left stuck for want of evidence', () => {
     const store = useGameStore()
     store.data.exams.m = tiny('m')
     store.startExamById('m')
-    expect(store.exam?.persuasion).toBe(3)
+    expect(store.exam?.persuasion).toBe(6)
     expect(store.exam?.cleared).toBe(true)
     expect(store.notice).toContain('说服力')
   })

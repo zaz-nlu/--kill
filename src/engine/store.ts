@@ -3,7 +3,8 @@ import { computed, reactive, ref, shallowRef, triggerRef } from 'vue'
 import type { GameState, Line, NpcId, Speaker } from './types'
 import type { MoodId } from '../audio/moods'
 import { createInitialState } from './state'
-import { loadData } from './data'
+import { loadData, type RecordInfo } from './data'
+import { plainText } from './markup'
 import { SceneRunner, type SceneNode } from './script'
 import { logLines, presentableIds, quoteList, toggleNote, type NoteResult } from './log'
 import { advanceHour, availableActions, endDay, markActionDone, menuFor, slotsLeft as slotsLeftIn, type ActionDef } from './calendar'
@@ -13,7 +14,8 @@ import { affinityTier, TIER_LABEL, trustLabel } from './affinity'
 import { diffState, snapshot, type Change } from './changes'
 import { resolveEvidenceImage } from './evidenceArt'
 import { judgeFrames, type FrameOutcome } from './frames'
-import { canDeduce, MAX_MISSES, startDeduction, submitDeduction as judgeDeduction, type DeductionOutcome, type DeductionSession } from './deduction'
+import { canDeduce, leadLine, MAX_MISSES, pendingMerge, startDeduction, submitDeduction as judgeDeduction, type DeductionOutcome, type DeductionSession } from './deduction'
+import { aliasOf, foldedIds, ownedConclusions } from './conclusions'
 import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './gifts'
 import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
@@ -24,9 +26,11 @@ import {
   type NodeKind, type Timeline, type TreeNode, type Trigger,
 } from './timeline'
 import {
-  availableSteps, chooseOption, computePersuasion, GAP_LIMIT, present, press, skipUnreachable, startExam,
+  availableSteps, canPress, chooseOption, computeGuard, computePersuasion, EXAM_START, GAP_LIMIT, present, press,
+  isSettleable, skipUnreachable, startExam, statementView, wasPressed, weakPoints,
   isStatementCleared, type ExamResult, type ExamState,
 } from './crossexam'
+import { nudgeLine, shouldNudge } from './examHint'
 
 export type Screen = 'title' | 'scene' | 'hub' | 'shop' | 'investigate' | 'exam' | 'end'
 
@@ -43,7 +47,6 @@ export interface StageState {
 }
 
 const FIXED_NAMES: Record<string, string> = { lyc: '林一程', songyan: '宋砚', narration: '' }
-const SHOP_HOURS = [12, 18]
 const ALWAYS_LISTED = ['boss', 'mengyao', 'suwen', 'zhengcen', 'shaoxy', 'lucheng', 'limo', 'laohan']
 const UNLISTED = ['tang', 'laoliu'] // a voice on a screen and a man in an alley: not people you can win over
 const EXAM_WITNESS: Speaker = 'limo'
@@ -61,6 +64,20 @@ const NOTHING: ExamResult = {
   outcome: 'ignored', lines: [], persuasion: 0, statementCleared: false, examCleared: false, failed: false,
 }
 
+// What the cross-examination screen is told after every move, so it can answer each one with its own animation
+// (`n` changes every time, even when two answers look alike).
+export interface ExamEvent {
+  n: number
+  kind: 'present' | 'press' | 'choose'
+  outcome: ExamResult['outcome']
+  stepId?: string
+  target?: string
+  revised: boolean
+  guarded: boolean
+  lost: number              // persuasion lost by this move
+  lineCleared: boolean      // this move settled the line
+}
+
 export const useGameStore = defineStore('game', () => {
   const data = loadData()
   const state = reactive(createInitialState()) as GameState
@@ -68,6 +85,10 @@ export const useGameStore = defineStore('game', () => {
   const runner = shallowRef<SceneRunner | null>(null)
   const tick = ref(0) // bumped after every runner change so `currentNode` recomputes
   const notice = ref('')
+  const tip = ref<{ title: string; text: string } | null>(null) // a one-off explanation shown over the hub
+  function dismissTip(): void { tip.value = null }
+  // An explanation that waits for the hub: it should not talk over a scene that is still playing.
+  let pendingTip: { title: string; text: string } | null = null
   let onSceneEnd: (() => void) | null = null
 
   // ---- rewind tree: what started the scene being played, so that a choice in it can be replayed later ----
@@ -87,6 +108,10 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const gameOver = ref<string | null>(null)
+
+  // The demo cross-examination offered from the title screen: it plays with the debug kit and never touches a save.
+  const demoMode = ref(false)
+  const demoMessage = ref('')
 
   // For the sound track: which scene is playing, and the latest sound cue a scene asked for (`n` makes repeats distinct).
   const currentSceneId = ref<string | null>(null)
@@ -113,16 +138,25 @@ export const useGameStore = defineStore('game', () => {
   // ---- the nightly reasoning ----
   const session = ref<DeductionSession | null>(null)
   const deductionHint = ref('')
+  const deductionLead = ref('')
+  // The conclusion card a merge question just earned, shown until the player moves on.
+  const deductionResult = ref<{ name: string; desc: string; aha?: string } | null>(null)
 
   const deduction = computed(() => {
     void tick.value
     const s = session.value
     if (!s) return null
-    const items = [
+    const folded = foldedIds(state, data.conclusions)
+    const all = [
       ...state.evidence.map(id => ({ id, name: data.evidence.find(e => e.id === id)?.name ?? id, kind: 'evidence' as const })),
       ...state.testimony.map(id => ({ id, name: data.testimony.find(t => t.id === id)?.name ?? id, kind: 'testimony' as const })),
     ]
-    return { def: s.def, left: MAX_MISSES - s.misses, hint: deductionHint.value, items }
+    // Pieces already folded into a conclusion are still pickable, but sink below the ones that have not been used yet.
+    const items = [
+      ...all.filter(i => !folded.has(i.id)).map(i => ({ ...i, folded: false })),
+      ...all.filter(i => folded.has(i.id)).map(i => ({ ...i, folded: true })),
+    ]
+    return { def: s.def, left: MAX_MISSES - s.misses, hint: deductionHint.value, intro: s.def.intro ?? [], lead: deductionLead.value, items }
   })
 
   function submitDeduction(picked: string[]): DeductionOutcome {
@@ -131,12 +165,30 @@ export const useGameStore = defineStore('game', () => {
     const out = judgeDeduction(state, s, picked)
     if (out.kind === 'wrong') {
       deductionHint.value = out.hint
+      const distinct = [...new Set(picked)]
+      const overlap = distinct.filter(id => s.def.answer.includes(id)).length
+      deductionLead.value = leadLine(overlap, s.def.pick)
     } else if (out.kind !== 'incomplete') {
+      const merge = s.def.tier !== undefined
       session.value = null
       deductionHint.value = ''
-      advance()
+      deductionLead.value = ''
+      if (merge && (out.kind === 'solved' || out.kind === 'forced')) {
+        // a merge question stays on its node: the card is shown, and continuing finds the next question
+        const card = data.conclusions.find(c => c.via === s.def.id)
+        if (card) deductionResult.value = { name: card.name, desc: card.desc, aha: s.def.aha }
+        else advance()
+      } else {
+        advance()
+      }
     }
     return out
+  }
+
+  // Done looking at the card: find the next merge question tonight, or move past the node.
+  function continueDeduction(): void {
+    deductionResult.value = null
+    settle()
   }
 
   // ---- the frame-by-frame check ----
@@ -228,7 +280,7 @@ export const useGameStore = defineStore('game', () => {
   // cross-examination
   const exam = ref<ExamState | null>(null)
   const examIndex = ref(0)
-  let examStartPersuasion = 0
+  let examLastPersuasion = 0
   let pendingExam: string | null = null
   const examFailed = ref(false)
   // The player has the evidence window open (for the sound track: choosing evidence is the showdown, listening is not).
@@ -236,6 +288,23 @@ export const useGameStore = defineStore('game', () => {
   function setExamPresenting(on: boolean): void { examPresenting.value = on }
   const lastLines = ref<Line[]>([])
   const lastOutcome = ref<string | null>(null)
+  // The weak point the player has clicked and is about to choose evidence for.
+  const examTarget = ref<string | null>(null)
+  function setExamTarget(id: string | null): void { examTarget.value = id }
+  const examEvent = ref<ExamEvent | null>(null)
+  let examEventSeq = 0
+  // The screen plays an animation when a step lands. When it asks for that (`stageExam`), the end of the act waits for it
+  // to be over (`examContinue`); otherwise the act ends at once.
+  let stagedExam = false
+  const examHold = ref(false)
+  let heldFinish: (() => void) | null = null
+  function stageExam(on: boolean): void { stagedExam = on }
+  function examContinue(): void {
+    const go = heldFinish
+    heldFinish = null
+    examHold.value = false
+    if (go) go()
+  }
 
   const currentNode = computed<SceneNode | null>(() => {
     void tick.value
@@ -271,8 +340,13 @@ export const useGameStore = defineStore('game', () => {
   // Everything that could be done this hour, and the five of it the hub actually offers.
   const pool = computed(() => availableActions(state, data.actions))
   const actions = computed(() => menuFor(state, pool.value))
+  // Actions whose gift button should stand out: the person refused to talk until they were given something.
+  const urged = computed(() => actions.value.filter(a => state.flags['urge:' + a.id]).map(a => a.id))
   const slotsLeft = computed(() => slotsLeftIn(state))
-  const canShop = computed(() => SHOP_HOURS.includes(state.hour))
+  // The shop is downstairs, not a meal-time errand: from the hub it is always open (each hour still allows two items).
+  const canShop = computed(() => screen.value === 'hub')
+  // The lunch and dinner hours: the hub still treats them differently (a quiet pause, even with nothing to do).
+  const mealHour = computed(() => state.hour === 12 || state.hour === 18)
 
   // ---- stage: background + the two characters on screen ----
 
@@ -312,6 +386,7 @@ export const useGameStore = defineStore('game', () => {
       stage.tension = 0
       setBackground('office')
       recordHub()
+      if (pendingTip) { tip.value = pendingTip; pendingTip = null }
     })
   }
 
@@ -344,19 +419,37 @@ export const useGameStore = defineStore('game', () => {
     if (node && (node.type === 'deduce' || node.type === 'frames')) interactiveSeen = true
     if (node && node.type === 'choice') maybeRecordChoice(node)
     if (node && node.type === 'deduce') {
-      const def = data.deductions[node.id]
-      if (!def || !canDeduce(state, def)) {
-        // you never found the pieces: the evening passes without a conclusion, and without a penalty
-        runner.value!.advance()
-        settle()
-        return
-      }
-      if (!session.value || session.value.def.id !== def.id) {
-        session.value = startDeduction(def)
-        deductionHint.value = ''
+      if (node.id.startsWith('tier:')) {
+        // an evening of merge questions: each one solved brings the next, until none is left to ask
+        const tier = Number(node.id.slice('tier:'.length))
+        const def = pendingMerge(state, Object.values(data.deductions), tier)
+        if (!def) {
+          runner.value!.advance()
+          settle()
+          return
+        }
+        if (!session.value || session.value.def.id !== def.id) {
+          session.value = startDeduction(def)
+          deductionHint.value = ''
+          deductionLead.value = ''
+        }
+      } else {
+        const def = data.deductions[node.id]
+        if (!def || state.flags[`deduce:${def.id}:solved`] || !canDeduce(state, def)) {
+          // you never found the pieces (or already reasoned it out): the evening passes without a conclusion, and without a penalty
+          runner.value!.advance()
+          settle()
+          return
+        }
+        if (!session.value || session.value.def.id !== def.id) {
+          session.value = startDeduction(def)
+          deductionHint.value = ''
+          deductionLead.value = ''
+        }
       }
     } else {
       session.value = null
+      deductionResult.value = null
     }
     if (runner.value && node === null) {
       trigger = null
@@ -404,6 +497,8 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function newGame(): void {
+    demoMode.value = false
+    demoMessage.value = ''
     Object.assign(state, createInitialState())
     notice.value = ''
     exam.value = null
@@ -450,6 +545,15 @@ export const useGameStore = defineStore('game', () => {
     }
     if (!a.scene) return
     beginTrigger({ kind: 'action', id: a.id, gift: giftItemId })
+    // A gift is handed over before the talk, so that it can open the person up.
+    if (giftItemId && a.npc) gift(a.npc, giftItemId)
+    if (a.gate && a.npc && state.affinity[a.npc] < a.gate.affinity) {
+      if (!rescueAction(a, a.gate)) {
+        refuseAction(a, a.gate)
+        return
+      }
+    }
+    if (state.flags['urge:' + a.id]) state.flags['urge:' + a.id] = false
     screen.value = 'scene'
     playScene(a.scene, () => {
       lastDoneLabel = a.label
@@ -457,9 +561,79 @@ export const useGameStore = defineStore('game', () => {
       const when = state.hour
       if (a.away) recordLimoAway(state, when)
       advanceHour(state, a.costHours)
-      if (giftItemId && a.npc) gift(a.npc, giftItemId)
       if (!attackAfter(a, when)) toHub()
     })
+  }
+
+  // The person will not talk yet (affinity too low). No hour is spent and the action stays on offer; the gift button turns
+  // red and, the first time, a tip says why. The item named in `give` is put in the bag if there is none, so it is never a dead end.
+  function refuseAction(a: ActionDef, gate: NonNullable<ActionDef['gate']>): void {
+    screen.value = 'scene'
+    playScene(gate.scene, () => {
+      lastDoneLabel = a.label
+      let gave = ''
+      if (gate.give && a.npc && !(state.giftsGiven[a.npc] ?? []).includes(gate.give) && (state.inventory[gate.give] ?? 0) === 0) {
+        state.inventory[gate.give] = 1
+        gave = itemName(gate.give)
+      }
+      state.flags['urge:' + a.id] = true
+      if (gate.tip && !state.flags['tip:' + a.id]) {
+        state.flags['tip:' + a.id] = true
+        tip.value = { title: '小提示：送礼', text: gate.tip + (gave ? `\n\n（${gave} 已经放进你的背包。）` : '') }
+      }
+      toHub()
+    })
+  }
+
+  // Day 1's 1-2: short of affinity and empty-handed, a pancake happens to be in the bag and is handed over on the spot,
+  // so the visit still goes ahead. It happens once; and if the gift does not lift the affinity enough, it is undone whole
+  // (flag, gift, item) so the ordinary refusal — and its tutorial — still plays.
+  function rescueAction(a: ActionDef, gate: NonNullable<ActionDef['gate']>): boolean {
+    if (!gate.rescue || !gate.give || !a.npc) return false
+    const npc = a.npc
+    const item = gate.give
+    if (state.flags['rescued:' + a.id]) return false
+    // the same person cannot be given two gifts in a day, nor the same thing twice
+    if (state.giftedToday.includes(npc)) return false
+    if ((state.giftsGiven[npc] ?? []).includes(item)) return false
+    const had = state.inventory[item] ?? 0
+    const giftsBefore = [...(state.giftsGiven[npc] ?? [])]
+    const todayBefore = [...state.giftedToday]
+    const affinityBefore = state.affinity[npc]
+    const before = snapshot(state)
+    const feedBefore = [...feed.value]
+    state.flags['rescued:' + a.id] = true
+    if (had === 0) state.inventory[item] = 1
+    const r = gift(npc, item)
+    if (r.ok && state.affinity[npc] >= gate.affinity) {
+      notice.value = `背包里恰好有一个${itemName(item)}。`
+      // the player never saw the refusal, so this is where the gift mechanic gets explained (once)
+      if (gate.tip && !state.flags['tip:' + a.id]) {
+        state.flags['tip:' + a.id] = true
+        pendingTip = {
+          title: '小提示：送礼与好感',
+          text: `刚才那个${itemName(item)}，让${speakerName(npc as Speaker)}的好感涨了 15，他才肯开口。
+
+${gate.tip}
+
+想送礼，点行动旁边红色的“送礼”，从背包里选一样；超商随时都能去买。`,
+        }
+      }
+      return true
+    }
+    // not enough after all: leave everything exactly as it was
+    delete state.flags['rescued:' + a.id]
+    if (giftsBefore.length > 0) state.giftsGiven[npc] = giftsBefore
+    else delete state.giftsGiven[npc]
+    state.giftedToday = todayBefore
+    if (had === 0) delete state.inventory[item]
+    else state.inventory[item] = had
+    state.affinity[npc] = affinityBefore
+    state.trust = before.trust
+    feed.value.splice(0, feed.value.length, ...feedBefore)
+    lastSnap = before
+    notice.value = ''
+    return false
   }
 
   // After an action, the dark may bite back (spec 6.4). Returns true if an attack scene took over.
@@ -533,7 +707,6 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function goShop(): void {
-    if (!canShop.value) return
     openShop(state)
     screen.value = 'shop'
     setBackground('store')
@@ -570,6 +743,7 @@ export const useGameStore = defineStore('game', () => {
   // ---- save / load / debug jump ----
 
   function saveGame(slot: number = 1): boolean {
+    if (demoMode.value) return false // the demo never writes a save
     const tl = timelineRef.value
     const head = getNode(tl, tl.head)
     // a save taken at the hub is a bookmark on the tree, so that loading it keeps the branches
@@ -588,6 +762,8 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function loadGame(slot: SlotId = 1): void {
+    demoMode.value = false
+    demoMessage.value = ''
     const r = readSlot(slot)
     if (r.ok) {
       const mark = slotInfo(slot)?.timeline
@@ -630,6 +806,7 @@ export const useGameStore = defineStore('game', () => {
   // ---- the rewind tree ----
 
   function persistTimeline(): void {
+    if (demoMode.value) return // the demo leaves the saved run's rewind tree alone
     try {
       localStorage.setItem(TIMELINE_KEY, serializeTimeline(timelineRef.value))
     } catch { /* storage full or blocked: the tree lives on in memory */ }
@@ -657,9 +834,11 @@ export const useGameStore = defineStore('game', () => {
     const done = lastDoneLabel
     lastDoneLabel = ''
     recordNode('hub', done ? `刚才：${done}` : state.hour <= 9 ? '新的一天' : '行动菜单', state)
-    writeSlot('auto', state, { uid: timelineRef.value.uid, node: timelineRef.value.head! })
-    hasSave.value = true
-    slotsTick.value += 1
+    if (!demoMode.value) {
+      writeSlot('auto', state, { uid: timelineRef.value.uid, node: timelineRef.value.head! })
+      hasSave.value = true
+      slotsTick.value += 1
+    }
   }
 
   function maybeRecordChoice(node: Extract<SceneNode, { type: 'choice' }>): void {
@@ -676,6 +855,7 @@ export const useGameStore = defineStore('game', () => {
   // Everything that belongs to the moment being left behind.
   function resetRuntime(): void {
     gameOver.value = null
+    pendingTip = null
     resetFeed()
     exam.value = null
     examFailed.value = false
@@ -685,6 +865,7 @@ export const useGameStore = defineStore('game', () => {
     onSceneEnd = null
     roomId.value = null
     session.value = null
+    deductionResult.value = null
     trigger = null
     forced = null
     lastDoneLabel = ''
@@ -762,6 +943,27 @@ export const useGameStore = defineStore('game', () => {
     playScene('finale_intro', () => startExamById('finale_act1'))
   }
 
+  // The title screen's demo: the first act of the finale, played from the debug kit, then back to the title.
+  function startDemoExam(): void {
+    if (screen.value !== 'title') return
+    Object.assign(state, createInitialState())
+    state.day = 5
+    state.hour = 14
+    const kit = data.debugKit
+    for (const id of kit.evidence) applyEffect(state, { kind: 'evidence', id })
+    for (const id of kit.testimony) applyEffect(state, { kind: 'testimony', id })
+    logLines(state, kit.backlog)
+    gameOver.value = null
+    resetFeed()
+    exam.value = null
+    examFailed.value = false
+    notice.value = ''
+    demoMode.value = true
+    demoMessage.value = ''
+    screen.value = 'scene'
+    playScene('demo_exam_intro', () => startExamById('finale_act1'))
+  }
+
   // ---- cross-examination ----
 
   const examStatement = computed(() => exam.value?.def.statements[examIndex.value] ?? null)
@@ -779,14 +981,32 @@ export const useGameStore = defineStore('game', () => {
   const collected = computed(() => {
     const def = (list: { id: string; name: string; desc: string }[], id: string) =>
       list.find(d => d.id === id) ?? { id, name: id, desc: '' }
+    const component = (id: string) => {
+      if (state.evidence.includes(id)) return { id, name: def(data.evidence, id).name, kind: 'evidence' as const }
+      if (state.testimony.includes(id)) return { id, name: def(data.testimony, id).name, kind: 'testimony' as const }
+      return null
+    }
     return {
       evidence: state.evidence.map(id => def(data.evidence, id)),
       testimony: state.testimony.map(id => def(data.testimony, id)),
+      conclusions: ownedConclusions(state, data.conclusions).map(c => ({
+        id: c.id,
+        name: c.name,
+        desc: c.desc,
+        components: c.fold.flatMap(id => {
+          const part = component(id)
+          return part ? [part] : []
+        }),
+      })),
+      folded: [...foldedIds(state, data.conclusions)],
     }
   })
 
-  // Evidence and testimony the player actually holds. Quotes are listed separately and never named.
-  const recordIds = computed(() => [...new Set([...state.evidence, ...state.testimony])])
+  // Evidence, testimony and earned conclusion cards the player actually holds. Quotes are listed separately and never
+  // named.
+  const recordIds = computed(() => [...new Set([
+    ...state.evidence, ...state.testimony, ...ownedConclusions(state, data.conclusions).map(c => c.id),
+  ])])
 
   const recordNames = computed(() => {
     const out: Record<string, string> = {}
@@ -795,6 +1015,61 @@ export const useGameStore = defineStore('game', () => {
       out[id] = def ? def.name : id
     }
     return out
+  })
+
+  // The same, filed for the evidence window: type, who it concerns, where and when, and a picture if there is one.
+  const recordInfo = computed(() => {
+    const out: Record<string, RecordInfo> = {}
+    for (const id of recordIds.value) {
+      const card = data.conclusions.find(c => c.id === id)
+      if (card) {
+        out[id] = { id, name: card.name, desc: card.desc, type: '结论', who: [], image: null }
+        continue
+      }
+      const ev = data.evidence.find(e => e.id === id)
+      const def = ev ?? data.testimony.find(t => t.id === id)
+      const meta = data.recordMeta[id]
+      out[id] = {
+        id,
+        name: def?.name ?? id,
+        desc: def?.desc ?? '',
+        type: meta?.type ?? (ev ? '记录' : '证言'),
+        who: meta?.who ?? [],
+        where: meta?.where,
+        when: meta?.when,
+        image: ev ? resolveEvidenceImage(id) : null,
+      }
+    }
+    return out
+  })
+
+  // The line on screen: its text as it stands after every rewrite, which of its weak points are showing, and where the
+  // whole act stands (one entry per line).
+  const examView = computed(() => {
+    const e = exam.value
+    const st = examStatement.value
+    if (!e || !st) return null
+    const v = statementView(e, st.id)
+    return {
+      text: v.text,
+      history: v.history,
+      weak: weakPoints(e, st.id),
+      cleared: isStatementCleared(e, st.id) && isSettleable(e, st.id),
+      exhausted: availableSteps(e, st.id).length === 0,
+      canPress: canPress(e, st.id),
+      pressed: wasPressed(e, st.id),
+      dots: e.def.statements.map(s => ({
+        id: s.id,
+        cleared: isStatementCleared(e, s.id) && isSettleable(e, s.id),
+        pressed: wasPressed(e, s.id),
+        revised: statementView(e, s.id).history.length > 0,
+      })),
+      guard: e.guard,
+      gaps: e.priorGaps + e.gaps,
+      gapLimit: GAP_LIMIT,
+      max: Math.max(EXAM_START, e.persuasion),
+      title: e.def.title,
+    }
   })
 
   // What people said, ready to be shown to the witness. Narration and your own lines are not evidence of anything.
@@ -809,7 +1084,8 @@ export const useGameStore = defineStore('game', () => {
       .map(q => ({ ...q, who: speakerName(speakerOf.get(q.id) as Speaker) }))
   })
 
-  function startExamById(id: string): void {
+  // `retry`: the act is being started over after persuasion ran out; if it cannot even be begun, that is the end.
+  function startExamById(id: string, retry = false): void {
     const def = data.exams[id]
     if (!def) return
     const persuasion = computePersuasion(state)
@@ -819,17 +1095,37 @@ export const useGameStore = defineStore('game', () => {
       screen.value = 'end'
       return
     }
-    exam.value = startExam(def, persuasion, state.examGaps ?? 0)
+    exam.value = startExam(def, persuasion, state.examGaps ?? 0, computeGuard(state))
     examPresenting.value = false
-    examStartPersuasion = persuasion
+    examLastPersuasion = persuasion
     examIndex.value = 0
     examFailed.value = false
+    examTarget.value = null
+    examEvent.value = null
+    examHold.value = false
+    heldFinish = null
     lastLines.value = []
+    lastOutcome.value = null
     screen.value = 'exam'
     setBackground('meeting_a')
     resetExamStage()
     applySkips()
+    examLastPersuasion = exam.value.persuasion
+    if (exam.value.failed && retry) {
+      examFailed.value = true
+      gameOver.value = 'bad2'
+      screen.value = 'end'
+      return
+    }
     if (exam.value.failed || exam.value.cleared) afterExamStep({ ...NOTHING, failed: exam.value.failed, examCleared: exam.value.cleared })
+  }
+
+  // Persuasion ran out: the act is not lost, it is begun again (the gaps that cost it are counted once only).
+  function retryExam(): void {
+    const id = exam.value?.def.id
+    if (!id) return
+    tip.value = { title: '说服力耗尽', text: '……你的话被一句句驳了回来，局面彻底失控。\n\n定一定神，回到这一幕的开头，重新整理思路。' }
+    startExamById(id, true)
   }
 
   // Evidence you never found: those steps are let through at a cost (and the player is told).
@@ -843,7 +1139,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   // After a step: let missing evidence through, and report where the act stands now.
-  function settleExamStep(result: ExamResult): ExamResult {
+  function settleExamStep(result: ExamResult, wasCleared = false): ExamResult {
     const e = exam.value
     if (!e) return afterExamStep(result)
     applySkips()
@@ -854,7 +1150,7 @@ export const useGameStore = defineStore('game', () => {
       examCleared: e.cleared,
       failed: e.failed,
       statementCleared: st ? isStatementCleared(e, st.id) : result.statementCleared,
-    })
+    }, wasCleared)
   }
 
   // The witness stands alone on the right between replies.
@@ -868,62 +1164,133 @@ export const useGameStore = defineStore('game', () => {
     examIndex.value = Math.max(0, Math.min(n - 1, index))
     lastLines.value = []
     lastOutcome.value = null
+    examTarget.value = null
     resetExamStage()
   }
 
-  function afterExamStep(result: ExamResult): ExamResult {
+  function afterExamStep(result: ExamResult, wasCleared = false): ExamResult {
     if (screen.value !== 'exam') return result
     // Their annoyed comebacks to a wrong, early or repeated presentation are not testimony: keep them out of the log.
     if (result.outcome === 'correct' || result.stepId) logLines(state, result.lines)
     lastLines.value = result.lines
     lastOutcome.value = result.outcome
+    examTarget.value = null
+    examEvent.value = {
+      n: ++examEventSeq,
+      kind: examKind,
+      outcome: result.outcome,
+      stepId: result.stepId,
+      target: result.target,
+      revised: Boolean(result.revised),
+      guarded: Boolean(result.guarded),
+      lost: Math.max(0, examLastPersuasion - result.persuasion),
+      lineCleared: result.statementCleared && !wasCleared,
+    }
+    examLastPersuasion = result.persuasion
     for (const l of result.lines) {
       // the witness and you are on stage; anyone else (the detective) just speaks from the side
       if (l.speaker === 'lyc' || l.speaker === EXAM_WITNESS || l.speaker === 'narration') putOnStage(l.speaker, l.expr)
       else stage.side = null
     }
     if (result.failed) {
-      examFailed.value = true
-      gameOver.value = 'bad2'
-      screen.value = 'end'
-    } else if (result.examCleared) {
-      state.persuasionLoss = (state.persuasionLoss ?? 0) + (examStartPersuasion - (exam.value?.persuasion ?? examStartPersuasion))
-      state.examGaps = (state.examGaps ?? 0) + (exam.value?.gaps ?? 0)
-      const onClear = exam.value?.def.onClear
-      if (onClear) {
-        screen.value = 'scene'
-        playScene(onClear, () => {
-          screen.value = 'end'
-        })
-      } else {
+      // The demo never loses: running out of persuasion or holes only starts the act over.
+      if (demoMode.value) {
+        retryExam()
+        return result
+      }
+      // Persuasion running out only costs the act (it starts again); too many holes in the evidence loses the finale.
+      const holes = (exam.value?.priorGaps ?? 0) + (exam.value?.gaps ?? 0)
+      if (holes >= GAP_LIMIT) {
+        examFailed.value = true
+        gameOver.value = 'bad2'
         screen.value = 'end'
+      } else {
+        retryExam()
+      }
+    } else if (result.examCleared) {
+      const finish = (): void => {
+        if (demoMode.value) {
+          exam.value = null
+          examFailed.value = false
+          demoMode.value = false
+          demoMessage.value = '试玩结束。想看完整的故事，从“开始游戏”开始。'
+          screen.value = 'title'
+          return
+        }
+        state.examGaps = (state.examGaps ?? 0) + (exam.value?.gaps ?? 0)
+        const onClear = exam.value?.def.onClear
+        if (onClear) {
+          screen.value = 'scene'
+          playScene(onClear, () => {
+            screen.value = 'end'
+          })
+        } else {
+          screen.value = 'end'
+        }
+      }
+      // The blow that ends the act gets to land before the screen moves on.
+      if (stagedExam && result.stepId) {
+        heldFinish = finish
+        examHold.value = true
+      } else {
+        finish()
       }
     }
     return result
   }
 
-  function examPresent(itemId: string): ExamResult {
-    if (!exam.value || !examStatement.value) return NOTHING
+  // What the witness says when a line is rewritten is also on the record: it can be quoted back at them later.
+  function logRewrite(result: ExamResult): void {
+    const st = examStatement.value
+    const step = st?.steps.find(s => s.id === result.stepId)
+    if (!step) return
+    const text = [step.revise, step.append].filter((t): t is string => Boolean(t)).map(plainText).join('')
+    if (text) logLines(state, [{ speaker: EXAM_WITNESS, text }])
+  }
+
+  let examKind: ExamEvent['kind'] = 'present'
+
+  function runExam(kind: ExamEvent['kind'], fn: (e: ExamState, statementId: string) => ExamResult): ExamResult {
+    const e = exam.value
+    const st = examStatement.value
+    if (!e || !st || examHold.value) return NOTHING
+    const wasCleared = isStatementCleared(e, st.id)
+    examKind = kind
+    const result = fn(e, st.id)
+    if (result.revised) logRewrite(result)
+    return settleExamStep(result, wasCleared)
+  }
+
+  function examPresent(itemId: string, target?: string): ExamResult {
+    if (!exam.value || !examStatement.value || examHold.value) return NOTHING
     queuePopup('present', itemId)
-    return settleExamStep(present(exam.value, examStatement.value.id, itemId, presentableIds(state)))
+    const owned = [...presentableIds(state), ...ownedConclusions(state, data.conclusions).map(c => c.id)]
+    return runExam('present', (e, id) => {
+      const r = present(e, id, itemId, owned, target, aliasOf(state, data.conclusions, itemId))
+      const level = shouldNudge(r.stuck ?? 0)
+      if (level === 0) return r
+      const hint = nudgeLine(e, id, level, data.recordMeta, x =>
+        state.evidence.includes(x) ? 'evidence' : state.testimony.includes(x) ? 'testimony' : 'other')
+      return hint ? { ...r, lines: [...r.lines, hint] } : r
+    })
   }
 
   function examPress(): ExamResult {
-    if (!exam.value || !examStatement.value) return NOTHING
-    return settleExamStep(press(exam.value, examStatement.value.id))
+    return runExam('press', (e, id) => press(e, id))
   }
 
   function examChoose(stepId: string, optionIndex: number): ExamResult {
-    if (!exam.value || !examStatement.value) return NOTHING
-    return settleExamStep(chooseOption(exam.value, examStatement.value.id, stepId, optionIndex))
+    return runExam('choose', (e, id) => chooseOption(e, id, stepId, optionIndex))
   }
 
   return {
-    data, state, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, submitDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, actions, canShop,
+    data, state, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, deductionResult, submitDeduction, continueDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, tip, dismissTip, actions, urged, canShop, mealHour,
     playScene, newGame, restart, advance, note, speakerName, itemName,
     startAction, waitAnHour, room, hotspots, looksLeft, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
     loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, rewindTo, timelineRows, slotList, autoSlot, refreshSlots, canJumpToFinale, jumpToFinale,
     exam, examIndex, examFailed, examPresenting, setExamPresenting, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
+    recordInfo, examView, examTarget, setExamTarget, examEvent, examHold, stageExam, examContinue,
     startExamById, examGoto, examPresent, examPress, examChoose,
+    demoMode, demoMessage, startDemoExam,
   }
 })

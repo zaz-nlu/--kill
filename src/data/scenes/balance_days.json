@@ -115,6 +115,10 @@
       "type": "say",
       "speaker": "mengyao",
       "text": "谢谢你，程哥。"
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_20_s3"
     }
   ],
   "act_2_20_b": [
@@ -127,6 +131,10 @@
       "type": "say",
       "speaker": "narration",
       "text": "她低下头，没再说话。咖啡机的指示灯一闪一闪。"
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_20_s3"
     }
   ],
   "act_2_20_c": [
@@ -139,6 +147,10 @@
       "type": "say",
       "speaker": "mengyao",
       "text": "谢谢你，没有问我别的。"
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_20_s3"
     }
   ],
   "act_2_21": [
@@ -268,7 +280,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "2024 年那一排，你的手停住了。十二个月，十一个盒子。"
+      "text": "2021 年那一排，你的手停住了。十二个月，十一个盒子。"
     },
     {
       "type": "say",
@@ -288,13 +300,48 @@
     {
       "type": "say",
       "speaker": "mengyao",
-      "text": "程哥，你别问了。我只是个专员，什么都不知道。",
+      "text": "程哥，你别问了。我只是个专员，什么都不知道……周屿那年的，在宋经理柜子里，锁着。我只知道这个。",
       "expr": "nervous"
     },
     {
       "type": "say",
       "speaker": "narration",
       "text": "她站起来，把最后一个文件夹塞进柜子，转身去倒水，再也没有看你。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "门被敲了两下。邵晓阳抱着一摞签字单站在门口，看见满地的文件夹，愣了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "孟遥姐，外包这周的签字单。……我来搬吧，这几箱是要抬到柜子上面去的？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他放下单子，顺手帮着搬了两箱。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "这些要留几年？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "该留的，留十年。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "哦。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的目光在那排 2021 年的标签上停了一下，又移开了，拍了拍手上的灰走了。"
     },
     {
       "type": "effect",
@@ -513,12 +560,12 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "她出事那年，我刚入行。第一个接口，是她手把手教我写的。她说，接口不能偷懒，每个字段都要想清楚，后面是谁在用。"
+      "text": "我来看看。"
     },
     {
       "type": "say",
-      "speaker": "shaoxy",
-      "text": "出事那天我不在公司，第二天才听说，倒在了这里。"
+      "speaker": "narration",
+      "text": "（他没说这花是给谁的。你也没有问。）"
     },
     {
       "type": "say",
@@ -528,7 +575,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "公司说她是自己半夜回来加班的。我一个字都不信。"
+      "text": "这楼里的人，提起这儿都绕着走。"
     },
     {
       "type": "say",
@@ -543,7 +590,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "他拍了拍你的肩膀，下楼去了。你站在平台上，看着两枝花，一枯，一新。"
+      "text": "他拍了拍你的肩膀，下楼去了。你蹲下去看了看他放的花，花下面没有卡片。两枝花，一枯，一新。"
     },
     {
       "type": "branch",
@@ -821,6 +868,136 @@
       "type": "say",
       "speaker": "lyc",
       "text": "还差什么，今天上午，还来得及补。"
+    }
+  ],
+  "act_2_20_s3": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:20】桌上还放着她没动的一套煎饼，酱香飘过来，还热着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这煎饼哪家的？酱挺香。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "王叔给带的。他值完夜班，从楼下捎上来的，还热乎呢。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔？监控室那位？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "啊，就、就楼下看监控的王叔。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "门口传来脚步声。邵晓阳端着一杯豆浆进来。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥早，孟遥姐早。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "哎，晓阳。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "（把笔记本摊在桌上）程哥，昨天那个报错，我照着您说的改了一遍，还是红。我是不是把那个……那个啥，写反了？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（凑过去看）你介是括号套括号，套反了。你把里头那层先拎出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "哦——（低头改，改了两下，抬头）程哥，您再说一遍，我记一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "得嘞，你拿笔记。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥的手机在桌上震了起来，屏幕亮着，来电显示两个字：王叔。她看了一眼，手忙脚乱地去按。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "（接起来，嗓门有点高）喂——我这就下去拿！……不用不用，我自个儿下去……嗯，嗯，知道了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她挂掉电话，低头撕煎饼，随口说了一句："
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "这煎饼，我爸……王叔，王叔说今天多带了一套，让我拿上去给同事分。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T36"
+        },
+        {
+          "kind": "evidence",
+          "id": "E47"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔人厚道。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "（笑了一下，很快）嗯，他人好。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她把手机扣在桌上，屏幕朝下。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "（一直低头看屏幕，这时抬起头）程哥，改好了。您看这回对了吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "对了。你小子学得挺快。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥教得好。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你继续吃煎饼，没有追问。"
     }
   ]
 }

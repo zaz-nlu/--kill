@@ -88,7 +88,7 @@ describe('act 3 (script 10.3): nine o\'clock sharp', () => {
   })
   it('the recording: the frame-check findings first, then the platform evidence, then the argument', () => {
     const st = byText(id, '一直在动')
-    expect(st.steps.map(s => s.kind)).toEqual(['present', 'present', 'argument'])
+    expect(st.steps.map(s => s.kind)).toEqual(['press', 'present', 'present', 'argument'])   // the press is a free hint
     expect(present(st)[0].accepts).toContain('E19')
     expect(present(st)[1].accepts).toEqual(expect.arrayContaining(['T31', 'E39']))
   })
@@ -99,11 +99,11 @@ describe('act 3 (script 10.3): nine o\'clock sharp', () => {
   })
   it('"why 21:08": time evidence, then the three-way argument, then the 21:06:50 recording that settles it', () => {
     const st = byText(id, '三次名')
-    expect(st.steps.map(s => s.kind)).toEqual(['present', 'present', 'argument', 'present'])
+    expect(st.steps.map(s => s.kind)).toEqual(['press', 'present', 'present', 'argument', 'present'])
     expect(present(st)[2 - 1].accepts).toContain('E14')
-    const last = st.steps[3] as Extract<Step, { kind: 'present' }>
+    const last = st.steps[4] as Extract<Step, { kind: 'present' }>
     expect(last.accepts).toContain('E19')
-    expect(last.after).toContain(st.steps[2].id)
+    expect(last.after).toContain(st.steps[3].id)
   })
 })
 
@@ -136,11 +136,18 @@ describe('act 4 (script 10.4): the silent defendant', () => {
     expect(steps[1].accepts).toEqual(expect.arrayContaining(['T16', 'T25', 'T15']))
     expect(steps[2].bonus).toBe(1)
   })
-  it('premeditation: Friday, the cable, and the wiped line are separate cards, in that order', () => {
-    const st = byText(id, '预谋杀人')
+  it('the last excuse: he planned to steal (Friday, the cable, the wiped line); the two minutes are what he chose', () => {
+    const st = byText(id, '偷拷数据')
     const steps = present(st)
-    expect(steps.map(s => s.accepts[0])).toEqual(['T09', 'T07', 'T03', 'E01'])
+    expect(steps.map(s => s.accepts)).toEqual([['T09'], ['T07', 'T03'], ['E01'], ['E30']])
+    expect(steps[2].after).toEqual(expect.arrayContaining([steps[0].id, steps[1].id]))
     expect(steps[3].after).toEqual(expect.arrayContaining([steps[0].id, steps[1].id, steps[2].id]))
+  })
+  it('he is not made a cold planner: nothing in the exam or the confession says he meant to kill from Friday', () => {
+    const text = JSON.stringify([ex(id), data.scenes['finale_e23'], data.scenes['finale_act4_end']])
+    expect(text).not.toContain('预谋杀人')
+    expect(text).not.toContain('杀意')
+    expect(text).toContain('可以停')
   })
 })
 

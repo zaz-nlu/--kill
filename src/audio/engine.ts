@@ -8,7 +8,7 @@ import { Dread } from './dread'
 // The engine is inert where there is no AudioContext (tests, very old shells), so callers never need to check.
 
 export type SfxName =
-  | 'tick' | 'choose' | 'gain' | 'hurt' | 'lights_out' | 'phone' | 'stab' | 'ambush' | 'right' | 'wrong' | 'clear' | 'fail'
+  | 'tick' | 'choose' | 'gain' | 'hurt' | 'lights_out' | 'phone' | 'stab' | 'ambush' | 'right' | 'smash' | 'wrong' | 'clear' | 'fail'
 
 const mtof = (m: number): number => 440 * 2 ** ((m - 69) / 12)
 const rand = (a: number, b: number): number => a + Math.random() * (b - a)
@@ -771,6 +771,13 @@ export class AudioEngine {
       case 'right':
         this.bellNote(ctx, room, 81, 0.24, t)
         this.bellNote(ctx, room, 88, 0.22, t + 0.1)
+        break
+      case 'smash': // a weak point is broken: the blow, then glass. The track ducks for an instant and comes back.
+        this.tone(ctx, dry, 'sine', 120, t, 0.7, 0.002, 0.45, 34)
+        this.burst(ctx, dry, t, 0.22, 'lowpass', 900, 0.8, 0.5, false, 0.002)
+        this.burst(ctx, dry, t + 0.03, 0.55, 'highpass', 3500, 0.8, 0.28, false, 0.002)
+        for (let i = 0; i < 6; i++) this.tone(ctx, room, 'sine', mtof(100 + Math.floor(rand(0, 12))), t + 0.05 + i * 0.045, 0.05, 0.002, 0.25)
+        this.duck(0.2, 0.35)
         break
       case 'wrong':
         this.tone(ctx, dry, 'sawtooth', 196, t, 0.16, 0.01, 0.45, 130)

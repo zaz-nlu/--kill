@@ -593,6 +593,17 @@
           26.6
         ],
         "scene": "inspect_os_pantry"
+      },
+      {
+        "id": "os_chess",
+        "label": "窗边矮柜上的旧围棋",
+        "rect": [
+          25.0,
+          36.0,
+          12.5,
+          14.0
+        ],
+        "scene": "inspect_os_chess"
       }
     ],
     "budget": 4,

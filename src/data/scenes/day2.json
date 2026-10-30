@@ -23,13 +23,13 @@
     {
       "type": "say",
       "speaker": "limo",
-      "text": "封得真严。听说两年前这层出事，也封了好几天。",
+      "text": "封得真严。听说五年前这层出事，也封了好几天。",
       "tag": "G2"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "两年前？"
+      "text": "五年前？"
     },
     {
       "type": "say",
@@ -204,7 +204,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你坐到他旁边。代码不难，就是一个 z-index 的问题。你敲了几行，又改了两处样式。"
+      "text": "你坐到他旁边，讲了十分钟：就是一个 z-index 的问题。他“哦”了一声，三两下就改好了，快得不像刚听懂。"
     },
     {
       "type": "say",
@@ -224,7 +224,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "家里那位又在抓沙发。"
+      "text": "我家那只又在抓沙发。"
     },
     {
       "type": "say",
@@ -244,7 +244,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你凑过去看屏幕，他不动声色地切走了一个网页。标题里好像有“仲裁”两个字。"
+      "text": "你凑过去看屏幕，他不动声色地切走了一个网页。标题里好像有“加班”“工时”几个字。"
     },
     {
       "type": "say",
@@ -254,7 +254,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "装修款还差三万。（他苦笑了一下）刚结婚，哪哪都是钱。能不丢这份工作，就不丢。"
+      "text": "合同月底要重谈了。（他苦笑了一下）外包合同一终止，我就被退回鼎越。能不丢这份工作，就不丢。"
     },
     {
       "type": "say",
@@ -263,31 +263,28 @@
     },
     {
       "type": "say",
-      "speaker": "narration",
-      "text": "你们沉默了一会儿。键盘声里，外包区另一头传来黎默的声音，像是在跟谁争一个接口的字段名。"
-    },
-    {
-      "type": "say",
       "speaker": "shaoxy",
-      "text": "程哥，要是警察再找你，别怕。你不是那种人。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "谢了，晓阳。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "他点点头，重新把脸转向屏幕。你站起来的时候，听见他在身后很轻地叹了口气。"
+      "text": "（他把报错页面推开，露出后面的另一个窗口，随口）程哥，又刷到某通加班猝死的视频了。这么多年了，还在转。"
     },
     {
       "type": "effect",
       "effects": [
         {
-          "kind": "affinity",
-          "npc": "shaoxy",
-          "delta": 15
+          "kind": "testimony",
+          "id": "T35"
+        }
+      ]
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "“我看看。”",
+          "goto": "act_2_3_video"
+        },
+        {
+          "text": "“别刷了，伤神。”",
+          "goto": "act_2_3_tail"
         }
       ]
     }
@@ -1301,6 +1298,10 @@
       ]
     },
     {
+      "type": "deduce",
+      "id": "tier:2"
+    },
+    {
       "type": "say",
       "speaker": "narration",
       "text": "你终于合上眼睛。第二天，就这样结束了。"
@@ -1398,6 +1399,60 @@
     {
       "type": "branch",
       "when": {
+        "kind": "not",
+        "cond": {
+          "kind": "any",
+          "conds": [
+            {
+              "kind": "not",
+              "cond": {
+                "kind": "hasEvidence",
+                "id": "E09"
+              }
+            },
+            {
+              "kind": "hasTestimony",
+              "id": "T41"
+            }
+          ]
+        }
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "晓阳，先问个小事。熄灯令那封邮件，外包这边收到了吗？"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "没有。那封只发了正式员工，我这边就收到一个抄送。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "你没转给大家？"
+        },
+        {
+          "type": "say",
+          "speaker": "shaoxy",
+          "text": "不是发给咱们的，我就没往群里转。那天晚上灯一灭，他们几个还以为是跳闸了。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "testimony",
+              "id": "T41"
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
         "kind": "affinityAtLeast",
         "npc": "shaoxy",
         "value": 60
@@ -1416,7 +1471,7 @@
         {
           "type": "say",
           "speaker": "shaoxy",
-          "text": "那天晚上的站会，开得有点怪。有个人抢在最前面汇报，平时他都是最后一个。我当时还奇怪来着。"
+          "text": "那天晚上的站会是我主持的，开得有点怪。有个人抢在最前面汇报，平时他都是最后一个。我当时还奇怪来着。"
         },
         {
           "type": "effect",
@@ -1440,7 +1495,7 @@
         {
           "type": "say",
           "speaker": "shaoxy",
-          "text": "九点刚过，陆诚接了个电话，躲到茶水间去了。"
+          "text": "站会开到一半，九点刚过，陆诚接了个电话，躲到茶水间去了。"
         },
         {
           "type": "effect",
@@ -1476,7 +1531,7 @@
             {
               "type": "say",
               "speaker": "shaoxy",
-              "text": "没有。我组里的工单我最清楚，那天一个都没报。"
+              "text": "没有。外包的工单每天都过我这儿，那天一个都没报。"
             },
             {
               "type": "effect",
@@ -2731,7 +2786,7 @@
     {
       "type": "say",
       "speaker": "limo",
-      "text": "你知道吗，这栋楼，两年前也死过一个外包。就在东楼梯。",
+      "text": "你知道吗，这栋楼，五年前也死过一个外包。就在东楼梯。",
       "tag": "G4"
     },
     {
@@ -3433,6 +3488,247 @@
       "type": "say",
       "speaker": "narration",
       "text": "你站在门口吃了一个，另一个揣进兜里。大堂的灯很亮，亮得有点不真实。"
+    }
+  ],
+  "act_2_3_video": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你凑过去，点开他手机上的视频。标题是《某通加班猝死：24 岁女孩倒在楼梯间，公司说她“私自返回”》。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "发布者：津门打工人日记。播放 87.3 万，评论 1.4 万。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "评论区按热度排。第一条：“资本家：我们是一家人。员工：一家人不说两家话，所以你死了我也不说。”两万四千个赞。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "有人说：“某通当年那事儿我记着呢，最后赔了三万，打发要饭的呢。”有人说：“某通都破产了，还鞭尸呢？有这功夫不如看看现在这家。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你往下翻，停在一条只有两百来个赞的评论上。昵称“海河边的风”，9 月 2 日 22:41，没有头像，没有作品，注册才几天："
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“听说周发现了老板挖客户吃回扣的账，一大笔钱在个神秘账户里。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "下面只有一个回复：“楼上别瞎说，有证据吗。”之后再没人接。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（又是网友瞎猜。可这条……）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把这一页截了图。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E46"
+        }
+      ]
+    },
+    {
+      "type": "goto",
+      "scene": "act_2_3_tail"
+    }
+  ],
+  "act_2_3_tail": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你们沉默了一会儿。键盘声里，外包区另一头传来黎默的声音，像是在跟谁争一个接口的字段名。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，要是警察再找你，别怕。你不是那种人。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谢了，晓阳。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他点点头，重新把脸转向屏幕。你站起来的时候，听见他在身后很轻地叹了口气。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 15
+        }
+      ]
+    }
+  ],
+  "act_2_26": [
+    {
+      "type": "bg",
+      "id": "security"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "监控室很小，六块屏幕，一台老式风扇。老王蹲在门口，正在拆一个摄像头的外壳。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，还热着呢。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "搁桌上。你小子，一个月工资够买几套煎饼？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "够买。您先吃，凉了就皮了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王擦了擦手，接过一套。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "嗯。这套你也搁那儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这套是给您的，两套。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "我吃一套就够了。多要一份，给丫头留着。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "丫头？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "嗐，一个孩子。上班早，老不吃早饭。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把另一套用塑料袋系好，放进抽屉。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T37"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳跟在你后面进来，手里拿着手机。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "王叔，打扰您了。我想问个事儿——我们那个站会录像，云上的时间，跟楼里监控能对上吗？我老觉得差个一两秒。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "（把摄像头翻过来，拿螺丝刀点了点）实时画面有延迟，回放是另一条线。你要看时间，得看日志，不能看画面。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "那您帮我看看这个延迟。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他把手机递过去，屏幕上是一段站会回放，右下角有时间戳。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "（眯着眼看）你这个是云上的，跟楼里不是一套表。差个一两秒正常，差五分钟就不正常了。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "哦——那我就放心了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王把摄像头的线一根一根接回去，手指很稳，接完拍了拍外壳。然后他走到屏幕前，把 C2 的画面调出来，指了指走廊转角。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "这个角度，连只老鼠过去都拍得到。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "看了。警察也看了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王点点头，没再说话。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E48"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "临走，老王从抽屉里把那套煎饼拿出来，又放了回去，像是怕压坏了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "affinity",
+          "npc": "laowang",
+          "delta": 5
+        }
+      ]
     }
   ]
 }

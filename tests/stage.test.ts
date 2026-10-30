@@ -85,7 +85,7 @@ describe('store stage', () => {
   it('uses the expression written on the line', () => {
     const store = useGameStore()
     store.playScene('finale_act1_end')
-    advanceUntil(store, () => store.currentNode?.type === 'say' && store.currentNode.speaker === 'limo')
+    advanceUntil(store, () => store.currentNode?.type === 'say' && store.currentNode.speaker === 'limo' && store.currentNode.expr === 'guilty')
     expect(store.stage.right).toEqual({ id: 'limo', expr: 'guilty' })
   })
 

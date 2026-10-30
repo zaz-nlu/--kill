@@ -101,7 +101,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "照片里，宋砚倒在桌边，后脑有血。桌角有一块方形的无尘印，台灯没开。笔记本屏幕上是一封邮件草稿，标题是《关于 2024 年 11 月 21 日的情况说明》。她的手机不见了。"
+      "text": "照片里，宋砚倒在桌边，后脑有血。桌角有一块方形的无尘印，台灯没开。笔记本屏幕上是一封邮件草稿，标题是《关于 2021 年 11 月 4 日的情况说明》。她的手机不见了。"
     },
     {
       "type": "say",
@@ -374,6 +374,42 @@
       ]
     }
   ],
+  "act_1_2_refuse": [
+    {
+      "type": "bg",
+      "id": "police"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【B1 监控室】"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "监控室的门虚掩着，里面传出收音机里天津快板的声音。老王正对着一整面墙的屏幕，手里捏着半个馒头。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "哟，小程来了？宋经理这事，整栋楼都传遍了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，我想看看昨晚的记录，行不行？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "这个……（他把登记本往怀里拢了拢）我可没啥能给你的。警察都没拷，我哪敢随便往外递。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王的目光在你空着的手上停了一下，又回到了屏幕上。搪瓷缸旁边，放着吃了一半的煎饼果子。"
+    }
+  ],
   "act_1_2": [
     {
       "type": "bg",
@@ -420,9 +456,85 @@
       "text": "宋经理这事，整栋楼都传遍了。我值了这么多年夜班，头一回碰上。昨晚我就在这屋里坐着，电梯、大堂，一个个盯着，愣是没看出啥来。"
     },
     {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "王叔，我想看看昨晚的记录，行不行？"
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "rescued:1-2"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "王叔，我想看看昨晚的记录，行不行？"
+        },
+        {
+          "type": "say",
+          "speaker": "laowang",
+          "text": "这个……（他把登记本往怀里拢了拢）我可没啥能给你的。警察都没拷，我哪敢随便往外递。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你一时不知道该怎么往下说。肩上的背包蹭到了门框，里面窸窣响了一声。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "（……什么声音？）"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你伸手一摸，摸出一个已经有点凉的纸袋：加两个蛋的煎饼果子。是今早赶来的路上顺手买的，一口都没顾上吃。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "老王的目光落在纸袋上，又落到你脸上。他搪瓷缸旁边那半个煎饼果子，早就凉透了。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "王叔……这个，您要不嫌弃？"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "gaveGift",
+        "npc": "laowang",
+        "item": "jianbing"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你把煎饼果子放在他的搪瓷缸旁边。老王低头看了一眼，咧开嘴笑了。"
+        },
+        {
+          "type": "say",
+          "speaker": "laowang",
+          "text": "加两个蛋的？还是你小子懂我。"
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "rescued:1-2"
+      },
+      "then": [],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "王叔，我想看看昨晚的记录，行不行？"
+        }
+      ]
     },
     {
       "type": "say",
@@ -2014,6 +2126,10 @@
           "text": "你盯着天花板，想了很久，什么也没理出来。雨声一阵一阵地涌进来。"
         }
       ]
+    },
+    {
+      "type": "deduce",
+      "id": "tier:1"
     },
     {
       "type": "say",

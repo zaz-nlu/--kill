@@ -155,7 +155,8 @@ def main(root):
             errors.append(f"deduction {d['id']}: needs at least one hint")
     for sid, nodes in scenes.items():
         for node, _ in walk_nodes(nodes):
-            if node.get('type') == 'deduce' and node['id'] not in deductions:
+            # `tier:N` is the evening of merge questions: it names no single deduction, it asks every one due by night N
+            if node.get('type') == 'deduce' and not str(node['id']).startswith('tier:') and node['id'] not in deductions:
                 errors.append(f"scene {sid}: deduce node names unknown deduction '{node['id']}'")
 
     # the frame-by-frame checks: unique rows, at least one real flaw, and every frames node names one

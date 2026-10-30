@@ -48,9 +48,10 @@ describe('which music plays where', () => {
     expect(moodIdFor(ctx({ ...exam, againstLimo: false }))).toBe('exam')                    // anyone else on the stand: the showdown
   })
 
-  it('his theme also plays when his masks come off outside the exam; the boss being led away is the comeback', () => {
-    for (const id of ['finale_intro', 'finale_act1_end', 'finale_act2_end', 'finale_act3_end', 'finale_act4_end']) {
-      expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: id })), id).toBe('limo')
+  it('his theme plays as he takes the stand; each act won (the last blow landing) and the boss led away are the comeback', () => {
+    expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: 'finale_intro' }))).toBe('limo')
+    for (const id of ['finale_act1_end', 'finale_act2_end', 'finale_act3_end', 'finale_act4_end']) {
+      expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: id })), id).toBe('comeback')
     }
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: 'finale_boss_b_end' }))).toBe('comeback')
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: 'finale_e23' }))).toBe('resolve')

@@ -46,10 +46,10 @@ describe('everyone looks a little guilty at some point', () => {
     expect(text).toContain('风扇声')
   })
 
-  it('Shao Xiaoyang: scratches on his right hand and a tab about arbitration closed in a hurry', () => {
+  it('Shao Xiaoyang: scratches on his right hand and a tab about overtime hours closed in a hurry', () => {
     const text = play(createInitialState(), 'act_2_3')
     expect(text).toContain('右手背')
-    expect(text).toContain('仲裁')
+    expect(text).toContain('工时')
   })
 
   it('Lu Cheng: stepped out at nine for a "private" call', () => {
@@ -77,7 +77,7 @@ describe('everyone looks a little guilty at some point', () => {
   it('none of it is flagged as a clue: no suspicion line carries a tag', () => {
     const lines = ['act_1_3', 'act_1_4_a', 'act_1_4_door', 'act_1_8', 'act_1_9', 'act_2_3', 'act_2_9']
       .flatMap(id => data.scenes[id])
-      .filter(n => n.type === 'say' && /小本本|门禁|风扇|私事|右手背|仲裁|洗手间/.test(n.text))
+      .filter(n => n.type === 'say' && /小本本|门禁|风扇|私事|右手背|工时|洗手间/.test(n.text))
     expect(lines.length).toBeGreaterThanOrEqual(6)
     for (const n of lines) expect(n.type === 'say' && n.tag, JSON.stringify(n)).toBeUndefined()
   })

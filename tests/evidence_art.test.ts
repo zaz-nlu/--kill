@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { resolveEvidenceImage } from '../src/engine/evidenceArt'
-import CourtRecord from '../src/ui/CourtRecord.vue'
+import EvidencePicker from '../src/ui/EvidencePicker.vue'
 
 describe('evidence art', () => {
   it('has an image for every evidence id E01–E44 except E40', () => {
@@ -18,11 +18,14 @@ describe('evidence art', () => {
   })
 })
 
-describe('CourtRecord thumbnails', () => {
-  const names = { E01: '数据线 LYC-03', T06: '黎默的证词' }
+describe('evidence window thumbnails', () => {
+  const info = {
+    E01: { id: 'E01', name: '数据线 LYC-03', desc: '', type: '物证' as const, who: [], image: resolveEvidenceImage('E01') },
+    T06: { id: 'T06', name: '黎默的证词', desc: '', type: '证言' as const, who: [], image: null },
+  }
 
   it('shows a thumbnail for evidence but not for testimony', () => {
-    const w = mount(CourtRecord, { props: { ids: ['E01', 'T06'], names, quotes: [] } })
+    const w = mount(EvidencePicker, { props: { ids: ['E01', 'T06'], info, quotes: [] } })
     expect(w.find('[data-testid="record-E01"] img').exists()).toBe(true)
     expect(w.find('[data-testid="record-T06"] img').exists()).toBe(false)
     expect(w.find('[data-testid="record-E01"]').text()).toContain('数据线 LYC-03')

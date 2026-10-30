@@ -14,7 +14,7 @@
   },
   {
     "id": "1-2",
-    "label": "带煎饼果子去 B1 监控室找老王",
+    "label": "去 B1 监控室找老王",
     "location": "物业",
     "days": [
       1
@@ -24,7 +24,14 @@
     "scene": "act_1_2",
     "costHours": 1,
     "npc": "laowang",
-    "kind": "key"
+    "kind": "key",
+    "gate": {
+      "affinity": 60,
+      "scene": "act_1_2_refuse",
+      "give": "jianbing",
+      "tip": "好感度够高的人，才会说出平时得不到的线索。送他喜欢的东西，好感涨得最快（送对了 +15）。老王爱吃的，是加两个蛋的煎饼果子；超商随时都能去买。",
+      "rescue": true
+    }
   },
   {
     "id": "1-3",
@@ -1829,11 +1836,23 @@
     "risk": "high",
     "attack": "attack_office_night",
     "requires": {
-      "kind": "not",
-      "cond": {
-        "kind": "flag",
-        "key": "knows_card_story"
-      }
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "flag",
+            "key": "knows_card_story"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E17"
+          }
+        }
+      ]
     },
     "pinned": true,
     "until": "seen:ho_trash"
@@ -1900,6 +1919,27 @@
           "cond": {
             "kind": "hasEvidence",
             "id": "E41"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E05"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E06"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E48"
           }
         }
       ]
@@ -1998,11 +2038,23 @@
     "costHours": 1,
     "kind": "key",
     "requires": {
-      "kind": "not",
-      "cond": {
-        "kind": "hasEvidence",
-        "id": "E44"
-      }
+      "kind": "any",
+      "conds": [
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E44"
+          }
+        },
+        {
+          "kind": "not",
+          "cond": {
+            "kind": "hasEvidence",
+            "id": "E25"
+          }
+        }
+      ]
     }
   },
   {
@@ -2104,6 +2156,42 @@
     "costHours": 1,
     "kind": "affinity",
     "npc": "mengyao"
+  },
+  {
+    "id": "2-26",
+    "label": "去 B1 监控室，给老王再带两套煎饼",
+    "location": "物业",
+    "days": [
+      2
+    ],
+    "minHour": 14,
+    "maxHour": 15,
+    "scene": "act_2_26",
+    "costHours": 2,
+    "kind": "aux",
+    "npc": "laowang",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "done:1-2"
+            }
+          },
+          {
+            "kind": "not",
+            "cond": {
+              "kind": "flag",
+              "key": "done:2-24"
+            }
+          }
+        ]
+      }
+    }
   },
   {
     "id": "3-20",

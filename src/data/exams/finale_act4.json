@@ -13,7 +13,7 @@
   "statements": [
     {
       "id": "s1",
-      "text": "我承认视频是我放的，卡是我用的，我进了人事办公室。但我没进内间。",
+      "text": "我承认视频是我放的，卡是我用的，我进了人事办公室。但{{m1:我没进内间}}。",
       "steps": [
         {
           "kind": "present",
@@ -41,7 +41,9 @@
               "text": "……",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "……"
         }
       ]
     },
@@ -59,7 +61,8 @@
               "expr": "determined"
             }
           ],
-          "required": true
+          "required": true,
+          "append": "……对，{{m1:砸晕}}。头上有伤，不是吗？"
         },
         {
           "kind": "present",
@@ -82,7 +85,9 @@
           ],
           "after": [
             "s2-1"
-          ]
+          ],
+          "target": "m1",
+          "revise": "……是孟遥说的！TA 是第一个发现尸体的，{{m2:TA 看见的}}。"
         },
         {
           "kind": "present",
@@ -104,13 +109,15 @@
           ],
           "after": [
             "s2-2"
-          ]
+          ],
+          "target": "m2",
+          "revise": "……"
         }
       ]
     },
     {
       "id": "s3",
-      "text": "就算有指纹，奖杯我们外包年会时搬过。",
+      "text": "{{m1:就算有指纹}}，奖杯我们外包年会时搬过。",
       "steps": [
         {
           "kind": "present",
@@ -121,7 +128,7 @@
           "reply": [
             {
               "speaker": "lyc",
-              "text": "宋砚桌上，少了一样东西。在东楼梯 16 层的消防栓箱里，用会议室 B 的防尘袋包着，袋子外面，蹭着宋砚的血。就在两年前，周屿倒下的那个平台旁边。",
+              "text": "宋砚桌上，少了一样东西。在东楼梯 16 层的消防栓箱里，用会议室 B 的防尘袋包着，袋子外面，蹭着宋砚的血。就在五年前，周屿倒下的那个平台旁边。",
               "expr": "determined"
             },
             {
@@ -129,7 +136,9 @@
               "text": "上面有我的指纹，又怎么样？年会的时候，我们外包，帮忙搬过奖杯！",
               "expr": "angry"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "上面有我的指纹，又怎么样？{{m2:年会的时候，我们外包，帮忙搬过奖杯}}！"
         },
         {
           "kind": "present",
@@ -155,7 +164,9 @@
           ],
           "after": [
             "s3-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "那可能……是我先碰了奖杯，凶手后来才……"
         },
         {
           "kind": "argument",
@@ -203,7 +214,8 @@
           ],
           "after": [
             "s3-2"
-          ]
+          ],
+          "revise": "就算我碰的时候没戴手套，{{m3:那也不等于我杀了人}}。"
         },
         {
           "kind": "present",
@@ -226,13 +238,15 @@
           "after": [
             "s3-3"
           ],
-          "required": false
+          "required": false,
+          "target": "m3",
+          "revise": "……"
         }
       ]
     },
     {
       "id": "s4",
-      "text": "袭击林一程的人，也不是我。你们有证据吗？我和苏闻、孟遥一样，都有可能。",
+      "text": "袭击林一程的人，也不是我。你们有{{m1:证据}}吗？我和苏闻、孟遥一样，都有可能。",
       "steps": [
         {
           "kind": "present",
@@ -252,7 +266,9 @@
               "text": "那也只是没人证明，不是证明我在场。",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "那也只是{{m2:没人证明}}，不是证明我在场。"
         },
         {
           "kind": "present",
@@ -275,7 +291,9 @@
           ],
           "after": [
             "s4-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "我是左撇子，全公司都知道。可这{{m3:说明不了什么}}。"
         },
         {
           "kind": "present",
@@ -309,13 +327,15 @@
             "s4-2"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m3",
+          "revise": "……"
         }
       ]
     },
     {
       "id": "s5",
-      "text": "就算这些都对，我最多是偷拷数据。我没有预谋杀人。",
+      "text": "就算这些都对，我{{m1:最多是偷拷数据}}。线是{{m2:顺手收的}}，擦线、戴手套是{{m3:怕留指纹}}，{{m4:我没想杀她}}。",
       "steps": [
         {
           "kind": "present",
@@ -330,22 +350,29 @@
               "expr": "determined"
             },
             {
+              "speaker": "lyc",
+              "text": "从那一刻起，你就不是‘顺便去看看’了。你是冲着那份原件去的。"
+            },
+            {
               "speaker": "limo",
               "text": "……",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "append": "……我是听见了。所以我才去拿。拿回本来该有的东西，不叫杀人。"
         },
         {
           "kind": "present",
           "id": "s5-2",
           "accepts": [
-            "T07"
+            "T07",
+            "T03"
           ],
           "reply": [
             {
               "speaker": "lyc",
-              "text": "也是周五，演示完，是你说‘我帮你收’，把线收走的。线，就这样，到了你的口袋里。",
+              "text": "也是周五，演示完，是你说‘我帮你收’，把线收走的。你自己桌上的线都登记在台账里，只有这根没有。",
               "expr": "determined"
             },
             {
@@ -353,42 +380,77 @@
               "text": "……他抢着第一个汇报的那天，我就觉得不对。",
               "expr": "nervous"
             }
-          ]
+          ],
+          "replyFor": {
+            "T03": [
+              {
+                "speaker": "lyc",
+                "text": "我模糊记得，有人说过一句：‘我帮你收。’当时，忙着收电脑，没看是谁。现在，我想起来了。",
+                "expr": "determined"
+              },
+              {
+                "speaker": "limo",
+                "text": "……",
+                "expr": "nervous"
+              }
+            ]
+          },
+          "target": "m2",
+          "append": "线是我收的，顺手的事。"
         },
         {
           "kind": "present",
           "id": "s5-3",
-          "accepts": [
-            "T03"
-          ],
-          "reply": [
-            {
-              "speaker": "lyc",
-              "text": "我模糊记得，有人说过一句：‘我帮你收。’当时，忙着收电脑，没看是谁。现在，我想起来了。",
-              "expr": "determined"
-            },
-            {
-              "speaker": "limo",
-              "text": "……",
-              "expr": "nervous"
-            }
-          ]
-        },
-        {
-          "kind": "present",
-          "id": "s5-4",
           "accepts": [
             "E01"
           ],
           "reply": [
             {
               "speaker": "lyc",
-              "text": "周一，你给那根线，擦了酒精，又戴上了手套。",
+              "text": "周一，你给那根线擦了酒精，又戴上了手套。",
               "expr": "determined"
             },
             {
               "speaker": "lyc",
-              "text": "拷数据，用不着一根勒人的线。"
+              "text": "你要的不是拿走一份文件。你要的是，没有任何人认得出这是谁干的。"
+            },
+            {
+              "speaker": "limo",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s5-1",
+            "s5-2"
+          ],
+          "target": "m3",
+          "append": "……我是不想被认出来。"
+        },
+        {
+          "kind": "present",
+          "id": "s5-4",
+          "accepts": [
+            "E30"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "你进去的时候，没想杀她。我信。",
+              "expr": "sad"
+            },
+            {
+              "speaker": "lyc",
+              "text": "尸检说：钝器伤不致命，她是被砸晕的。可是勒痕有两道，第二道，是在她被砸晕之后，至少两分钟。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "lyc",
+              "text": "拷数据，用不着这两分钟。你准备了一切，就是为了不被认出来；她认出你了。她醒过来，会说出你的名字。所以你没有停。"
+            },
+            {
+              "speaker": "narration",
+              "text": "黎默的手，慢慢松开了棉片。"
             },
             {
               "speaker": "limo",
@@ -400,7 +462,9 @@
             "s5-1",
             "s5-2",
             "s5-3"
-          ]
+          ],
+          "target": "m4",
+          "revise": "……"
         }
       ]
     }
@@ -477,6 +541,70 @@
         "speaker": "limo",
         "text": "同一样东西你要拿几遍？",
         "expr": "angry"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这句话，没什么可追问的。",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间，问点实在的。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经被你拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可你打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你到底想说我哪一句有问题？说清楚。",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
       }
     ]
   ]

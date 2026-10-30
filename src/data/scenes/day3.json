@@ -172,7 +172,7 @@
     {
       "type": "say",
       "speaker": "limo",
-      "text": "对了。两年前的帖子，论坛上还在。你自己搜搜“贝塔 外包 猝死”。别说是我告诉你的。",
+      "text": "对了。五年前的帖子，论坛上还在。你自己搜搜“贝塔 外包 猝死”。别说是我告诉你的。",
       "tag": "G6"
     },
     {
@@ -493,22 +493,22 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你的目光死死地钉在第三张便签上：“11.21 周屿 — 改 19:12 下班（贺总口头，原件在卡里）”。"
+      "text": "你的目光死死地钉在第三张便签上：“11.04 周屿 — 改 19:12 下班（贺总口头，原件在卡里）”。"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "周屿？11.21？……还有，“原件在卡里”？"
+      "text": "周屿？11.04？……还有，“原件在卡里”？"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你想起邮件草稿的标题：《关于 2024 年 11 月 21 日的情况说明》。日期，对上了。"
+      "text": "你想起邮件草稿的标题：《关于 2021 年 11 月 4 日的情况说明》。日期，对上了。"
     },
     {
       "type": "say",
       "speaker": "laohan",
-      "text": "一个叫周屿的外包，两年前，死在东楼梯 16 层和 17 层之间的平台上。公司说她是私自返回，没人追究。"
+      "text": "一个叫周屿的外包，五年前，死在东楼梯 16 层和 17 层之间的平台上。公司说她是私自返回，没人追究。"
     },
     {
       "type": "say",
@@ -755,6 +755,10 @@
           ]
         }
       ]
+    },
+    {
+      "type": "deduce",
+      "id": "tier:3"
     },
     {
       "type": "say",
@@ -1776,9 +1780,18 @@
     {
       "type": "branch",
       "when": {
-        "kind": "affinityAtLeast",
-        "npc": "lucheng",
-        "value": 60
+        "kind": "any",
+        "conds": [
+          {
+            "kind": "affinityAtLeast",
+            "npc": "lucheng",
+            "value": 60
+          },
+          {
+            "kind": "hasEvidence",
+            "id": "E10"
+          }
+        ]
       },
       "then": [
         {
@@ -1957,12 +1970,12 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "“某科技公司外包程序员，凌晨猝死楼梯间，公司称其私自返回。”日期：2024 年 11 月。"
+      "text": "“某科技公司外包程序员，凌晨猝死楼梯间，公司称其私自返回。”日期：2021 年 11 月。"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "2024 年 11 月 21 日……和宋砚电脑上那封草稿的标题，是同一天。"
+      "text": "2021 年 11 月 4 日……和宋砚电脑上那封草稿的标题，是同一天。"
     },
     {
       "type": "say",
@@ -2014,7 +2027,7 @@
         {
           "type": "say",
           "speaker": "shaoxy",
-          "text": "周屿是带过我的人，我刚入行那会儿，什么都是她教的。就倒在 16 和 17 层之间那个平台。公司说她是私自回来的，我一个字都不信。"
+          "text": "周屿的事，我来之前听外包的老同事讲过。一个外包，凌晨倒在 16 和 17 层之间那个平台，公司说她是私自回来的。我没见过她，但这句话我一个字都不信。"
         },
         {
           "type": "effect",
@@ -2028,14 +2041,14 @@
         {
           "type": "say",
           "speaker": "shaoxy",
-          "text": "我在准备劳动仲裁。不是为我自己。我想，总得有人，把这件事重新翻出来。",
+          "text": "我每天熄灯后都在拍加班存证。外包合同一终止，我们就被退回鼎越，总得留点东西。",
           "expr": "nervous"
         },
         {
           "type": "choice",
           "options": [
             {
-              "text": "“我帮你整理仲裁材料。”",
+              "text": "“我帮你把存证照片按日期归档。”",
               "effects": [
                 {
                   "kind": "affinity",
@@ -2815,6 +2828,173 @@
       "type": "say",
       "speaker": "narration",
       "text": "他把头转回屏幕，耳朵尖有点红。"
+    }
+  ],
+  "day3_s6a": [
+    {
+      "type": "bg",
+      "id": "outsource",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【12:10】外包区的外卖袋堆在黎默桌角，四个人围着，谁也没动筷子。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（把手机屏幕转过来）四个人，三份黄焖鸡一份麻辣烫，配送费六块，满减减八块。一人二十四块七毛五。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "七毛五？黎哥，你抹了得了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "抹谁的？抹我的行，抹别人的不行。你少转七毛五，我记你一辈子。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "T39"
+        }
+      ]
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "行行行，二十四块七毛五。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "黎哥，配送费我出吧，就六块。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（眼皮都没抬）你钱多你捐了，别在这儿当好人。AA 就是 AA。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我转你二十五，甭找了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默把三毛五转了回来，备注“找零”。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "程哥，你前端写得烂，账不能也烂。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（乐了）得，我谢您了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黎默低头扒饭，顺手把林一程那份里的香菜一根一根挑出来，扔进自己碗里——林一程不吃香菜，全组只有他记得。"
+    }
+  ],
+  "day3_s6b": [
+    {
+      "type": "bg",
+      "id": "hr_outer",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:40】孟遥桌上摞着一摞报销单，黎默站在桌边，把自己的那张又捋了一遍。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "黎哥，您这报销单……也太整齐了吧。胶水都对齐了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "不整齐财务打回来，来回一趟三天。三天我能改八个接口。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "（翻）防静电手套，三家报价？您还真挨家问了？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "同一款，一家 18，一家 22，一家 26。26 那家给回扣，22 那家是二道贩子，18 那家要等五天。我等五天。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "就为省八块钱一套？"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "一套八块，一年两百套，一千六。一千六够给测试机换块硬盘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（探头）黎默，你这账算得比财务都细。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（把单子拍在桌上）财务算的是公司的钱。我算的是我们组的钱。不一样。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "（小声）……那我这单子是不是贴歪了。"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（看了一眼）歪了。撕了重贴。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他放下笔的时候，桌角那本记账本被带得翻开了一页。每个月十五号，同一个数目，备注只有一个字：“还”。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（还？……他欠着谁的钱？）"
+    },
+    {
+      "type": "say",
+      "speaker": "limo",
+      "text": "（啪地合上本子）看什么看。我自己的账。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你顺手把那张三家比价表拍了下来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E49"
+        }
+      ]
     }
   ]
 }

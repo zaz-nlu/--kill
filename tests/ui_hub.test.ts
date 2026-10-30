@@ -111,7 +111,7 @@ describe('store: day 2 flow', () => {
     expect(store.state.hour).toBe(12)
   })
 
-  it('the shop opens at 12:00 but not at 13:00', () => {
+  it('the shop opens from the hub at 12:00 and at any other hour too', () => {
     const store = useGameStore()
     toDay2Noon(store)
     store.goShop()
@@ -120,8 +120,9 @@ describe('store: day 2 flow', () => {
     store.waitAnHour()
     store.startAction('2-3')
     finishScene(store)
+    expect(store.state.hour).toBe(14)
     store.goShop()
-    expect(store.screen).toBe('hub')
+    expect(store.screen).toBe('shop')
   })
 
   it('buy and gift work end to end, and a gift attached to an action is given after the scene', () => {

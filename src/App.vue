@@ -19,17 +19,34 @@ import EvidencePopup from './ui/EvidencePopup.vue'
 import DeductionScreen from './ui/DeductionScreen.vue'
 import FrameCheckScreen from './ui/FrameCheckScreen.vue'
 import { dangerTier } from './engine/danger'
-import { FINALE_VISIBLE } from './engine/features'
+import { DEMO_VISIBLE, FINALE_VISIBLE } from './engine/features'
 import ExamScreen from './ui/ExamScreen.vue'
 import EndScreen from './ui/EndScreen.vue'
 import AudioToggle from './ui/AudioToggle.vue'
 import SavePanel from './ui/SavePanel.vue'
 import TimelinePanel from './ui/TimelinePanel.vue'
+import HelpPanel from './ui/HelpPanel.vue'
+import TipDialog from './ui/TipDialog.vue'
 import RotateHint from './ui/RotateHint.vue'
 import { useAudioDirector } from './audio/director'
 
 const store = useGameStore()
 useAudioDirector(store)
+// The cross-examination plays an animation for each blow, and the end of an act waits for it.
+store.stageExam(true)
+// The whole screen shakes when a blow lands ('hit': the witness is smashed; 'hurt': you are).
+const quake = ref<'hit' | 'hurt' | null>(null)
+let quakeTimer: ReturnType<typeof setTimeout> | null = null
+function shake(kind: 'hit' | 'hurt') {
+  if (quakeTimer) clearTimeout(quakeTimer)
+  quake.value = null
+  // restart the animation even when the last one has not finished
+  requestAnimationFrame(() => {
+    quake.value = kind
+    quakeTimer = setTimeout(() => { quake.value = null }, kind === 'hit' ? 700 : 450)
+  })
+}
+onBeforeUnmount(() => { if (quakeTimer) clearTimeout(quakeTimer) })
 const showLog = ref(false)
 // A phone held upright: the 16:9 pictures would be cropped. Say so once, and show the whole picture in the search rooms.
 const portrait = ref(false)
@@ -44,8 +61,8 @@ onMounted(() => {
 })
 onBeforeUnmount(() => portraitQuery?.removeEventListener?.('change', syncPortrait))
 // saving, loading and the rewind tree
-const panel = ref<'save' | 'load' | 'timeline' | null>(null)
-function openPanel(which: 'save' | 'load' | 'timeline') {
+const panel = ref<'save' | 'load' | 'timeline' | 'help' | null>(null)
+function openPanel(which: 'save' | 'load' | 'timeline' | 'help') {
   store.refreshSlots()
   panel.value = which
 }
@@ -106,6 +123,7 @@ function onNote(lineId: string) {
 
 <template>
   <Stage
+    :class="quake ? 'quake-' + quake : ''"
     :bg="store.screen === 'title' ? 'title' : store.stage.bg"
     :time="store.screen === 'title' ? 'night' : stageTime"
     :left="store.screen === 'title' ? null : store.stage.left"
@@ -119,9 +137,12 @@ function onNote(lineId: string) {
       v-if="store.screen === 'title'"
       :error="store.loadError"
       :dev-finale="FINALE_VISIBLE"
+      :demo="DEMO_VISIBLE"
+      :message="store.demoMessage"
       @start="store.newGame()"
       @continue="openPanel('load')"
       @debug-finale="store.jumpToFinale()"
+      @demo-exam="store.startDemoExam()"
     />
     <div v-else class="game">
       <HudBar :day="store.state.day" :hour="store.state.hour" :money="store.state.money" :danger="store.state.danger" :hp="store.state.hp" />
@@ -129,14 +150,18 @@ function onNote(lineId: string) {
       <div class="body">
         <template v-if="store.screen === 'scene'">
           <DeductionScreen
-            v-if="store.deduction"
-            :prompt="store.deduction.def.prompt"
-            :pick="store.deduction.def.pick"
-            :items="store.deduction.items"
-            :left="store.deduction.left"
-            :hint="store.deduction.hint"
+            v-if="store.deduction || store.deductionResult"
+            :prompt="store.deduction?.def.prompt ?? ''"
+            :pick="store.deduction?.def.pick ?? 0"
+            :items="store.deduction?.items ?? []"
+            :left="store.deduction?.left ?? 0"
+            :hint="store.deduction?.hint ?? ''"
+            :intro="store.deduction?.intro ?? []"
+            :lead="store.deduction?.lead ?? ''"
+            :result="store.deductionResult"
             line=""
             @submit="store.submitDeduction($event)"
+            @continue="store.continueDeduction()"
           />
           <FrameCheckScreen
             v-else-if="store.frameCheck"
@@ -164,9 +189,11 @@ function onNote(lineId: string) {
             v-if="store.screen === 'hub'"
             :actions="store.actions"
             :can-shop="store.canShop"
+            :meal-hour="store.mealHour"
             :inventory="store.state.inventory"
             :items="store.data.items"
             :slots-left="store.slotsLeft"
+            :urge="store.urged"
             :rest-label="store.state.day === 5 ? '直接等到下午两点' : undefined"
             @action="(id: string, gift?: string) => store.startAction(id, gift)"
             @shop="store.goShop()"
@@ -194,12 +221,21 @@ function onNote(lineId: string) {
             :names="store.recordNames"
             :quotes="store.quotes"
             :argument="store.argument"
+            :view="store.examView"
+            :info="store.recordInfo"
+            :folded="store.collected.folded"
+            :event="store.examEvent"
+            :hold="store.examHold"
+            :witness="store.speakerName('limo')"
             @prev="store.examGoto(store.examIndex - 1)"
             @next="store.examGoto(store.examIndex + 1)"
+            @goto="store.examGoto($event)"
             @press="store.examPress()"
-            @present="store.examPresent($event)"
+            @present="(id: string, target?: string) => store.examPresent(id, target)"
             @choose="store.examChoose($event.stepId, $event.optionIndex)"
             @record="store.setExamPresenting($event)"
+            @continue="store.examContinue()"
+            @impact="shake"
           />
           <EndScreen
             v-else-if="store.screen === 'end'"
@@ -214,7 +250,7 @@ function onNote(lineId: string) {
       </div>
       <BacklogPanel v-if="showLog" :lines="logLines" :names="names" @note="onNote" />
       <RelationsPanel v-if="showRelations" :rows="store.relations" />
-      <EvidencePanel v-if="showEvidence" :evidence="store.collected.evidence" :testimony="store.collected.testimony" @close="showEvidence = false" />
+      <EvidencePanel v-if="showEvidence" :evidence="store.collected.evidence" :testimony="store.collected.testimony" :conclusions="store.collected.conclusions" :folded="store.collected.folded" :info="store.recordInfo" @close="showEvidence = false" />
       <FeedToasts :items="store.feed" :names="stageNames" @dismiss="store.dismissFeed($event)" />
       <EvidencePopup v-if="store.popup" :item="store.popup" @close="store.dismissPopup()" />
       <div v-if="reaction" class="reaction">{{ reaction }}</div>
@@ -229,10 +265,13 @@ function onNote(lineId: string) {
       @close="panel = null"
     />
     <TimelinePanel v-if="panel === 'timeline'" :rows="store.timelineRows" @rewind="onRewind" @close="panel = null" />
+    <HelpPanel v-if="panel === 'help'" @close="panel = null" />
+    <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <div class="toolbar" data-testid="toolbar">
       <AudioToggle />
       <template v-if="store.screen !== 'title'">
         <button type="button" class="timeline-toggle" data-testid="timeline-toggle" @click="openPanel('timeline')">回溯</button>
+        <button type="button" class="help-toggle" data-testid="help-toggle" @click="openPanel('help')">说明</button>
         <button type="button" class="evidence-toggle" data-testid="evidence-toggle" @click="openEvidence()">证物<i v-if="hasNew" class="dot" data-testid="evidence-new" /></button>
         <button type="button" class="relations-toggle" data-testid="relations-toggle" @click="showRelations = !showRelations; showLog = false; showEvidence = false">关系</button>
         <button type="button" class="log-toggle" @click="showLog = !showLog; showRelations = false; showEvidence = false">日志</button>
@@ -268,6 +307,27 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #0c0c0f; fon
 .panel.tall { max-height: 80vh; }
 .done { text-align: center; color: #888; }
 .notice { text-align: center; color: #e8a070; }
+/* The whole picture shakes when a blow lands in the cross-examination. */
+.quake-hit { animation: quake-hit 0.65s linear; }
+.quake-hurt { animation: quake-hurt 0.42s linear; }
+@keyframes quake-hit {
+  0% { transform: translate(0, 0) scale(1.012); filter: brightness(1.6); }
+  8% { transform: translate(-16px, 9px); }
+  16% { transform: translate(15px, -10px); filter: none; }
+  28% { transform: translate(-11px, 7px); }
+  40% { transform: translate(9px, -6px); }
+  54% { transform: translate(-6px, 4px); }
+  70% { transform: translate(4px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes quake-hurt {
+  0% { transform: translate(0, 0); }
+  15% { transform: translate(-7px, 3px); }
+  35% { transform: translate(6px, -3px); }
+  60% { transform: translate(-3px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .quake-hit, .quake-hurt { animation: none; } }
 .toolbar { position: fixed; top: 6px; right: 12px; z-index: 25; display: flex; align-items: center; gap: 6px; max-width: calc(100vw - 24px); }
 .toolbar button { position: relative; padding: 5px 14px; white-space: nowrap; background: rgba(16, 18, 26, 0.5); backdrop-filter: blur(10px); }
 .evidence-toggle .dot { position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; background: #e5484d; border-radius: 50%; box-shadow: 0 0 8px #e5484d; }

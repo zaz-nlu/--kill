@@ -107,10 +107,11 @@ export function useAudioDirector(store: Store, port: AudioPort = audio): void {
     const p = store.exam?.persuasion ?? null
     if (!lines.length || p === null) return
     const lost = lastPersuasion !== null && p < lastPersuasion
-    port.sfx(lost ? 'wrong' : 'right')
+    // breaking a weak point is a blow, not a chime
+    port.sfx(lost ? 'wrong' : store.examEvent?.kind === 'present' && store.lastOutcome === 'correct' ? 'smash' : 'right')
     // a right answer when one more mistake would end it: the tide turns. A wrong one afterwards loses it again.
     if (lost) rally.value = false
-    else if (store.lastOutcome === 'correct' && examIntensity(p) >= 0.7) rally.value = true
+    else if (store.lastOutcome === 'correct' && examIntensity(p) >= 0.6) rally.value = true
     lastPersuasion = p
   })
 

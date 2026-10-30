@@ -62,13 +62,14 @@
                 }
               ]
             }
-          ]
+          ],
+          "revise": "……也许吧。可你，拿不出一件能证明是我的东西。"
         }
       ]
     },
     {
       "id": "s2",
-      "text": "我从没拿过那张临时卡。孟遥做了卡又删了记录，最该被怀疑的，是孟遥。",
+      "text": "我从没拿过那张临时卡。孟遥做了卡又删了记录，{{m1:最该被怀疑的，是孟遥}}。",
       "steps": [
         {
           "kind": "present",
@@ -87,7 +88,9 @@
               "text": "……我没有。我什么都说了，我什么都说了……",
               "expr": "panic"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "她为了自保，什么都能说！删记录的是她，{{m2:她才是想掩盖的人}}！"
         },
         {
           "kind": "present",
@@ -109,7 +112,9 @@
           ],
           "after": [
             "s2-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "她可以把卡交给别人，自己先走。那个“别人”，{{m3:反正不是我}}。"
         },
         {
           "kind": "present",
@@ -125,7 +130,7 @@
             },
             {
               "speaker": "lyc",
-              "text": "早在孟遥开口之前，你就想好了今晚的每一步。孟遥不是主谋，她只是你选中的人。"
+              "text": "早在孟遥开口之前，你就决定了今晚要去拿。孟遥不是主谋，她只是你选中的人。"
             },
             {
               "speaker": "mengyao",
@@ -140,13 +145,15 @@
           ],
           "after": [
             "s2-2"
-          ]
+          ],
+          "target": "m3",
+          "revise": "……"
         }
       ]
     },
     {
       "id": "s3",
-      "text": "就算那张卡真被人用过，凭什么说是我？一张卡，一间会议室，谁都能订。",
+      "text": "就算那张卡真被人用过，{{m1:凭什么说是我}}？一张卡，一间会议室，谁都能订。",
       "steps": [
         {
           "kind": "present",
@@ -165,7 +172,9 @@
               "text": "……空着，才说明不是我。",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "领用人一栏空着，才说明不是我。{{m2:会议室，谁都能订}}。"
         },
         {
           "kind": "present",
@@ -186,7 +195,9 @@
           ],
           "after": [
             "s3-1"
-          ]
+          ],
+          "target": "m2",
+          "revise": "订会议室，是我的{{m3:工作}}。"
         },
         {
           "kind": "present",
@@ -206,7 +217,7 @@
             },
             {
               "speaker": "shaoxy",
-              "text": "……巧合？我组里那天，一个 bug 都没报。",
+              "text": "……巧合？外包那天的工单都过我手，一个 bug 都没报。",
               "expr": "angry"
             },
             {
@@ -217,13 +228,15 @@
           ],
           "after": [
             "s3-2"
-          ]
+          ],
+          "target": "m3",
+          "revise": "……巧合。"
         }
       ]
     },
     {
       "id": "s4",
-      "text": "整晚戴防静电手套的，是机房里的苏闻。指甲里的纤维，指向的是机房。",
+      "text": "整晚戴防静电手套的，是机房里的苏闻。{{m1:指甲里的纤维，指向的是机房}}。",
       "steps": [
         {
           "kind": "present",
@@ -242,7 +255,9 @@
               "text": "我、我就说，那晚的事，我没动过手……",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "……戴那种手套的，{{m2:只有机房里的苏闻}}。"
         },
         {
           "kind": "present",
@@ -264,13 +279,15 @@
           "after": [
             "s4-1"
           ],
-          "required": false
+          "required": false,
+          "target": "m2",
+          "revise": "……"
         }
       ]
     },
     {
       "id": "s5",
-      "text": "我一个外包，连宋砚办公室的门，都进不去。",
+      "text": "我一个外包，{{m1:连宋砚办公室的门，都进不去}}。",
       "steps": [
         {
           "kind": "present",
@@ -295,7 +312,9 @@
               "text": "……",
               "expr": "nervous"
             }
-          ]
+          ],
+          "target": "m1",
+          "revise": "……"
         }
       ]
     },
@@ -318,13 +337,14 @@
               "expr": "angry"
             }
           ],
-          "required": false
+          "required": false,
+          "append": "……随你。"
         }
       ]
     },
     {
       "id": "s7",
-      "text": "你被人栽赃，我也一样。我们是同一种人。这三天，我哪一句话，不是在帮你？",
+      "text": "你被人栽赃，我也一样。我们是同一种人。这三天，我{{m1:哪一句话，不是在帮你}}？",
       "steps": [
         {
           "kind": "present",
@@ -343,7 +363,7 @@
           "reply": [
             {
               "speaker": "lyc",
-              "text": "第二天，你说，两年前出事的时候，也是这样封了好几天。",
+              "text": "第二天，你说，五年前出事的时候，也是这样封了好几天。",
               "expr": "determined"
             },
             {
@@ -352,7 +372,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "revise": "那是闲聊。我每一句，都是为你好，{{m2:你别多想}}。"
         },
         {
           "kind": "present",
@@ -382,7 +404,9 @@
           "after": [
             "g1"
           ],
-          "required": false
+          "required": false,
+          "target": "m2",
+          "revise": "我是想让你{{m3:查清真相}}。"
         },
         {
           "kind": "present",
@@ -423,14 +447,34 @@
             "g2"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m3",
+          "revise": "……我只是想让你，查清真相。"
         }
       ]
     },
     {
       "id": "s8",
-      "text": "我也是被人盯上的人。你们凭什么觉得，我知道得比别人多？",
+      "text": "我也是被人盯上的人。你们凭什么觉得，我{{m1:知道得比别人多}}？",
       "steps": [
+        {
+          "kind": "press",
+          "id": "s8-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "这几天，你说过的话，我都记着。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……你想说什么？",
+              "expr": "nervous"
+            }
+          ],
+          "append": "……你这几天，到底想从我嘴里听到什么？",
+          "required": false
+        },
         {
           "kind": "present",
           "id": "s8-1a",
@@ -449,7 +493,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "append": "{{m1b:孟遥告诉我的}}……或者，新闻上看的。"
         },
         {
           "kind": "present",
@@ -478,7 +524,8 @@
             "s8-1a"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m1b"
         },
         {
           "kind": "present",
@@ -498,7 +545,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "append": "人事经理，总有{{m2b:没发的东西}}。"
         },
         {
           "kind": "present",
@@ -522,7 +571,8 @@
             "s8-2a"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m2b"
         },
         {
           "kind": "present",
@@ -542,7 +592,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "append": "我猜，是{{m3b:被警察收走了}}。"
         },
         {
           "kind": "present",
@@ -566,7 +618,8 @@
             "s8-3a"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m3b"
         },
         {
           "kind": "present",
@@ -586,7 +639,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "append": "门禁的事，{{m4b:大家都在传}}。"
         },
         {
           "kind": "present",
@@ -614,7 +669,8 @@
             "s8-4a"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m4b"
         },
         {
           "kind": "present",
@@ -634,7 +690,9 @@
               "expr": "nervous"
             }
           ],
-          "required": false
+          "required": false,
+          "target": "m1",
+          "append": "你手上缠着纱布。{{m5b:我猜的}}。"
         },
         {
           "kind": "present",
@@ -659,7 +717,8 @@
             "s8-5a"
           ],
           "required": false,
-          "bonus": 1
+          "bonus": 1,
+          "target": "m5b"
         }
       ],
       "anyOf": [
@@ -743,6 +802,70 @@
         "speaker": "limo",
         "text": "同一样东西你要拿几遍？",
         "expr": "angry"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "limo",
+        "text": "这句话，没什么可追问的。",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间，问点实在的。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经被你拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可你打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "你到底想说我哪一句有问题？说清楚。",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "limo",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
       }
     ]
   ]

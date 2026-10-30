@@ -32,7 +32,7 @@ describe('mood lookup', () => {
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'stairwell', sceneId: 'attack_stairs_good' }))).toBe('aftermath')
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'stairwell', sceneId: 'attack_parking_bad' }))).toBe('aftermath')
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'office', sceneId: 'bad_end_1' }))).toBe('bad_end')
-    expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: 'finale_act1_end' }))).toBe('limo')
+    expect(moodIdFor(ctx({ screen: 'scene', bg: 'meeting_a', sceneId: 'finale_act1_end' }))).toBe('comeback')
     expect(moodIdFor(ctx({ screen: 'scene', bg: 'office', sceneId: 'day2_desk' }))).toBe('office')
   })
 })
@@ -67,8 +67,8 @@ describe('resolved mood', () => {
 
   it('maps persuasion to a 0..1 pressure: nothing at the top, everything at zero', () => {
     expect(examIntensity(null)).toBe(0)
-    expect(examIntensity(7)).toBe(0)
-    expect(examIntensity(5)).toBeCloseTo(2 / 7)
+    expect(examIntensity(8)).toBe(0)
+    expect(examIntensity(7)).toBeCloseTo(1 / 8)
     expect(examIntensity(1)).toBeGreaterThan(examIntensity(3))
     expect(examIntensity(0)).toBe(1)
     expect(examIntensity(-2)).toBe(1)
@@ -154,7 +154,7 @@ describe('audio director', () => {
     const moodsBefore = port.moods.length
     store.exam!.persuasion = 1
     await nextTick()
-    expect(port.intensities.at(-1)).toBeCloseTo(6 / 7)
+    expect(port.intensities.at(-1)).toBeCloseTo(7 / 8)
     expect(port.moods.length).toBe(moodsBefore)   // not restarted
   })
 

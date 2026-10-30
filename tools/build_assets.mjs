@@ -19,7 +19,8 @@ const CHARACTERS = {
   hc: { id: 'boss', dir: 'hc', files: { 假笑画饼: 'normal', 刻薄冷笑: 'sneer', 暴怒: 'angry', 心虚: 'guilty' } },
   sw: { id: 'suwen', dir: 'sw/成熟版', suffix: '-成熟版', files: { 正常微笑: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
   zc: { id: 'zhengcen', dir: 'zc', files: { '正常-笑脸合本': 'normal', '紧张-记录': 'nervous', '生气-撕本': 'angry', '害怕心虚-遮脸': 'guilty' } },
-  sxy: { id: 'shaoxy', dir: 'sxy', files: { 正常: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
+  // the artist's transparent cut-outs: the file names carry a "_透明" tag (and "_v2" on two of them)
+  sxy: { id: 'shaoxy', dir: 'sxy', files: { '正常_透明': 'normal', '生气_透明': 'angry', '紧张_透明_v2': 'nervous', '心虚_透明': 'guilty', '红眼强笑_透明_v2': 'teary' } },
   lc: { id: 'lucheng', dir: 'lc', files: { 正常: 'normal', 生气: 'angry', 紧张: 'nervous', 心虚: 'guilty' } },
   my: { id: 'mengyao', dir: 'my', files: { 正常: 'normal', 紧张: 'nervous', 害怕: 'panic', 生气: 'angry' } },
   lh: { id: 'laohan', dir: 'lh', suffix: '', nameInfix: '老韩_', files: { 严肃: 'normal', 怀疑: 'suspicious', 惊讶: 'surprised', 缓和: 'soft' } },

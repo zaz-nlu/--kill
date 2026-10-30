@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { audio } from '../audio/engine'
+import { SPEED_LABEL, cycleTextSpeed, textSpeed } from '../engine/textSpeed'
 
 const muted = ref(audio.muted)
 const volume = ref(Math.round(audio.volume * 100))
 const open = ref(false)
+const speedLabel = computed(() => '字速：' + SPEED_LABEL[textSpeed.value])
 
 function toggleMute() {
   muted.value = !muted.value
@@ -30,6 +32,7 @@ function onVolume() {
       @input="onVolume"
     >
     <button type="button" data-testid="mute" :title="muted ? '开启声音' : '静音'" @click="toggleMute">{{ muted ? '静音' : '声音' }}</button>
+    <button type="button" data-testid="text-speed" title="切换文字速度" @click="cycleTextSpeed">{{ speedLabel }}</button>
   </div>
 </template>
 

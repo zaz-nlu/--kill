@@ -67,7 +67,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "第三张：“11.21 周屿 — 改 19:12 下班（贺总口头，原件在卡里）”。"
+      "text": "第三张：“11.04 周屿 — 改 19:12 下班（贺总口头，原件在卡里）”。"
     },
     {
       "type": "effect",
@@ -85,12 +85,12 @@
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "周屿……11.21……还有，“原件在卡里”？"
+      "text": "周屿……11.04……还有，“原件在卡里”？"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "你想起邮件草稿的标题：《关于 2024 年 11 月 21 日的情况说明》。日期，对上了。"
+      "text": "你想起邮件草稿的标题：《关于 2021 年 11 月 4 日的情况说明》。日期，对上了。"
     },
     {
       "type": "say",
@@ -331,6 +331,42 @@
           ]
         }
       ]
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "flag",
+        "key": "box_pwd"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "封底那张便利贴，我已经看过了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你翻过登记簿，封底夹着一张便利贴，几个数字，旁边一行小字：“门禁盒 admin”。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "密码就夹在登记簿里。她大概觉得，反正也没有人会翻这本。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "flag",
+              "key": "box_pwd",
+              "value": true
+            }
+          ]
+        }
+      ]
     }
   ],
   "inspect_ho_shred": [
@@ -383,14 +419,53 @@
       ],
       "else": [
         {
-          "type": "say",
-          "speaker": "lyc",
-          "text": "要管理员密码……这种东西，得找懂行的人。"
-        },
-        {
-          "type": "say",
-          "speaker": "narration",
-          "text": "你想起苏闻蹲在墙角，对着一个小盒子敲命令的样子。"
+          "type": "branch",
+          "when": {
+            "kind": "flag",
+            "key": "box_pwd"
+          },
+          "then": [
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你把抽屉里那串数字输了进去。屏幕一闪，弹出本地日志。"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "20:57，“孟遥-临时 02”开门。后台操作日志：9/15 08:41，管理员孟遥，删除了一条记录。"
+            },
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "记录被删过，可日志还在。删的人，是她自己。"
+            },
+            {
+              "type": "effect",
+              "effects": [
+                {
+                  "kind": "evidence",
+                  "id": "E17"
+                },
+                {
+                  "kind": "danger",
+                  "delta": 10
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "type": "say",
+              "speaker": "lyc",
+              "text": "要管理员密码……这种东西，得找懂行的人。"
+            },
+            {
+              "type": "say",
+              "speaker": "narration",
+              "text": "你想起苏闻蹲在墙角，对着一个小盒子敲命令的样子。"
+            }
+          ]
         }
       ]
     }
@@ -642,6 +717,46 @@
       "type": "say",
       "speaker": "lyc",
       "text": "没有死角。从这里到那儿，有人经过，一定拍得到。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E13"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "C2 的通行记录，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "摄像头下面的机架上，有个贴着“NVR-02”的小黑盒。你把当晚的回放拖到 20:30。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "20:30，黎默进转角。20:40，孟遥出。21:10，林一程进。21:14，林一程出。21:19，邵晓阳进，21:22 出。21:28，黎默出。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "20:40 到 21:10，整整三十分钟，没有任何人经过。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E13"
+            }
+          ]
+        }
+      ]
     }
   ],
   "inspect_sr_glass": [
@@ -768,6 +883,89 @@
       "type": "say",
       "speaker": "lyc",
       "text": "楼梯的灯是感应的，每亮一次，都会留下记录。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E48"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "转角那一格，没有死角。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你把其中一格放大：人事区走廊的转角。镜头从高处往下，整条走廊一览无余。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "没有死角。进出南翼，必经这里。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E48"
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E05"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "C1 的出入表，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "另一格是十七层电梯厅的玻璃门。你点开回放，把当晚的进出一条条记在手机上。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "20:20，老板。20:41，孟遥。20:50，郑岑。21:25，林一程。21:35，外包三人，一起离开。21:40，苏闻。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "谁几点离开这一层，都在这儿。我是 21:25 走的，比大多数人都晚。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E05"
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        }
+      ]
     }
   ],
   "inspect_sc_pc": [
@@ -811,6 +1009,45 @@
             {
               "kind": "evidence",
               "id": "E15"
+            },
+            {
+              "kind": "danger",
+              "delta": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E06"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "电梯的运行记录，我已经有了。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "你顺手点开终端里的另一个页面：电梯运行记录。9 月 14 日，20:50，17 层到 1 层。直达，中途没有停靠。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "那天晚上，郑岑那一趟，是直接下到一楼的。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E06"
             },
             {
               "kind": "danger",
@@ -953,7 +1190,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "架子上，一排排值班本按年份贴着标签。你的手指划过去，在 2024 年那一排，停住了。"
+      "text": "架子上，一排排值班本按年份贴着标签。你的手指划过去，在 2021 年那一排，停住了。"
     },
     {
       "type": "say",
@@ -1051,12 +1288,12 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "键盘旁边压着一份文件，标题是《劳动仲裁申请书（草稿）》。"
+      "text": "键盘旁边压着一份文件，标题是《外包组加班情况说明（草稿）》。"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "这张桌子的主人，真的在准备仲裁。"
+      "text": "这张桌子的主人，在攒加班的证据。"
     }
   ],
   "inspect_os_mid": [
@@ -1316,12 +1553,12 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "只有一张被翻了过去，扣在架子上。你把它翻回来，背面写着：“2024.12，贝塔三周年。”"
+      "text": "只有一张被翻了过去，扣在架子上。你把它翻回来，背面写着：“2021.12，贝塔三周年。”"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "周屿出事，是 2024 年 11 月。……三周年，就在她走后的下个月。"
+      "text": "周屿出事，是 2021 年 11 月。……三周年，就在她走后的下个月。"
     }
   ],
   "intro_vp_office": [
@@ -1438,19 +1675,58 @@
   ],
   "inspect_vo_coat": [
     {
-      "type": "say",
-      "speaker": "narration",
-      "text": "衣架上挂着一件海军蓝西装，不是红的。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "口袋里，一包软中华，只剩两根，还有一张便利店的小票：21:06。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "21:06，他在楼下买烟。这张小票，替他做了不在场证明。"
+      "type": "branch",
+      "when": {
+        "kind": "hasEvidence",
+        "id": "E25"
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "衣架上挂着一件海军蓝西装，不是红的。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "口袋里，一包软中华，只剩两根，还有一张便利店的小票：21:06。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "21:06，他在楼下买烟。这张小票，替他做了不在场证明。"
+        }
+      ],
+      "else": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "衣架上挂着一件海军蓝西装，不是红的。"
+        },
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "口袋里，一包软中华，只剩两根，还有一张便利店的小票：21:06。"
+        },
+        {
+          "type": "say",
+          "speaker": "lyc",
+          "text": "21:06，他在楼下买烟。这张小票，替他做了不在场证明。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "evidence",
+              "id": "E25"
+            },
+            {
+              "kind": "danger",
+              "delta": 5
+            }
+          ]
+        }
+      ]
     }
   ],
   "inspect_vo_golf": [
@@ -1761,6 +2037,146 @@
       "type": "say",
       "speaker": "lyc",
       "text": "宋砚的那把，还立在十七楼的伞架上。"
+    }
+  ],
+  "inspect_os_chess": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "矮柜上摊着一副旧棋盘，棋子是蛤壳的，边上有一只木棋盒，盒盖没盖严。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "左上角一小块黑棋被白棋团团围住，只剩两口气，救不活了。白棋那道墙贴着角，厚得很；黑棋要是回头去救，得连下三手，救回来也是一块苦棋。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "黑棋没回头。它转过手，在棋盘另一头、靠右下的地方落了一子，离角上隔着大半个棋盘，看着一点关系都没有。白棋把角吃干净，再想顺着角上那条斜路往右下跑的时候，才发现这一子早在前头等着——白棋越跑气越少，跑到第十几手，整条大龙被黑棋一路征到边上，提了个干净。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "棋盘边压着一张撕下来的棋谱纸，手写的，角上标着“147—166”，最后一手旁边画了个小圈。纸的下角有一行小字：“弃子争先：先弃一角，换在远处先手布一子，使后面一条大龙被征吃。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "介嘛呀？谁还下棋？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "旁边，陆诚嘴里嚼着饭，邵晓阳坐在自己的工位上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "邵子的。去年七月他一来就摆上了，天天中午自己跟自己下，黑棋白棋都他一个人摆，谁也不让碰。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "陆哥，你别说得跟我多宝贝似的。家里翻出来的旧棋，棋子都不全了，扔了可惜。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "不全？我瞅瞅。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你打开棋盒，数了数。白子少一颗。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "白棋少一个。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "丢了一颗，找不着了。反正我一个人下，缺一颗不缺一颗，一样。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你这角都不要了？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "要不起。角上这块棋本来就是个死形，救它得花三手，救回来也是个苦活。不如拿它换点别的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "换嘛？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳指了指棋盘右下那一带。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "换这一手。角给他，这条斜路我提前占了。他越跑越薄，跑到头，整条龙都得还我。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "你俩说人话。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥你要是感兴趣，这盘我记了手顺，回头讲给您听。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "得嘞。那你先给我讲讲，“天元”是嘛？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "天元就是正中间那个点。我这手可不在那儿，离着好几路呢。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那我更不明白了。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "您要是连天元都不知道，我可不敢讲了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把棋谱纸翻过来看了一眼，背面是空白的。你把纸放回原处，掏出手机，拍了一张。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "E45"
+        },
+        {
+          "kind": "testimony",
+          "id": "T34"
+        },
+        {
+          "kind": "affinity",
+          "npc": "shaoxy",
+          "delta": 2
+        }
+      ]
     }
   ]
 }
