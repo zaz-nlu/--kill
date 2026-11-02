@@ -359,7 +359,7 @@ function onNote(lineId: string) {
             :endings="store.endings"
             :chapter-id="store.state.chapter"
             :next-title="nextChapterTitle"
-            @restart="store.restart()"
+            @restart="store.retryFromCheckpoint()"
             @finale="store.jumpToFinale()"
             @chapters="openChapters()"
           />

@@ -877,6 +877,20 @@ ${gate.tip}
     if (screen.value !== 'title') maybeChapterNote()
   }
 
+  // Back from a BAD ending: replay from the last checkpoint this chapter recorded. A run that has no tree (it was
+  // loaded from a save without one) falls back to its automatic save, and only then to the chapter's opening.
+  function retryFromCheckpoint(): void {
+    const tl = timelineRef.value
+    const head = tl.head
+    if (head !== null && getNode(tl, head)) {
+      rewindTo(head)
+      return
+    }
+    continueChapter(state.chapter)
+    if (screen.value !== 'title') return
+    startChapter(state.chapter)
+  }
+
   // [重新开始] on a chapter card: the chapter's automatic save and its rewind tree go; the manual slots stay.
   function resetChapter(id: string): void {
     clearSlot('auto', id)
@@ -1408,7 +1422,7 @@ ${gate.tip}
     data, state, chapter, endings, screen, stage, currentNode, currentSceneId, cue, relations, collected, slotsLeft, feed, popup, dismissPopup, deduction, deductionResult, submitDeduction, continueDeduction, frameCheck, submitFrames, skipFrames, dismissFeed, gameOver, setRng, lastOutcome, notice, tip, dismissTip, actions, urged, canShop, mealHour,
     playScene, newGame, startChapter, continueChapter, restart, advance, note, speakerName, itemName,
     startAction, waitAnHour, room, hotspots, looksLeft, inspect, leaveRoom, goShop, leaveShop, buy, gift, restAtHome,
-    loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, continueLatest, resetChapter, loadOther, rewindTo, timelineRows, slotList, autoSlot, slotInfo, refreshSlots, canJumpToFinale, jumpToFinale,
+    loadError, hasSave, saveGame, loadGame, deleteSlot, continueAuto, continueLatest, retryFromCheckpoint, resetChapter, loadOther, rewindTo, timelineRows, slotList, autoSlot, slotInfo, refreshSlots, canJumpToFinale, jumpToFinale,
     saveNote, migrationNotice, dismissLegacyNotice,
     exam, examIndex, examFailed, examPresenting, setExamPresenting, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     recordInfo, examView, examTarget, setExamTarget, examEvent, examHold, stageExam, examContinue,

@@ -137,6 +137,24 @@ describe('audio director', () => {
     expect(port.moods.at(-1)).toBe('office')
   })
 
+  it('knows the chapter screens: the list and the title card wait on the title, a recap is a calm scene', async () => {
+    const { store, port } = directed()
+    store.stage.time = 'night'
+    store.screen = 'hub'
+    await nextTick()
+    expect(port.moods.at(-1)).toBe('office')
+    store.screen = 'chapters'
+    await nextTick()
+    expect(port.moods.at(-1)).toBe('title')
+    store.screen = 'card'
+    await nextTick()
+    expect(port.moods.at(-1)).toBe('title')
+    store.screen = 'recap'
+    await nextTick()
+    expect(port.moods.at(-1)).toBe('office')
+    for (const id of port.moods) expect(MOODS[id as Mood['id']], id).toBeDefined()
+  })
+
   it('plays the showdown track in the cross-examination and pushes it harder as persuasion drops', async () => {
     const { store, port } = directed()
     store.newGame()

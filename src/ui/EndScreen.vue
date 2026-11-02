@@ -31,7 +31,7 @@ onMounted(() => {
     <p v-for="(p, i) in paragraphs" :key="i" class="line">{{ p }}</p>
     <p v-if="clears && nextTitle" class="next" data-testid="next-chapter">下一章已解锁：{{ nextTitle }}</p>
     <button v-if="canFinale" type="button" data-testid="to-finale" @click="$emit('finale')">进入终章第一幕（切片）</button>
-    <button v-if="!clears" type="button" data-testid="restart" @click="$emit('restart')">回到标题</button>
+    <button v-if="!clears" type="button" data-testid="restart" @click="$emit('restart')">回到上一个检查点</button>
     <button type="button" data-testid="to-chapters" @click="$emit('chapters')">章节选择</button>
   </main>
 </template>

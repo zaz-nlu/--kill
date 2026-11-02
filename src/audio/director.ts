@@ -3,7 +3,7 @@ import type { useGameStore } from '../engine/store'
 import { dangerTier } from '../engine/danger'
 import { timeOfDay } from '../engine/backgrounds'
 import { audio, type SfxName } from './engine'
-import { attackKind, dangerCue, examIntensity, moodKey, resolveMood, tensionFor, type DangerCue, type Mood, type MoodContext } from './moods'
+import { MOODS, attackKind, dangerCue, examIntensity, moodKey, resolveMood, tensionFor, type DangerCue, type Mood, type MoodContext } from './moods'
 
 type Store = ReturnType<typeof useGameStore>
 
@@ -29,6 +29,19 @@ export function useAudioDirector(store: Store, port: AudioPort = audio): void {
     return store.gameOver === 'hp' ? 'hp' : store.examFailed ? 'failed' : 'clear'
   })
 
+  // The chapter screens borrow existing moods: the chapter list and the title card wait on the title, and a recap is
+  // read over the quietest scene room tone (the office), with no danger cues of its own.
+  const musicScreen = computed<MoodContext['screen']>(() => {
+    const screen = store.screen
+    if (screen === 'chapters' || screen === 'card') return 'title'
+    if (screen === 'recap') return 'scene'
+    return screen
+  })
+  const cueScreen = computed<MoodContext['screen']>(() => {
+    const screen = store.screen
+    return screen === 'chapters' || screen === 'card' || screen === 'recap' ? 'title' : screen
+  })
+
   // In the cross-examination: choosing evidence (or an argument) is the showdown, and it lingers a few seconds after the
   // window closes so the answer lands on the same track. Hitting back from a bad position turns it into the comeback.
   const presenting = ref(false)
@@ -43,9 +56,9 @@ export function useAudioDirector(store: Store, port: AudioPort = audio): void {
   watch(() => (store.screen === 'exam' ? store.exam?.def.id ?? null : null), () => { rally.value = false })
 
   const context = computed<MoodContext>(() => ({
-    screen: store.screen,
-    bg: store.screen === 'title' ? 'title' : store.stage.bg,
-    night: store.screen === 'title' ? true : night.value,
+    screen: musicScreen.value,
+    bg: musicScreen.value === 'title' ? 'title' : store.stage.bg,
+    night: musicScreen.value === 'title' ? true : night.value,
     hour: store.state.hour,
     sceneId: store.screen === 'scene' ? store.currentSceneId : null,
     persuasion: store.exam?.persuasion ?? null,
@@ -56,17 +69,17 @@ export function useAudioDirector(store: Store, port: AudioPort = audio): void {
     rally: rally.value,
     stageMood: store.stage.mood,
   }))
-  const mood = computed(() => resolveMood(context.value))
+  const mood = computed(() => (store.screen === 'recap' ? MOODS.office : resolveMood(context.value)))
   watch(() => moodKey(mood.value), () => port.setMood(mood.value), { immediate: true })
 
   // The finale track speeds up and thickens as 说服力 runs out, without restarting.
   watch(() => examIntensity(store.exam?.persuasion ?? null), x => port.setIntensity?.(x), { immediate: true })
 
-  const danger = computed(() => dangerCue(dangerTier(store.state.danger), night.value, store.screen))
+  const danger = computed(() => dangerCue(dangerTier(store.state.danger), night.value, cueScreen.value))
   watch(() => JSON.stringify(danger.value), () => port.setDanger(danger.value), { immediate: true })
 
   // The rising heartbeat, or a long climb, makes the night sound wrong.
-  const tension = computed(() => tensionFor(context.value, danger.value.tier, danger.value.active, store.stage.tension))
+  const tension = computed(() => tensionFor(context.value, danger.value.tier, danger.value.active, store.screen === 'recap' ? 0 : store.stage.tension))
   watch(tension, x => port.setTension?.(x), { immediate: true })
 
   // ---- one-shot sounds ----
