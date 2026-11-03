@@ -7,7 +7,9 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const src = resolve(root, '..', 'role_images')
+// Source art used to live beside the repo; it also ships inside design/ so a fresh checkout can still build.
+const pickDir = (primary, fallback) => (existsSync(primary) ? primary : fallback)
+const src = pickDir(resolve(root, '..', 'role_images'), join(root, 'design', 'role_images'))
 const outDir = join(root, 'src', 'assets', 'characters')
 const propsDir = join(root, 'src', 'assets', 'props')
 
@@ -75,7 +77,7 @@ for (const [name, key] of Object.entries(PROPS)) {
 }
 
 // Backgrounds: ../background/game-backgrounds/<id>.png (night) and <id>_day.png -> src/assets/backgrounds/*.webp
-const bgSrc = resolve(root, '..', 'background', 'game-backgrounds')
+const bgSrc = pickDir(resolve(root, '..', 'background', 'game-backgrounds'), join(root, 'design', 'background', 'game-backgrounds'))
 const bgOut = join(root, 'src', 'assets', 'backgrounds')
 let bgCount = 0
 if (existsSync(bgSrc)) {
@@ -87,7 +89,7 @@ if (existsSync(bgSrc)) {
 }
 
 // Evidence: ../evidence/E01_<name>.png -> src/assets/evidence/E01.webp
-const evSrc = resolve(root, '..', 'evidence')
+const evSrc = pickDir(resolve(root, '..', 'evidence'), join(root, 'design', 'evidence'))
 const evOut = join(root, 'src', 'assets', 'evidence')
 let evCount = 0
 if (existsSync(evSrc)) {
@@ -101,6 +103,46 @@ if (existsSync(evSrc)) {
   }
 }
 
+// Case 2 evidence: design/evidence2/<folder>/C2E-xx_<name>.png -> src/assets/evidence/2E<xx>.webp.
+// The two folders overlap on the four redrawn images; the later folder wins.
+const c2Dirs = [
+  join(root, 'design', 'evidence2', '九点熄灯_案二证物图_35张_修订版'),
+  join(root, 'design', 'evidence2', '案二新增证物_4张_1024'),
+]
+// Superseded drawings: kept in the repo, deliberately not imported.
+const C2_DROPPED = new Set(['C2E-08a_前台咖啡小票.png', 'C2E-08b_点单人陆诚.png'])
+
+// C2E-01_x -> 2E01, C2E-08a′_x -> 2E08a, C2E-03b_x -> 2E33 (the optional jacket-and-cup shot).
+function c2EvidenceId(name) {
+  if (C2_DROPPED.has(name)) return null
+  if (name.startsWith('C2E-03b_')) return '2E33'
+  const m = /^C2E-(\d{2})([a-e]?)[′'’]?_/.exec(name)
+  return m ? `2E${m[1]}${m[2]}` : undefined
+}
+
+const c2Files = new Map()
+const c2Unmapped = []
+for (const dir of c2Dirs) {
+  if (!existsSync(dir)) throw new Error(`case 2 evidence folder not found: ${dir}`)
+  for (const name of readdirSync(dir).filter(n => n.endsWith('.png')).sort()) {
+    const id = c2EvidenceId(name)
+    if (id === null) continue
+    if (id === undefined) {
+      c2Unmapped.push(`${name} (${dir})`)
+      continue
+    }
+    c2Files.set(id, join(dir, name))
+  }
+}
+if (c2Unmapped.length) throw new Error(`unmapped case 2 evidence image(s): ${c2Unmapped.join(', ')}`)
+
+mkdirSync(evOut, { recursive: true })
+let c2Count = 0
+for (const [id, file] of c2Files) {
+  await sharp(file).resize({ width: 800 }).webp({ quality: 80 }).toFile(join(evOut, `${id}.webp`))
+  c2Count += 1
+}
+
 // Tang only ever appears inside a video-call window: a square avatar, kept as a prop rather than a standing sprite.
 const tangSrc = join(src, 'tjl', 'tjl_唐经理_视频会议头像.png')
 if (existsSync(tangSrc)) {
@@ -109,4 +151,4 @@ if (existsSync(tangSrc)) {
 }
 
 writeFileSync(join(root, 'src', 'data', 'characters.json'), JSON.stringify(manifest, null, 2) + '\n')
-console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds, ${evCount} evidence images`)
+console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds, ${evCount} evidence images, ${c2Count} case 2 evidence images`)

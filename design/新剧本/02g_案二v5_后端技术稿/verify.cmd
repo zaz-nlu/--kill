@@ -8,4 +8,8 @@ javac -encoding UTF-8 -source 1.8 -target 1.8 -d ..\out\original original\com\be
 javac -encoding UTF-8 -source 1.8 -target 1.8 -d ..\out\patched patched\com\beta\sched\*.java demo\com\beta\sched\Demo.java || exit /b 1
 java -cp ..\out\original com.beta.sched.Demo original || exit /b 1
 java -cp ..\out\patched com.beta.sched.Demo patched || exit /b 1
+if exist samples (
+  mkdir ..\out\samples
+  javac -encoding UTF-8 -source 1.8 -target 1.8 -d ..\out\samples samples\com\beta\core\*.java samples\com\beta\iface\*.java samples\com\beta\model\*.java || exit /b 1
+)
 echo VERIFY OK

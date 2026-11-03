@@ -67,6 +67,31 @@ def main(root):
     backgrounds = {b['id'] for b in load(root, 'backgrounds.json', [])}
     testimony_list = load(root, 'testimony.json', [])
     testimony = {t['id'] for t in testimony_list}
+
+    # Chapters keep their own records under chapters/<id>/; ids are global, so they join the same tables.
+    chapter_evidence = []
+    chapter_testimony = []
+    for path in sorted(glob.glob(os.path.join(root, 'chapters', '*', 'evidence.json'))):
+        with open(path, encoding='utf-8') as f:
+            chapter_evidence.extend(json.load(f))
+    for path in sorted(glob.glob(os.path.join(root, 'chapters', '*', 'testimony.json'))):
+        with open(path, encoding='utf-8') as f:
+            chapter_testimony.extend(json.load(f))
+    seen_chapter_ids = set()
+    for rec in chapter_evidence + chapter_testimony:
+        rid = rec['id']
+        if rid in evidence or rid in testimony or rid in seen_chapter_ids:
+            errors.append(f"chapters: duplicate record id '{rid}'")
+        seen_chapter_ids.add(rid)
+    evidence.update(e['id'] for e in chapter_evidence)
+    testimony.update(t['id'] for t in chapter_testimony)
+
+    # Every chapter evidence entry must have the picture the evidence file shows.
+    evidence_assets = os.path.join(root, '..', 'assets', 'evidence')
+    for rec in chapter_evidence:
+        image = os.path.join(evidence_assets, f"{rec['id']}.webp")
+        if not os.path.exists(image):
+            errors.append(f"chapters: evidence '{rec['id']}' has no image at {image}")
     scenes = {}
     for name, chunk in load_files(root, 'scenes'):
         for sid, nodes in chunk.items():

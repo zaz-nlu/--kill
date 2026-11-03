@@ -1112,6 +1112,12 @@ ${gate.tip}
     return { stepId: step.id, prompt: step.prompt, options: step.options.map(o => o.text) }
   })
 
+  // Evidence and testimony belong to one chapter; a record marked carry is filed in every chapter.
+  const inChapter = (id: string) => {
+    const meta = data.recordMeta[id]
+    return meta?.carry === true || (meta?.case ?? 'c1') === state.chapter
+  }
+
   // What the player holds, with names and descriptions, in the order it was found (for the evidence file).
   const collected = computed(() => {
     const def = (list: { id: string; name: string; desc: string }[], id: string) =>
@@ -1122,8 +1128,8 @@ ${gate.tip}
       return null
     }
     return {
-      evidence: state.evidence.map(id => def(data.evidence, id)),
-      testimony: state.testimony.map(id => def(data.testimony, id)),
+      evidence: state.evidence.filter(inChapter).map(id => def(data.evidence, id)),
+      testimony: state.testimony.filter(inChapter).map(id => def(data.testimony, id)),
       conclusions: ownedConclusions(state, data.conclusions).map(c => ({
         id: c.id,
         name: c.name,
@@ -1140,7 +1146,7 @@ ${gate.tip}
   // Evidence, testimony and earned conclusion cards the player actually holds. Quotes are listed separately and never
   // named.
   const recordIds = computed(() => [...new Set([
-    ...state.evidence, ...state.testimony, ...ownedConclusions(state, data.conclusions).map(c => c.id),
+    ...state.evidence.filter(inChapter), ...state.testimony.filter(inChapter), ...ownedConclusions(state, data.conclusions).map(c => c.id),
   ])])
 
   const recordNames = computed(() => {

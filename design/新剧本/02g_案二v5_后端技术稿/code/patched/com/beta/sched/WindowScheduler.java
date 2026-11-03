@@ -75,6 +75,7 @@ public final class WindowScheduler implements AutoCloseable {
         Map.Entry<Instant, Task> entry;
         while ((entry = due.pollFirstEntry()) != null) {
             Task t = entry.getValue();
+            System.out.println("exact fire " + t.id());
             dispatchExact(t);
         }
     }

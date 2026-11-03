@@ -23,7 +23,7 @@ export interface RecordDef { id: string; name: string; desc: string }
 // How an item of evidence or testimony is filed in the cross-examination's evidence window.
 export const RECORD_TYPES = ['物证', '记录', '影像', '文书', '证言'] as const
 export type RecordType = (typeof RECORD_TYPES)[number]
-export interface RecordMeta { type: RecordType; who: string[]; where?: string; when?: string }
+export interface RecordMeta { type: RecordType; who: string[]; where?: string; when?: string; case?: string; carry?: boolean }
 // What the evidence window shows for one item the player holds. A conclusion card is filed with its own type.
 export interface RecordInfo {
   id: string
@@ -95,12 +95,52 @@ export function mergeExams(files: Record<string, ExamDef>): Record<string, ExamD
   return exams
 }
 
-export function loadData(): GameData {
+// Evidence and testimony are keyed by id across the whole game: two files claiming the same id means one case is
+// quietly eating another's record, so it is an error rather than a silent overwrite.
+export function mergeRecordFiles(files: Record<string, RecordDef[]>): RecordDef[] {
+  const out: RecordDef[] = []
+  const from: Record<string, string> = {}
+  for (const [file, chunk] of Object.entries(files)) {
+    for (const rec of chunk) {
+      if (rec.id in from) throw new Error(`duplicate record id "${rec.id}" (${file} and ${from[rec.id]})`)
+      from[rec.id] = file
+      out.push(rec)
+    }
+  }
+  return out
+}
+
+export function mergeRecordMeta(files: Record<string, Record<string, RecordMeta>>): Record<string, RecordMeta> {
+  const out: Record<string, RecordMeta> = {}
+  const from: Record<string, string> = {}
+  for (const [file, chunk] of Object.entries(files)) {
+    for (const [id, meta] of Object.entries(chunk)) {
+      if (id in from) throw new Error(`duplicate record meta id "${id}" (${file} and ${from[id]})`)
+      out[id] = meta
+      from[id] = file
+    }
+  }
+  return out
+}
+
+export interface LoadOptions {
+  evidenceFiles?: Record<string, RecordDef[]>
+  testimonyFiles?: Record<string, RecordDef[]>
+  recordMetaFiles?: Record<string, Record<string, RecordMeta>>
+}
+
+export function loadData(extra: LoadOptions = {}): GameData {
   const sceneFiles = import.meta.glob('../data/scenes/*.json', { eager: true, import: 'default' }) as Record<string, Scenes>
   const examFiles = import.meta.glob('../data/exams/*.json', { eager: true, import: 'default' }) as Record<string, ExamDef>
   const chapterFiles = import.meta.glob('../data/chapters/*.json', { eager: true, import: 'default' }) as Record<string, ChapterDef>
+  const caseEvidenceFiles = import.meta.glob('../data/chapters/*/evidence.json', { eager: true, import: 'default' }) as Record<string, RecordDef[]>
+  const caseTestimonyFiles = import.meta.glob('../data/chapters/*/testimony.json', { eager: true, import: 'default' }) as Record<string, RecordDef[]>
+  const caseMetaFiles = import.meta.glob('../data/chapters/*/evidence_meta.json', { eager: true, import: 'default' }) as Record<string, Record<string, RecordMeta>>
   const scenes = mergeScenes(sceneFiles)
   const exams = mergeExams(examFiles)
+  const evidenceFiles = { '../data/evidence.json': evidence as RecordDef[], ...caseEvidenceFiles, ...(extra.evidenceFiles ?? {}) }
+  const testimonyFiles = { '../data/testimony.json': testimony as RecordDef[], ...caseTestimonyFiles, ...(extra.testimonyFiles ?? {}) }
+  const metaFiles = { '../data/evidence_meta.json': recordMeta as Record<string, RecordMeta>, ...caseMetaFiles, ...(extra.recordMetaFiles ?? {}) }
   const chapters: Record<string, ChapterDef> = {}
   for (const [file, chapter] of Object.entries(chapterFiles)) {
     if (chapters[chapter.id]) throw new Error(`duplicate chapter id "${chapter.id}" (${file})`)
@@ -109,9 +149,9 @@ export function loadData(): GameData {
   return {
     npcs: npcs as Npc[],
     items,
-    evidence,
-    testimony,
-    recordMeta: recordMeta as Record<string, RecordMeta>,
+    evidence: mergeRecordFiles(evidenceFiles),
+    testimony: mergeRecordFiles(testimonyFiles),
+    recordMeta: mergeRecordMeta(metaFiles),
     scenes,
     actions: actions as ActionDef[],
     rooms: rooms as RoomDef[],
