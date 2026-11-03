@@ -120,6 +120,7 @@ if (existsSync(evSrc)) {
 const c2Dirs = [
   join(root, 'design', 'evidence2', '九点熄灯_案二证物图_35张_修订版'),
   join(root, 'design', 'evidence2', '案二新增证物_4张_1024'),
+  join(root, 'design', 'evidence2', '案二现场照片'),
 ]
 // Superseded drawings: kept in the repo, deliberately not imported.
 const C2_DROPPED = new Set(['C2E-08a_前台咖啡小票.png', 'C2E-08b_点单人陆诚.png'])
