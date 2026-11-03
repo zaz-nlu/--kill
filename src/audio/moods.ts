@@ -10,6 +10,7 @@ export type MoodId =
   | 'day' | 'parking' | 'deduce' | 'limo' | 'comeback'
   | 'security' | 'server_room' | 'outsource' | 'boss_office' | 'vp_office' | 'pantry' | 'smoking' | 'lobby'
   | 'hr_outer' | 'hr_office_after'
+  | 'fire_control' | 'platform16' | 'diner' | 'lc_home'
 
 export type Accent = 'drip' | 'clock' | 'chime' | 'car' | 'thunder' | 'creak' | 'buzz'
 
@@ -90,6 +91,29 @@ export const MOODS: Record<MoodId, Mood> = {
   store_front: mood('store_front', {
     drone: { notes: [38, 45], wave: 'sine', level: 0.26, cutoff: 480 },
     rain: 0.75, wind: 0.2, accents: ['drip', 'car', 'chime'], reverb: 0.4,
+  }),
+  // 消防控制室: panels on every wall, a low machine hum, nobody talking
+  fire_control: mood('fire_control', {
+    drone: { notes: [31, 38], wave: 'triangle', level: 0.3, cutoff: 220 },
+    hum: 0.55, fan: 0.2, accents: ['buzz', 'clock'], reverb: 0.35,
+  }),
+  // 16F 平台: the open landing, rain on the rail, an echo with nothing to stop it
+  platform16: mood('platform16', {
+    drone: { notes: [31, 38], wave: 'sine', level: 0.34, cutoff: 420 },
+    wind: 0.35, rain: 0.55, accents: ['drip', 'buzz'], reverb: 1,
+    melody: { root: 55, scale: DARK_PENT, gap: [18, 28], level: 0.14, voice: 'bell' },
+  }),
+  // 老门口饭馆: warm light, a few tables, the kitchen behind it
+  diner: mood('diner', {
+    drone: { notes: [41, 48, 52], wave: 'sine', level: 0.28, cutoff: 850 },
+    fan: 0.12, rain: 0.15, accents: ['chime', 'creak'], reverb: 0.6,
+    melody: { root: 60, scale: MAJOR_PENT, gap: [10, 16], level: 0.22, voice: 'piano' },
+  }),
+  // 陆诚的家: one person, one lamp, nothing else moving
+  lc_home: mood('lc_home', {
+    drone: { notes: [33, 40], wave: 'sine', level: 0.26, cutoff: 300 },
+    rain: 0.25, accents: ['clock'], reverb: 0.5,
+    melody: { root: 50, scale: DARK_PENT, gap: [16, 26], level: 0.16, voice: 'piano' },
   }),
   police: mood('police', {
     drone: { notes: [38, 45], wave: 'triangle', level: 0.28, cutoff: 350 },
@@ -247,6 +271,7 @@ export const MOODS: Record<MoodId, Mood> = {
 const BY_BACKGROUND: Record<string, MoodId> = {
   title: 'title', office: 'office', hr_office: 'hr_office', meeting_b: 'meeting_b', stairwell: 'stairwell',
   cafe: 'cafe', store: 'store', police: 'police', meeting_a: 'meeting_a', street: 'street', store_front: 'store_front', home: 'home',
+  fire_control: 'fire_control', platform16: 'platform16', diner: 'diner', lc_home: 'lc_home',
   security: 'security', server_room: 'server_room', outsource: 'outsource', boss_office: 'boss_office',
   vp_office: 'vp_office', parking: 'parking', pantry: 'pantry', smoking: 'smoking', lobby: 'lobby',
   hr_outer: 'hr_outer', hr_office_after: 'hr_office_after',
@@ -283,7 +308,7 @@ export function attackKind(sceneId: string): 'opening' | 'during' | 'after' | nu
 }
 
 // Daytime places where the little tune plays. (Where something happened, the place keeps its own sound.)
-const DAY_TUNE_AT: ReadonlySet<string> = new Set(['office', 'cafe', 'store', 'street', 'store_front', 'home'])
+const DAY_TUNE_AT: ReadonlySet<string> = new Set(['office', 'cafe', 'store', 'street', 'store_front', 'home', 'diner', 'lc_home'])
 
 export function moodIdFor(c: MoodContext): MoodId {
   if (c.screen === 'title') return 'title'
