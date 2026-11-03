@@ -7,12 +7,126 @@
     "budget": 5,
     "cutoff": "c2_cutoff_server_room",
     "hotspots": [
-      { "id": "c2_sr_pc", "label": "苏闻的双屏机", "rect": [47, 38, 16, 22], "scene": "c2_inspect_pc" },
-      { "id": "c2_sr_desk", "label": "桌面", "rect": [34, 62, 30, 14], "scene": "c2_inspect_desk" },
-      { "id": "c2_sr_coat", "label": "椅背上的外套", "rect": [64, 52, 12, 24], "scene": "c2_inspect_coat" },
-      { "id": "c2_sr_cylinder", "label": "气瓶间", "rect": [80, 22, 16, 48], "scene": "c2_inspect_cylinder" },
-      { "id": "c2_sr_reader", "label": "门口的读卡器", "rect": [3, 38, 8, 14], "scene": "c2_inspect_reader" },
-      { "id": "c2_sr_cam", "label": "天花板的摄像头", "rect": [40, 3, 18, 12], "scene": "c2_inspect_cam" }
+      {
+        "id": "c2_sr_pc",
+        "label": "苏闻的双屏机",
+        "rect": [
+          47,
+          38,
+          16,
+          22
+        ],
+        "scene": "c2_inspect_pc"
+      },
+      {
+        "id": "c2_sr_desk",
+        "label": "桌面",
+        "rect": [
+          34,
+          62,
+          30,
+          14
+        ],
+        "scene": "c2_inspect_desk"
+      },
+      {
+        "id": "c2_sr_coat",
+        "label": "椅背上的外套",
+        "rect": [
+          64,
+          52,
+          12,
+          24
+        ],
+        "scene": "c2_inspect_coat"
+      },
+      {
+        "id": "c2_sr_cylinder",
+        "label": "气瓶间",
+        "rect": [
+          80,
+          22,
+          16,
+          48
+        ],
+        "scene": "c2_inspect_cylinder"
+      },
+      {
+        "id": "c2_sr_reader",
+        "label": "门口的读卡器",
+        "rect": [
+          3,
+          38,
+          8,
+          14
+        ],
+        "scene": "c2_inspect_reader"
+      },
+      {
+        "id": "c2_sr_cam",
+        "label": "天花板的摄像头",
+        "rect": [
+          40,
+          3,
+          18,
+          12
+        ],
+        "scene": "c2_inspect_cam"
+      }
+    ]
+  },
+  {
+    "id": "c2_store_front",
+    "label": "巷口咖啡街",
+    "bg": "store_front",
+    "intro": "c2_intro_store_front",
+    "budget": 4,
+    "cutoff": "c2_cutoff_store_front",
+    "hotspots": [
+      {
+        "id": "c2_sf_trash",
+        "label": "对面的街边垃圾桶",
+        "rect": [
+          70,
+          48,
+          14,
+          26
+        ],
+        "scene": "c2_inspect_trash"
+      },
+      {
+        "id": "c2_sf_clerk",
+        "label": "便利店的店员",
+        "rect": [
+          30,
+          32,
+          14,
+          34
+        ],
+        "scene": "c2_talk_clerk"
+      },
+      {
+        "id": "c2_sf_cctv",
+        "label": "顶棚下的摄像头",
+        "rect": [
+          44,
+          6,
+          16,
+          12
+        ],
+        "scene": "c2_inspect_store_cctv"
+      },
+      {
+        "id": "c2_sf_cafe",
+        "label": "街角的巷口咖啡",
+        "rect": [
+          3,
+          30,
+          22,
+          40
+        ],
+        "scene": "c2_talk_cafe"
+      }
     ]
   }
 ]

@@ -4,12 +4,19 @@
     "chapter": "c2",
     "day": 1,
     "hour": 21,
-    "scene": "c2_preview_end"
+    "scene": "c2_day1_night"
   },
   {
     "id": "c2_day2_start",
     "chapter": "c2",
     "day": 2,
+    "hour": 8,
+    "scene": "c2_day2_start"
+  },
+  {
+    "id": "c2_day3_start",
+    "chapter": "c2",
+    "day": 3,
     "hour": 8,
     "scene": "c2_preview_end"
   }

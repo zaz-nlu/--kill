@@ -297,7 +297,7 @@ describe('day 3 actions: what they give and what they ask for', () => {
 
 describe('day 3 fixed events', () => {
   it('come in the order the day unfolds', () => {
-    expect(data.events.filter(e => e.day === 3).map(e => e.id)).toEqual([
+    expect(data.events.filter(e => e.day === 3 && !e.chapter).map(e => e.id)).toEqual([
       'day3_call', 'day3_morning', 'day3_noon', 'day3_s6a', 'day3_boss_offer', 'day3_s6b', 'day3_desk_searched',
       'day3_mengyao_taken', 'day3_laohan_call', 'day3_attack2', 'day3_night', 'day3_g8',
     ])
@@ -412,7 +412,7 @@ describe('day 3 fixed events', () => {
   })
 
   it('every one of them plays to its end', () => {
-    for (const e of data.events.filter(x => x.day === 3)) {
+    for (const e of data.events.filter(x => x.day === 3 && !x.chapter)) {
       const s = day3()
       s.hour = e.hour
       expect(() => play(s, e.scene, [0, 0, 0, 0]), e.id).not.toThrow()

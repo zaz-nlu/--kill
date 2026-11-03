@@ -391,5 +391,616 @@
         }
       ]
     }
+  ],
+  "c2_day1_night": [
+    {
+      "type": "bg",
+      "id": "home",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00 家】雨又下起来了。林一程把外套搭在椅背上，翻了翻今天拍下的东西，没有一条是完整的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "楼下的清运车明早又要来了。周六凌晨五点半，从来不差，吵得人睡不着。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他关了灯。窗外的雨声，把整条街都盖住了。"
+    }
+  ],
+  "c2_day2_start": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "2026 年 11 月 20 日，周五。苏闻的工位前，警戒带还没有撤。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩一早把人都叫到了十七层：笔录要补，机房的日志要拉，该问的人还得再问一遍。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（昨天看见的是现场。今天，该去看看这一夜之前发生的事。）"
+    }
+  ],
+  "c2_act_shao": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【11:00 17 层走廊尽头】邵晓阳背靠着墙，眼睛红着，脸上还挂着那种用力撑出来的笑。感应灯灭了一下，他跺了一脚，灯又亮了。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "做完笔录了？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "做完了。我说了，我十九点二十进的机房，待了十五分钟，看了两眼她那个报错，十九点三十五走的。外套忘了拿。门是苏姐下午给我开的临时授权，发版窗口，到夜里十二点。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我还说，我进门的时候苏姐还活着，正骂数据库，说谁把库锁了，骂得可难听了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那两杯咖啡，是谁点的？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "前台桌上有两杯，杯子上写着我和苏姐，我就拿上去了。没有人跟我说是谁点的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你就没再问？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我问了一句“谁这么有心”。孟遥说她不知道。就没再问了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他低头用袖子蹭了一下眼睛。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，我知道你为什么站在这儿。因为昨天晚上，进那间屋的人是我。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程没接。他想起两个月前那个晚上，也是这么一条走廊，也是这么一盏灯，所有人看他的眼神，都像在看一个已经定了罪的人。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你也被冤枉过。你知道我的感受。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我不是让你信我。我就是……不想一个人待着。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里安静得能听见楼下路口红灯的倒计时。林一程把手里的笔录复印件折了一下，没有再问。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T01"
+        }
+      ]
+    }
+  ],
+  "c2_act_task": [
+    {
+      "type": "bg",
+      "id": "meeting_b",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【10:00 会议室 B】小许把笔记本推到你面前。消防联动那边的后台日志，被她一行一行拉了出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "你看这条。TASK-1118-1736，昨天 17:36:22 创建，22:12:00 执行，release，延时 0。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "17:36 创建，22:12 才响。中间隔了四个半小时。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "对。而且同一个任务，17:36:41 又把联动广播改成了只在机房里响。楼里的人，一个都不会听到。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁的账号？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "wb_ext，公共账号。终端是 PC-OS-03，外包区的测试机。谁都能坐上去。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "精确模式。她在信里写过的——手按不出零误差。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把这几行字抄进笔记本。屏幕上，那个“精确模式”的开关，只是一个小小的勾。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E05"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E06"
+        }
+      ]
+    }
+  ],
+  "c2_act_attendance": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【11:00 17 层人事区】考勤和会议签到，都在孟遥手里。她把昨天的表格导出来，打印了一份给你。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "昨天下午三点的会，会议室 B。签到表在这儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我想看的是昨天一整天，谁在楼里，谁不在。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "我拉了考勤。郑岑 15:40 离楼。邵晓阳 17:05 打卡下班。你 17:10 下班，贺总也是 17:10 前走的。陆诚 18:10 打卡。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "15:10 的会，陆诚在吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "没有他的签到。他的位子，那会儿是空的。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（15:10。那正好是数据库被改成只读的时间。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥把表格推过来，没有再多说。你把它折好，收进口袋。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E19"
+        }
+      ]
+    }
+  ],
+  "c2_meal_lunch2": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "中午你在楼下的店里要了一碗面。电视里在放午间新闻，没有人提那间机房。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（线索散在各处。不能急，一条一条对。）"
+    }
+  ],
+  "c2_meal_dinner2": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "晚饭你吃得很慢。窗外的雨一点没停，灯一盏一盏亮了起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（还差几块。今晚，把它们摆到一起看看。）"
+    }
+  ],
+  "c2_intro_store_front": [
+    {
+      "type": "bg",
+      "id": "store_front",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "巷口咖啡所在的这条街，离公司不到一公里。街对面是一家便利店，门口有顶棚，旁边的小巷里立着一只街边垃圾桶。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "咖啡是外面买的。从哪儿来，经过谁的手，这条街上也许有人记得。"
+    }
+  ],
+  "c2_cutoff_store_front": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "天色暗了，街上的人也少了。再逗留下去，只是在原地打转。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "今天能问的，先问到这里。"
+    }
+  ],
+  "c2_inspect_trash": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "便利店对面的街边垃圾桶，桶身上贴着一张告示：“本路段每周六 05:30 清运。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（周六早上。那就是明天一早，这一桶就要被拉走了。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桶是满的，盖子都合不上。你戴上手套，一层一层翻。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "最上面，是几片撕碎的外卖单，有一片上还印着条码。你把它们一块一块拼起来：跑腿平台的订单，备注“邵／苏姐”，收货点“便利店门口”。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "旁边还有一张折叠的白纸，里面残着一点白色粉末。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（这张纸包，得让小许送去验。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E08d"
+        }
+      ]
+    }
+  ],
+  "c2_talk_clerk": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "便利店的店员正在补烟。你出示了证件，说想问昨天傍晚的事。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“昨天傍晚啊……有个人在门口站了很久。一个人，抽烟。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "买了烟？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“买了一盒红塔山，付的现金。还买了一张两百块的预付卡，也是现金。我多看了一眼，现在谁还买这个。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "长什么样，还记得吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“看不清，他一直低着头，站的位置也背着光。戴的什么我没留意……对了，脖子上挂着一根蓝色的绳子，工牌那种。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员往外指了指对面那只垃圾桶："
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“门口那个桶啊，我们这条街周六一早才有人收，满得都溢出来了。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T25"
+        }
+      ]
+    }
+  ],
+  "c2_inspect_store_cctv": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "便利店老板同意让你看门口那个摄像头的回放。画质很差，是一台挂在顶棚下的老旧探头。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "18:54，画面右下角：一个人从马路对面过来，把两杯咖啡递给站在门口的男人，转身就走了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "那个男人只露出背影。脖子后面垂着一根深蓝色的挂绳。他把咖啡接过去，往旁边的小巷里走了，之后好几分钟没有再出现。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（背影，挂绳，别的什么都看不清。能确定的只有一点：这一杯咖啡，是在这里被人接手的。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E08b"
+        }
+      ]
+    }
+  ],
+  "c2_talk_cafe": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "巷口咖啡不大，临街两扇玻璃门，黑板上写着“今日豆：云南”。晚班的店员刚换完围裙。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "十一月十八号傍晚，写着“邵”和“苏姐”的两杯，是你做的？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“是。平台来的单，备注里就写着这两个名字，我照着写的。杯子是 18:50 跑腿来取的，下单的人我没见过。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这家店，有没有其他人来问过这单？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“没有。哦，对面便利店门口老有人等外卖，他们家垃圾桶也是周六才清，那边的人可能看得更多。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T11"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E29"
+        }
+      ]
+    }
+  ],
+  "c2_act_platform": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【分局】你把拼好的外卖单和订单号拿给小许。她打了几个电话，又在平台后台里翻了很久。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "订单是找到了。匿名账号，平台隐私号，付款是预付礼品卡，没有绑定任何实名。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "收货点？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "便利店门口。跑腿员我们能联系上，但平台只给得了他的编号，他本人记不记得，要等明天。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "匿名，预付，不留名字。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "买咖啡的人，一点都不想被找到。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你看着那张订单，说不上来哪里让人不舒服。它太干净了，干净得像是有人专门为了“找不到”而设计的。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E08e"
+        }
+      ]
+    }
+  ],
+  "c2_act_timeline": [
+    {
+      "type": "bg",
+      "id": "meeting_b",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00 会议室 B】灯只开了一半。白板上贴了三张打印纸，从左到右：15:10:41、17:36:22、22:12:07。老韩站在窗边，小许抱着记录本。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "三个时间。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "不是三个时间。是一条线。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他用马克笔在 15:10:41 下面画了一道，又在 17:36:22 下面画了一道，最后在 22:12:07 上圈了一下。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "怎么连？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "账号不指人。wb_ext，谁都能用。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "那指什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "名单指人。十七点三十六，能碰 PC-OS-03、又不在原本位置上的人，没有几个。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许把考勤名单贴到白板右侧。名字一个一个被横线划掉：郑岑，15:40 离楼；贺川，17:10 前离楼；邵晓阳，17:05 打卡；林一程，17:10 下班；黎默，在押；苏闻，门禁未出，C4 有她。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "划到最后，只剩一个名字没有被划掉：陆诚，18:10 打卡离楼。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "名单上只剩一个人没被划掉。可是他 18:10 就走了，在场证明不成立，不等于是他做的。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "我要的不是他不在哪儿，是他的手。是谁写的代码，谁点的咖啡，谁把那台机器里的东西变成了那个时间。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "明天，我们去看那段代码。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室里安静了很久。背景里，机房风扇那种低低的嗡鸣，忽然切成一声很轻的“嗒”，像定时器归零。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "——案二 先行版 到此为止。后面的代码比对和对质，还在制作中。——"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:preview",
+          "value": true
+        }
+      ]
+    }
   ]
 }

@@ -42,24 +42,48 @@ describe('case 2, first day preview', () => {
     for (const a of data.actions.filter(x => x.chapter === 'c2')) {
       if (a.scene) expect(() => play(createInitialState(c2), a.scene!), a.id).not.toThrow()
     }
-    const room = data.rooms.find(r => r.id === 'c2_server_room')!
-    for (const sceneId of [room.intro!, room.cutoff!, ...room.hotspots.map(h => h.scene)]) {
+    const c2Rooms = data.rooms.filter(r => r.id.startsWith('c2_'))
+    expect(c2Rooms.length).toBeGreaterThanOrEqual(2)
+    for (const sceneId of c2Rooms.flatMap(room => [room.intro!, room.cutoff!, ...room.hotspots.map(h => h.scene)])) {
       const s = createInitialState(c2)
       expect(() => play(s, sceneId), sceneId).not.toThrow()
       for (const id of [...s.evidence, ...s.testimony]) expect(known.has(id), id).toBe(true)
     }
   })
 
-  it('ends the preview at the end of day 1 and at the start of day 2', () => {
+  it('closes day 1 with the garbage-day line, opens day 2, and ends the preview at the day-2 timeline or on day 3', () => {
     const s = createInitialState(c2)
     s.hour = 21
     expect(nextEvent(s, data.events)?.id).toBe('c2_day1_night')
-    play(s, 'c2_preview_end')
-    expect(s.flags['ending:preview']).toBe(true)
-    expect(c2.endings.preview).toBeDefined()
+    play(s, 'c2_day1_night')
+    expect(s.flags['ending:preview']).toBeUndefined()
     const s2 = createInitialState(c2)
     s2.day = 2
     expect(nextEvent(s2, data.events)?.id).toBe('c2_day2_start')
+    const s3 = createInitialState(c2)
+    s3.evidence.push('2E05', '2E19')
+    play(s3, 'c2_act_timeline')
+    expect(s3.flags['ending:preview']).toBe(true)
+    expect(c2.endings.preview).toBeDefined()
+    const s4 = createInitialState(c2)
+    s4.day = 3
+    expect(nextEvent(s4, data.events)?.id).toBe('c2_day3_start')
+  })
+
+  it('day 2 chain: the platform check needs the torn slip, and the bin hints at Saturday collection', () => {
+    const s = createInitialState(c2)
+    s.day = 2
+    s.hour = 14
+    const ids = () => availableActions(s, data.actions).map(a => a.id)
+    expect(ids()).not.toContain('c2-2-5')
+    play(s, 'c2_inspect_trash')
+    expect(s.evidence).toContain('2E08d')
+    expect(ids()).toContain('c2-2-5')
+    play(s, 'c2_act_platform')
+    expect(s.evidence).toContain('2E08e')
+    const text = JSON.stringify(data.scenes.c2_inspect_trash) + JSON.stringify(data.scenes.c2_talk_clerk)
+    expect(text).toContain('周六')
+    expect(text).toContain('05:30')
   })
 })
 
@@ -68,7 +92,7 @@ import { useGameStore } from '../src/engine/store'
 import { playOut } from './helpers'
 
 describe('case 2 through the real store', () => {
-  it('starts, plays the opening, reaches the hub with a case 2 menu, and ends the preview on day 2', () => {
+  it('starts, plays the opening, reaches the hub with a case 2 menu, and ends the preview on day 3', () => {
     setActivePinia(createPinia())
     const store = useGameStore()
     store.startChapter('c2')
@@ -77,8 +101,8 @@ describe('case 2 through the real store', () => {
     expect(store.state.chapter).toBe('c2')
     expect(store.actions.length).toBeGreaterThan(0)
     expect(store.actions.every(a => a.id.startsWith("c2-"))).toBe(true)
-    store.state.day = 2
-    store.state.hour = 8
+    store.state.day = 3
+    store.state.hour = 7
     store.waitAnHour()
     playOut(store)
     expect(store.screen).toBe('end')
