@@ -88,6 +88,18 @@ if (existsSync(bgSrc)) {
   }
 }
 
+// Chapter posters: design/posters/c1.png … c4.png -> src/assets/posters/c1.webp … c4.webp
+const posterSrc = join(root, 'design', 'posters')
+const posterOut = join(root, 'src', 'assets', 'posters')
+let posterCount = 0
+if (existsSync(posterSrc)) {
+  mkdirSync(posterOut, { recursive: true })
+  for (const name of readdirSync(posterSrc).filter(n => /^c[1-4]\.png$/.test(n))) {
+    await sharp(join(posterSrc, name)).resize({ width: 768 }).webp({ quality: 82 }).toFile(join(posterOut, name.replace(/\.png$/, '.webp')))
+    posterCount += 1
+  }
+}
+
 // Evidence: ../evidence/E01_<name>.png -> src/assets/evidence/E01.webp
 const evSrc = pickDir(resolve(root, '..', 'evidence'), join(root, 'design', 'evidence'))
 const evOut = join(root, 'src', 'assets', 'evidence')
@@ -151,4 +163,4 @@ if (existsSync(tangSrc)) {
 }
 
 writeFileSync(join(root, 'src', 'data', 'characters.json'), JSON.stringify(manifest, null, 2) + '\n')
-console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds, ${evCount} evidence images, ${c2Count} case 2 evidence images`)
+console.log(`wrote ${count} images and characters.json for ${Object.keys(manifest).length} characters, ${bgCount} backgrounds, ${posterCount} posters, ${evCount} evidence images, ${c2Count} case 2 evidence images`)

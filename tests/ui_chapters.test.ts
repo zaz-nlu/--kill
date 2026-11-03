@@ -49,6 +49,18 @@ describe('chapter select', () => {
     expect(w.find('[data-testid="chapter-status-c2"]').text()).toBe('敬请期待')
     expect(w.find('[data-testid="chapter-play-c2"]').exists()).toBe(false)
   })
+
+  it('lists all four cases as posters, with cases 3 and 4 still to come', () => {
+    const w = mount(ChapterSelect)
+    for (const id of ['c1', 'c2', 'c3', 'c4']) {
+      expect(w.find(`[data-testid="chapter-card-${id}"]`).exists(), id).toBe(true)
+    }
+    expect(w.find('[data-testid="chapter-status-c3"]').text()).toBe('敬请期待')
+    expect(w.find('[data-testid="chapter-status-c4"]').text()).toBe('敬请期待')
+    // case 1 is always open; a later case waits for the one before it
+    expect(w.find('[data-testid="chapter-card-c1"]').attributes('disabled')).toBeUndefined()
+    expect(w.find('[data-testid="chapter-card-c3"]').attributes('disabled')).toBeDefined()
+  })
 })
 
 describe('the ending card', () => {
@@ -65,7 +77,7 @@ describe('the ending card', () => {
 
   it('a TRUE ending is recorded, says case 2 is open, and unlocks it', () => {
     const w = mount(EndScreen, { props: { failed: false, reason: 'true', nextTitle: data.chapters.c2.title } })
-    expect(w.find('[data-testid="next-chapter"]').text()).toContain('下一章已解锁：案二·苏闻')
+    expect(w.find('[data-testid="next-chapter"]').text()).toContain('下一章已解锁：案二·静音')
     expect(loadProfile().cleared.c1?.ending).toBe('true')
     expect(isUnlocked(data.chapters.c2, data.chapters)).toBe(true)
   })
@@ -107,13 +119,13 @@ describe('save panel: chapters', () => {
         mode: 'load',
         slots: [],
         auto: null,
-        chapterName: '案二·苏闻',
+        chapterName: '案二·静音',
         chapterId: 'c2',
         others: [{ chapter: 'c1', title: '案一·熄灯', slots: [{ slot: 'auto' as const, meta: c1Meta }] }],
       },
     })
     const line = w.find('[data-testid="save-chapter"]')
-    expect(line.text()).toContain('当前章节：案二·苏闻')
+    expect(line.text()).toContain('当前章节：案二·静音')
     expect(line.text()).toContain('存档只在本章内有效')
 
     expect(w.find('[data-testid="other-list"]').exists()).toBe(false)
@@ -122,7 +134,7 @@ describe('save panel: chapters', () => {
 
     const confirm = w.find('[data-testid="other-confirm"]')
     expect(confirm.text()).toContain('这是【案一·熄灯】的存档')
-    expect(confirm.text()).toContain('读取后将离开当前的【案二·苏闻】')
+    expect(confirm.text()).toContain('读取后将离开当前的【案二·静音】')
     expect(confirm.text()).toContain('当前进度会自动保存')
     await w.find('[data-testid="other-read"]').trigger('click')
     expect(w.emitted('pickOther')).toEqual([['c1', 'auto']])
@@ -148,9 +160,9 @@ describe('timeline panel: chapter title and calendar', () => {
 
   it('titles itself with the chapter and takes day names and dates from its calendar', () => {
     const w = mount(TimelinePanel, {
-      props: { rows, chapterTitle: '案二·苏闻', calendar: data.chapters.c2.calendar },
+      props: { rows, chapterTitle: '案二·静音', calendar: data.chapters.c2.calendar },
     })
-    expect(w.find('h3').text()).toBe('回溯 · 案二·苏闻')
+    expect(w.find('h3').text()).toBe('回溯 · 案二·静音')
     expect(w.find('[data-testid="timeline-scope"]').text()).toBe('这里只显示本章的选择，其他章节请在章节选择里回溯。')
     expect(w.find('[data-testid="chapter-0"]').text()).toContain('序章')
     expect(w.find('[data-testid="chapter-1"]').text()).toContain('第 1 天')

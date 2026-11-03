@@ -38,11 +38,25 @@ describe('chapter definitions', () => {
 
   it('case 2 is a placeholder: its definition loads, its scenes do not exist yet', () => {
     const c2 = data.chapters.c2
+    expect(c2.title).toBe('案二·静音')
     expect(c2.order).toBe(2)
     expect(c2.calendar).toHaveLength(3)
     expect(c2.lastDay).toBe(3)
     expect(c2.recap).toHaveLength(6)
     expect(data.scenes[c2.prologue]).toBeUndefined()
+  })
+
+  it('cases 3 and 4 are placeholders too: listed in order, with nothing written yet', () => {
+    for (const [id, order, title] of [['c3', 3, '案三·停电'], ['c4', 4, '案四·春茗']] as const) {
+      const ch = data.chapters[id]
+      expect(ch.order, id).toBe(order)
+      expect(ch.title, id).toBe(title)
+      expect(ch.sub, id).toBe('敬请期待')
+      expect(ch.endings, id).toEqual({})
+      expect(ch.recap, id).toEqual([])
+      expect(data.scenes[ch.prologue], id).toBeUndefined()
+      expect(data.scenes[ch.trial.scene], id).toBeUndefined()
+    }
   })
 
   it('case 1 keeps the hours a day had before chapters', () => {
