@@ -20,6 +20,7 @@ export interface ActionDef {
   id: string
   label: string
   location: string
+  chapter?: string  // which chapter's menu this belongs to; absent means case 1
   days: number[]
   minHour?: number
   maxHour?: number
@@ -69,6 +70,7 @@ export function availableActions(state: GameState, all: ActionDef[]): ActionDef[
   const mealHour = EVENT_HOURS.includes(state.hour)
   return all.filter(a => {
     if (Boolean(a.meal) !== mealHour) return false
+    if ((a.chapter ?? 'c1') !== state.chapter) return false
     if (state.flags[`done:${a.id}`]) return false
     if (a.requires && !evalCondition(state, a.requires)) return false
     if (!a.days.includes(state.day)) return false

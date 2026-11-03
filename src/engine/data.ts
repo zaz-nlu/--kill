@@ -123,6 +123,14 @@ export function mergeRecordMeta(files: Record<string, Record<string, RecordMeta>
   return out
 }
 
+// A chapter's own actions/events live in data/chapters/<id>/; each entry is stamped with that chapter so the menus stay apart.
+function chapterRecords<T extends { chapter?: string }>(files: Record<string, T[]>): T[] {
+  return Object.entries(files).flatMap(([file, list]) => {
+    const chapter = /chapters\/([^/]+)\//.exec(file)?.[1]
+    return list.map(r => ({ ...r, chapter: r.chapter ?? chapter }))
+  })
+}
+
 export interface LoadOptions {
   evidenceFiles?: Record<string, RecordDef[]>
   testimonyFiles?: Record<string, RecordDef[]>
@@ -135,6 +143,9 @@ export function loadData(extra: LoadOptions = {}): GameData {
   const chapterFiles = import.meta.glob('../data/chapters/*.json', { eager: true, import: 'default' }) as Record<string, ChapterDef>
   const caseEvidenceFiles = import.meta.glob('../data/chapters/*/evidence.json', { eager: true, import: 'default' }) as Record<string, RecordDef[]>
   const caseTestimonyFiles = import.meta.glob('../data/chapters/*/testimony.json', { eager: true, import: 'default' }) as Record<string, RecordDef[]>
+  const caseActionFiles = import.meta.glob('../data/chapters/*/actions.json', { eager: true, import: 'default' }) as Record<string, ActionDef[]>
+  const caseEventFiles = import.meta.glob('../data/chapters/*/events.json', { eager: true, import: 'default' }) as Record<string, EventDef[]>
+  const caseRoomFiles = import.meta.glob('../data/chapters/*/rooms.json', { eager: true, import: 'default' }) as Record<string, RoomDef[]>
   const caseMetaFiles = import.meta.glob('../data/chapters/*/evidence_meta.json', { eager: true, import: 'default' }) as Record<string, Record<string, RecordMeta>>
   const scenes = mergeScenes(sceneFiles)
   const exams = mergeExams(examFiles)
@@ -153,9 +164,9 @@ export function loadData(extra: LoadOptions = {}): GameData {
     testimony: mergeRecordFiles(testimonyFiles),
     recordMeta: mergeRecordMeta(metaFiles),
     scenes,
-    actions: actions as ActionDef[],
-    rooms: rooms as RoomDef[],
-    events: events as EventDef[],
+    actions: [...(actions as ActionDef[]), ...chapterRecords(caseActionFiles)],
+    rooms: [...(rooms as RoomDef[]), ...Object.values(caseRoomFiles).flat()],
+    events: [...(events as EventDef[]), ...chapterRecords(caseEventFiles)],
     frames: Object.fromEntries((frames as FrameDef[]).map(f => [f.id, f])),
     deductions: Object.fromEntries((deductions as DeductionDef[]).map(d => [d.id, d])),
     conclusions: conclusions as ConclusionDef[],
