@@ -5,3 +5,4 @@ release*
 dist-web.zip
 *.exe
 dist-web*.zip
+CLAUDE.local.md
