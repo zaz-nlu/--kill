@@ -7,9 +7,8 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-// Source art used to live beside the repo; it also ships inside design/ so a fresh checkout can still build.
-const pickDir = (primary, fallback) => (existsSync(primary) ? primary : fallback)
-const src = pickDir(resolve(root, '..', 'role_images'), join(root, 'design', 'role_images'))
+// All source art lives under design/ (role_images, background, evidence, evidence2, posters); nothing outside the repo is read.
+const src = join(root, 'design', 'role_images')
 const outDir = join(root, 'src', 'assets', 'characters')
 const propsDir = join(root, 'src', 'assets', 'props')
 
@@ -77,7 +76,7 @@ for (const [name, key] of Object.entries(PROPS)) {
 }
 
 // Backgrounds: ../background/game-backgrounds/<id>.png (night) and <id>_day.png -> src/assets/backgrounds/*.webp
-const bgSrc = pickDir(resolve(root, '..', 'background', 'game-backgrounds'), join(root, 'design', 'background', 'game-backgrounds'))
+const bgSrc = join(root, 'design', 'background', 'game-backgrounds')
 const bgOut = join(root, 'src', 'assets', 'backgrounds')
 let bgCount = 0
 if (existsSync(bgSrc)) {
@@ -101,7 +100,7 @@ if (existsSync(posterSrc)) {
 }
 
 // Evidence: ../evidence/E01_<name>.png -> src/assets/evidence/E01.webp
-const evSrc = pickDir(resolve(root, '..', 'evidence'), join(root, 'design', 'evidence'))
+const evSrc = join(root, 'design', 'evidence')
 const evOut = join(root, 'src', 'assets', 'evidence')
 let evCount = 0
 if (existsSync(evSrc)) {
