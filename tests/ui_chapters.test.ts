@@ -30,10 +30,10 @@ describe('chapter select', () => {
     setActivePinia(createPinia())
   })
 
-  it('shows case 1 as playable and case 2 as coming soon, which cannot be entered', () => {
+  it('shows case 1 as playable and case 2 as locked until case 1 is cleared', () => {
     const w = mount(ChapterSelect)
     expect(w.find('[data-testid="chapter-status-c1"]').text()).toBe('可玩')
-    expect(w.find('[data-testid="chapter-status-c2"]').text()).toBe('敬请期待')
+    expect(w.find('[data-testid="chapter-status-c2"]').text()).toBe('未解锁')
     expect(w.find('[data-testid="chapter-play-c1"]').exists()).toBe(true)
     expect(w.find('[data-testid="chapter-play-c2"]').exists()).toBe(false)
     // recap belongs to case 2 only: case 1 opens cold
@@ -41,13 +41,14 @@ describe('chapter select', () => {
     expect(w.find('[data-testid="chapter-recap-c1"]').exists()).toBe(false)
   })
 
-  it('an unfinished case 2 stays "coming soon" even after case 1 is cleared', () => {
+  it('case 2 opens once case 1 is cleared', async () => {
     markCleared('c1', 'true')
     setActivePinia(createPinia())
     const w = mount(ChapterSelect)
     expect(w.find('[data-testid="chapter-status-c1"]').text()).toContain('已通关')
-    expect(w.find('[data-testid="chapter-status-c2"]').text()).toBe('敬请期待')
-    expect(w.find('[data-testid="chapter-play-c2"]').exists()).toBe(false)
+    expect(w.find('[data-testid="chapter-status-c2"]').text()).toBe('可玩')
+    await w.find('[data-testid="chapter-card-c2"]').trigger('click')
+    expect(w.find('[data-testid="chapter-play-c2"]').exists()).toBe(true)
   })
 
   it('lists all four cases as posters, with cases 3 and 4 still to come', () => {

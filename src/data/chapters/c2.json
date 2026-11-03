@@ -4,12 +4,30 @@
   "sub": "11 月 19 日起",
   "order": 2,
   "calendar": [
-    { "label": "第 1 天", "date": "11 月 19 日", "startHour": 8, "lastHour": 21 },
-    { "label": "第 2 天", "date": "11 月 20 日", "startHour": 8, "lastHour": 21 },
-    { "label": "第 3 天", "date": "11 月 21 日", "startHour": 8, "lastHour": 21 }
+    {
+      "label": "第 1 天",
+      "date": "11 月 19 日",
+      "startHour": 8,
+      "lastHour": 21
+    },
+    {
+      "label": "第 2 天",
+      "date": "11 月 20 日",
+      "startHour": 8,
+      "lastHour": 21
+    },
+    {
+      "label": "第 3 天",
+      "date": "11 月 21 日",
+      "startHour": 8,
+      "lastHour": 21
+    }
   ],
-  "prologue": "c2_prologue",
-  "trial": { "scene": "c2_trial", "firstExam": "c2_act1" },
+  "prologue": "c2_break_in",
+  "trial": {
+    "scene": "c2_trial",
+    "firstExam": "c2_act1"
+  },
   "lastDay": 3,
   "startState": {
     "hour": 8,
@@ -33,9 +51,22 @@
     },
     "intel": {}
   },
-  "startKit": { "evidence": [], "testimony": [] },
-  "endings": {},
-  "mechanics": { "danger": false, "shop": true, "gifts": true },
+  "startKit": {
+    "evidence": [],
+    "testimony": []
+  },
+  "endings": {
+    "preview": {
+      "title": "先行版 · 未完待续",
+      "text": "案二还在制作中。\n你已经看到了第一天的现场、苏闻留下的信和几条线索，后面的推理、对质和结局还没有做完。\n感谢你的试玩。",
+      "clears": false
+    }
+  },
+  "mechanics": {
+    "danger": false,
+    "shop": true,
+    "gifts": true
+  },
   "recap": [
     {
       "title": "九月十四日，雨夜",

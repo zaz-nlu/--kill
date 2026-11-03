@@ -1,0 +1,395 @@
+{
+  "c2_act_police": [
+    {
+      "type": "bg",
+      "id": "meeting_b",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【11:00 会议室 B】老韩把会议室当成了临时指挥点。投影仪关着，桌上摊满了纸。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "先说结论。尸检的初步结果出来了：急性二氧化碳中毒，窒息。身上没有外伤，也没有挣扎的痕迹。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "死亡时间在昨晚 21:30 到今天凌晨 00:30 之间。血里还验出了佐匹克隆，0.12，一种安眠药。胃里有咖啡。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她被人下了药，再被喷放的气体闷死。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "别急着下结论。林顾问，你不是警察，我也不能当你是。但这个案子，你看得见的比我们多。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "消防联动那边的记录也调出来了。22:12:07 有一次 release，触发源是一个叫 TASK-1118-1736 的定时任务。不是手动，也不是故障。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "定时任务……有人提前设好了，到点自己喷。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "谁设的，什么时候设的，这是我们接下来要查的。你那边有线索，随时告诉我。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E03"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E02"
+        }
+      ]
+    }
+  ],
+  "c2_act_desk": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【14:50 算法区 A3】算法区没有人。苏闻的椅子还歪着，像刚被人从桌前推开。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "桌上一盆仙人掌，半死不活，盆沿缺了一角，用透明胶粘过，没粘住，胶已经发黄。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把仙人掌搬起来。盆底压着一把黄铜钥匙，用透明胶粘着，胶上沾着土。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "抽屉开了。里面是一个牛皮纸信封，封面用黑笔写着一个“韩”字，没封口。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "最上面是一张打印纸反面裁成的信纸，字很小，一笔一划。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“……九月二号晚上十点四十一分零七秒，有一条评论从这栋楼里发出去。发它的机器在外包区设备柜第三层，白天归测试，晚上没人管。登录用的是外包的公共账号，谁都能用。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“时间是定的，不是手按的。手按不出零误差。这个定时走的是精确模式，误差零毫秒。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“精确模式的开关，文档里没有。我把全部文档翻了三遍，没有。我只在这个模块的几个维护者的代码里见过它：写模块的，评审的，接接口的。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“我不写名字。我只写我看见了什么。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“五年前，有个人抱着一叠单子站在我桌边，说‘闻姐，这个账不对’。我头都没抬。我说，多一事不如少一事。后来她死了。这次我不躲了。周五下午三点，我把该交的东西交出去。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "“要是我没交成，别当我是想不开。我这人怕死，怕疼，膝盖一到阴天就骂街。我不会自己走。——苏闻，十一月十七日夜”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（我又从头看了一遍。第二遍，我发现自己正在心里给那三行对名字。对到第二个，我停了。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把信折回原来的折痕，放回抽屉。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:00】老韩进来，看了一眼抽屉，又看了一眼你手里垫着的纸巾。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你开过了？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "开过了。东西没动，按原样折回去的。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你看见什么了？"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "她不点名。她只写她看见的。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "那就够了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩把信封收进证物袋。你站在桌边，一样一样看过去：一板止痛片，铝箔背面用圆珠笔写着“10/12 右膝。别请假。”；显示器边框上一张便签，正面“周五 韩”，背面“穿那件黑的”。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E12"
+        }
+      ]
+    }
+  ],
+  "c2_act_laowang": [
+    {
+      "type": "bg",
+      "id": "security",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【20:00 B1 物业监控室】监控墙上十六个格子，其中一个黑着。老王踩着凳子，半个身子探进天花板，手里一把螺丝刀。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "进来吧。门框敲两下就行，我这手上都是灰。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，昨晚的监控都正常吧？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "正常。就东楼梯那扇门，后半夜响了一下，报警器叫了一声。我上去看，没人。报警器上的磁铁也不见了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "磁铁？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "消防门报警器上吸的那块。外包那帮孩子图省事，都这么干。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王从凳子上下来，往门口走。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "我上去瞅一眼那门。你们坐着。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "门关上。监控室里只剩十六个格子，和小声的电流声。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老王回来的时候，手上沾着灰。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "门磁我拍下来了，没敢动。得等他们来取。门框上头，残胶一摸一手黑。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "下周四我跟小马调班，家里有点事。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "监控墙上，那个黑掉的格子闪了一下，亮了。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "成了。手艺值几个钱，赶紧走吧，我这还得拖地。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T06"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T24"
+        }
+      ]
+    }
+  ],
+  "c2_act_mengyao": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【16:00 17 层人事区】孟遥坐在自己的工位上，面前摊着年中奖金发放表，没有在看。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你昨晚在公司？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "在。我加班。19:05 我去接了杯水，回来的时候，桌上就有两杯咖啡了，杯子上写着邵和苏姐。我没见到谁放的。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "两杯咖啡，放在哪儿？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "前台那边。我以为是哪位领导给加班的人点的，没多想。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥低下头，把奖金表往你这边推了推。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "还有这个。我核年中奖金发放表，奖金池这个科目，余额是 0。我问过苏姐，她说别问，也别跟别人说。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "我昨天本来想再问一次的。我现在……我现在不知道该不该说。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你告诉了我，就不算白说。这张表，我能拍一下吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "孟遥点了点头。你拍下了奖金池的科目余额，和扣款表。扣款表第 17 行，是你自己的名字，18,000。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T07"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T15"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E20"
+        }
+      ]
+    }
+  ],
+  "c2_meal_lunch": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "中午你在楼下的店里随便吃了点东西。电视里在放天气预报，说今晚还有雨。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（苏姐的杯子，那封信，还有被人改成只读的数据库。一桩桩都有人做，可是还看不见是谁。）"
+    }
+  ],
+  "c2_meal_dinner": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "晚饭你吃得很慢。窗外的雨又下大了，街上的灯一盏一盏亮起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（今晚还有一个地方没去：B1 的监控室。老王说，他夜里在。）"
+    }
+  ],
+  "c2_preview_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "夜深了。线索一条条摆在桌上：只读的数据库、被胶带盖住的警示灯、写着“苏姐”的咖啡杯，还有那封不点名的信。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（还差什么，我现在说不清。明天，再去看看。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "——案二 先行版 到此为止。——"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "ending:preview",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "c2_day1_night",
+    "chapter": "c2",
+    "day": 1,
+    "hour": 21,
+    "scene": "c2_preview_end"
+  },
+  {
+    "id": "c2_day2_start",
+    "chapter": "c2",
+    "day": 2,
+    "hour": 8,
+    "scene": "c2_preview_end"
+  }
+]

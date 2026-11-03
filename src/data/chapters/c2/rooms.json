@@ -1,0 +1,18 @@
+[
+  {
+    "id": "c2_server_room",
+    "label": "机房",
+    "bg": "server_room",
+    "intro": "c2_intro_server_room",
+    "budget": 5,
+    "cutoff": "c2_cutoff_server_room",
+    "hotspots": [
+      { "id": "c2_sr_pc", "label": "苏闻的双屏机", "rect": [47, 38, 16, 22], "scene": "c2_inspect_pc" },
+      { "id": "c2_sr_desk", "label": "桌面", "rect": [34, 62, 30, 14], "scene": "c2_inspect_desk" },
+      { "id": "c2_sr_coat", "label": "椅背上的外套", "rect": [64, 52, 12, 24], "scene": "c2_inspect_coat" },
+      { "id": "c2_sr_cylinder", "label": "气瓶间", "rect": [80, 22, 16, 48], "scene": "c2_inspect_cylinder" },
+      { "id": "c2_sr_reader", "label": "门口的读卡器", "rect": [3, 38, 8, 14], "scene": "c2_inspect_reader" },
+      { "id": "c2_sr_cam", "label": "天花板的摄像头", "rect": [40, 3, 18, 12], "scene": "c2_inspect_cam" }
+    ]
+  }
+]

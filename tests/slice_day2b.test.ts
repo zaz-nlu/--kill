@@ -204,13 +204,13 @@ describe('day 2 actions: what they give', () => {
 
 describe('day 2 fixed events', () => {
   it('are in the order the day unfolds, and the street attack only if you stayed away from the stairs', () => {
-    const ids = data.events.filter(e => e.day === 2).map(e => e.id)
+    const ids = data.events.filter(e => e.day === 2 && !e.chapter).map(e => e.id)
     expect(ids).toEqual(['day2_meeting', 'day2_desk', 'day2_lunch', 'day2_anon', 'day2_dinner', 'day2_street', 'day2_boss_msg', 'day2_sms', 'day2_night'])
     expect(data.events.find(e => e.id === 'day2_street')?.requires).toEqual({ kind: 'flag', key: 'attack1_pending' })
   })
 
   it('every one of them plays to the end', () => {
-    for (const e of data.events.filter(x => x.day === 2)) {
+    for (const e of data.events.filter(x => x.day === 2 && !x.chapter)) {
       const s = createInitialState()
       expect(() => play(s, e.scene, [0, 0, 0]), e.id).not.toThrow()
     }

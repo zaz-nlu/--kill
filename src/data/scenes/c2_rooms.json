@@ -1,0 +1,53 @@
+{
+  "c2_intro_server_room": [
+    { "type": "say", "speaker": "narration", "text": "机房已经被保护起来了。门口拉了线，老韩的人守着，只许在警戒线里面看，不许动。" },
+    { "type": "say", "speaker": "narration", "text": "白气散得差不多了，地面还有一层潮。机柜的风扇照旧嗡嗡响，好像什么都没发生过。" },
+    { "type": "say", "speaker": "lyc", "text": "先看苏姐的桌子，还有门边、天花板。别漏了。" }
+  ],
+  "c2_cutoff_server_room": [
+    { "type": "say", "speaker": "narration", "text": "法医的人要把现场收走了。再待下去，只是碍事。" },
+    { "type": "say", "speaker": "lyc", "text": "该看的先记下，剩下的，等警方的报告出来再对。" }
+  ],
+  "c2_inspect_pc": [
+    { "type": "say", "speaker": "narration", "text": "双屏机的屏幕还亮着。左边一行红字：WRITE BLOCKED — READ ONLY。" },
+    { "type": "say", "speaker": "lyc", "text": "主库被人改成了只读。写不进去，业务当然停。" },
+    { "type": "say", "speaker": "narration", "text": "右边屏幕上是一串没敲完的命令，光标停在一半，像她刚想改回来，人就趴下了。" },
+    { "type": "say", "speaker": "narration", "text": "变更被记在审计日志里：11 月 18 日 15:10:41，公共账号 wb_ext，从内网的测试终端 PC-OS-03 发起。" },
+    { "type": "say", "speaker": "lyc", "text": "公共账号……外包区的人都能登。这一条，指不到人。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E04" }] }
+  ],
+  "c2_inspect_desk": [
+    { "type": "say", "speaker": "narration", "text": "桌面很整齐：不锈钢保温杯、一只带盖的纸咖啡杯、锁屏的笔记本、倒扣的手机，还有一张便签。" },
+    { "type": "say", "speaker": "lyc", "text": "保温杯是满的，咖啡杯被动过。她深夜喝了别人给的咖啡。" },
+    { "type": "say", "speaker": "narration", "text": "便签上的字很潦草，已经看不清了。警方的人把现场每个角度都拍了照，递给你一份桌面的照片。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E35" }] }
+  ],
+  "c2_inspect_coat": [
+    { "type": "say", "speaker": "narration", "text": "椅背上搭着苏闻的外套。桌沿倒着一只纸杯，杯盖掉在键盘旁。" },
+    { "type": "say", "speaker": "narration", "text": "杯套上印着“巷口咖啡”，杯身上手写着两个字：苏姐。" },
+    { "type": "say", "speaker": "lyc", "text": "杯子是外面买的，不是公司的。谁买的，谁放的，现在还没有头绪。" },
+    { "type": "say", "speaker": "narration", "text": "外套是机房热的时候脱下来的，口袋里没有别的东西。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E33" }] }
+  ],
+  "c2_inspect_cylinder": [
+    { "type": "say", "speaker": "narration", "text": "气瓶间的门朝北侧走廊，和机房是两道门。三只在用的瓶，压力表都归零了，备用瓶还指着 5.7。" },
+    { "type": "say", "speaker": "narration", "text": "每只瓶底下有称重台，墙上钉着一张 11 月 1 日的记录纸：76.8 千克。" },
+    { "type": "say", "speaker": "lyc", "text": "三只瓶一起空了。11 月 1 日 76.8 千克，现在秤上只剩 4.2 千克。这不是漏，是整套喷放系统被放了一遍。" },
+    { "type": "say", "speaker": "narration", "text": "控制盘上的旋钮停在“自动”。盘面旁边没有任何人工操作的标签。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E26" }] }
+  ],
+  "c2_inspect_reader": [
+    { "type": "say", "speaker": "narration", "text": "机房门口的读卡器能调出进出记录。老韩的人已经导了一份出来。" },
+    { "type": "say", "speaker": "narration", "text": "11 月 18 日：14:25 苏闻进，14:55 出，15:30 再进。19:20 邵晓阳进（临时授权），19:35 出。此后无人。" },
+    { "type": "say", "speaker": "lyc", "text": "19:35 以后，再没有人进过这道门。" },
+    { "type": "say", "speaker": "narration", "text": "但门禁只管开门，不管里面的人什么时候离开。双层隔音门一关，里外都听不见。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E01" }] }
+  ],
+  "c2_inspect_cam": [
+    { "type": "say", "speaker": "narration", "text": "天花板角落的摄像头 C4 正对着苏闻的工位。老韩的人调出了昨晚的录像。" },
+    { "type": "say", "speaker": "narration", "text": "11 月 18 日 19:20，邵晓阳端着两杯咖啡进来，把写着“苏姐”的那杯放到她手边，19:35 拿着自己那杯出去。之后，房里再没有第二个人。22:12:11 以后，画面开始结霜，很快什么都看不清了。" },
+    { "type": "say", "speaker": "lyc", "text": "杯子是什么时候倒的，这个画面看不出来。" },
+    { "type": "say", "speaker": "narration", "text": "画面里，从 19:35 到结霜，只有她一个人。" },
+    { "type": "effect", "effects": [{ "kind": "evidence", "id": "2E18" }] }
+  ]
+}

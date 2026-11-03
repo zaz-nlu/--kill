@@ -1,47 +1,209 @@
 {
   "c2_break_in": [
-    { "type": "bg", "id": "office", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "2026 年 11 月 19 日，周四。早上，雨停了，天还是灰的。" },
-    { "type": "say", "speaker": "narration", "text": "【08:09 17 层 北侧走廊】走廊灯是感应的，人一站定就灭一半。" },
-    { "type": "say", "speaker": "narration", "text": "机房的门缝底下往外渗着一层白气，贴着地皮走。孟遥站在门口，手机还贴在耳朵上。" },
-    { "type": "say", "speaker": "mengyao", "text": "……嗯，我到了。姐夫说她一宿没回，电话也不接。他说她从来不这样。", "expr": "nervous" },
-    { "type": "say", "speaker": "narration", "text": "她挂了电话，又拨了 120。" },
-    { "type": "say", "speaker": "narration", "text": "【08:10】物业的老赵蹲在门口捅钥匙，捅了两下，停住了。" },
-    { "type": "say", "speaker": "narration", "text": "老赵：“捅不开。里头反锁了。”" },
-    { "type": "say", "speaker": "laowang", "text": "机房那门是双层的。你这把钥匙只能开外头这道，里头是电子锁，一断电就落锁。" },
-    { "type": "say", "speaker": "narration", "text": "老赵：“让开点儿。”" },
-    { "type": "say", "speaker": "narration", "text": "三下。第四下，门框裂了。内门一开，白气顺着地皮涌出来，扑到脚面上，凉的。" },
-    { "type": "bg", "id": "server_room", "time": "day" },
-    { "type": "say", "speaker": "narration", "text": "【08:10:40】苏闻趴在双屏机前，脸侧贴着键盘。降噪耳机还戴着，一边掉了半个，挂在耳朵上。" },
-    { "type": "say", "speaker": "narration", "text": "屏幕上一行红字：WRITE BLOCKED — READ ONLY。她右手边，一只纸杯倒在桌沿，杯盖掉在键盘旁，杯身上有一行手写的字。" },
-    { "type": "say", "speaker": "lyc", "text": "……苏姐。", "expr": "shocked" },
-    { "type": "say", "speaker": "narration", "text": "里面没有声音。只有机柜的风扇，嗡嗡的。" },
-    { "type": "say", "speaker": "lyc", "text": "都别进。孟遥，120 打了吗？" },
-    { "type": "say", "speaker": "mengyao", "text": "打了。110 也打了。", "expr": "shocked" },
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "2026 年 11 月 19 日，周四。早上，雨停了，天还是灰的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:09 17 层 北侧走廊】走廊灯是感应的，人一站定就灭一半。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "机房的门缝底下往外渗着一层白气，贴着地皮走。孟遥站在门口，手机还贴在耳朵上。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "……嗯，我到了。姐夫说她一宿没回，电话也不接。他说她从来不这样。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她挂了电话，又拨了 120。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:10】物业的老赵蹲在门口捅钥匙，捅了两下，停住了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老赵：“捅不开。里头反锁了。”"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "机房那门是双层的。你这把钥匙只能开外头这道，里头是电子锁，一断电就落锁。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老赵：“让开点儿。”"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "三下。第四下，门框裂了。内门一开，白气顺着地皮涌出来，扑到脚面上，凉的。"
+    },
+    {
+      "type": "bg",
+      "id": "server_room",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:10:40】苏闻趴在双屏机前，脸侧贴着键盘。降噪耳机还戴着，一边掉了半个，挂在耳朵上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "屏幕上一行红字：WRITE BLOCKED — READ ONLY。她右手边，一只纸杯倒在桌沿，杯盖掉在键盘旁，杯身上有一行手写的字。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "……苏姐。",
+      "expr": "shocked"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "里面没有声音。只有机柜的风扇，嗡嗡的。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "都别进。孟遥，120 打了吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "打了。110 也打了。",
+      "expr": "shocked"
+    },
     {
       "type": "effect",
-      "effects": [{ "kind": "evidence", "id": "2E34" }]
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E34"
+        }
+      ]
     },
-    { "type": "say", "speaker": "narration", "text": "【08:11】老王往里看了一眼，退回来。" },
-    { "type": "say", "speaker": "laowang", "text": "那柜子里头压力表是零。这屋的灭火剂，喷了。" },
-    { "type": "say", "speaker": "lyc", "text": "你说什么？" },
-    { "type": "say", "speaker": "laowang", "text": "二氧化碳。这雾我认得，以前单位演过一回。" },
-    { "type": "say", "speaker": "narration", "text": "【08:12】气瓶间的门朝北侧走廊，独立于机房。老王用钥匙打开。" },
-    { "type": "say", "speaker": "narration", "text": "三只在用的瓶，压力表都归零了，备用瓶还指着 5.7。每只瓶底下有称重台，墙上钉着一张 11 月 1 日的记录纸：76.8 千克。" },
-    { "type": "say", "speaker": "lyc", "text": "三只都空了。" },
-    { "type": "say", "speaker": "laowang", "text": "空了。这一屋子，喷干净了。" },
-    { "type": "say", "speaker": "narration", "text": "【08:13】林一程抬起头。机房门上方，那盏红色的警示灯，灯罩上贴着一圈胶带。" },
-    { "type": "say", "speaker": "lyc", "text": "这灯，谁贴的？" },
-    { "type": "say", "speaker": "laowang", "text": "那灯闪了半年了。苏工自己拿胶带贴的，说晃眼。十月底还报修过，单子在我那儿。" },
-    { "type": "say", "speaker": "lyc", "text": "贴上还闪吗？" },
-    { "type": "say", "speaker": "laowang", "text": "贴上就不闪了。就贴灯罩那儿，挡个亮，不挨着线。" },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:11】老王往里看了一眼，退回来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "那柜子里头压力表是零。这屋的灭火剂，喷了。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你说什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "二氧化碳。这雾我认得，以前单位演过一回。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:12】气瓶间的门朝北侧走廊，独立于机房。老王用钥匙打开。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "三只在用的瓶，压力表都归零了，备用瓶还指着 5.7。每只瓶底下有称重台，墙上钉着一张 11 月 1 日的记录纸：76.8 千克。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "三只都空了。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "空了。这一屋子，喷干净了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:13】林一程抬起头。机房门上方，那盏红色的警示灯，灯罩上贴着一圈胶带。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "这灯，谁贴的？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "那灯闪了半年了。苏工自己拿胶带贴的，说晃眼。十月底还报修过，单子在我那儿。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "贴上还闪吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "贴上就不闪了。就贴灯罩那儿，挡个亮，不挨着线。"
+    },
     {
       "type": "effect",
-      "effects": [{ "kind": "evidence", "id": "2E36" }]
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E36"
+        }
+      ]
     },
-    { "type": "say", "speaker": "lyc", "text": "王叔，昨晚您一直在楼下？" },
-    { "type": "say", "speaker": "laowang", "text": "在。什么都没听见。真什么都没听见。" },
-    { "type": "say", "speaker": "narration", "text": "【08:16】林一程退到走廊，又看了一眼那只倒着的杯子。杯口朝外，杯底一圈咖啡渣。他没有进去。" },
-    { "type": "say", "speaker": "narration", "text": "远处，电梯到了。老韩和小许的声音从走廊另一头传来。" }
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "王叔，昨晚您一直在楼下？"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "在。什么都没听见。真什么都没听见。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【08:16】林一程退到走廊，又看了一眼那只倒着的杯子。杯口朝外，杯底一圈咖啡渣。他没有进去。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "远处，电梯到了。老韩和小许的声音从走廊另一头传来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "time",
+          "hour": 9
+        }
+      ]
+    }
   ]
 }

@@ -11,7 +11,7 @@ import sys
 
 ITEM_TOTAL = 190  # spec 6.2b: giving everyone their favourite costs 190
 QUOTE_TAG = re.compile(r'^(G[1-9]|Q-.+)$')
-ENDING_IDS = {'hp', 'bad2', 'bad3', 'true', 'a', 'b', 'c', 'hidden'}  # keep in step with ENDINGS in src/engine/endings.ts
+ENDING_IDS = {'hp', 'bad2', 'bad3', 'true', 'a', 'b', 'c', 'hidden', 'preview'}  # keep in step with ENDINGS in src/engine/endings.ts
 SFX_CUES = {'lights_out', 'phone', 'stab'}  # keep in step with CUES in src/audio/director.ts
 
 
