@@ -5,7 +5,7 @@ import type { TuneId } from './tunes'
 // Notes are MIDI numbers (A4 = 69). The sound itself is made in engine.ts.
 
 export type MoodId =
-  | 'title' | 'office' | 'hr_office' | 'meeting_b' | 'stairwell' | 'cafe' | 'store' | 'police' | 'meeting_a'
+  | 'title' | 'office' | 'hr_office' | 'meeting_b' | 'stairwell' | 'cafe' | 'store' | 'store_front' | 'police' | 'meeting_a'
   | 'street' | 'home' | 'exam' | 'ambush' | 'aftermath' | 'bad_end' | 'fail' | 'resolve'
   | 'day' | 'parking' | 'deduce' | 'limo' | 'comeback'
   | 'security' | 'server_room' | 'outsource' | 'boss_office' | 'vp_office' | 'pantry' | 'smoking' | 'lobby'
@@ -85,6 +85,11 @@ export const MOODS: Record<MoodId, Mood> = {
   store: mood('store', {
     drone: { notes: [40, 47], wave: 'sine', level: 0.22, cutoff: 600 },
     hum: 0.4, fan: 0.15, rain: 0.3, accents: ['chime'], reverb: 0.3,
+  }),
+  // 便利店门口: the rain on the awning, a car now and then, the door chime; no footsteps
+  store_front: mood('store_front', {
+    drone: { notes: [38, 45], wave: 'sine', level: 0.26, cutoff: 480 },
+    rain: 0.75, wind: 0.2, accents: ['drip', 'car', 'chime'], reverb: 0.4,
   }),
   police: mood('police', {
     drone: { notes: [38, 45], wave: 'triangle', level: 0.28, cutoff: 350 },
@@ -241,7 +246,7 @@ export const MOODS: Record<MoodId, Mood> = {
 
 const BY_BACKGROUND: Record<string, MoodId> = {
   title: 'title', office: 'office', hr_office: 'hr_office', meeting_b: 'meeting_b', stairwell: 'stairwell',
-  cafe: 'cafe', store: 'store', police: 'police', meeting_a: 'meeting_a', street: 'street', home: 'home',
+  cafe: 'cafe', store: 'store', police: 'police', meeting_a: 'meeting_a', street: 'street', store_front: 'store_front', home: 'home',
   security: 'security', server_room: 'server_room', outsource: 'outsource', boss_office: 'boss_office',
   vp_office: 'vp_office', parking: 'parking', pantry: 'pantry', smoking: 'smoking', lobby: 'lobby',
   hr_outer: 'hr_outer', hr_office_after: 'hr_office_after',
@@ -278,7 +283,7 @@ export function attackKind(sceneId: string): 'opening' | 'during' | 'after' | nu
 }
 
 // Daytime places where the little tune plays. (Where something happened, the place keeps its own sound.)
-const DAY_TUNE_AT: ReadonlySet<string> = new Set(['office', 'cafe', 'store', 'street', 'home'])
+const DAY_TUNE_AT: ReadonlySet<string> = new Set(['office', 'cafe', 'store', 'street', 'store_front', 'home'])
 
 export function moodIdFor(c: MoodContext): MoodId {
   if (c.screen === 'title') return 'title'
@@ -315,7 +320,7 @@ export function resolveMood(c: MoodContext): Mood {
   const out: Mood = { ...base }
   if (!c.night) {
     out.rain = 0
-    if (base.id === 'street') out.wind = Math.min(out.wind, 0.15)
+    if (base.id === 'street' || base.id === 'store_front') out.wind = Math.min(out.wind, 0.15)
   }
   if (lightsOut(c.hour) && !OWN_LIGHT.has(base.id)) out.hum = 0
   return out
