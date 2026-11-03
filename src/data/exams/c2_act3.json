@@ -1,0 +1,221 @@
+{
+  "id": "c2_act3",
+  "title": "案二 · 第三幕「一把钥匙」",
+  "startPersuasion": 8,
+  "onClear": "c2_act3_end",
+  "statements": [
+    {
+      "id": "s5",
+      "text": "二十三点四十我在家。苏姐的电脑，我碰都没碰。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s5-1",
+          "accepts": [
+            "2E07"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "二十三点四十分起，苏闻的电脑被人三次登录失败，输的是苏闻自己的账号名。二十三点四十一分三十秒，一只 U 盘插了进去。那只 U 盘的序列号，在资产登记表上，领用人是你，三月十一号，你签的字。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我回去过。我就是想拿回我自己的 U 盘。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "press",
+          "id": "s5-2",
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "你插的是苏闻的电脑，不是你的。三次密码都错了。你拿什么？"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我拿错了。",
+              "expr": "guilty"
+            }
+          ],
+          "required": false,
+          "after": [
+            "s5-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s5-3",
+          "accepts": [
+            "2E12"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "她在信里写：周五下午三点，把该交的东西交出去。要是没交成，别当我是想不开，我不会自己走。你回去，是想知道她手里有多少。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我就是想看看她手里有多少。",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s5-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s5-4",
+          "accepts": [
+            "2E17"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "你从东楼梯进来，绕开了一楼大堂的门。可十七层只能坐电梯：大堂摄像头拍到你进了电梯。你算到了门，没算到电梯。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s5-3"
+          ],
+          "required": false,
+          "bonus": 1
+        }
+      ]
+    }
+  ],
+  "wrongReply": [
+    {
+      "speaker": "lucheng",
+      "text": "你拿这个出来，是想说明什么？",
+      "expr": "nervous"
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这跟我刚才说的，有关系吗？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "同一样东西，你要拿几遍？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这句话，没什么可追问的。",
+        "expr": "normal"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你到底想说我哪一句有问题？",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ]
+  ]
+}

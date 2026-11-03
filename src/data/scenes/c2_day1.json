@@ -238,6 +238,11 @@
     },
     {
       "type": "say",
+      "speaker": "narration",
+      "text": "他还把大堂摄像头 C3 的截图递给你：二十二点五十二分十六秒，有人低着头走进了电梯。"
+    },
+    {
+      "type": "say",
       "speaker": "laowang",
       "text": "下周四我跟小马调班，家里有点事。"
     },
@@ -261,6 +266,10 @@
         {
           "kind": "testimony",
           "id": "2T24"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E17"
         }
       ]
     }
@@ -994,18 +1003,437 @@
       "type": "say",
       "speaker": "narration",
       "text": "会议室里安静了很久。背景里，机房风扇那种低低的嗡鸣，忽然切成一声很轻的“嗒”，像定时器归零。"
+    }
+  ],
+  "c2_act_diner": [
+    {
+      "type": "bg",
+      "id": "diner",
+      "time": "day"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "——案二 先行版 到此为止。后面的代码比对和对质，还在制作中。——"
+      "text": "【14:00 老门口饭馆】饭馆是一家开了很多年的老店，门口的招牌被雨水冲得发白。前台的服务员认出了你手里的证件。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "服务员：“十八号那桌啊，七八个人，都是同学聚会。有个小伙子，十点半接了个电话就出去了，再没回来。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他付的钱？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "服务员翻出了 POS 小票：“22:30:11 付款，22:31:05 离席。都是他一个人买的单。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（饭局的不在场，只到二十二点半。二十二点十二分的时候，他还在桌上。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E08c"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T02"
+        }
+      ]
+    }
+  ],
+  "c2_act_suwen_pc": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:00 算法区 A3】小许把苏闻工位那台电脑的使用日志导了出来，投在你面前的屏幕上。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "你看这里。二十三点四十分起，有人三次登录这台电脑，三次都失败了。输的是苏闻自己的账号名。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "二十三点四十一分三十秒，有一只 U 盘插了进来。序列号 U-2F7C-0913。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "那个时候，苏闻已经……"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "对。二十二点十二分之后，机房里就没有活人了。那只手，是别人的。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E07"
+        }
+      ]
+    }
+  ],
+  "c2_day3_start": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "2026 年 11 月 21 日，周六。雨停了。清运车凌晨五点半准时来过，街角的垃圾桶被倒得干干净净。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩早早就在会议室 B 等着。白板上那条线，还在昨天的位置。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "今天不问人，先看东西。代码，会说话。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（线上跑的，到底是什么？）"
+    }
+  ],
+  "c2_act_deploy": [
+    {
+      "type": "bg",
+      "id": "outsource",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【10:00 外包区】PC-OS-03 就放在设备柜边上，已经被警方贴了封条。小许戴着手套，把部署目录一层一层打开。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "部署目录里只有一个 sched-core-1.4.2.jar。我对了文件时间：十一月十七号，二十三点四十八分十二秒。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "仓库里同名的那份呢？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "CI 产物是十月二十一号。两个哈希不一样。MANIFEST 里 Built-By 是 admin，通用构建账号，不是人名。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她把 auth.log 的那几行指给你：十七号二十三点四十七分五十五秒，wb_ext 从外包区共用的 NAT 出口登录。二十三点四十八分三十秒，服务被重启。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "补丁是案发前一晚上的线。……仓库里写的，是什么样？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许把 git 仓库里 WindowScheduler.java 的 HEAD 打开。邵晓阳十月二十一号的最后一次提交，之后再没有任何改动，工作区是干净的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "窗口调度，按十五分钟一个窗口，收盘时批量取数。注释里写着：“窗口取数，不保证窗口内先后。批量下发用，不是闹钟。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（闹钟。他写的是‘不是闹钟’。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E37"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E40"
+        }
+      ]
+    }
+  ],
+  "c2_act_decompile": [
+    {
+      "type": "bg",
+      "id": "outsource",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【13:00 外包区】你把线上跑的 jar 拷出来，用反编译工具打开，和仓库 HEAD 并排放在两块屏幕上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "WindowScheduler 里，多出一个 exact 索引，多出两个方法：registerExact 和 drainExact。tick 开头多了一行 drainExact(now)。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "DispatchGuard 里，多出了一个 releaseNow：延时零，广播只在本室。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "原版的任务会在窗口收盘时才执行。二十二点十二分的任务，二十二点十五分才会跑。他们改成了按秒触发。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人要的就是二十二点十二分零零秒。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "diff 一共二十五行。每一行，都有它自己的用途。没有一行写着为什么。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E38"
+        }
+      ]
+    }
+  ],
+  "c2_act_samples": [
+    {
+      "type": "bg",
+      "id": "outsource",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【15:00 外包区】共享盘里有一大堆个人练习的代码，还有几个模块的仓库历史。小许挑出四份，打印在一起。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "调度模块的作者，网关接口的维护者，模型评测的工具，核心服务的封装。名字先不看，只看写法。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "样本 A、B、C、D。四份代码，四种习惯。补丁里有一行 System.out.println，有一个 synchronized，有一个单字母的 t。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "括号、变量名、日志……写法，是一个人的指纹。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E39"
+        }
+      ]
+    }
+  ],
+  "c2_meal_lunch3": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "中午你在楼下随便吃了点东西。小许在对面敲键盘，没抬头。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（线上的代码，和仓库不一样。可是，是谁改的？）"
+    }
+  ],
+  "c2_meal_dinner3": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "晚饭简单。窗外的雨停了，空气里有一点潮。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（东西已经够了。该去见他了。）"
+    }
+  ],
+  "c2_trial": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【11 月 21 日 滨海分局 讯问室】陆诚坐在桌子对面。他没有戴手铐，双手平放在桌面上，指节很干净。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩坐在正中，小许在一旁记录。林一程是技术协助，只出示证据，不讯问。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "韩队，我可算等着你们了。十八号那晚我一宿没睡，我就想不明白，我招谁惹谁了。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他说这话时看着老韩，不看林一程。他没有提高声音，一次都没有。"
+    },
+    {
+      "type": "exam",
+      "id": "c2_act1"
+    }
+  ],
+  "c2_act1_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "饭局和故障，两条路都被封死了。陆诚的手指在桌面上轻轻敲了一下，又收了回去。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "接下来，说说那个账号。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "exam",
+      "id": "c2_act2"
+    }
+  ],
+  "c2_act2_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "咖啡，便利店，红塔山，蓝挂绳。他一直没抬头。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "那天晚上，你回过公司。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "exam",
+      "id": "c2_act3"
+    }
+  ],
+  "c2_act3_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚沉默了很久。他把手从桌上收回去，放在膝盖上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……就算这些都是我。算法不是我写的。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "那个调度模块，从头到尾，都是邵的。",
+      "expr": "normal"
+    },
+    {
+      "type": "exam",
+      "id": "c2_act4"
+    }
+  ],
+  "c2_act4_end": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "会议室里很安静。陆诚的肩膀，第一次塌了下来。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "你排的那个闹钟响的时候，她睡着了。",
+      "expr": "soft"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "……那她没受罪。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩没接。林一程把三张打印纸收起来。陆诚抬起眼，第一次看林一程。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "我不知道他喝没喝。邵子什么都不知道。",
+      "expr": "guilty"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "——"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "他知不知道，不由你说。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩把笔录本推了过去。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "看一遍，签。"
     },
     {
       "type": "effect",
       "effects": [
         {
           "kind": "flag",
-          "key": "ending:preview",
+          "key": "ending:true",
           "value": true
         }
       ]

@@ -1,0 +1,300 @@
+{
+  "id": "c2_act4",
+  "title": "案二 · 第四幕「算法是谁的」",
+  "startPersuasion": 8,
+  "onClear": "c2_act4_end",
+  "statements": [
+    {
+      "id": "s6",
+      "text": "算法是邵的，一切都是他的，和我没关系。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s6-1",
+          "accepts": [
+            "2E37"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "窗口调度。按十五分钟一个窗口取任务，窗口收盘时才批量执行。二十二点十二分的任务，原版要到二十二点十五分才会跑。邵写的这个模块，做不到“二十二点十二分零零秒”。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……你拿这个干什么？",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s6-2",
+          "accepts": [
+            "2E38"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "线上跑的那个 jar，反编译出来，比仓库里多了一个按秒触发的索引，还多了一个延时零、只在机房里响的 releaseNow。仓库里没有这些代码。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s6-1"
+          ]
+        },
+        {
+          "kind": "argument",
+          "id": "s6-3",
+          "prompt": "哪一份样本，和补丁的写法一致？",
+          "after": [
+            "s6-2"
+          ],
+          "options": [
+            {
+              "text": "样本 A：Javadoc、task／entry 的命名",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "lucheng",
+                  "text": "写法像不代表是我。公司里这么写的人多了。",
+                  "expr": "normal"
+                }
+              ]
+            },
+            {
+              "text": "样本 B：synchronized、单字母 t、一行块、System.out.println",
+              "correct": true,
+              "reply": [
+                {
+                  "speaker": "lyc",
+                  "text": "synchronized 套在 ConcurrentHashMap 外面，局部变量 c、t，短块压成一行，日志直接拼字符串。补丁和样本 B，四个习惯同时对上。"
+                },
+                {
+                  "speaker": "lyc",
+                  "text": "样本 B，外包区共享盘，作者：陆诚。消防网关接口维护。"
+                },
+                {
+                  "speaker": "lucheng",
+                  "text": "……",
+                  "expr": "guilty"
+                }
+              ]
+            },
+            {
+              "text": "样本 C：全是 static 方法，变量名很长",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "lucheng",
+                  "text": "写法像不代表是我。公司里这么写的人多了。",
+                  "expr": "normal"
+                }
+              ]
+            },
+            {
+              "text": "样本 D：final 参数、提前 return、没有 println",
+              "correct": false,
+              "reply": [
+                {
+                  "speaker": "lucheng",
+                  "text": "写法像不代表是我。公司里这么写的人多了。",
+                  "expr": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s6-4",
+          "accepts": [
+            "2E40"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "补丁不是十八号临时改的。十七号二十三点四十八分十二秒，线上那个 jar 就被换了；二十三点四十八分三十秒，服务重启。第二天十七点三十六分才建任务，提前了十八个小时。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……提前发版测试，不行吗？",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "laohan",
+              "text": "测试不发 commit，不留发布单，只换一个 jar，还把广播改成仅本室？",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s6-3"
+          ]
+        },
+        {
+          "kind": "press",
+          "id": "s6-5",
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "邵说过什么？"
+            },
+            {
+              "speaker": "lyc",
+              "text": "邵只说过：“能。直接调 release 就没有延时，别跟别人说。”"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……所以是他教的。",
+              "expr": "nervous"
+            },
+            {
+              "speaker": "laohan",
+              "text": "他说“能”，没说用它杀人。是你把“能”变成了二十二点十二分。",
+              "expr": "suspicious"
+            }
+          ],
+          "required": false,
+          "after": [
+            "s6-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "wrongReply": [
+    {
+      "speaker": "lucheng",
+      "text": "你拿这个出来，是想说明什么？",
+      "expr": "nervous"
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这跟我刚才说的，有关系吗？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "同一样东西，你要拿几遍？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这句话，没什么可追问的。",
+        "expr": "normal"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你到底想说我哪一句有问题？",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ]
+  ]
+}

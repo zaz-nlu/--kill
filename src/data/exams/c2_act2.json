@@ -1,0 +1,294 @@
+{
+  "id": "c2_act2",
+  "title": "案二 · 第二幕「公共账号」",
+  "startPersuasion": 8,
+  "onClear": "c2_act2_end",
+  "statements": [
+    {
+      "id": "s3",
+      "text": "任务是我们外包的公共账号建的，谁都能用。你们总不能把外包全抓了吧。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s3-1",
+          "accepts": [
+            "2E19"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "账号谁都能用。可十七点三十六，人在楼里、又能坐到外包区那台测试机前的，名单上只有两个人。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……楼里就我跟苏姐。可我没碰过那台机器。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-2",
+          "accepts": [
+            "2E01"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "苏闻十五点三十进了机房，门禁再没记过她出来，摄像头拍她到二十二点十二分。她去不了外包区。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……苏姐在机房里，门都没出。……那台机器又不在机房。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s3-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s3-3",
+          "accepts": [
+            "2E04"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "十五点十分四十一秒，主库被人改成只读，同一个账号、同一台终端。那个时候，你的座位是空的。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我去厕所了。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s3-1"
+          ],
+          "required": false,
+          "bonus": 1
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "text": "咖啡我没点过。谁点的，我怎么知道。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s4-1",
+          "accepts": [
+            "2E08d",
+            "2E08e"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "十八号傍晚，有人用匿名账号叫了跑腿，买两杯咖啡，备注“邵”“苏姐”，收货点是便利店门口。外卖单被撕碎，扔在街边垃圾桶里，旁边还有一张包过安眠药粉的纸。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……那种单子，谁都能下。",
+              "expr": "normal"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-2",
+          "accepts": [
+            "2T25",
+            "2E08b"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "店员说，那天傍晚有个人在门口站了很久，买了一盒红塔山、一张两百块的预付卡，都是现金。监控里是个背影，脖子上挂着深蓝色的挂绳。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……外包区一半人都戴蓝挂绳。抽红塔山的，也不止我一个。",
+              "expr": "nervous"
+            }
+          ],
+          "after": [
+            "s4-1"
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-3",
+          "accepts": [
+            "2E19"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "那天十八点十分以后，还在街上的外包，只有一个人打了下班卡。十八点十分打卡，十八点十八分，步行到便利店刚好八分钟。蓝挂绳、红塔山、十八点十分——这三样，只对上一个人。"
+            },
+            {
+              "speaker": "laohan",
+              "text": "买烟，还买一张两百块的预付卡？",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我是去买烟。",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s4-2"
+          ]
+        },
+        {
+          "kind": "press",
+          "id": "s4-4",
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "你把咖啡放前台的时候，想过没人拿吗？"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我放那儿，谁拿谁不拿，我管不着。",
+              "expr": "guilty"
+            }
+          ],
+          "required": false,
+          "after": [
+            "s4-3"
+          ]
+        }
+      ]
+    }
+  ],
+  "wrongReply": [
+    {
+      "speaker": "lucheng",
+      "text": "你拿这个出来，是想说明什么？",
+      "expr": "nervous"
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这跟我刚才说的，有关系吗？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "同一样东西，你要拿几遍？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这句话，没什么可追问的。",
+        "expr": "normal"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你到底想说我哪一句有问题？",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ]
+  ]
+}

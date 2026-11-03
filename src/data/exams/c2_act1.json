@@ -1,0 +1,245 @@
+{
+  "id": "c2_act1",
+  "title": "案二 · 第一幕「完美的饭局」",
+  "startPersuasion": 8,
+  "onClear": "c2_act1_end",
+  "statements": [
+    {
+      "id": "s1",
+      "text": "十八号晚上我跟几个同学在“老门口”吃饭，一直吃到散场，一步没离开。",
+      "steps": [
+        {
+          "kind": "press",
+          "id": "s1-p",
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "整个晚上，都没离开过？"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "对。从头到尾。",
+              "expr": "normal"
+            }
+          ],
+          "required": false
+        },
+        {
+          "kind": "present",
+          "id": "s1-1",
+          "accepts": [
+            "2E08c",
+            "2T02"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "二十二点三十分十一秒，你买了单；三十一分零五秒，你离席。服务员说，你接了个电话就出去，再没回来。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……中间我出去接了个电话，就在门口。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "present",
+          "id": "s1-2",
+          "accepts": [
+            "2E17"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "二十二点五十二分十六秒，一楼大堂的摄像头拍到有人低头进了电梯；五十二分五十秒，十七层电梯厅拍到那个人出来。"
+            },
+            {
+              "speaker": "laohan",
+              "text": "是你吗？",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我回了一趟公司，拿点东西，没再回去。",
+              "expr": "guilty"
+            }
+          ],
+          "after": [
+            "s1-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "text": "机房里就苏闻一个人。门禁是你们自己查的，十九点三十五以后没人进去。系统自己出故障呗。",
+      "steps": [
+        {
+          "kind": "present",
+          "id": "s2-1",
+          "accepts": [
+            "2E02",
+            "2E05"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "二十二点十二分零七秒，喷放是 TASK-1118-1736 触发的。十七点三十六分二十二秒建的任务，精确模式，延时零。故障不会提前四个半小时，给自己排个闹钟。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……那就是有人提前排好的。跟我有什么关系。",
+              "expr": "nervous"
+            }
+          ]
+        },
+        {
+          "kind": "press",
+          "id": "s2-2",
+          "reply": [
+            {
+              "speaker": "laohan",
+              "text": "十七点三十六，你在这栋楼里吗？"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "在。我六点十分才走，留下来对账。",
+              "expr": "normal"
+            }
+          ],
+          "required": false,
+          "after": [
+            "s2-1"
+          ]
+        }
+      ]
+    }
+  ],
+  "wrongReply": [
+    {
+      "speaker": "lucheng",
+      "text": "你拿这个出来，是想说明什么？",
+      "expr": "nervous"
+    }
+  ],
+  "wrongReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你拿这个出来，是想说明什么？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "林一程，证物不是这么用的。",
+        "expr": "suspicious"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这跟我刚才说的，有关系吗？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "prematureReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "现在拿这个出来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "时机不对。先把前面的问清楚。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "repeatReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这个你已经出示过了。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "同一样东西，你要拿几遍？",
+        "expr": "normal"
+      }
+    ]
+  ],
+  "pressReplies": [
+    [
+      {
+        "speaker": "lucheng",
+        "text": "这句话，没什么可追问的。",
+        "expr": "normal"
+      }
+    ],
+    [
+      {
+        "speaker": "laohan",
+        "text": "别在这句上耗时间。",
+        "expr": "soft"
+      }
+    ]
+  ],
+  "clearedReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这一句已经拆干净了，往下看。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "……你还想从这一句里问出什么？",
+        "expr": "guilty"
+      }
+    ]
+  ],
+  "missReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "东西没拿错，可打的不是这一处。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "你到底想说我哪一句有问题？",
+        "expr": "nervous"
+      }
+    ]
+  ],
+  "elsewhereReplies": [
+    [
+      {
+        "speaker": "laohan",
+        "text": "这东西有用，但不是对付这一句的。",
+        "expr": "soft"
+      }
+    ],
+    [
+      {
+        "speaker": "lucheng",
+        "text": "拿这个来，跟我刚才说的有什么关系？",
+        "expr": "nervous"
+      }
+    ]
+  ]
+}

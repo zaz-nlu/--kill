@@ -210,5 +210,129 @@
     "kind": "useless",
     "scene": "c2_meal_dinner2",
     "meal": true
+  },
+  {
+    "id": "c2-2-7",
+    "label": "去老门口饭馆，问问十八号晚上的聚会",
+    "location": "饭馆",
+    "days": [
+      2
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_act_diner"
+  },
+  {
+    "id": "c2-2-8",
+    "label": "让小许查苏闻工位电脑的使用日志",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_act_suwen_pc",
+    "npc": "xiaoxu"
+  },
+  {
+    "id": "c2-3-1",
+    "label": "和小许去外包区，取 PC-OS-03 的部署目录和代码仓库",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "minHour": 9,
+    "maxHour": 19,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_act_deploy",
+    "npc": "xiaoxu"
+  },
+  {
+    "id": "c2-3-2",
+    "label": "把线上跑的 jar 反编译，和仓库对比",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "minHour": 10,
+    "maxHour": 19,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_act_decompile",
+    "requiresEvidence": [
+      "2E37"
+    ]
+  },
+  {
+    "id": "c2-3-3",
+    "label": "翻外包区共享盘里各人的代码",
+    "location": "外包区",
+    "days": [
+      3
+    ],
+    "minHour": 10,
+    "maxHour": 19,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_act_samples",
+    "requiresEvidence": [
+      "2E38"
+    ]
+  },
+  {
+    "id": "c2-3-4",
+    "label": "去分局，当面对质陆诚",
+    "location": "分局",
+    "days": [
+      3
+    ],
+    "minHour": 12,
+    "maxHour": 20,
+    "costHours": 1,
+    "kind": "key",
+    "scene": "c2_trial",
+    "requiresEvidence": [
+      "2E37",
+      "2E38",
+      "2E39",
+      "2E40",
+      "2E08d",
+      "2E05",
+      "2E19"
+    ],
+    "pinned": true
+  },
+  {
+    "id": "c2-3-m1",
+    "label": "在楼下随便吃点东西",
+    "location": "楼下",
+    "days": [
+      3
+    ],
+    "minHour": 12,
+    "maxHour": 12,
+    "costHours": 1,
+    "kind": "useless",
+    "scene": "c2_meal_lunch3",
+    "meal": true
+  },
+  {
+    "id": "c2-3-m2",
+    "label": "在楼下随便吃点东西",
+    "location": "楼下",
+    "days": [
+      3
+    ],
+    "minHour": 18,
+    "maxHour": 18,
+    "costHours": 1,
+    "kind": "useless",
+    "scene": "c2_meal_dinner3",
+    "meal": true
   }
 ]

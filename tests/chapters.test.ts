@@ -36,7 +36,7 @@ describe('chapter definitions', () => {
     expect(data.exams[c1.trial.firstExam]).toBeDefined()
   })
 
-  it('case 2 is a first-day preview: its opening scene exists, its trial does not yet', () => {
+  it('case 2 is playable end to end: opening, trial and both ending kinds exist', () => {
     const c2 = data.chapters.c2
     expect(c2.title).toBe('案二·静音')
     expect(c2.order).toBe(2)
@@ -44,8 +44,10 @@ describe('chapter definitions', () => {
     expect(c2.lastDay).toBe(3)
     expect(c2.recap).toHaveLength(6)
     expect(data.scenes[c2.prologue]).toBeDefined()
-    expect(data.scenes[c2.trial.scene]).toBeUndefined()
-    expect(c2.endings.preview.clears).toBe(false)
+    expect(data.scenes[c2.trial.scene]).toBeDefined()
+    expect(data.exams[c2.trial.firstExam]).toBeDefined()
+    expect(c2.endings.true.clears).toBe(true)
+    expect(c2.endings.bad2.clears).toBe(false)
   })
 
   it('cases 3 and 4 are placeholders too: listed in order, with nothing written yet', () => {
