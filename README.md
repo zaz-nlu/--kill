@@ -1,4 +1,4 @@
-# 九点熄灯（垂直切片）
+# 雨落无声（垂直切片）
 
 剧本在 `../剧本_九点熄灯.md`，实施计划在 `../docs/superpowers/plans/2026-10-19-vertical-slice.md`。
 

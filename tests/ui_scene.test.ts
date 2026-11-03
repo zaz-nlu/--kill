@@ -126,7 +126,7 @@ describe('game store + App', () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const w = mount(App, { global: { plugins: [pinia] } })
-    expect(w.text()).toContain('九点熄灯')
+    expect(w.text()).toContain('雨落无声')
     await w.find('[data-testid="start"]').trigger('click')
     expect(w.text()).toContain('2026 年 9 月 14 日')
   })

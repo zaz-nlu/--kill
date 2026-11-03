@@ -21,7 +21,7 @@ describe('desktop packaging config', () => {
   })
 
   it('builds a portable Windows exe into release/, shipping only dist and electron', () => {
-    expect(pkg.build.productName).toBe('九点熄灯')
+    expect(pkg.build.productName).toBe('雨落无声')
     expect(pkg.build.directories.output).toBe('release')
     expect(pkg.build.files).toEqual(['dist/**', 'electron/**'])
     expect(pkg.build.win.target).toBe('portable')
@@ -38,7 +38,7 @@ describe('desktop packaging config', () => {
     expect(main).toContain('contextIsolation: true')
     expect(main).toContain('nodeIntegration: false')
     expect(main).not.toContain('remote-debugging')
-    expect(main).toContain("title: '九点熄灯'")
+    expect(main).toContain("title: '雨落无声'")
     expect(main).toContain('minWidth: 960')
     expect(main).toContain('minHeight: 600')
   })

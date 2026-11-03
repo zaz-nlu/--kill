@@ -7,7 +7,7 @@ function createWindow() {
     height: 720,
     minWidth: 960,
     minHeight: 600,
-    title: '九点熄灯',
+    title: '雨落无声',
     autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,

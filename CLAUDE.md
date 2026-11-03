@@ -1,4 +1,4 @@
-# 九点熄灯（Vue3 / TS / Vite / Electron）
+# 雨落无声（原名《九点熄灯》，其中第一章仍叫《熄灯》）
 
 ## 命令（本机 Node 18 跑不动 vitest 5 / vite 8，一律用 Electron 当 Node）
 - 测试 + 类型检查：`node scripts/check.cjs`（已排除 `tests/package_config.test.ts`，它和 package.json 的输出目录不一致，未决）

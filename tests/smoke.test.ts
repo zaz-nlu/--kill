@@ -5,6 +5,6 @@ import App from '../src/App.vue'
 
 describe('smoke', () => {
   it('renders the game title', () => {
-    expect(mount(App, { global: { plugins: [createPinia()] } }).text()).toContain('九点熄灯')
+    expect(mount(App, { global: { plugins: [createPinia()] } }).text()).toContain('雨落无声')
   })
 })

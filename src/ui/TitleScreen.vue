@@ -5,8 +5,8 @@ defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: 
 
 <template>
   <main class="title">
-    <h1>九点熄灯</h1>
-    <p>每晚九点，整层熄灯。</p>
+    <h1>雨落无声</h1>
+    <p>灯暗下去的时候，真相才开始。</p>
     <button type="button" data-testid="start" @click="$emit('start')">开始游戏</button>
     <button type="button" class="secondary" data-testid="continue" @click="$emit('continue')">继续游戏</button>
     <button type="button" class="secondary" data-testid="chapters" @click="$emit('chapters')">章节选择</button>
