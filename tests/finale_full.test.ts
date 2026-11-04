@@ -139,7 +139,7 @@ describe('act 4 (script 10.4): the silent defendant', () => {
   it('the last excuse: he planned to steal (Friday, the cable, the wiped line); the two minutes are what he chose', () => {
     const st = byText(id, '偷拷数据')
     const steps = present(st)
-    expect(steps.map(s => s.accepts)).toEqual([['T09'], ['T07', 'T03'], ['E01'], ['E30']])
+    expect(steps.map(s => s.accepts)).toEqual([['T09'], ['T07', 'T03'], ['E01'], ['E30'], ['E49', 'E50', 'T42']])
     expect(steps[2].after).toEqual(expect.arrayContaining([steps[0].id, steps[1].id]))
     expect(steps[3].after).toEqual(expect.arrayContaining([steps[0].id, steps[1].id, steps[2].id]))
   })

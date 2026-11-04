@@ -1119,6 +1119,17 @@
     },
     {
       "type": "say",
+      "speaker": "lyc",
+      "text": "他问过你，那份东西值多少钱吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "……问过。不止一次。他总问，原件要是拿回来，值多少钱。我当时以为，他是想拿它给宋经理定罪。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
       "speaker": "narration",
       "text": "她说不下去了，把脸埋进了手里。"
     },
@@ -1133,6 +1144,10 @@
         {
           "kind": "testimony",
           "id": "T13"
+        },
+        {
+          "kind": "testimony",
+          "id": "T42"
         },
         {
           "kind": "affinity",

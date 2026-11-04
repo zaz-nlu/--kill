@@ -464,7 +464,51 @@
             "s5-3"
           ],
           "target": "m4",
-          "revise": "……"
+          "revise": "……\n{{m5:我是为了周屿。}}"
+        },
+        {
+          "kind": "present",
+          "id": "s5-5",
+          "accepts": [
+            "E49",
+            "E50",
+            "T42"
+          ],
+          "reply": [
+            {
+              "speaker": "limo",
+              "text": "我是为了周屿。她死得不明不白，公司连个说法都没给。我拿回她的东西，替她要个说法，有错吗？",
+              "expr": "angry"
+            },
+            {
+              "speaker": "lyc",
+              "text": "你难过，是真的。这我看得出来。",
+              "expr": "sad"
+            },
+            {
+              "speaker": "lyc",
+              "text": "你说是为了她。可你算过的每一笔，都没有她。",
+              "expr": "determined"
+            },
+            {
+              "speaker": "limo",
+              "text": "……她是没了，可账还在。",
+              "expr": "guilty"
+            },
+            {
+              "speaker": "lyc",
+              "text": "所以后面那两分钟，是你自己选的。",
+              "expr": "determined"
+            }
+          ],
+          "after": [
+            "s5-1",
+            "s5-2",
+            "s5-3",
+            "s5-4"
+          ],
+          "target": "m5",
+          "revise": "……她是没了，可账还在。"
         }
       ]
     }
