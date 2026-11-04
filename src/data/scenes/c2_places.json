@@ -1,0 +1,441 @@
+{
+  "c2_act_market": [
+    {
+      "type": "bg",
+      "id": "store",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【14:20 邵晓阳住的小区】小区在城东，六栋老楼围着一块花坛。楼下就是一家小超市，门口摆着一排快递自提柜。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "邵晓阳住这儿？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "物业的人把门禁记录调了出来，屏幕上的时间一行一行往下滚。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "11 月 18 日 22:00:04，邵晓阳刷门禁进小区。之后没有出去的记录。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "二十二点整，进的小区。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "超市老板把收银记录翻出来，指了指其中一行。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "22:03:12，收银台收了一笔 38.00，商品是猫砂一袋，手机付款。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "猫砂。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "自提柜的记录也调出来了：22:04:36，B-07 格口打开，取走一个包裹，运单号对得上那袋猫砂。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老板又调出门口的监控。22:05 到 22:18，邵晓阳蹲在台阶边，逗超市那只橘猫。画面里，他一直没走开。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（二十二点整进小区，二十二点零三分付的猫砂，二十二点零四分取的件。）"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（二十二点零五分到二十二点十八分，在逗猫。二十二点十二分……时间对得上。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你把三份记录都拍了照，又请老板把原始的电子记录发一份给小许。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E14"
+        }
+      ]
+    }
+  ],
+  "c2_act_precinct": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【10:00 分局 物证室】桌上摊着化验单、处方复印件，还有一只装在证物袋里的咖啡杯。老韩坐在窗边，小许抱着电话记录本。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "坐。化验的你看看。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩把报告推过来。杯底那点干掉的残渍，单独做了一份。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "杯子底下的残渣，验出了佐匹克隆。跟她血里的一样，0.12。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "安眠药，下在咖啡里。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "处方也查到了。十一月十七号，社区医院开的，一共七粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁开的？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "单子上只有药名和剂量，开药的人，得去医院问。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩没接话。他从口袋里掏出手机，放在桌上，屏幕停在一行短信上。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "十一月十七号晚上八点十二分，她发给我的。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "短信：“我这儿有贝塔的账，周五下午送过去，电话里不说。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "今天就是周五。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩把手机翻过去，扣在桌面上。他坐了很久，手指压在桌沿上，一句话也没说。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "她说周五下午给我送东西，就是今天三点。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "这条短信，我看了一晚上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许接了个电话，嗯了两声，把听筒放下。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "社区医院回了。十七号上午，一个小伙子来开佐匹克隆，说失眠两周，医生开了七粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "长什么样？"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "医生没看清脸，说他一直低着头。挂号留的信息，也对不上什么。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（同一天上午开的药，同一天晚上进了咖啡。开药的人，不想被记住脸。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E09"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E15"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T09"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T20"
+        }
+      ]
+    }
+  ],
+  "c2_act_jail_shao": [
+    {
+      "type": "bg",
+      "id": "police",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【10:00 看守所 会见室】玻璃从中间隔开。邵晓阳坐在对面，身上的外套换成了一件登记用的马甲，手放在桌上，手指一直在抖。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程、程哥……",
+      "expr": "teary"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我来看看你。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我没跑。昨天夜里，他们来家里，我就跟他们走了。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "咖啡的事，再说一遍。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "前台桌上有两杯，杯子上写着我和苏姐。我就拿上去了。那两个字不是我写的。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "谁点的？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "没人跟我说。我问了一句“谁这么有心”，孟遥说她不知道。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "你的外套。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我外套落那儿了。机房热，我脱了搭椅背上。走的时候忘了拿。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "二十二点，你在哪？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "我到家了。二十二点进的小区，买了猫砂，取了件，在楼下逗了会儿猫。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "有人能证明？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "门禁、超市的收银、自提柜，都有记录。门口那个监控，应该也照得到。",
+      "expr": "teary"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "还有一件事。你每天早上九点看的那个日志，是什么？"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "调度模块的健康日志。每天九点，用我自己的账号看一眼。模块上线的时候定下来的例行。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "就看看队列有没有积压。我没有改过什么。",
+      "expr": "teary"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我知道。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "邵晓阳低下头，肩膀缩着。玻璃上有一层手印，是他刚才撑上去的。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "程哥，能不能……别跟我妈说。她心脏不好。",
+      "expr": "teary"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程把笔录本合上，没有立刻站起来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我会查清楚。你在这里，把你知道的都说清楚就行。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "testimony",
+          "id": "2T12"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T21"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E31"
+        }
+      ]
+    }
+  ],
+  "c2_act_lucheng_home": [
+    {
+      "type": "bg",
+      "id": "lc_home",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【陆诚家】老韩带着协查手续，在门口亮了证件。门开的时候，屋里一股没散掉的烟味。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "看看他的生活。人怎么花钱，话就怎么说。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "客厅不大，茶几上堆着外卖盒。玄关的鞋柜上，放着一串车钥匙。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "卧室床头柜的抽屉里，有一板药。铝箔上印着佐匹克隆，七粒装，只剩四粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "七粒，少了三粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "记上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "衣柜最上层的纸盒里，塞着一沓票据。最上面是一张奢侈品店的小票，一条围巾，一个包。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "旁边是一张美容卡，充值记录打了两页。再往下，是银行的还款单：房贷 7,900/月，车贷 2,400/月。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "每个月一万多。他的工资，不够。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶几底下还压着一张咖啡店的小票。你把它抽出来，展平。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "巷口咖啡。11 月 18 日 18:21:40，两杯。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（巷口咖啡。两杯。）"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "日期、时间、金额，都拍下来。药板装袋。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "老韩掏出证物袋，一样一样编号。你举着手机，把日期、时间、金额都拍下来。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E28"
+        }
+      ]
+    }
+  ]
+}

@@ -239,6 +239,31 @@
     "npc": "xiaoxu"
   },
   {
+    "id": "c2-2-9",
+    "label": "去邵晓阳住的小区，问问超市和自提柜",
+    "location": "超市",
+    "days": [
+      2,
+      3
+    ],
+    "minHour": 13,
+    "scene": "c2_act_market",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
+    "id": "c2-2-10",
+    "label": "去分局，看化验报告和苏闻的手机",
+    "location": "分局",
+    "days": [
+      2
+    ],
+    "minHour": 10,
+    "scene": "c2_act_precinct",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
     "id": "c2-3-1",
     "label": "和小许去外包区，取 PC-OS-03 的部署目录和代码仓库",
     "location": "外包区",
@@ -285,9 +310,36 @@
     ]
   },
   {
+    "id": "c2-3-5",
+    "label": "去看守所，见邵晓阳",
+    "location": "看守所",
+    "days": [
+      3
+    ],
+    "minHour": 9,
+    "scene": "c2_act_jail_shao",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
+    "id": "c2-3-6",
+    "label": "和老韩去陆诚家，核对生活账",
+    "location": "陆诚家",
+    "days": [
+      3
+    ],
+    "minHour": 9,
+    "requiresEvidence": [
+      "2E08e"
+    ],
+    "scene": "c2_act_lucheng_home",
+    "costHours": 1,
+    "kind": "key"
+  },
+  {
     "id": "c2-3-4",
-    "label": "去分局，当面对质陆诚",
-    "location": "分局",
+    "label": "去看守所，当面对质陆诚",
+    "location": "看守所",
     "days": [
       3
     ],

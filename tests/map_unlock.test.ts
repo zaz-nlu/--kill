@@ -32,7 +32,7 @@ describe('the case 2 map opens with the clues', () => {
     s.evidence.push('2E38')
     expect(open(s)).toContain('lucheng')
     expect(open(s)).not.toContain('jail')
-    s.flags['ending:true'] = true
+    s.flags['shao_held'] = true
     expect(open(s)).toContain('jail')
   })
 

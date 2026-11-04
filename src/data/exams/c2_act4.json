@@ -167,6 +167,36 @@
           "after": [
             "s6-2"
           ]
+        },
+        {
+          "kind": "present",
+          "id": "s6-5",
+          "accepts": [
+            "2E14",
+            "2T21",
+            "2E31"
+          ],
+          "required": false,
+          "bonus": 1,
+          "after": [
+            "s6-1"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "十一月十八日二十二点十二分，邵晓阳在自己小区的超市门口逗猫，收银、自提柜、监控都有记录。他每天九点读的日志，只读不写。"
+            },
+            {
+              "speaker": "laohan",
+              "text": "一个人，同一时间不可能在两个地方。",
+              "expr": "suspicious"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我没说是他干的。",
+              "expr": "guilty"
+            }
+          ]
         }
       ]
     }

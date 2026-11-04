@@ -161,6 +161,31 @@
           "after": [
             "s4-3"
           ]
+        },
+        {
+          "kind": "present",
+          "id": "s4-4",
+          "accepts": [
+            "2E28",
+            "2E09",
+            "2T20"
+          ],
+          "required": false,
+          "bonus": 1,
+          "after": [
+            "s4-1"
+          ],
+          "reply": [
+            {
+              "speaker": "lyc",
+              "text": "药是十七号上午，一个低着头的人去社区医院开的，七粒。你床头柜里的药板，七粒只剩四粒。"
+            },
+            {
+              "speaker": "lucheng",
+              "text": "……我失眠。药是我的，跟咖啡有什么关系。",
+              "expr": "nervous"
+            }
+          ]
         }
       ]
     }

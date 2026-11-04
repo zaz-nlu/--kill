@@ -1034,6 +1034,31 @@
     {
       "type": "say",
       "speaker": "lyc",
+      "text": "那桌还有谁在？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "服务员翻了翻订位本，把那天同桌的一个同学的号码给了你。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "电话接通了。同学：“我们三个六点就到了，陆诚快七点才来。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他什么时候走的？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "同学：“十点半他接了个电话，回来把单买了，说有事，先走。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
       "text": "（饭局的不在场，只到二十二点半。二十二点十二分的时候，他还在桌上。）"
     },
     {
@@ -1046,6 +1071,10 @@
         {
           "kind": "testimony",
           "id": "2T02"
+        },
+        {
+          "kind": "testimony",
+          "id": "2T22"
         }
       ]
     }
@@ -1114,8 +1143,43 @@
     },
     {
       "type": "say",
+      "speaker": "narration",
+      "text": "老韩把一沓手续在桌上磕齐，声音比往常低。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "昨晚局里……？"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "压力不小。邵晓阳昨天晚上先被带走协助调查，现在暂押在看守所。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "不是定他的罪。是先放在那儿，免得再出别的事。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程没说话。他见过那种走廊，也见过那种眼神。"
+    },
+    {
+      "type": "say",
       "speaker": "lyc",
       "text": "（线上跑的，到底是什么？）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "shao_held",
+          "value": true
+        }
+      ]
     }
   ],
   "c2_act_deploy": [
@@ -1298,12 +1362,22 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "【11 月 21 日 滨海分局 讯问室】陆诚坐在桌子对面。他没有戴手铐，双手平放在桌面上，指节很干净。"
+      "text": "【11 月 21 日 看守所 会见室】陆诚坐在桌子对面。他没有戴手铐，双手平放在桌面上，指节很干净。"
     },
     {
       "type": "say",
       "speaker": "narration",
       "text": "老韩坐在正中，小许在一旁记录。林一程是技术协助，只出示证据，不讯问。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "人是从局里提到这儿的。今天的对质，就在这间会见室做。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "邵晓阳还在楼上。他的事，等这边说完，我一起给你交代。"
     },
     {
       "type": "say",
@@ -1382,7 +1456,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "会议室里很安静。陆诚的肩膀，第一次塌了下来。"
+      "text": "会见室里很安静。陆诚的肩膀，第一次塌了下来。"
     },
     {
       "type": "say",
@@ -1427,6 +1501,26 @@
       "type": "say",
       "speaker": "laohan",
       "text": "看一遍，签。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚签完字，老韩把笔录收起来，合上。"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "邵晓阳的羁押，撤了。手续今天办。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "林一程靠在椅背上，才发现自己一直攥着手。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（查清楚了。）"
     },
     {
       "type": "effect",

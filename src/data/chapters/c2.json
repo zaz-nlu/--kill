@@ -7,19 +7,64 @@
     { "id": "office", "bg": "office", "label": "公司（17 层）", "icon": "🏢", "x": 170, "y": 100, "locations": ["17 层", "会议室 B", "外包区", "楼下", "物业"] },
     { "id": "street", "bg": "store_front", "label": "巷口咖啡街", "icon": "☕", "x": 120, "y": 215, "locations": ["街上"], "unlock": {"any":["2E33","2T07","2E05"]} },
     { "id": "diner", "bg": "diner", "label": "老门口饭馆", "icon": "🍜", "x": 400, "y": 215, "locations": ["饭馆"], "unlock": {"any":["2E19","2T01","2T22","2E08c"]} },
-    { "id": "market", "bg": "store", "label": "超市", "icon": "🛒", "x": 285, "y": 255, "locations": ["超市"], "unlock": {"any":["2T11","2T25","2E08b"]} },
+    { "id": "market", "bg": "store", "label": "超市", "icon": "🛒", "x": 285, "y": 255, "locations": ["超市"], "unlock": {"any":["2T01","2E18"]} },
     { "id": "lucheng", "bg": "lc_home", "label": "陆诚家", "icon": "🏠", "x": 540, "y": 235, "locations": ["陆诚家"], "unlock": {"all":["2E08e"],"any":["2E38","2E39","2E40"]} },
     { "id": "police", "bg": "police", "label": "分局", "icon": "🚓", "x": 440, "y": 55, "locations": ["分局"], "unlock": {"any":["2E03","2E02","2E08d"]} },
-    { "id": "jail", "bg": "police", "label": "看守所", "icon": "⛓", "x": 575, "y": 120, "locations": ["看守所"], "unlock": {"flag":"ending:true"} }
+    { "id": "jail", "bg": "police", "label": "看守所", "icon": "⛓", "x": 575, "y": 120, "locations": ["看守所"], "unlock": {"flag":"shao_held"} }
   ],
   "nudges": [
-    { "day": 1, "place": "office", "text": "林一程在本子上记下：老韩的人还在公司，先回那边。" },
-    { "day": 2, "place": "office", "minHour": 20, "text": "本子上写着：晚上，老韩他们在公司等着对线索。" },
-    { "day": 2, "place": "street", "text": "本子上写着：那只咖啡杯是外面买的。杯套上的店，在巷口那条街。" },
-    { "day": 2, "place": "diner", "text": "本子上写着：十八号晚上的聚会，是在老门口那家饭馆。" },
-    { "day": 2, "place": "office", "text": "本子上写着：公司里还有几个人没问，几份记录也还没拿到。" },
-    { "day": 3, "place": "police", "text": "本子上写着：东西都齐了。下午，分局。" },
-    { "day": 3, "place": "office", "text": "本子上写着：线上跑的东西，得回公司再翻一遍。" }
+    {
+      "day": 1,
+      "place": "office",
+      "text": "林一程在本子上记下：老韩的人还在公司，先回那边。"
+    },
+    {
+      "day": 2,
+      "place": "office",
+      "minHour": 20,
+      "text": "本子上写着：晚上，老韩他们在公司等着对线索。"
+    },
+    {
+      "day": 2,
+      "place": "street",
+      "text": "本子上写着：那只咖啡杯是外面买的。杯套上的店，在巷口那条街。"
+    },
+    {
+      "day": 2,
+      "place": "diner",
+      "text": "本子上写着：十八号晚上的聚会，是在老门口那家饭馆。"
+    },
+    {
+      "day": 2,
+      "place": "market",
+      "text": "本子上写着：邵晓阳那天晚上几点到的家，没有人核过。"
+    },
+    {
+      "day": 2,
+      "place": "police",
+      "minHour": 10,
+      "text": "本子上写着：老韩那边的化验，今天该出来了。"
+    },
+    {
+      "day": 2,
+      "place": "office",
+      "text": "本子上写着：公司里还有几个人没问，几份记录也还没拿到。"
+    },
+    {
+      "day": 3,
+      "place": "jail",
+      "text": "本子上写着：邵晓阳还押在看守所。该见他一面，东西齐了，下午当面对质。"
+    },
+    {
+      "day": 3,
+      "place": "lucheng",
+      "text": "本子上写着：药和账，得去他家里核一遍。"
+    },
+    {
+      "day": 3,
+      "place": "office",
+      "text": "本子上写着：线上跑的东西，得回公司再翻一遍。"
+    }
   ],
   "notebook": {
     "entries": [
@@ -164,6 +209,44 @@
         "place": "diner"
       },
       {
+        "id": "n20",
+        "day": 2,
+        "any": [
+          "2T22"
+        ],
+        "text": "饭局的同学说：晚来的那位 18:55 才到，22:30 买单说有事，先走了。",
+        "place": "diner"
+      },
+      {
+        "id": "n21",
+        "day": 2,
+        "any": [
+          "2E14"
+        ],
+        "text": "邵晓阳小区的记录：22:00 进门，22:03 付猫砂，22:04 取件，22:05 到 22:18 在楼下逗猫。22:12 他不在公司。",
+        "place": "market"
+      },
+      {
+        "id": "n22",
+        "day": 2,
+        "any": [
+          "2E09",
+          "2T20"
+        ],
+        "text": "杯底残渣和她血里都有佐匹克隆。药是十七号上午，一个低着头的人去社区医院开的，七粒。",
+        "place": "police"
+      },
+      {
+        "id": "n23",
+        "day": 2,
+        "any": [
+          "2E15",
+          "2T09"
+        ],
+        "text": "十七号晚上八点十二分，苏闻给老韩发过短信：她手里有贝塔的账，周五下午送过去。",
+        "place": "police"
+      },
+      {
         "id": "n16",
         "day": 3,
         "any": [
@@ -198,6 +281,26 @@
         ],
         "text": "构建与发布记录：11 月 17 日 23:48，wb_ext 登录后换过这个 jar。",
         "place": "office"
+      },
+      {
+        "id": "n24",
+        "day": 3,
+        "any": [
+          "2T12",
+          "2T21",
+          "2E31"
+        ],
+        "text": "邵晓阳说：外套是机房热，落在椅背上的；每天九点读调度日志是上线时定的例行，只读不改。",
+        "place": "jail"
+      },
+      {
+        "id": "n25",
+        "day": 3,
+        "any": [
+          "2E28"
+        ],
+        "text": "药板七粒只剩四粒；每月房贷车贷一万多；茶几底下还压着一张巷口咖啡的小票。",
+        "place": "lucheng"
       }
     ],
     "plans": [
@@ -253,6 +356,13 @@
             ],
             "text": "广播被屏蔽，说明有人懂这套联动怎么改。懂的人不多。",
             "place": "office"
+          },
+          {
+            "needs": [
+              "2E14"
+            ],
+            "text": "22:12 的时候，邵晓阳在小区门口逗猫。定时的东西不需要人在场——明天去看守所，听他自己说一遍。",
+            "place": "jail"
           },
           {
             "needs": [
