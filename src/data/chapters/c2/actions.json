@@ -50,7 +50,14 @@
     "scene": "c2_act_mengyao",
     "costHours": 1,
     "npc": "mengyao",
-    "kind": "key"
+    "kind": "key",
+    "gate": {
+      "affinity": 55,
+      "scene": "c2_act_mengyao_refuse",
+      "give": "fruit_box",
+      "tip": "好感度够高的人，才会说出平时不肯说的话。孟遥现在心里很乱，送她爱吃的东西，好感涨得最快（送对了 +15）。她爱吃切好的水果盒；超商随时都能买。",
+      "rescue": false
+    }
   },
   {
     "id": "c2-1-5",
@@ -64,7 +71,36 @@
     "scene": "c2_act_laowang",
     "costHours": 1,
     "npc": "laowang",
-    "kind": "key"
+    "kind": "key",
+    "gate": {
+      "affinity": 60,
+      "scene": "c2_act_laowang_refuse",
+      "give": "jianbing",
+      "tip": "好感度够高的人，才会说出平时得不到的线索。送他喜欢的东西，好感涨得最快（送对了 +15）。老王爱吃加两个蛋的煎饼果子；超商随时都能买。",
+      "rescue": true
+    }
+  },
+  {
+    "id": "c2-1-7",
+    "label": "夜里自己溜进监控室，翻门磁和大堂的回放",
+    "location": "物业",
+    "days": [
+      1
+    ],
+    "minHour": 20,
+    "maxHour": 21,
+    "costHours": 1,
+    "kind": "aux",
+    "risk": "high",
+    "attack": "attack_c2_night",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "2E17"
+      }
+    },
+    "scene": "c2_night_security"
   },
   {
     "id": "c2-1-6",
@@ -261,6 +297,28 @@
     "npc": "xiaoxu"
   },
   {
+    "id": "c2-2-11",
+    "label": "夜里自己登财务共享盘，查奖金池",
+    "location": "17 层",
+    "days": [
+      2
+    ],
+    "minHour": 20,
+    "maxHour": 21,
+    "costHours": 1,
+    "kind": "aux",
+    "risk": "high",
+    "attack": "attack_c2_night",
+    "requires": {
+      "kind": "not",
+      "cond": {
+        "kind": "hasEvidence",
+        "id": "2E20"
+      }
+    },
+    "scene": "c2_night_finance"
+  },
+  {
     "id": "c2-2-10",
     "label": "去分局，看化验报告和苏闻的手机",
     "location": "分局",
@@ -332,7 +390,9 @@
     "requiresEvidence": [
       "2E41"
     ],
-    "room": "c2_lucheng_home"
+    "room": "c2_lucheng_home",
+    "risk": "normal",
+    "attack": "attack_c2_night"
   },
   {
     "id": "c2-3-4",

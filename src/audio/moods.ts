@@ -299,7 +299,7 @@ export interface MoodContext {
 // Attack scenes: 'opening' is the scene where someone steps out of the dark (the music is cut there), 'after' is the
 // aftermath of one, 'during' is everything in between.
 const ATTACK = /^(attack_|attack\d_|day\d_attack|day4_confront|day4_night_)/
-const ATTACK_OPENING = /^(attack_(stairs|parking|office_night|street)|attack1_go|day3_attack2|day4_confront_night|day5_attack4)$/
+const ATTACK_OPENING = /^(attack_(stairs|parking|office_night|street|c2_night)|attack1_go|day3_attack2|day4_confront_night|day5_attack4)$/
 const ATTACK_AFTER = /_(good|bad|tail|after|search|skip|tell)$/
 export function attackKind(sceneId: string): 'opening' | 'during' | 'after' | null {
   if (!ATTACK.test(sceneId)) return null

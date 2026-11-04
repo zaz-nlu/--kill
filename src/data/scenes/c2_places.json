@@ -359,6 +359,10 @@
         {
           "kind": "evidence",
           "id": "2E41"
+        },
+        {
+          "kind": "danger",
+          "delta": 15
         }
       ]
     }
@@ -405,6 +409,15 @@
       "type": "say",
       "speaker": "lyc",
       "text": "（只有几分钟。看清楚几样，就够了。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "danger",
+          "delta": 25
+        }
+      ]
     }
   ],
   "c2_cutoff_lucheng_home": [
@@ -514,6 +527,272 @@
         {
           "kind": "evidence",
           "id": "2E28"
+        }
+      ]
+    }
+  ],
+  "c2_act_mengyao_refuse": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【17 层人事区】孟遥坐在工位上，面前摊着年中奖金发放表。你一走近，她就把表翻了个面。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "林顾问……苏姐的事，我现在真的不想多说。",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我就问问昨晚的情况。"
+    },
+    {
+      "type": "say",
+      "speaker": "mengyao",
+      "text": "我说不出来。我吃不下东西，也睡不着。你让我缓缓，好不好？",
+      "expr": "nervous"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她的桌上有个空了的饭盒。你想起她以前总爱吃点切好的水果，说是不容易犯困。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（她现在需要的，不是盘问。）"
+    }
+  ],
+  "c2_act_laowang_refuse": [
+    {
+      "type": "bg",
+      "id": "security",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【B1 物业监控室】老王正踩着凳子捅天花板里的线，背对着你，头也没回。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "今天不行，今天忙。有事明天再说。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "我就问两句昨晚的事。"
+    },
+    {
+      "type": "say",
+      "speaker": "laowang",
+      "text": "昨晚的事，该说的我都跟警察说了。你们这些年轻人，一个个跑来问，我都不知道该跟谁说。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "他的保温杯放在桌上，旁边是一包没拆的抹布。你想起，这位老师傅以前总爱吃楼下那家的煎饼果子，加两个蛋。"
+    }
+  ],
+  "c2_night_security": [
+    {
+      "type": "bg",
+      "id": "security",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00 B1 物业监控室】值班的人去巡楼了，监控室里只亮着墙上的十六个格子。控制台的便签纸上，贴着一行账号和密码。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（老王说过，门磁是他拍下来的。底子应该还在。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你没有敲门，只是把没锁严的门推开了一条缝，进去，把门虚掩上。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "十一月十八号 22:50 以后的门磁日志，被人用磁铁压住过：1F 消防门门磁，被一块磁铁压住了。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "大堂摄像头 C3 的回放：二十二点五十二分十六秒，有人低着头走进电梯。十七层 C1：二十二点五十二分五十秒，那个人从电梯里出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（低着头。看不到脸。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你用手机把屏幕拍了下来，退出系统，把便签放回原位。走廊里传来脚步声，你屏住了呼吸。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E17"
+        },
+        {
+          "kind": "danger",
+          "delta": 35
+        }
+      ]
+    }
+  ],
+  "c2_night_finance": [
+    {
+      "type": "bg",
+      "id": "office",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "【21:00 17 层】整层只剩应急灯。你用以前协助查账时留下的临时账号，登进了财务共享盘。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（孟遥说，奖金池的余额是 0，苏闻不让她问。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "一个叫“奖金池”的子目录，权限是半开的。你点开 2026-06-30 的科目表：余额 0。向下翻，是 31 个人的名单，合计 486,000 元。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "另一张扣款表。第 17 行，是你自己的名字：18,000。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（有人把整个奖金池，从账上抽空了。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你拍了照，注销了账号。电梯在远处响了一声，有人上楼了。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E20"
+        },
+        {
+          "kind": "danger",
+          "delta": 35
+        }
+      ]
+    }
+  ],
+  "attack_c2_night": [
+    {
+      "type": "bg",
+      "id": "stairwell",
+      "time": "night"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "楼梯间的感应灯忽然灭了。身后有人贴上来——一只手重重推在你的背上！"
+    },
+    {
+      "type": "choice",
+      "options": [
+        {
+          "text": "抓住扶手",
+          "goto": "attack_c2_night_good"
+        },
+        {
+          "text": "回头看",
+          "goto": "attack_c2_night_bad"
+        }
+      ]
+    }
+  ],
+  "attack_c2_night_good": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你死死抓住了扶手，整个人撞在墙上。身后的脚步声匆匆下楼，很快没了声音。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（有人不想让我继续查。）"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "c2_attacked",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "attack_c2_night_bad": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你下意识回头，脚下一空，滚下了半层楼梯。昏暗里，只看到一个压低了帽檐的轮廓，转眼就没了。"
+    },
+    {
+      "type": "branch",
+      "when": {
+        "kind": "dangerAtLeast",
+        "value": 45
+      },
+      "then": [
+        {
+          "type": "say",
+          "speaker": "narration",
+          "text": "后背重重磕在台阶上，眼前一黑。"
+        },
+        {
+          "type": "effect",
+          "effects": [
+            {
+              "kind": "hp",
+              "delta": -1
+            }
+          ]
+        }
+      ],
+      "else": []
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "flag",
+          "key": "c2_attacked",
+          "value": true
         }
       ]
     }
