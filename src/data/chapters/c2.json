@@ -4,13 +4,22 @@
   "sub": "11 月 19 日起",
   "order": 2,
   "map": [
-    { "id": "office", "label": "公司（17 层）", "icon": "🏢", "x": 170, "y": 100, "locations": ["17 层", "会议室 B", "外包区", "楼下", "物业"] },
-    { "id": "street", "label": "巷口咖啡街", "icon": "☕", "x": 120, "y": 215, "locations": ["街上"] },
-    { "id": "diner", "label": "老门口饭馆", "icon": "🍜", "x": 400, "y": 215, "locations": ["饭馆"] },
-    { "id": "market", "label": "超市", "icon": "🛒", "x": 285, "y": 255, "locations": ["超市"] },
-    { "id": "lucheng", "label": "陆诚家", "icon": "🏠", "x": 540, "y": 235, "locations": ["陆诚家"] },
-    { "id": "police", "label": "分局", "icon": "🚓", "x": 440, "y": 55, "locations": ["分局"] },
-    { "id": "jail", "label": "看守所", "icon": "⛓", "x": 575, "y": 120, "locations": ["看守所"] }
+    { "id": "office", "bg": "office", "label": "公司（17 层）", "icon": "🏢", "x": 170, "y": 100, "locations": ["17 层", "会议室 B", "外包区", "楼下", "物业"] },
+    { "id": "street", "bg": "store_front", "label": "巷口咖啡街", "icon": "☕", "x": 120, "y": 215, "locations": ["街上"] },
+    { "id": "diner", "bg": "diner", "label": "老门口饭馆", "icon": "🍜", "x": 400, "y": 215, "locations": ["饭馆"] },
+    { "id": "market", "bg": "store", "label": "超市", "icon": "🛒", "x": 285, "y": 255, "locations": ["超市"] },
+    { "id": "lucheng", "bg": "lc_home", "label": "陆诚家", "icon": "🏠", "x": 540, "y": 235, "locations": ["陆诚家"] },
+    { "id": "police", "bg": "police", "label": "分局", "icon": "🚓", "x": 440, "y": 55, "locations": ["分局"] },
+    { "id": "jail", "bg": "police", "label": "看守所", "icon": "⛓", "x": 575, "y": 120, "locations": ["看守所"] }
+  ],
+  "nudges": [
+    { "day": 1, "place": "office", "text": "林一程在本子上记下：老韩的人还在公司，先回那边。" },
+    { "day": 2, "place": "office", "minHour": 20, "text": "本子上写着：晚上，老韩他们在公司等着对线索。" },
+    { "day": 2, "place": "street", "text": "本子上写着：那只咖啡杯是外面买的。杯套上的店，在巷口那条街。" },
+    { "day": 2, "place": "diner", "text": "本子上写着：十八号晚上的聚会，是在老门口那家饭馆。" },
+    { "day": 2, "place": "office", "text": "本子上写着：公司里还有几个人没问，几份记录也还没拿到。" },
+    { "day": 3, "place": "police", "text": "本子上写着：东西都齐了。下午，分局。" },
+    { "day": 3, "place": "office", "text": "本子上写着：线上跑的东西，得回公司再翻一遍。" }
   ],
   "calendar": [
     {

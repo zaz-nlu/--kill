@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue'
 import type { ActionDef } from '../engine/calendar'
-import type { Item, MapPlace } from '../engine/types'
+import type { Item, MapNudge, MapPlace } from '../engine/types'
 import CityMap from './CityMap.vue'
 import GiftPicker from './GiftPicker.vue'
 
 // `mealHour` is left undefined (not false) when absent, so the old callers keep reading the shop as the meal-hour signal.
-const props = withDefaults(defineProps<{ actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]; slotsLeft?: number; restLabel?: string; urge?: string[]; places?: MapPlace[] }>(), { mealHour: undefined })
-const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] }>()
+// With `places` (a chapter with a city map) the list is not shown up front: the map is, and tapping a place brings up what can be
+// done there, with the place's own photo behind. Actions that open a room to search become the "调查" button.
+const props = withDefaults(defineProps<{
+  actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]
+  slotsLeft?: number; restLabel?: string; urge?: string[]
+  places?: MapPlace[]; nudges?: MapNudge[]; day?: number; hour?: number
+}>(), { mealHour: undefined })
+const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] ; place: [bg: string | null] }>()
 
-// With a city map, tapping a place narrows the list to what can be done there; the home pin offers the way to end the day.
 const pickedPlace = ref<string | null>(null)
 const placeOf = (loc: string) => props.places?.find(p => p.locations.includes(loc))?.id
 const counts = computed(() => {
@@ -20,9 +25,21 @@ const counts = computed(() => {
   }
   return c
 })
-const shown = computed(() => (pickedPlace.value && pickedPlace.value !== 'home' ? props.actions.filter(a => placeOf(a.location) === pickedPlace.value) : props.actions))
-const placeEmpty = computed(() => !!pickedPlace.value && pickedPlace.value !== 'home' && shown.value.length === 0)
-const mapPlaces = computed(() => [...(props.places ?? []), { id: 'home', label: '我家', icon: '🛏', x: 60, y: 150, locations: [] }])
+const mapPlaces = computed(() => [...(props.places ?? []), { id: 'home', label: '我家', icon: '🛏', x: 60, y: 150, bg: 'home', locations: [] }])
+const atPlace = computed(() => (pickedPlace.value && pickedPlace.value !== 'home' ? props.actions.filter(a => placeOf(a.location) === pickedPlace.value) : []))
+const searches = computed(() => atPlace.value.filter(a => a.room))
+const shown = computed(() => (props.places ? atPlace.value.filter(a => !a.room) : props.actions))
+const placeLabel = computed(() => mapPlaces.value.find(p => p.id === pickedPlace.value)?.label ?? '')
+const placeEmpty = computed(() => !!props.places && !!pickedPlace.value && pickedPlace.value !== 'home' && atPlace.value.length === 0)
+
+// The first notebook line for today whose place still has something to do (and whose hour has come).
+const nudge = computed(() => props.nudges?.find(n =>
+  n.day === props.day && (n.minHour === undefined || (props.hour ?? 0) >= n.minHour) && (counts.value[n.place] ?? 0) > 0)?.text ?? '')
+
+function pickPlace(id: string | null) {
+  pickedPlace.value = id
+  emit('place', id ? mapPlaces.value.find(p => p.id === id)?.bg ?? null : null)
+}
 
 const picking = ref<string | null>(null)              // action id whose gift picker is open
 const chosenGift = reactive<Record<string, string>>({}) // action id -> item id
@@ -51,19 +68,26 @@ function run(actionId: string) {
 </script>
 
 <template>
+  <div v-if="places?.length" class="mapbox glass" data-testid="mapbox">
+    <CityMap :places="mapPlaces" :counts="counts" :picked="pickedPlace" @pick="pickPlace" />
+  </div>
   <section class="hub glass">
     <header>
-      <h2>接下来做什么？</h2>
+      <h2>{{ places && pickedPlace ? placeLabel : '接下来做什么？' }}</h2>
       <span v-if="slotsLeft !== undefined" class="slots" data-testid="slots-left">今天还剩 {{ slotsLeft }} 个时段</span>
     </header>
-    <CityMap v-if="places?.length" :places="mapPlaces" :counts="counts" :picked="pickedPlace" @pick="pickedPlace = $event" />
+    <p v-if="places && nudge" class="nudge" data-testid="nudge">📓 {{ nudge }}</p>
     <div class="scroll" data-testid="scroll">
+      <p v-if="places && !pickedPlace && !emptyHint" class="empty" data-testid="pick-hint">点右上角的地图，选一个要去的地方。</p>
       <p v-if="emptyHint && !pickedPlace" class="empty" data-testid="empty-hint">{{ emptyHint }}</p>
       <p v-if="placeEmpty" class="empty" data-testid="place-empty">这里现在没有要做的事。</p>
       <div v-if="pickedPlace === 'home'" class="empty">
         <p>回家会结束今天。确定今天的事都做完了？</p>
         <button type="button" class="rest" data-testid="map-rest" @click="emit('rest')">{{ restLabel ?? '回家休息' }}</button>
       </div>
+      <button v-for="a in searches" :key="a.id" type="button" class="search" :data-testid="'action-' + a.id" @click="run(a.id)">
+        🔍 调查<small>{{ a.label }} · {{ a.costHours }} 小时</small>
+      </button>
       <ul>
         <li v-for="a in shown" :key="a.id">
           <div class="line">
@@ -96,12 +120,16 @@ function run(actionId: string) {
 </template>
 
 <style scoped>
+.mapbox { position: fixed; top: 52px; right: 12px; z-index: 5; width: min(360px, 48vw); padding: 6px; }
 .hub { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 16px 12px; }
 header { display: flex; justify-content: space-between; align-items: baseline; flex: none; margin-bottom: 10px; }
 h2 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: 2px; }
 .slots { font-size: 13px; color: #d9c7b4; }
+.nudge { margin: 0 0 10px; padding: 6px 10px; flex: none; font-size: 14px; line-height: 1.6; color: #ecd3bb; border-left: 3px solid var(--accent); background: rgba(232, 160, 112, 0.1); border-radius: 4px; }
 .empty { margin: 8px 2px 14px; color: #d9c7b4; line-height: 1.7; }
 .scroll { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding-right: 6px; }
+.search { display: block; width: 100%; margin: 0 0 10px; padding: 12px 16px; text-align: left; font-size: 17px; border-radius: 10px; border-color: var(--accent); background: rgba(232, 160, 112, 0.18); }
+.search small { margin-left: 12px; font-size: 12px; color: #d9c7b4; }
 ul { list-style: none; padding: 0; margin: 0; }
 li { margin: 0 0 8px; }
 .line { position: relative; }

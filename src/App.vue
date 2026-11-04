@@ -47,6 +47,10 @@ const showAccount = ref(false)
 // A look at the case 2 map from the title screen, without having to clear case 1 first: day 2's actions, nothing runs.
 const showMapDemo = ref(false)
 const mapDemoNote = ref('')
+// The photo of the place picked on the map, behind the hub; cleared whenever the hub is left.
+const placeBg = ref('')
+watch(() => store.screen, () => { placeBg.value = '' })
+watch(showMapDemo, () => { placeBg.value = '' })
 const mapDemoActions = computed(() => store.data.actions.filter(a => a.chapter === 'c2' && a.days.includes(2) && !a.meal))
 // The web build asks everyone to sign in once; the session is kept, so it only comes back when it has run out. The desktop
 // build has no server, and tests run without one.
@@ -230,7 +234,7 @@ function onNote(lineId: string) {
 <template>
   <Stage
     :class="quake ? 'quake-' + quake : ''"
-    :bg="menuScreen ? 'title' : store.stage.bg"
+    :bg="showMapDemo ? (placeBg || 'office') : menuScreen ? 'title' : (store.screen === 'hub' && placeBg) || store.stage.bg"
     :time="menuScreen ? 'night' : stageTime"
     :left="menuScreen ? null : store.stage.left"
     :right="menuScreen ? null : store.stage.right"
@@ -241,6 +245,7 @@ function onNote(lineId: string) {
   >
     <TitleScreen
       v-if="store.screen === 'title'"
+      v-show="!showMapDemo"
       :error="store.loadError"
       :dev-finale="FINALE_VISIBLE"
       :demo="DEMO_VISIBLE"
@@ -254,22 +259,6 @@ function onNote(lineId: string) {
       @demo-exam="store.startDemoExam()"
       @map-demo="showMapDemo = true"
     />
-    <div v-if="showMapDemo" class="mapdemo" data-testid="map-demo">
-      <HubScreen
-        :actions="mapDemoActions"
-        :places="store.data.chapters.c2.map"
-        :can-shop="false"
-        :meal-hour="false"
-        :inventory="{}"
-        :items="[]"
-        :slots-left="5"
-        rest-label="（预览）回家休息"
-        @action="mapDemoNote = '预览：这里会进入对应的剧情。'"
-        @rest="mapDemoNote = '预览：这里会结束今天。'"
-      />
-      <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
-      <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
-    </div>
     <ChapterSelect
       v-else-if="store.screen === 'chapters'"
       @start="enterChapter"
@@ -336,6 +325,10 @@ function onNote(lineId: string) {
             v-if="store.screen === 'hub'"
             :actions="store.actions"
             :places="store.chapter.map"
+            :nudges="store.chapter.nudges"
+            :day="store.state.day"
+            :hour="store.state.hour"
+            @place="placeBg = $event ?? ''"
             :can-shop="store.canShop"
             :meal-hour="store.mealHour"
             :inventory="store.state.inventory"
@@ -431,6 +424,26 @@ function onNote(lineId: string) {
       @close="panel = null"
     />
     <HelpPanel v-if="panel === 'help'" @close="panel = null" />
+    <div v-if="showMapDemo" class="mapdemo" data-testid="map-demo">
+      <HubScreen
+        :actions="mapDemoActions"
+        :places="store.data.chapters.c2.map"
+        :nudges="store.data.chapters.c2.nudges"
+        :day="2"
+        :hour="9"
+        @place="placeBg = $event ?? ''"
+        :can-shop="false"
+        :meal-hour="false"
+        :inventory="{}"
+        :items="[]"
+        :slots-left="5"
+        rest-label="（预览）回家休息"
+        @action="mapDemoNote = '预览：这里会进入对应的剧情。'"
+        @rest="mapDemoNote = '预览：这里会结束今天。'"
+      />
+      <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
+      <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
+    </div>
     <AccountPanel v-if="mustSignIn || showAccount" :required="mustSignIn" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
@@ -455,7 +468,7 @@ function onNote(lineId: string) {
 </template>
 
 <style>
-.mapdemo { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: center; padding: 8px; background: rgba(8, 8, 12, 0.94); overflow-y: auto; }
+.mapdemo { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: flex-end; overflow-y: auto; }
 .mapdemo-note { margin: 0 12px; font-size: 13px; color: #d9c7b4; }
 .mapdemo-close { align-self: center; margin-top: 10px; padding: 8px 28px; }
 :root {
