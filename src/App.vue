@@ -46,22 +46,11 @@ useAudioDirector(store)
 startCloudSync()
 if (currentUser.value) void syncNow().then(() => store.refreshSlots())
 const showAccount = ref(false)
-// A look at the case 2 map from the title screen, without having to clear case 1 first: day 2's actions, nothing runs.
 const hubMapOpen = ref(false)
 watch(() => store.screen, () => { hubMapOpen.value = false })
-const showMapDemo = ref(false)
-// The notebook with every clue in hand, from the title screen.
-const showNotebookDemo = ref(false)
-const demoHeld = computed(() => new Set(store.data.chapters.c2.notebook?.entries.flatMap(e => e.any) ?? []).add('2E04').add('2E33').add('2E05').add('2E08e').add('2E29').add('2E19').add('2E08c').add('2E01').add('2E18').add('2E06'))
-const demoEntries = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? writtenEntries(nb, demoHeld.value) : [] })
-const demoPlans = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? nightPlans(nb, demoHeld.value, 3, 8) : [] })
-const mapDemoNote = ref('')
-const mapDemoOpen = ref(false)
 // The photo of the place picked on the map, behind the hub; cleared whenever the hub is left.
 const placeBg = ref('')
 watch(() => store.screen, () => { placeBg.value = '' })
-watch(showMapDemo, () => { placeBg.value = '' })
-const mapDemoActions = computed(() => store.data.actions.filter(a => a.chapter === 'c2' && a.days.includes(2) && !a.meal))
 // The web build asks everyone to sign in once; the session is kept, so it only comes back when it has run out. The desktop
 // build has no server, and tests run without one.
 const mustSignIn = computed(() => accountAvailable && import.meta.env.MODE !== 'test' && !currentUser.value)
@@ -268,7 +257,7 @@ function onNote(lineId: string) {
 <template>
   <Stage
     :class="quake ? 'quake-' + quake : ''"
-    :bg="showMapDemo ? (placeBg || 'office') : menuScreen ? 'title' : (store.screen === 'hub' && placeBg) || store.stage.bg"
+    :bg="menuScreen ? 'title' : (store.screen === 'hub' && placeBg) || store.stage.bg"
     :time="menuScreen ? 'night' : stageTime"
     :left="menuScreen ? null : store.stage.left"
     :right="menuScreen ? null : store.stage.right"
@@ -279,7 +268,6 @@ function onNote(lineId: string) {
   >
     <TitleScreen
       v-if="store.screen === 'title'"
-      v-show="!showMapDemo"
       :error="store.loadError"
       :dev-finale="FINALE_VISIBLE"
       :demo="DEMO_VISIBLE"
@@ -291,8 +279,6 @@ function onNote(lineId: string) {
       @chapters="openChapters()"
       @debug-finale="store.jumpToFinale()"
       @demo-exam="store.startDemoExam()"
-      @map-demo="showMapDemo = true"
-      @notebook-demo="showNotebookDemo = true"
     />
     <ChapterSelect
       v-else-if="store.screen === 'chapters'"
@@ -462,30 +448,6 @@ function onNote(lineId: string) {
       @close="panel = null"
     />
     <HelpPanel v-if="panel === 'help'" @close="panel = null" />
-    <div v-if="showMapDemo" class="mapdemo" data-testid="map-demo">
-      <HubScreen
-        :actions="mapDemoActions"
-        :places="store.data.chapters.c2.map"
-        :nudges="store.data.chapters.c2.nudges"
-        :day="2"
-        :hour="9"
-        :map-open="mapDemoOpen"
-        @update:map-open="mapDemoOpen = $event"
-        @place="placeBg = $event ?? ''"
-        :can-shop="false"
-        :meal-hour="false"
-        :inventory="{}"
-        :items="[]"
-        :slots-left="5"
-        rest-label="（预览）回家休息"
-        @action="mapDemoNote = '预览：这里会进入对应的剧情。'"
-        @rest="mapDemoNote = '预览：这里会结束今天。'"
-      />
-      <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
-      <button type="button" class="mapdemo-close" data-testid="map-demo-open" @click="mapDemoOpen = true">打开地图</button>
-      <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
-    </div>
-    <NotebookPanel v-if="showNotebookDemo" :entries="demoEntries" :plans="demoPlans" :places="store.data.chapters.c2.map ?? []" :counts="{ office: 3, street: 1, diner: 1 }" :records="nbRecords" :held="demoHeld" @close="showNotebookDemo = false" />
     <AccountPanel v-if="mustSignIn || showAccount" :required="mustSignIn" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
@@ -512,9 +474,6 @@ function onNote(lineId: string) {
 </template>
 
 <style>
-.mapdemo { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: flex-end; overflow-y: auto; }
-.mapdemo-note { margin: 0 12px; font-size: 13px; color: #d9c7b4; }
-.mapdemo-close { align-self: center; margin-top: 10px; padding: 8px 28px; }
 :root {
   --glass: rgba(14, 16, 24, 0.68);
   --glass-line: rgba(255, 255, 255, 0.18);

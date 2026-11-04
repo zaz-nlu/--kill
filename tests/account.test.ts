@@ -262,7 +262,7 @@ describe('AccountPanel and the title button', () => {
     const w = mount(TitleScreen, { props: { account: '' } })
     expect(w.find('[data-testid="account"]').text()).toBe('登录 / 注册')
     await w.setProps({ account: 'Alice' })
-    expect(w.find('[data-testid="account"]').text()).toBe('账号：Alice')
+    expect(w.find('[data-testid="account"]').text()).toBe('玩家：Alice')
     await w.find('[data-testid="account"]').trigger('click')
     expect(w.emitted('account')).toHaveLength(1)
   })
