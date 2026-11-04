@@ -48,6 +48,11 @@ if (currentUser.value) void syncNow().then(() => store.refreshSlots())
 const showAccount = ref(false)
 // A look at the case 2 map from the title screen, without having to clear case 1 first: day 2's actions, nothing runs.
 const showMapDemo = ref(false)
+// The notebook with every clue in hand, from the title screen.
+const showNotebookDemo = ref(false)
+const demoHeld = computed(() => new Set(store.data.chapters.c2.notebook?.entries.flatMap(e => e.any) ?? []).add('2E04').add('2E33').add('2E05').add('2E08e').add('2E29').add('2E19').add('2E08c').add('2E01').add('2E18').add('2E06'))
+const demoEntries = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? writtenEntries(nb, demoHeld.value) : [] })
+const demoPlans = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? nightPlans(nb, demoHeld.value, 3, 8) : [] })
 const mapDemoNote = ref('')
 // The photo of the place picked on the map, behind the hub; cleared whenever the hub is left.
 const placeBg = ref('')
@@ -279,6 +284,7 @@ function onNote(lineId: string) {
       @debug-finale="store.jumpToFinale()"
       @demo-exam="store.startDemoExam()"
       @map-demo="showMapDemo = true"
+      @notebook-demo="showNotebookDemo = true"
     />
     <ChapterSelect
       v-else-if="store.screen === 'chapters'"
@@ -466,6 +472,7 @@ function onNote(lineId: string) {
       <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
       <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
     </div>
+    <NotebookPanel v-if="showNotebookDemo" :entries="demoEntries" :plans="demoPlans" :places="store.data.chapters.c2.map ?? []" :counts="{ office: 3, street: 1, diner: 1 }" :day="3" @close="showNotebookDemo = false" />
     <AccountPanel v-if="mustSignIn || showAccount" :required="mustSignIn" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
