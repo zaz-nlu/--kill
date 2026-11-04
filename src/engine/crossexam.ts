@@ -233,6 +233,17 @@ export function wasPressed(exam: ExamState, statementId: string): boolean {
   return exam.pressed.includes(statementId) || Boolean(st?.steps.some(s => s.kind === 'press' && done.includes(s.id)))
 }
 
+// What would land on a line right now: the same steps `present` would accept (required or bonus alike), once their turn
+// has come. Aimed at a weak point (`target`), only the steps that break that point count. A settled line has none.
+export function hintIdsFor(exam: ExamState, statementId: string, target?: string): string[] {
+  if (!statementOf(exam, statementId) || statementCleared(exam, statementId)) return []
+  const open = availableSteps(exam, statementId)
+    .filter((s): s is Extract<Step, { kind: 'present' }> => s.kind === 'present')
+  const aimedAt = target ? open.filter(s => s.target === target) : []
+  const possible = aimedAt.length > 0 ? aimedAt : open
+  return [...new Set(possible.flatMap(s => s.accepts))]
+}
+
 // `target` is the weak point the player clicked before choosing the item (if they did). Aimed at one, the item has to be
 // the one that breaks it; aimed at nothing, it is tried against whatever the line has open.
 // `alias` is what a conclusion card folds into: the card is accepted wherever any of those pieces would be.

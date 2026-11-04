@@ -347,6 +347,7 @@ function onNote(lineId: string) {
             :view="store.examView"
             :info="store.recordInfo"
             :folded="store.collected.folded"
+            :hint-ids="store.examHintIds()"
             :event="store.examEvent"
             :hold="store.examHold"
             :witness="store.speakerName('limo')"

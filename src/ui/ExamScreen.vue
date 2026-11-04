@@ -49,6 +49,7 @@ const props = defineProps<{
   view?: View | null
   info?: Record<string, RecordInfo>
   folded?: string[]
+  hintIds?: string[]
   event?: ExamEventLike | null
   hold?: boolean
   witness?: string
@@ -339,7 +340,7 @@ const maxPips = computed(() => Math.max(props.view?.max ?? props.persuasion, pro
     </div>
 
     <div v-if="showRecord" class="veil" data-testid="present-window" @click.self="showRecord = false">
-      <EvidencePicker :ids="recordIds" :info="infoMap" :quotes="quotes" :folded="folded" :target="lockPhrase" @confirm="confirmPresent" @close="showRecord = false" />
+      <EvidencePicker :ids="recordIds" :info="infoMap" :quotes="quotes" :folded="folded" :target="lockPhrase" :hint-ids="hintIds" @confirm="confirmPresent" @close="showRecord = false" />
     </div>
   </section>
 </template>

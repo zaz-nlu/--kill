@@ -28,7 +28,7 @@ import {
   type NodeKind, type Timeline, type TreeNode, type Trigger,
 } from './timeline'
 import {
-  availableSteps, canPress, chooseOption, computeGuard, computePersuasion, EXAM_START, GAP_LIMIT, present, press,
+  availableSteps, canPress, chooseOption, computeGuard, computePersuasion, EXAM_START, GAP_LIMIT, hintIdsFor, present, press,
   isSettleable, skipUnreachable, startExam, statementView, wasPressed, weakPoints,
   isStatementCleared, type ExamResult, type ExamState,
 } from './crossexam'
@@ -1418,6 +1418,17 @@ ${gate.tip}
     })
   }
 
+  // Case 1 is the tutorial: once a line has been missed at least once, the picker may point out what would land on it.
+  // From case 2 on the player is on their own.
+  function examHintIds(statementId?: string): string[] {
+    const e = exam.value
+    const id = statementId ?? examStatement.value?.id
+    if (!e || !id) return []
+    if ((state.chapter || 'c1') !== 'c1') return []
+    if ((e.stuck?.[id] ?? 0) < 1) return []
+    return hintIdsFor(e, id)
+  }
+
   function examPress(): ExamResult {
     return runExam('press', (e, id) => press(e, id))
   }
@@ -1434,7 +1445,7 @@ ${gate.tip}
     saveNote, migrationNotice, dismissLegacyNotice,
     exam, examIndex, examFailed, examPresenting, setExamPresenting, examStatement, lastLinesView, argument, recordIds, recordNames, quotes,
     recordInfo, examView, examTarget, setExamTarget, examEvent, examHold, stageExam, examContinue,
-    startExamById, examGoto, examPresent, examPress, examChoose,
+    startExamById, examGoto, examPresent, examPress, examChoose, examHintIds,
     demoMode, demoMessage, startDemoExam,
   }
 })

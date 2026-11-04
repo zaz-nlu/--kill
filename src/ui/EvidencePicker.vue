@@ -10,13 +10,15 @@ const props = withDefaults(defineProps<{
   quotes: Quote[]
   folded?: string[]
   target?: string | null   // the weak point being aimed at, as it reads in the line
-}>(), { folded: () => [] })
+  hintIds?: string[]       // case 1 only: what would land on the line, shown in red and never picked for you
+}>(), { folded: () => [], hintIds: () => [] })
 const emit = defineEmits<{ confirm: [id: string]; close: [] }>()
 
 interface Entry { id: string; quote: boolean; name: string; type: string; who: string[]; thumb: string | null; archived: boolean }
 
 // A clue a conclusion card folds away is still in hand; the picker just files it out of sight until asked for.
 const foldedSet = computed(() => new Set(props.folded))
+const hintSet = computed(() => new Set(props.hintIds))
 const showArchived = ref(false)
 const archivedCount = computed(() => props.ids.filter(id => foldedSet.value.has(id)).length)
 
@@ -99,13 +101,14 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
           <button
             type="button"
             :data-testid="(e.quote ? 'quote-' : 'record-') + e.id"
-            :class="{ on: picked === e.id, said: e.quote, archived: e.archived }"
+            :class="{ on: picked === e.id, said: e.quote, archived: e.archived, hint: hintSet.has(e.id) }"
             @click="picked = e.id"
           >
             <img v-if="e.thumb" class="thumb" :src="e.thumb" alt="">
             <span v-else-if="e.type === '结论'" class="badge">结</span>
             <span class="name"><b v-if="e.quote && e.who[0]" class="who">{{ e.who[0] }}：</b>{{ e.name }}</span>
             <span v-if="e.archived" class="tag">已归档</span>
+            <span v-if="hintSet.has(e.id)" class="tag hint-tag">线索</span>
           </button>
         </li>
       </ul>
@@ -165,12 +168,15 @@ h3 { margin: 0; font-size: 18px; letter-spacing: 2px; }
 .list li { margin-bottom: 6px; }
 .list .none { color: #a99f92; padding: 8px 4px; }
 .list button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 6px 10px; text-align: left; border-radius: 10px; }
+.list button.hint { border-left: 3px solid #ff6b5e; }
+.list button.hint .name { color: #ff6b5e; }
 .list button.on { border-color: var(--accent); background: rgba(232, 160, 112, 0.22); }
 .thumb { width: 38px; height: 38px; flex: none; object-fit: contain; }
 .badge { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 38px; height: 38px; border: 2px solid var(--accent); border-radius: 8px; color: var(--accent); font-size: 18px; font-weight: 700; background: rgba(232, 160, 112, 0.12); }
 .badge.big { display: flex; width: 96px; height: 96px; margin: 0 auto 8px; font-size: 40px; border-radius: 14px; }
 .list button.archived { opacity: 0.55; }
 .tag { flex: none; margin-left: auto; padding: 0 6px; font-size: 11px; color: #a99f92; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; }
+.hint-tag { color: #ff6b5e; border-color: rgba(255, 107, 94, 0.6); }
 .name { font-size: 14px; line-height: 1.4; }
 .who { color: var(--accent); font-weight: 600; white-space: nowrap; }
 
