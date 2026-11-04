@@ -1,6 +1,7 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ error?: string; devFinale?: boolean; message?: string; demo?: boolean }>(), { devFinale: true, demo: true })
-defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: [] }>()
+// `account` is the signed-in name ('' when nobody is); leaving it out hides the button (no server to sign in to).
+withDefaults(defineProps<{ error?: string; devFinale?: boolean; message?: string; demo?: boolean; account?: string }>(), { devFinale: true, demo: true })
+defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: []; account: [] }>()
 </script>
 
 <template>
@@ -10,6 +11,7 @@ defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: 
     <button type="button" data-testid="start" @click="$emit('start')">开始游戏</button>
     <button type="button" class="secondary" data-testid="continue" @click="$emit('continue')">继续游戏</button>
     <button type="button" class="secondary" data-testid="chapters" @click="$emit('chapters')">章节选择</button>
+    <button v-if="account !== undefined" type="button" class="secondary" data-testid="account" @click="$emit('account')">{{ account ? `账号：${account}` : '登录 / 注册' }}</button>
     <button v-if="demo" type="button" class="secondary" data-testid="demo-exam" @click="$emit('demoExam')">试玩对峙<small>2 分钟，体验对质</small></button>
     <p v-if="message" class="notice" data-testid="title-message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>

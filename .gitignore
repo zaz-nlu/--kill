@@ -6,3 +6,7 @@ dist-web.zip
 *.exe
 dist-web*.zip
 CLAUDE.local.md
+server/.venv
+server/data
+__pycache__
+.pytest_cache

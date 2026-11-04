@@ -1,8 +1,10 @@
 import type { GameState } from './types'
 import { loadSave, type LoadResult } from './save'
 import { DEFAULT_CHAPTER } from './state'
+import { scopeSuffix } from './account'
 
 // Ten manual slots and one automatic one, per chapter: `jiudian-auto:c1`, `jiudian-save:c1:3`, …
+// A signed-in account's keys end in `@name`; a guest's carry no suffix.
 export const SLOT_COUNT = 10
 export type SlotId = number | 'auto'
 
@@ -16,9 +18,26 @@ export interface SlotMeta {
   timeline?: { uid: string; node: number }   // the rewind-tree node this save was taken at, if it still exists
 }
 
-export function slotKey(slot: SlotId, chapter: string = DEFAULT_CHAPTER.id): string {
-  if (slot === 'auto') return `jiudian-auto:${chapter}`
-  return `jiudian-save:${chapter}:${slot}`
+export function slotKey(slot: SlotId, chapter: string = DEFAULT_CHAPTER.id, scope: string = scopeSuffix()): string {
+  if (slot === 'auto') return `jiudian-auto:${chapter}${scope}`
+  return `jiudian-save:${chapter}:${slot}${scope}`
+}
+
+// The reverse of slotKey; `user` is '' for a guest's key.
+export function parseSlotKey(key: string): { slot: SlotId; chapter: string; user: string } | null {
+  const m = /^jiudian-(?:(auto):([^:@]+)|save:([^:@]+):(\d+))(?:@(.+))?$/.exec(key)
+  if (!m) return null
+  return m[1] ? { slot: 'auto', chapter: m[2], user: m[5] ?? '' } : { slot: Number(m[4]), chapter: m[3], user: m[5] ?? '' }
+}
+
+// Whoever keeps saves elsewhere (the cloud) hears about every write and delete made through this module.
+export type SlotEvent = { type: 'write'; slot: SlotId; chapter: string; raw: string; at: number } | { type: 'clear'; slot: SlotId; chapter: string }
+const listeners: ((e: SlotEvent) => void)[] = []
+export function onSlotEvent(fn: (e: SlotEvent) => void): void {
+  listeners.push(fn)
+}
+function emit(e: SlotEvent): void {
+  for (const fn of listeners) fn(e)
 }
 
 function read(key: string): string | null {
@@ -67,7 +86,9 @@ export function writeSlot(slot: SlotId, state: GameState, timeline?: SlotMeta['t
     chapter, day: state.day, hour: state.hour, evidence: state.evidence.length, testimony: state.testimony.length, at: now, timeline,
   }
   try {
-    localStorage.setItem(slotKey(slot, chapter), JSON.stringify({ version: 2, state, meta }))
+    const raw = JSON.stringify({ version: 2, state, meta })
+    localStorage.setItem(slotKey(slot, chapter), raw)
+    emit({ type: 'write', slot, chapter, raw, at: now })
     return true
   } catch {
     return false
@@ -77,6 +98,7 @@ export function writeSlot(slot: SlotId, state: GameState, timeline?: SlotMeta['t
 export function clearSlot(slot: SlotId, chapter: string = DEFAULT_CHAPTER.id): void {
   try {
     localStorage.removeItem(slotKey(slot, chapter))
+    emit({ type: 'clear', slot, chapter })
   } catch { /* nothing to clear */ }
 }
 
@@ -125,7 +147,7 @@ export function migrateLegacySaves(): boolean {
     for (const [legacy, slot] of LEGACY_KEYS) {
       const raw = localStorage.getItem(legacy)
       if (raw === null) continue
-      const target = slotKey(slot, DEFAULT_CHAPTER.id)
+      const target = slotKey(slot, DEFAULT_CHAPTER.id, '') // old saves are the guest's
       const upgraded = upgradeLegacy(raw)
       if (upgraded !== null && localStorage.getItem(target) === null) {
         localStorage.setItem(target, upgraded)

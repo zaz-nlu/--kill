@@ -20,6 +20,7 @@ import { buyItem, giveGift, openShop, type BuyResult, type GiftResult } from './
 import { applyEffect } from './effects'
 import { markSeen, visibleHotspots } from './rooms'
 import type { TimeOfDay } from './backgrounds'
+import { scopeSuffix } from './account'
 import { allSlots, anySave, clearSlot, migrateLegacySaves, readSlot, slotInfo, writeSlot, type SlotId } from './saves'
 import { loadProfile, markChapterNoteSeen } from './profile'
 import {
@@ -54,15 +55,15 @@ const EXAM_WITNESS: Speaker = 'limo'
 
 // Every chapter keeps its own rewind tree; the single tree the game used to have belongs to case 1.
 const LEGACY_TIMELINE_KEY = 'jiudian-timeline'
-function timelineKey(chapter: string): string {
-  return `jiudian-timeline:${chapter}`
+function timelineKey(chapter: string, scope: string = scopeSuffix()): string {
+  return `jiudian-timeline:${chapter}${scope}`
 }
 
 function migrateTimelineKey(): void {
   try {
     const legacy = localStorage.getItem(LEGACY_TIMELINE_KEY)
     if (legacy === null) return
-    const target = timelineKey('c1')
+    const target = timelineKey('c1', '') // the old single tree is the guest's
     if (localStorage.getItem(target) === null) localStorage.setItem(target, legacy)
     localStorage.removeItem(LEGACY_TIMELINE_KEY)
   } catch { /* storage blocked */ }
@@ -1054,6 +1055,7 @@ ${gate.tip}
   const autoSlot = computed(() => { void slotsTick.value; return slotInfo('auto', state.chapter) })
   function refreshSlots(): void {
     slotsTick.value += 1
+    hasSave.value = anySave(state.chapter)
   }
 
   // The dev jump to the finale is only offered once the story is over (and the UI keeps it hidden for now).

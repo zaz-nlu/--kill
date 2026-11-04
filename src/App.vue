@@ -27,6 +27,7 @@ import ExamScreen from './ui/ExamScreen.vue'
 import EndScreen from './ui/EndScreen.vue'
 import AudioToggle from './ui/AudioToggle.vue'
 import SavePanel from './ui/SavePanel.vue'
+import AccountPanel from './ui/AccountPanel.vue'
 import TimelinePanel from './ui/TimelinePanel.vue'
 import HelpPanel from './ui/HelpPanel.vue'
 import TipDialog from './ui/TipDialog.vue'
@@ -34,9 +35,15 @@ import RotateHint from './ui/RotateHint.vue'
 import { useAudioDirector } from './audio/director'
 import { allSlots, type SlotMeta } from './engine/saves'
 import { loadProfile } from './engine/profile'
+import { accountAvailable, currentUser } from './engine/account'
+import { startCloudSync, syncNow } from './engine/cloud'
 
 const store = useGameStore()
 useAudioDirector(store)
+// A returning, signed-in player: bring in whatever was saved on another device.
+startCloudSync()
+if (currentUser.value) void syncNow().then(() => store.refreshSlots())
+const showAccount = ref(false)
 // The cross-examination plays an animation for each blow, and the end of an act waits for it.
 store.stageExam(true)
 // The whole screen shakes when a blow lands ('hit': the witness is smashed; 'hurt': you are).
@@ -231,6 +238,8 @@ function onNote(lineId: string) {
       :dev-finale="FINALE_VISIBLE"
       :demo="DEMO_VISIBLE"
       :message="store.demoMessage"
+      :account="accountAvailable ? currentUser : undefined"
+      @account="showAccount = true"
       @start="store.newGame()"
       @continue="continueGame()"
       @chapters="openChapters()"
@@ -396,6 +405,7 @@ function onNote(lineId: string) {
       @close="panel = null"
     />
     <HelpPanel v-if="panel === 'help'" @close="panel = null" />
+    <AccountPanel v-if="showAccount" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
       v-if="store.migrationNotice"
