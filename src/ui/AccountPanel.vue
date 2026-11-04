@@ -4,6 +4,7 @@ import { currentUser, login, logout, register } from '../engine/account'
 import { syncError, syncNow } from '../engine/cloud'
 
 // `changed` fires whenever the signed-in account changes or its saves were just merged in, so the menus reread them.
+const props = defineProps<{ required?: boolean }>()
 const emit = defineEmits<{ changed: []; close: [] }>()
 
 const mode = ref<'login' | 'register'>('login')
@@ -47,11 +48,11 @@ async function signOut() {
 </script>
 
 <template>
-  <div class="veil" data-testid="account-panel" @click.self="emit('close')">
+  <div class="veil" data-testid="account-panel" @click.self="!props.required && emit('close')">
     <section class="glass box">
       <header>
         <h3>{{ currentUser ? '账号' : mode === 'login' ? '登录' : '注册' }}</h3>
-        <button type="button" data-testid="account-close" @click="emit('close')">关闭</button>
+        <button v-if="!required" type="button" data-testid="account-close" @click="emit('close')">关闭</button>
       </header>
 
       <template v-if="currentUser">

@@ -44,6 +44,9 @@ useAudioDirector(store)
 startCloudSync()
 if (currentUser.value) void syncNow().then(() => store.refreshSlots())
 const showAccount = ref(false)
+// The web build asks everyone to sign in once; the session is kept, so it only comes back when it has run out. The desktop
+// build has no server, and tests run without one.
+const mustSignIn = computed(() => accountAvailable && import.meta.env.MODE !== 'test' && !currentUser.value)
 // The cross-examination plays an animation for each blow, and the end of an act waits for it.
 store.stageExam(true)
 // The whole screen shakes when a blow lands ('hit': the witness is smashed; 'hurt': you are).
@@ -406,7 +409,7 @@ function onNote(lineId: string) {
       @close="panel = null"
     />
     <HelpPanel v-if="panel === 'help'" @close="panel = null" />
-    <AccountPanel v-if="showAccount" @changed="store.refreshSlots()" @close="showAccount = false" />
+    <AccountPanel v-if="mustSignIn || showAccount" :required="mustSignIn" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
       v-if="store.migrationNotice"
