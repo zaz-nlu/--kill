@@ -80,7 +80,7 @@
     "label": "巷口咖啡街",
     "bg": "store_front",
     "intro": "c2_intro_store_front",
-    "budget": 4,
+    "budget": 2,
     "cutoff": "c2_cutoff_store_front",
     "hotspots": [
       {
@@ -95,28 +95,6 @@
         "scene": "c2_inspect_trash"
       },
       {
-        "id": "c2_sf_clerk",
-        "label": "便利店的店员",
-        "rect": [
-          30,
-          32,
-          14,
-          34
-        ],
-        "scene": "c2_talk_clerk"
-      },
-      {
-        "id": "c2_sf_cctv",
-        "label": "顶棚下的摄像头",
-        "rect": [
-          44,
-          6,
-          16,
-          12
-        ],
-        "scene": "c2_inspect_store_cctv"
-      },
-      {
         "id": "c2_sf_cafe",
         "label": "街角的巷口咖啡",
         "rect": [
@@ -126,6 +104,92 @@
           40
         ],
         "scene": "c2_talk_cafe"
+      }
+    ]
+  },
+  {
+    "id": "c2_supermarket",
+    "label": "便利超市",
+    "bg": "store",
+    "intro": "c2_intro_supermarket",
+    "budget": 3,
+    "cutoff": "c2_cutoff_supermarket",
+    "hotspots": [
+      {
+        "id": "c2_sm_clerk",
+        "label": "收银台的店员",
+        "rect": [
+          38,
+          38,
+          18,
+          36
+        ],
+        "scene": "c2_talk_clerk"
+      },
+      {
+        "id": "c2_sm_cctv",
+        "label": "顶棚下的摄像头",
+        "rect": [
+          44,
+          4,
+          16,
+          12
+        ],
+        "scene": "c2_inspect_store_cctv"
+      },
+      {
+        "id": "c2_sm_topup",
+        "label": "预付卡充值机",
+        "rect": [
+          70,
+          40,
+          18,
+          30
+        ],
+        "scene": "c2_inspect_topup"
+      }
+    ]
+  },
+  {
+    "id": "c2_lucheng_home",
+    "label": "陆诚家",
+    "bg": "lc_home",
+    "intro": "c2_intro_lucheng_home",
+    "budget": 2,
+    "cutoff": "c2_cutoff_lucheng_home",
+    "hotspots": [
+      {
+        "id": "c2_lc_drawer",
+        "label": "床头柜的抽屉",
+        "rect": [
+          8,
+          48,
+          18,
+          22
+        ],
+        "scene": "c2_inspect_lc_drawer"
+      },
+      {
+        "id": "c2_lc_wardrobe",
+        "label": "衣柜上层的纸盒",
+        "rect": [
+          68,
+          18,
+          22,
+          38
+        ],
+        "scene": "c2_inspect_lc_wardrobe"
+      },
+      {
+        "id": "c2_lc_table",
+        "label": "茶几底下",
+        "rect": [
+          34,
+          62,
+          30,
+          16
+        ],
+        "scene": "c2_inspect_lc_table"
       }
     ]
   }

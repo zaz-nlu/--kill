@@ -46,6 +46,23 @@
       "text": "谁设的，什么时候设的，这是我们接下来要查的。你那边有线索，随时告诉我。"
     },
     {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "还有一件事。昨晚最后一个进机房、最后一个把东西递到她手边的，是邵晓阳。机房的摄像头拍得清清楚楚。",
+      "expr": "suspicious"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "他是端咖啡进去的。不能因为这个就……"
+    },
+    {
+      "type": "say",
+      "speaker": "laohan",
+      "text": "我知道。可上头要一个说法。他先在看守所待着，协助调查。你想问他什么，下午可以去。",
+      "expr": "soft"
+    },
+    {
       "type": "effect",
       "effects": [
         {
@@ -55,6 +72,11 @@
         {
           "kind": "evidence",
           "id": "2E02"
+        },
+        {
+          "kind": "flag",
+          "key": "shao_held",
+          "value": true
         }
       ]
     }
@@ -445,105 +467,6 @@
       "text": "（昨天看见的是现场。今天，该去看看这一夜之前发生的事。）"
     }
   ],
-  "c2_act_shao": [
-    {
-      "type": "bg",
-      "id": "office",
-      "time": "day"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "【11:00 17 层走廊尽头】邵晓阳背靠着墙，眼睛红着，脸上还挂着那种用力撑出来的笑，笑得发僵。感应灯灭了一下，他吓得一抖，赶紧跺了一脚，灯才亮。他的手指一直在绞着衣角。"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "程、程哥……",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "做完笔录了？"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "做完了。我说了，我十九点二十进的机房，待了十五分钟，看了两眼她那个报错，十九点三十五走的。外套忘了拿。门是苏姐下午给我开的临时授权，发版窗口，到夜里十二点。",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "我还说，我进门的时候苏姐还活着，正骂数据库，说谁把库锁了，骂得可难听了。",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "那两杯咖啡，是谁点的？"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "前台桌上有两杯，杯子上写着我和苏姐，我就拿上去了。没有人跟我说是谁点的。",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "你就没再问？"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "我问了一句“谁这么有心”。孟遥说她不知道。就没再问了。",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "他低着头，用袖子使劲蹭了一下眼睛，声音一下子哑了。"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "程哥，我知道你为什么站在这儿。因为昨天晚上，进那间屋的人是我。",
-      "expr": "teary"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "林一程没接。他想起两个月前那个晚上，也是这么一条走廊，也是这么一盏灯，所有人看他的眼神，都像在看一个已经定了罪的人。"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "你也被冤枉过。你知道我的感受。",
-      "expr": "teary"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "我不是让你信我。我就是……不想一个人待着。",
-      "expr": "teary"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "他蹲了下去，把脸埋进臂弯里，肩膀一抖一抖的。走廊里安静得能听见楼下路口红灯的倒计时。林一程把手里的笔录复印件折了一下，没有再问。"
-    },
-    {
-      "type": "effect",
-      "effects": [
-        {
-          "kind": "testimony",
-          "id": "2T01"
-        }
-      ]
-    }
-  ],
   "c2_act_task": [
     {
       "type": "bg",
@@ -905,6 +828,16 @@
     },
     {
       "type": "say",
+      "speaker": "xiaoxu",
+      "text": "预付礼品卡的发行商给了我售卡点：就是收货点那家便利超市。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "又是那家店。"
+    },
+    {
+      "type": "say",
       "speaker": "lyc",
       "text": "匿名，预付，不留名字。"
     },
@@ -1143,43 +1076,14 @@
     },
     {
       "type": "say",
-      "speaker": "narration",
-      "text": "老韩把一沓手续在桌上磕齐，声音比往常低。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "昨晚局里……？"
-    },
-    {
-      "type": "say",
       "speaker": "laohan",
-      "text": "压力不小。邵晓阳昨天晚上先被带走协助调查，现在暂押在看守所。"
-    },
-    {
-      "type": "say",
-      "speaker": "laohan",
-      "text": "不是定他的罪。是先放在那儿，免得再出别的事。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "林一程没说话。他见过那种走廊，也见过那种眼神。"
+      "text": "邵晓阳还在看守所押着。上头给的时间，只到今天。",
+      "expr": "soft"
     },
     {
       "type": "say",
       "speaker": "lyc",
       "text": "（线上跑的，到底是什么？）"
-    },
-    {
-      "type": "effect",
-      "effects": [
-        {
-          "kind": "flag",
-          "key": "shao_held",
-          "value": true
-        }
-      ]
     }
   ],
   "c2_act_deploy": [

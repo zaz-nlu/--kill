@@ -1,85 +1,4 @@
 {
-  "c2_act_market": [
-    {
-      "type": "bg",
-      "id": "store",
-      "time": "day"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "【14:20 邵晓阳住的小区】小区在城东，六栋老楼围着一块花坛。楼下就是一家小超市，门口摆着一排快递自提柜。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "邵晓阳住这儿？"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "物业的人把门禁记录调了出来，屏幕上的时间一行一行往下滚。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "11 月 18 日 22:00:04，邵晓阳刷门禁进小区。之后没有出去的记录。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "二十二点整，进的小区。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "超市老板把收银记录翻出来，指了指其中一行。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "22:03:12，收银台收了一笔 38.00，商品是猫砂一袋，手机付款。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "猫砂。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "自提柜的记录也调出来了：22:04:36，B-07 格口打开，取走一个包裹，运单号对得上那袋猫砂。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "老板又调出门口的监控。22:05 到 22:18，邵晓阳蹲在台阶边，逗超市那只橘猫。画面里，他一直没走开。"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "（二十二点整进小区，二十二点零三分付的猫砂，二十二点零四分取的件。）"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "（二十二点零五分到二十二点十八分，在逗猫。二十二点十二分……时间对得上。）"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "你把三份记录都拍了照，又请老板把原始的电子记录发一份给小许。"
-    },
-    {
-      "type": "effect",
-      "effects": [
-        {
-          "kind": "evidence",
-          "id": "2E14"
-        }
-      ]
-    }
-  ],
   "c2_act_precinct": [
     {
       "type": "bg",
@@ -187,6 +106,31 @@
       "text": "（同一天上午开的药，同一天晚上进了咖啡。开药的人，不想被记住脸。）"
     },
     {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "邵晓阳昨天说的，我们核了。小区门禁，十一月十八号 22:00:04 进的门，之后没有出去的记录。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "她把另一张打印纸推过来：超市收银，22:03:12，38.00，猫砂一袋；自提柜，22:04:36，B-07 格口开了；门口监控，22:05 到 22:18，他蹲在台阶边逗那只橘猫。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "二十二点十二分的时候，他在自己小区门口。"
+    },
+    {
+      "type": "say",
+      "speaker": "xiaoxu",
+      "text": "他每天九点读的那个日志，后台也调了：只读，没有一条写入。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（他没有机会碰那个闹钟。可这一天的咖啡，是从他手里端上去的。）"
+    },
+    {
       "type": "effect",
       "effects": [
         {
@@ -204,6 +148,14 @@
         {
           "kind": "testimony",
           "id": "2T20"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E14"
+        },
+        {
+          "kind": "evidence",
+          "id": "2E31"
         }
       ]
     }
@@ -217,7 +169,7 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "【10:00 看守所 会见室】玻璃从中间隔开。邵晓阳坐在对面，身上的外套换成了一件登记用的马甲，手放在桌上，手指一直在抖。"
+      "text": "【看守所 会见室】玻璃从中间隔开。邵晓阳坐在对面，身上的外套换成了登记用的马甲，眼睛红着，手指一直在绞着衣角。"
     },
     {
       "type": "say",
@@ -233,13 +185,13 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "我没跑。昨天夜里，他们来家里，我就跟他们走了。",
+      "text": "我没跑。今天一早他们来叫我，我就跟着走了。他们说我是最后一个进机房的人。",
       "expr": "nervous"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "咖啡的事，再说一遍。"
+      "text": "咖啡的事，从头说一遍。"
     },
     {
       "type": "say",
@@ -255,7 +207,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "没人跟我说。我问了一句“谁这么有心”，孟遥说她不知道。",
+      "text": "没人跟我说。我还问了孟遥一句“谁这么有心”，她说她也不知道。就没再问了。",
       "expr": "nervous"
     },
     {
@@ -277,19 +229,8 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "我到家了。二十二点进的小区，买了猫砂，取了件，在楼下逗了会儿猫。",
+      "text": "我到家了。二十二点进的小区，买了猫砂，取了件，在楼下逗了会儿猫。门禁、超市、自提柜都有记录，应该都查得到。",
       "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "lyc",
-      "text": "有人能证明？"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "门禁、超市的收银、自提柜，都有记录。门口那个监控，应该也照得到。",
-      "expr": "teary"
     },
     {
       "type": "say",
@@ -299,13 +240,7 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "调度模块的健康日志。每天九点，用我自己的账号看一眼。模块上线的时候定下来的例行。",
-      "expr": "nervous"
-    },
-    {
-      "type": "say",
-      "speaker": "shaoxy",
-      "text": "就看看队列有没有积压。我没有改过什么。",
+      "text": "调度模块的健康日志。每天九点，用我自己的账号看一眼，模块上线的时候定下来的例行。就看看队列有没有积压。我没有改过什么。",
       "expr": "teary"
     },
     {
@@ -321,13 +256,19 @@
     {
       "type": "say",
       "speaker": "shaoxy",
-      "text": "程哥，能不能……别跟我妈说。她心脏不好。",
+      "text": "程哥，我知道你为什么站在这儿。因为昨天晚上，进那间屋的人是我。",
       "expr": "teary"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "林一程把笔录本合上，没有立刻站起来。"
+      "text": "林一程想起两个月前那个晚上，也是这样一条走廊，所有人看他的眼神，都像在看一个已经定了罪的人。"
+    },
+    {
+      "type": "say",
+      "speaker": "shaoxy",
+      "text": "你也被冤枉过。你知道我的感受。能不能……别跟我妈说。她心脏不好。",
+      "expr": "teary"
     },
     {
       "type": "say",
@@ -339,20 +280,90 @@
       "effects": [
         {
           "kind": "testimony",
+          "id": "2T01"
+        },
+        {
+          "kind": "testimony",
           "id": "2T12"
         },
         {
           "kind": "testimony",
           "id": "2T21"
-        },
-        {
-          "kind": "evidence",
-          "id": "2E31"
         }
       ]
     }
   ],
-  "c2_act_lucheng_home": [
+  "c2_intro_supermarket": [
+    {
+      "type": "bg",
+      "id": "store",
+      "time": "day"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "订单上的收货点，就是街对面这家便利超市。门口有顶棚，收银台后面立着一排烟柜和预付卡架。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "咖啡是在这里被人接走的。买卡的人，也许也在这里留下过什么。"
+    }
+  ],
+  "c2_cutoff_supermarket": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店里进来了几个下班的人，收银台前排起了队。再占着店员，只是添乱。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "今天能问的，先问到这里。"
+    }
+  ],
+  "c2_inspect_topup": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "收银台旁边是预付卡的充值机。店员把昨天傍晚那张卡的售出记录翻了出来。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“两百块，现金，十一月十八号 18:07 卖出去的。卡是绑了号码才能用的，号码是新的。”"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "号码的开关机，能查到吗？"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "小许在电话那头念出了运营商给的记录：这个号码 18:19 第一次开机，18:21 在平台下了那一单，18:23 关机，之后再没开过。基站在公司园区一带。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（18:21。咖啡店 18:21:40 收到单。下单的人，当时就在公司附近。）"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "店员：“买的时候他戴着口罩，一直低着头，我没记住脸。”"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E41"
+        }
+      ]
+    }
+  ],
+  "c2_intro_lucheng_home": [
     {
       "type": "bg",
       "id": "lc_home",
@@ -361,37 +372,95 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "【陆诚家】老韩带着协查手续，在门口亮了证件。门开的时候，屋里一股没散掉的烟味。"
-    },
-    {
-      "type": "say",
-      "speaker": "laohan",
-      "text": "看看他的生活。人怎么花钱，话就怎么说。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "客厅不大，茶几上堆着外卖盒。玄关的鞋柜上，放着一串车钥匙。"
-    },
-    {
-      "type": "say",
-      "speaker": "narration",
-      "text": "卧室床头柜的抽屉里，有一板药。铝箔上印着佐匹克隆，七粒装，只剩四粒。"
+      "text": "【陆诚家】陆诚开了门，笑得很随和：“林顾问？稀客。进来坐。”"
     },
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "七粒，少了三粒。"
+      "text": "路过。老韩他们问得太细了，我想先听听你怎么看那晚的事。"
     },
     {
       "type": "say",
-      "speaker": "laohan",
-      "text": "记上。"
+      "speaker": "lucheng",
+      "text": "都是同行，应该的。我给你倒杯水。",
+      "expr": "normal"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "衣柜最上层的纸盒里，塞着一沓票据。最上面是一张奢侈品店的小票，一条围巾，一个包。"
+      "text": "他的手机响了。他看了一眼屏幕，皱了皱眉。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "公司的电话，我出去接一下。你先坐，别客气，随便看。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "门轻轻带上了。屋里只剩你一个人，窗外是一排没点灯的楼。他大概只会出去几分钟。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "（只有几分钟。看清楚几样，就够了。）"
+    }
+  ],
+  "c2_cutoff_lucheng_home": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "走廊里响起了钥匙声。你把手缩回来，坐回沙发上。"
+    },
+    {
+      "type": "say",
+      "speaker": "lucheng",
+      "text": "久等了。说了几句，就耽误了。",
+      "expr": "normal"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "没事。我也该走了，改天再聊。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "陆诚送你到门口，笑着挥了挥手。电梯门合上的时候，你才发现自己手心全是汗。"
+    }
+  ],
+  "c2_inspect_lc_drawer": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "卧室床头柜的抽屉没关严。里面有一板药，铝箔上印着佐匹克隆，七粒装，只剩四粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "lyc",
+      "text": "七粒，少了三粒。十七号上午开的七粒。"
+    },
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "你用手机把药板拍了下来，推回抽屉，推到原来的位置。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E28"
+        }
+      ]
+    }
+  ],
+  "c2_inspect_lc_wardrobe": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "衣柜最上层的纸盒里塞着一沓票据。最上面是一张奢侈品店的小票，一条围巾，一个包。"
     },
     {
       "type": "say",
@@ -406,7 +475,23 @@
     {
       "type": "say",
       "speaker": "narration",
-      "text": "茶几底下还压着一张咖啡店的小票。你把它抽出来，展平。"
+      "text": "你把几张都拍了下来，叠好，放回原位。"
+    },
+    {
+      "type": "effect",
+      "effects": [
+        {
+          "kind": "evidence",
+          "id": "2E28"
+        }
+      ]
+    }
+  ],
+  "c2_inspect_lc_table": [
+    {
+      "type": "say",
+      "speaker": "narration",
+      "text": "茶几底下压着一张咖啡店的小票。你把它抽出来，展平。"
     },
     {
       "type": "say",
@@ -416,17 +501,12 @@
     {
       "type": "say",
       "speaker": "lyc",
-      "text": "（巷口咖啡。两杯。）"
-    },
-    {
-      "type": "say",
-      "speaker": "laohan",
-      "text": "日期、时间、金额，都拍下来。药板装袋。"
+      "text": "（巷口咖啡。两杯。杯名，是照备注写的。）"
     },
     {
       "type": "say",
       "speaker": "narration",
-      "text": "老韩掏出证物袋，一样一样编号。你举着手机，把日期、时间、金额都拍下来。"
+      "text": "你拍了照，把小票压回原来的位置。"
     },
     {
       "type": "effect",

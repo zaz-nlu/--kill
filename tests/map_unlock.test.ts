@@ -24,16 +24,17 @@ function play(state: GameState, sceneId: string): void {
 }
 
 describe('the case 2 map opens with the clues', () => {
-  it('starts with the office only, and the suspect\'s home needs the errand order plus a code clue', () => {
+  it("starts with the office only; the jail opens once Shao is held, the store with the errand order, his home with the prepaid card and the diner", () => {
     const s = createInitialState(c2)
     expect(open(s)).toEqual(['office'])
-    s.evidence.push('2E08e')
-    expect(open(s)).not.toContain('lucheng')
-    s.evidence.push('2E38')
-    expect(open(s)).toContain('lucheng')
-    expect(open(s)).not.toContain('jail')
-    s.flags['shao_held'] = true
+    s.flags.shao_held = true
     expect(open(s)).toContain('jail')
+    s.evidence.push('2E08e')
+    expect(open(s)).toContain('market')
+    s.evidence.push('2E41')
+    expect(open(s)).not.toContain('lucheng')
+    s.testimony.push('2T22')
+    expect(open(s)).toContain('lucheng')
   })
 
   it('a place that is not open hides its actions', () => {

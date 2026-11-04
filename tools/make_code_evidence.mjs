@@ -139,3 +139,17 @@ const rec = [
   { t: '$ git status --short', kind: 'dim' }, { t: '(clean)' },
 ]
 await render('C2E-40_构建与发布记录.png', 1040, [{ title: 'PC-OS-03  /opt/sched   build and release record', lines: rec, opts: { noNum: true } }])
+
+// ---- C2E-41: prepaid card sale and the number's switch-on record (convenience store + operator) ----
+const card = [
+  { t: '便利超市 · 预付卡售出记录（POS 导出）', kind: 'dim' },
+  { t: '2026-11-18 18:07:33   预付费手机卡  面值 200.00   现金   收银员 03' },
+  { t: '激活绑定号码   1**-****-****  (新开户，未实名补登)', kind: 'hl' },
+  { t: '' },
+  { t: '运营商侧 · 号码状态记录', kind: 'dim' },
+  { t: '2026-11-18 18:19:08   首次开机   基站 TJ-HB-2217   (公司园区一带)' },
+  { t: '2026-11-18 18:21:02   数据业务   对端 跑腿平台下单接口', kind: 'hl' },
+  { t: '2026-11-18 18:23:46   关机' },
+  { t: '2026-11-18 18:23:46 之后   无任何上线记录' },
+]
+await render('C2E-41_预付卡与匿名手机号.png', 1040, [{ title: '预付卡售出 / 号码开关机记录', lines: card, opts: { noNum: true } }])

@@ -67,6 +67,25 @@
     "kind": "key"
   },
   {
+    "id": "c2-1-6",
+    "label": "去看守所，见邵晓阳",
+    "location": "看守所",
+    "days": [
+      1,
+      2,
+      3
+    ],
+    "minHour": 14,
+    "maxHour": 20,
+    "costHours": 1,
+    "kind": "key",
+    "requires": {
+      "kind": "flag",
+      "key": "shao_held"
+    },
+    "scene": "c2_act_jail_shao"
+  },
+  {
     "id": "c2-1-m1",
     "label": "在楼下随便吃点东西",
     "location": "楼下",
@@ -93,20 +112,6 @@
     "costHours": 1,
     "meal": true,
     "kind": "useless"
-  },
-  {
-    "id": "c2-2-1",
-    "label": "在走廊遇到邵晓阳",
-    "location": "17 层",
-    "days": [
-      2
-    ],
-    "minHour": 9,
-    "maxHour": 10,
-    "costHours": 1,
-    "kind": "key",
-    "scene": "c2_act_shao",
-    "npc": "shaoxy"
   },
   {
     "id": "c2-2-2",
@@ -148,6 +153,23 @@
     "costHours": 1,
     "kind": "key",
     "room": "c2_store_front"
+  },
+  {
+    "id": "c2-2-9",
+    "label": "去订单上的收货点，那家便利超市",
+    "location": "超市",
+    "days": [
+      2,
+      3
+    ],
+    "minHour": 13,
+    "maxHour": 20,
+    "costHours": 1,
+    "kind": "key",
+    "requiresEvidence": [
+      "2E08e"
+    ],
+    "room": "c2_supermarket"
   },
   {
     "id": "c2-2-5",
@@ -239,19 +261,6 @@
     "npc": "xiaoxu"
   },
   {
-    "id": "c2-2-9",
-    "label": "去邵晓阳住的小区，问问超市和自提柜",
-    "location": "超市",
-    "days": [
-      2,
-      3
-    ],
-    "minHour": 13,
-    "scene": "c2_act_market",
-    "costHours": 1,
-    "kind": "key"
-  },
-  {
     "id": "c2-2-10",
     "label": "去分局，看化验报告和苏闻的手机",
     "location": "分局",
@@ -310,31 +319,20 @@
     ]
   },
   {
-    "id": "c2-3-5",
-    "label": "去看守所，见邵晓阳",
-    "location": "看守所",
-    "days": [
-      3
-    ],
-    "minHour": 9,
-    "scene": "c2_act_jail_shao",
-    "costHours": 1,
-    "kind": "key"
-  },
-  {
     "id": "c2-3-6",
-    "label": "和老韩去陆诚家，核对生活账",
+    "label": "找个由头，去陆诚家坐坐",
     "location": "陆诚家",
     "days": [
       3
     ],
     "minHour": 9,
-    "requiresEvidence": [
-      "2E08e"
-    ],
-    "scene": "c2_act_lucheng_home",
+    "maxHour": 20,
     "costHours": 1,
-    "kind": "key"
+    "kind": "key",
+    "requiresEvidence": [
+      "2E41"
+    ],
+    "room": "c2_lucheng_home"
   },
   {
     "id": "c2-3-4",
@@ -355,7 +353,9 @@
       "2E40",
       "2E08d",
       "2E05",
-      "2E19"
+      "2E19",
+      "2E28",
+      "2E41"
     ],
     "pinned": true
   },
