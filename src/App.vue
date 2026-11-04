@@ -17,6 +17,8 @@ import ShopPanel from './ui/ShopPanel.vue'
 import InvestigateScreen from './ui/InvestigateScreen.vue'
 import RelationsPanel from './ui/RelationsPanel.vue'
 import EvidencePanel from './ui/EvidencePanel.vue'
+import NotebookPanel from './ui/NotebookPanel.vue'
+import { nightPlans, writtenEntries } from './engine/notebook'
 import FeedToasts from './ui/FeedToasts.vue'
 import EvidencePopup from './ui/EvidencePopup.vue'
 import DeductionScreen from './ui/DeductionScreen.vue'
@@ -193,6 +195,25 @@ function continueGame() {
 }
 const showRelations = ref(false)
 const showEvidence = ref(false)
+// Lin's notebook (chapters that have one): what is written, tomorrow's plan, the map. A red dot while there are lines not yet read.
+const showNotebook = ref(false)
+const seenNotes = ref(0)
+const held = computed(() => new Set([...store.state.evidence, ...store.state.testimony]))
+const nbEntries = computed(() => (store.chapter.notebook ? writtenEntries(store.chapter.notebook, held.value) : []))
+const nbPlans = computed(() => (store.chapter.notebook ? nightPlans(store.chapter.notebook, held.value, store.state.day, store.state.hour) : []))
+const nbCounts = computed(() => {
+  const c: Record<string, number> = {}
+  for (const a of store.actions) {
+    const id = store.chapter.map?.find(pl => pl.locations.includes(a.location))?.id
+    if (id) c[id] = (c[id] ?? 0) + 1
+  }
+  return c
+})
+const nbNew = computed(() => !showNotebook.value && nbEntries.value.length + nbPlans.value.length > seenNotes.value)
+function toggleNotebook() {
+  showNotebook.value = !showNotebook.value
+  if (showNotebook.value) seenNotes.value = nbEntries.value.length + nbPlans.value.length
+}
 // A red dot on the evidence button while something has been found that you have not looked at yet.
 const seenCount = ref(0)
 const heldCount = computed(() => store.state.evidence.length + store.state.testimony.length)
@@ -397,6 +418,7 @@ function onNote(lineId: string) {
       </div>
       <BacklogPanel v-if="showLog" :lines="logLines" :names="names" @note="onNote" />
       <RelationsPanel v-if="showRelations" :rows="store.relations" />
+      <NotebookPanel v-if="showNotebook && store.chapter.notebook" :entries="nbEntries" :plans="nbPlans" :places="store.chapter.map ?? []" :counts="nbCounts" :day="store.state.day" @close="showNotebook = false" />
       <EvidencePanel v-if="showEvidence" :evidence="store.collected.evidence" :testimony="store.collected.testimony" :conclusions="store.collected.conclusions" :folded="store.collected.folded" :info="store.recordInfo" @close="showEvidence = false" />
       <FeedToasts :items="store.feed" :names="stageNames" @dismiss="store.dismissFeed($event)" />
       <EvidencePopup v-if="store.popup" :item="store.popup" @close="store.dismissPopup()" />
@@ -458,6 +480,7 @@ function onNote(lineId: string) {
         <button type="button" class="timeline-toggle" data-testid="timeline-toggle" @click="openPanel('timeline')">回溯</button>
         <button v-if="store.chapter.recap.length > 0" type="button" class="recap-toggle" data-testid="recap-toggle" @click="rewatchRecap">前情提要</button>
         <button type="button" class="help-toggle" data-testid="help-toggle" @click="openPanel('help')">说明</button>
+        <button v-if="store.chapter.notebook" type="button" class="notebook-toggle" data-testid="notebook-toggle" @click="toggleNotebook()">笔记本<i v-if="nbNew" class="dot" data-testid="notebook-new" /></button>
         <button type="button" class="evidence-toggle" data-testid="evidence-toggle" @click="openEvidence()">证物<i v-if="hasNew" class="dot" data-testid="evidence-new" /></button>
         <button type="button" class="relations-toggle" data-testid="relations-toggle" @click="showRelations = !showRelations; showLog = false; showEvidence = false">关系</button>
         <button type="button" class="log-toggle" @click="showLog = !showLog; showRelations = false; showEvidence = false">日志</button>
@@ -520,7 +543,8 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #0c0c0f; fon
 @media (prefers-reduced-motion: reduce) { .quake-hit, .quake-hurt { animation: none; } }
 .toolbar { position: fixed; top: 6px; right: 12px; z-index: 25; display: flex; align-items: center; gap: 6px; max-width: calc(100vw - 24px); }
 .toolbar button { position: relative; padding: 5px 14px; white-space: nowrap; background: rgba(16, 18, 26, 0.5); backdrop-filter: blur(10px); }
-.evidence-toggle .dot { position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; background: #e5484d; border-radius: 50%; box-shadow: 0 0 8px #e5484d; }
+.notebook-toggle { position: relative; }
+.notebook-toggle .dot, .evidence-toggle .dot { position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; background: #e5484d; border-radius: 50%; box-shadow: 0 0 8px #e5484d; }
 .vignette { position: absolute; inset: 0; pointer-events: none; transition: box-shadow 0.8s; }
 .vignette.tense { box-shadow: inset 0 0 120px 20px #4a000044; }
 .vignette.critical { box-shadow: inset 0 0 180px 60px #000d; }

@@ -144,6 +144,7 @@ export interface MapNudge { day: number; place: string; text: string; minHour?: 
 export interface ChapterDef {
   map?: MapPlace[]
   nudges?: MapNudge[]
+  notebook?: NotebookDef
   id: string
   title: string
   sub: string
@@ -158,3 +159,10 @@ export interface ChapterDef {
   mechanics: { danger: boolean; shop: boolean; gifts: boolean }
   recap: RecapCard[]
 }
+
+// Lin's notebook (chapters with one): a line is written down once any of `any` is in hand; each night's plan is worked out
+// from what the player holds. A line may name a `place` of the chapter's map.
+export interface NotebookEntry { id: string; day: number; any: string[]; text: string; place?: string }
+export interface NotebookPlanLine { needs?: string[]; text: string; place?: string }
+export interface NotebookPlan { day: number; title: string; lines: NotebookPlanLine[] }
+export interface NotebookDef { entries: NotebookEntry[]; plans: NotebookPlan[] }
