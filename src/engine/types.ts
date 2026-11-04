@@ -136,7 +136,11 @@ export interface RecapCard { title: string; text: string; image?: string; speake
 // The trial part: the scene that opens it and the first cross-examination it leads into.
 export interface ChapterTrial { scene: string; firstExam: string }
 
+// A place on the chapter's city map. Actions whose `location` is listed here are found by tapping it.
+export interface MapPlace { id: string; label: string; icon: string; x: number; y: number; locations: string[] }
+
 export interface ChapterDef {
+  map?: MapPlace[]
   id: string
   title: string
   sub: string

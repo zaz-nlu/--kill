@@ -314,6 +314,7 @@ function onNote(lineId: string) {
           <HubScreen
             v-if="store.screen === 'hub'"
             :actions="store.actions"
+            :places="store.chapter.map"
             :can-shop="store.canShop"
             :meal-hour="store.mealHour"
             :inventory="store.state.inventory"

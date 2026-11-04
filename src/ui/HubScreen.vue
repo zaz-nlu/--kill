@@ -1,12 +1,28 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue'
 import type { ActionDef } from '../engine/calendar'
-import type { Item } from '../engine/types'
+import type { Item, MapPlace } from '../engine/types'
+import CityMap from './CityMap.vue'
 import GiftPicker from './GiftPicker.vue'
 
 // `mealHour` is left undefined (not false) when absent, so the old callers keep reading the shop as the meal-hour signal.
-const props = withDefaults(defineProps<{ actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]; slotsLeft?: number; restLabel?: string; urge?: string[] }>(), { mealHour: undefined })
+const props = withDefaults(defineProps<{ actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]; slotsLeft?: number; restLabel?: string; urge?: string[]; places?: MapPlace[] }>(), { mealHour: undefined })
 const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] }>()
+
+// With a city map, tapping a place narrows the list to what can be done there; the home pin offers the way to end the day.
+const pickedPlace = ref<string | null>(null)
+const placeOf = (loc: string) => props.places?.find(p => p.locations.includes(loc))?.id
+const counts = computed(() => {
+  const c: Record<string, number> = {}
+  for (const a of props.actions) {
+    const id = placeOf(a.location)
+    if (id) c[id] = (c[id] ?? 0) + 1
+  }
+  return c
+})
+const shown = computed(() => (pickedPlace.value && pickedPlace.value !== 'home' ? props.actions.filter(a => placeOf(a.location) === pickedPlace.value) : props.actions))
+const placeEmpty = computed(() => !!pickedPlace.value && pickedPlace.value !== 'home' && shown.value.length === 0)
+const mapPlaces = computed(() => [...(props.places ?? []), { id: 'home', label: '我家', icon: '🛏', x: 60, y: 150, locations: [] }])
 
 const picking = ref<string | null>(null)              // action id whose gift picker is open
 const chosenGift = reactive<Record<string, string>>({}) // action id -> item id
@@ -40,10 +56,16 @@ function run(actionId: string) {
       <h2>接下来做什么？</h2>
       <span v-if="slotsLeft !== undefined" class="slots" data-testid="slots-left">今天还剩 {{ slotsLeft }} 个时段</span>
     </header>
+    <CityMap v-if="places?.length" :places="mapPlaces" :counts="counts" :picked="pickedPlace" @pick="pickedPlace = $event" />
     <div class="scroll" data-testid="scroll">
-      <p v-if="emptyHint" class="empty" data-testid="empty-hint">{{ emptyHint }}</p>
+      <p v-if="emptyHint && !pickedPlace" class="empty" data-testid="empty-hint">{{ emptyHint }}</p>
+      <p v-if="placeEmpty" class="empty" data-testid="place-empty">这里现在没有要做的事。</p>
+      <div v-if="pickedPlace === 'home'" class="empty">
+        <p>回家会结束今天。确定今天的事都做完了？</p>
+        <button type="button" class="rest" data-testid="map-rest" @click="emit('rest')">{{ restLabel ?? '回家休息' }}</button>
+      </div>
       <ul>
-        <li v-for="a in actions" :key="a.id">
+        <li v-for="a in shown" :key="a.id">
           <div class="line">
             <button type="button" class="act" :class="{ 'has-gift': a.npc }" :data-testid="'action-' + a.id" :title="a.label" @click="run(a.id)">
               <span class="loc">{{ a.location }}</span>

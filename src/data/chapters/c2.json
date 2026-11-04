@@ -3,6 +3,15 @@
   "title": "案二·静音",
   "sub": "11 月 19 日起",
   "order": 2,
+  "map": [
+    { "id": "office", "label": "公司（17 层）", "icon": "🏢", "x": 170, "y": 100, "locations": ["17 层", "会议室 B", "外包区", "楼下", "物业"] },
+    { "id": "street", "label": "巷口咖啡街", "icon": "☕", "x": 120, "y": 215, "locations": ["街上"] },
+    { "id": "diner", "label": "老门口饭馆", "icon": "🍜", "x": 400, "y": 215, "locations": ["饭馆"] },
+    { "id": "market", "label": "超市", "icon": "🛒", "x": 285, "y": 255, "locations": ["超市"] },
+    { "id": "lucheng", "label": "陆诚家", "icon": "🏠", "x": 540, "y": 235, "locations": ["陆诚家"] },
+    { "id": "police", "label": "分局", "icon": "🚓", "x": 440, "y": 55, "locations": ["分局"] },
+    { "id": "jail", "label": "看守所", "icon": "⛓", "x": 575, "y": 120, "locations": ["看守所"] }
+  ],
   "calendar": [
     {
       "label": "第 1 天",
