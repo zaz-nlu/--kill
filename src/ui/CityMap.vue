@@ -50,7 +50,7 @@ const emit = defineEmits<{ pick: [id: string | null] }>()
 </template>
 
 <style scoped>
-.map { display: block; width: 100%; max-height: 250px; }
+.map { display: block; width: 100%; }
 .land { fill: #2a2622; stroke: rgba(255, 255, 255, 0.14); }
 .blocks rect { fill: #35302a; }
 .river { fill: none; stroke: #2f4a5e; stroke-width: 34; stroke-linecap: round; opacity: 0.85; }

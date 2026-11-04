@@ -47,6 +47,8 @@ startCloudSync()
 if (currentUser.value) void syncNow().then(() => store.refreshSlots())
 const showAccount = ref(false)
 // A look at the case 2 map from the title screen, without having to clear case 1 first: day 2's actions, nothing runs.
+const hubMapOpen = ref(false)
+watch(() => store.screen, () => { hubMapOpen.value = false })
 const showMapDemo = ref(false)
 // The notebook with every clue in hand, from the title screen.
 const showNotebookDemo = ref(false)
@@ -54,6 +56,7 @@ const demoHeld = computed(() => new Set(store.data.chapters.c2.notebook?.entries
 const demoEntries = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? writtenEntries(nb, demoHeld.value) : [] })
 const demoPlans = computed(() => { const nb = store.data.chapters.c2.notebook; return nb ? nightPlans(nb, demoHeld.value, 3, 8) : [] })
 const mapDemoNote = ref('')
+const mapDemoOpen = ref(false)
 // The photo of the place picked on the map, behind the hub; cleared whenever the hub is left.
 const placeBg = ref('')
 watch(() => store.screen, () => { placeBg.value = '' })
@@ -357,6 +360,8 @@ function onNote(lineId: string) {
             :nudges="store.chapter.nudges"
             :day="store.state.day"
             :hour="store.state.hour"
+            :map-open="hubMapOpen"
+            @update:map-open="hubMapOpen = $event"
             @place="placeBg = $event ?? ''"
             :can-shop="store.canShop"
             :meal-hour="store.mealHour"
@@ -461,6 +466,8 @@ function onNote(lineId: string) {
         :nudges="store.data.chapters.c2.nudges"
         :day="2"
         :hour="9"
+        :map-open="mapDemoOpen"
+        @update:map-open="mapDemoOpen = $event"
         @place="placeBg = $event ?? ''"
         :can-shop="false"
         :meal-hour="false"
@@ -472,6 +479,7 @@ function onNote(lineId: string) {
         @rest="mapDemoNote = '预览：这里会结束今天。'"
       />
       <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
+      <button type="button" class="mapdemo-close" data-testid="map-demo-open" @click="mapDemoOpen = true">打开地图</button>
       <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
     </div>
     <NotebookPanel v-if="showNotebookDemo" :entries="demoEntries" :plans="demoPlans" :places="store.data.chapters.c2.map ?? []" :counts="{ office: 3, street: 1, diner: 1 }" :records="nbRecords" :held="demoHeld" @close="showNotebookDemo = false" />
@@ -489,6 +497,7 @@ function onNote(lineId: string) {
         <button type="button" class="timeline-toggle" data-testid="timeline-toggle" @click="openPanel('timeline')">回溯</button>
         <button v-if="store.chapter.recap.length > 0" type="button" class="recap-toggle" data-testid="recap-toggle" @click="rewatchRecap">前情提要</button>
         <button type="button" class="help-toggle" data-testid="help-toggle" @click="openPanel('help')">说明</button>
+        <button v-if="store.screen === 'hub' && store.chapter.map" type="button" class="map-toggle" data-testid="map-toggle" @click="hubMapOpen = !hubMapOpen">地图</button>
         <button v-if="store.chapter.notebook" type="button" class="notebook-toggle" data-testid="notebook-toggle" @click="toggleNotebook()">笔记本<i v-if="nbNew" class="dot" data-testid="notebook-new" /></button>
         <button type="button" class="evidence-toggle" data-testid="evidence-toggle" @click="openEvidence()">证物<i v-if="hasNew" class="dot" data-testid="evidence-new" /></button>
         <button type="button" class="relations-toggle" data-testid="relations-toggle" @click="showRelations = !showRelations; showLog = false; showEvidence = false">关系</button>

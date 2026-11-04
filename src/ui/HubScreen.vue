@@ -12,8 +12,9 @@ const props = withDefaults(defineProps<{
   actions: ActionDef[]; canShop: boolean; mealHour?: boolean; inventory: Record<string, number>; items: Item[]
   slotsLeft?: number; restLabel?: string; urge?: string[]
   places?: MapPlace[]; nudges?: MapNudge[]; day?: number; hour?: number
+  mapOpen?: boolean   // the big map window (opened from a button outside, in the toolbar)
 }>(), { mealHour: undefined })
-const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] ; place: [bg: string | null] }>()
+const emit = defineEmits<{ action: [id: string, giftItemId?: string]; shop: []; wait: []; rest: []; save: [] ; place: [bg: string | null]; 'update:mapOpen': [open: boolean] }>()
 
 const pickedPlace = ref<string | null>(null)
 const placeOf = (loc: string) => props.places?.find(p => p.locations.includes(loc))?.id
@@ -38,6 +39,7 @@ const nudge = computed(() => props.nudges?.find(n =>
 
 function pickPlace(id: string | null) {
   pickedPlace.value = id
+  emit('update:mapOpen', false)
   emit('place', id ? mapPlaces.value.find(p => p.id === id)?.bg ?? null : null)
 }
 
@@ -68,8 +70,11 @@ function run(actionId: string) {
 </script>
 
 <template>
-  <div v-if="places?.length" class="mapbox glass" data-testid="mapbox">
-    <CityMap :places="mapPlaces" :counts="counts" :picked="pickedPlace" @pick="pickPlace" />
+  <div v-if="places?.length && mapOpen" class="mapveil" data-testid="mapbox" @click.self="emit('update:mapOpen', false)">
+    <div class="mapwin glass">
+      <header><h3>要去哪里？</h3><button type="button" data-testid="map-close" @click="emit('update:mapOpen', false)">关闭</button></header>
+      <CityMap :places="mapPlaces" :counts="counts" :picked="pickedPlace" @pick="pickPlace($event)" />
+    </div>
   </div>
   <section class="hub glass">
     <header>
@@ -78,7 +83,7 @@ function run(actionId: string) {
     </header>
     <p v-if="places && nudge" class="nudge" data-testid="nudge">📓 {{ nudge }}</p>
     <div class="scroll" data-testid="scroll">
-      <p v-if="places && !pickedPlace && !emptyHint" class="empty" data-testid="pick-hint">点右上角的地图，选一个要去的地方。</p>
+      <p v-if="places && !pickedPlace && !emptyHint" class="empty" data-testid="pick-hint">点右上角的“地图”，选一个要去的地方。</p>
       <p v-if="emptyHint && !pickedPlace" class="empty" data-testid="empty-hint">{{ emptyHint }}</p>
       <p v-if="placeEmpty" class="empty" data-testid="place-empty">这里现在没有要做的事。</p>
       <div v-if="pickedPlace === 'home'" class="empty">
@@ -120,7 +125,11 @@ function run(actionId: string) {
 </template>
 
 <style scoped>
-.mapbox { position: fixed; top: 52px; right: 12px; z-index: 5; width: min(360px, 48vw); padding: 6px; }
+.mapveil { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; background: #0009; }
+.mapwin { width: min(820px, 94vw); padding: 14px 18px 16px; }
+.mapwin header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.mapwin h3 { margin: 0; font-size: 18px; letter-spacing: 3px; }
+.mapwin :deep(.map) { max-height: 70vh; }
 .hub { display: flex; flex-direction: column; min-height: 0; margin: 12px; padding: 14px 16px 12px; }
 header { display: flex; justify-content: space-between; align-items: baseline; flex: none; margin-bottom: 10px; }
 h2 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: 2px; }
