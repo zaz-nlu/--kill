@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 // `account` is the signed-in name ('' when nobody is); leaving it out hides the button (no server to sign in to).
 withDefaults(defineProps<{ error?: string; devFinale?: boolean; message?: string; demo?: boolean; account?: string }>(), { devFinale: true, demo: true })
 defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: []; account: [] }>()
+
+// Tap the small version tag to see which build this is.
+const build = typeof __BUILD__ === 'undefined' ? null : __BUILD__
+const showBuild = ref(false)
 </script>
 
 <template>
@@ -16,6 +21,8 @@ defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: 
     <p v-if="message" class="notice" data-testid="title-message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
     <button v-if="devFinale" type="button" class="dev" data-testid="debug-finale" @click="$emit('debugFinale')">【开发】直接进入终章第一幕</button>
+    <button v-if="build" type="button" class="ver" data-testid="build-tag" @click="showBuild = !showBuild">版本 {{ build.commit }}</button>
+    <p v-if="build && showBuild" class="buildinfo" data-testid="build-info">提交 {{ build.commit }} · 构建于 {{ build.time }}<br>{{ build.subject }}</p>
   </main>
 </template>
 
@@ -26,6 +33,8 @@ button { margin-top: 18px; padding: 12px 36px; font-size: 18px; background: #c85
 .secondary { background: #3a3a44; }
 .secondary small { display: block; margin-top: 2px; font-size: 12px; font-weight: normal; opacity: .75; }
 .dev { margin-top: 40px; padding: 4px 10px; font-size: 12px; background: transparent; color: #666; }
+.ver { margin-top: 14px; padding: 2px 10px; font-size: 12px; background: transparent; color: #8a8378; }
+.buildinfo { margin: 4px 16px 0; font-size: 12px; line-height: 1.6; color: #b9ad9d; text-align: center; }
 .error { color: #e8a070; margin: 12px 0 0; }
 .notice { color: #d8cfc0; margin: 12px 0 0; font-size: 14px; }
 </style>
