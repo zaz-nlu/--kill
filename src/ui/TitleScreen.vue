@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 // `account` is the signed-in name ('' when nobody is); leaving it out hides the button (no server to sign in to).
 withDefaults(defineProps<{ error?: string; devFinale?: boolean; message?: string; demo?: boolean; account?: string }>(), { devFinale: true, demo: true })
-defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: []; account: [] }>()
+defineEmits<{ start: []; continue: []; chapters: []; debugFinale: []; demoExam: []; mapDemo: []; account: [] }>()
 
 // Tap the small version tag to see which build this is.
 const build = typeof __BUILD__ === 'undefined' ? null : __BUILD__
@@ -18,6 +18,7 @@ const showBuild = ref(false)
     <button type="button" class="secondary" data-testid="chapters" @click="$emit('chapters')">章节选择</button>
     <button v-if="account !== undefined" type="button" class="secondary" data-testid="account" @click="$emit('account')">{{ account ? `账号：${account}` : '登录 / 注册' }}</button>
     <button v-if="demo" type="button" class="secondary" data-testid="demo-exam" @click="$emit('demoExam')">试玩对峙<small>2 分钟，体验对质</small></button>
+    <button type="button" class="secondary" data-testid="demo-map" @click="$emit('mapDemo')">地图预览<small>案二的海河地图，随便点</small></button>
     <p v-if="message" class="notice" data-testid="title-message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
     <button v-if="devFinale" type="button" class="dev" data-testid="debug-finale" @click="$emit('debugFinale')">【开发】直接进入终章第一幕</button>

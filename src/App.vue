@@ -44,6 +44,10 @@ useAudioDirector(store)
 startCloudSync()
 if (currentUser.value) void syncNow().then(() => store.refreshSlots())
 const showAccount = ref(false)
+// A look at the case 2 map from the title screen, without having to clear case 1 first: day 2's actions, nothing runs.
+const showMapDemo = ref(false)
+const mapDemoNote = ref('')
+const mapDemoActions = computed(() => store.data.actions.filter(a => a.chapter === 'c2' && a.days.includes(2) && !a.meal))
 // The web build asks everyone to sign in once; the session is kept, so it only comes back when it has run out. The desktop
 // build has no server, and tests run without one.
 const mustSignIn = computed(() => accountAvailable && import.meta.env.MODE !== 'test' && !currentUser.value)
@@ -248,7 +252,24 @@ function onNote(lineId: string) {
       @chapters="openChapters()"
       @debug-finale="store.jumpToFinale()"
       @demo-exam="store.startDemoExam()"
+      @map-demo="showMapDemo = true"
     />
+    <div v-if="showMapDemo" class="mapdemo" data-testid="map-demo">
+      <HubScreen
+        :actions="mapDemoActions"
+        :places="store.data.chapters.c2.map"
+        :can-shop="false"
+        :meal-hour="false"
+        :inventory="{}"
+        :items="[]"
+        :slots-left="5"
+        rest-label="（预览）回家休息"
+        @action="mapDemoNote = '预览：这里会进入对应的剧情。'"
+        @rest="mapDemoNote = '预览：这里会结束今天。'"
+      />
+      <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
+      <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
+    </div>
     <ChapterSelect
       v-else-if="store.screen === 'chapters'"
       @start="enterChapter"
@@ -434,6 +455,9 @@ function onNote(lineId: string) {
 </template>
 
 <style>
+.mapdemo { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: center; padding: 8px; background: rgba(8, 8, 12, 0.94); overflow-y: auto; }
+.mapdemo-note { margin: 0 12px; font-size: 13px; color: #d9c7b4; }
+.mapdemo-close { align-self: center; margin-top: 10px; padding: 8px 28px; }
 :root {
   --glass: rgba(14, 16, 24, 0.68);
   --glass-line: rgba(255, 255, 255, 0.18);
