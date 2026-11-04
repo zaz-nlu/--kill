@@ -7,6 +7,7 @@ import { nightPlans, writtenEntries } from '../src/engine/notebook'
 const data = loadData()
 const c2 = data.chapters.c2
 const nb = c2.notebook!
+const records = Object.fromEntries([...data.evidence, ...data.testimony].map(r => [r.id, { name: r.name, desc: r.desc }]))
 const known = new Set([...data.evidence.map(e => e.id), ...data.testimony.map(t => t.id)])
 
 describe('chapter 2 notebook', () => {
@@ -40,8 +41,12 @@ describe('chapter 2 notebook', () => {
 
   it('shows notes, the plan and the map on three tabs', async () => {
     const places = c2.map!
-    const w = mount(NotebookPanel, { props: { entries: writtenEntries(nb, new Set(['2E33'])), plans: nightPlans(nb, new Set(['2E33']), 2, 8), places, counts: { office: 2 }, day: 2 } })
+    const w = mount(NotebookPanel, { props: { entries: writtenEntries(nb, new Set(['2E33'])), plans: nightPlans(nb, new Set(['2E33']), 2, 8), places, counts: { office: 2 }, records, held: new Set(['2E33']) } })
     expect(w.find('[data-testid="note-n05"]').exists()).toBe(true)
+    await w.get('[data-testid="photo-n05"]').trigger('click')
+    expect(w.get('[data-testid="nb-lightbox"]').text()).toContain(records['2E33'].name)
+    await w.get('[data-testid="nb-lightbox-close"]').trigger('click')
+    expect(w.find('[data-testid="nb-lightbox"]').exists()).toBe(false)
     await w.get('[data-testid="nb-tab-plan"]').trigger('click')
     expect(w.get('[data-testid="nb-plan"]').text()).toContain('第一夜')
     await w.get('[data-testid="nb-tab-map"]').trigger('click')

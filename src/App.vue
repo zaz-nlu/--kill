@@ -204,6 +204,8 @@ const showEvidence = ref(false)
 const showNotebook = ref(false)
 const seenNotes = ref(0)
 const held = computed(() => new Set([...store.state.evidence, ...store.state.testimony]))
+// Names and texts of every clue, for the pictures in the notebook.
+const nbRecords = computed(() => Object.fromEntries([...store.data.evidence, ...store.data.testimony].map(r => [r.id, { name: r.name, desc: r.desc }])))
 const nbEntries = computed(() => (store.chapter.notebook ? writtenEntries(store.chapter.notebook, held.value) : []))
 const nbPlans = computed(() => (store.chapter.notebook ? nightPlans(store.chapter.notebook, held.value, store.state.day, store.state.hour) : []))
 const nbCounts = computed(() => {
@@ -424,7 +426,7 @@ function onNote(lineId: string) {
       </div>
       <BacklogPanel v-if="showLog" :lines="logLines" :names="names" @note="onNote" />
       <RelationsPanel v-if="showRelations" :rows="store.relations" />
-      <NotebookPanel v-if="showNotebook && store.chapter.notebook" :entries="nbEntries" :plans="nbPlans" :places="store.chapter.map ?? []" :counts="nbCounts" :day="store.state.day" @close="showNotebook = false" />
+      <NotebookPanel v-if="showNotebook && store.chapter.notebook" :entries="nbEntries" :plans="nbPlans" :places="store.chapter.map ?? []" :counts="nbCounts" :records="nbRecords" :held="held" @close="showNotebook = false" />
       <EvidencePanel v-if="showEvidence" :evidence="store.collected.evidence" :testimony="store.collected.testimony" :conclusions="store.collected.conclusions" :folded="store.collected.folded" :info="store.recordInfo" @close="showEvidence = false" />
       <FeedToasts :items="store.feed" :names="stageNames" @dismiss="store.dismissFeed($event)" />
       <EvidencePopup v-if="store.popup" :item="store.popup" @close="store.dismissPopup()" />
@@ -472,7 +474,7 @@ function onNote(lineId: string) {
       <p class="mapdemo-note">{{ mapDemoNote || '这是案二第 2 天的行动，只是预览，点了不会进剧情。' }}</p>
       <button type="button" class="mapdemo-close" data-testid="map-demo-close" @click="showMapDemo = false">关闭预览</button>
     </div>
-    <NotebookPanel v-if="showNotebookDemo" :entries="demoEntries" :plans="demoPlans" :places="store.data.chapters.c2.map ?? []" :counts="{ office: 3, street: 1, diner: 1 }" :day="3" @close="showNotebookDemo = false" />
+    <NotebookPanel v-if="showNotebookDemo" :entries="demoEntries" :plans="demoPlans" :places="store.data.chapters.c2.map ?? []" :counts="{ office: 3, street: 1, diner: 1 }" :records="nbRecords" :held="demoHeld" @close="showNotebookDemo = false" />
     <AccountPanel v-if="mustSignIn || showAccount" :required="mustSignIn" @changed="store.refreshSlots()" @close="showAccount = false" />
     <TipDialog v-if="store.tip" :title="store.tip.title" :text="store.tip.text" @close="store.dismissTip()" />
     <TipDialog
