@@ -137,7 +137,9 @@ export interface RecapCard { title: string; text: string; image?: string; speake
 export interface ChapterTrial { scene: string; firstExam: string }
 
 // A place on the chapter's city map. Actions whose `location` is listed here are found by tapping it.
-export interface MapPlace { id: string; label: string; icon: string; x: number; y: number; bg: string; locations: string[] }
+// A place is on the map once its `unlock` is met: some of `any`, all of `all`, and the flag, if given. No `unlock`: always there.
+export interface MapUnlock { any?: string[]; all?: string[]; flag?: string }
+export interface MapPlace { id: string; label: string; icon: string; x: number; y: number; bg: string; locations: string[]; unlock?: MapUnlock }
 // A line from Lin's notebook that points at a place (never at what to do there); the first one for the day whose place still has something to do is shown.
 export interface MapNudge { day: number; place: string; text: string; minHour?: number }
 

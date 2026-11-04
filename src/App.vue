@@ -18,7 +18,7 @@ import InvestigateScreen from './ui/InvestigateScreen.vue'
 import RelationsPanel from './ui/RelationsPanel.vue'
 import EvidencePanel from './ui/EvidencePanel.vue'
 import NotebookPanel from './ui/NotebookPanel.vue'
-import { nightPlans, writtenEntries } from './engine/notebook'
+import { actionsOnMap, nightPlans, openPlaces, writtenEntries } from './engine/notebook'
 import FeedToasts from './ui/FeedToasts.vue'
 import EvidencePopup from './ui/EvidencePopup.vue'
 import DeductionScreen from './ui/DeductionScreen.vue'
@@ -213,12 +213,15 @@ const nbEntries = computed(() => (store.chapter.notebook ? writtenEntries(store.
 const nbPlans = computed(() => (store.chapter.notebook ? nightPlans(store.chapter.notebook, held.value, store.state.day, store.state.hour) : []))
 const nbCounts = computed(() => {
   const c: Record<string, number> = {}
-  for (const a of store.actions) {
+  for (const a of hubActions.value) {
     const id = store.chapter.map?.find(pl => pl.locations.includes(a.location))?.id
     if (id) c[id] = (c[id] ?? 0) + 1
   }
   return c
 })
+// The map opens up with the case: places (and what can be done there) show once the clues that lead there are in hand.
+const mapPlaces = computed(() => (store.chapter.map ? openPlaces(store.chapter.map, held.value, store.state.flags) : undefined))
+const hubActions = computed(() => (store.chapter.map && mapPlaces.value ? actionsOnMap(store.actions, store.chapter.map, mapPlaces.value) : store.actions))
 const nbNew = computed(() => !showNotebook.value && nbEntries.value.length + nbPlans.value.length > seenNotes.value)
 function toggleNotebook() {
   showNotebook.value = !showNotebook.value
@@ -355,8 +358,8 @@ function onNote(lineId: string) {
         <div v-else class="panel" :class="{ tall: store.screen === 'exam' }">
           <HubScreen
             v-if="store.screen === 'hub'"
-            :actions="store.actions"
-            :places="store.chapter.map"
+            :actions="hubActions"
+            :places="mapPlaces"
             :nudges="store.chapter.nudges"
             :day="store.state.day"
             :hour="store.state.hour"
@@ -431,7 +434,7 @@ function onNote(lineId: string) {
       </div>
       <BacklogPanel v-if="showLog" :lines="logLines" :names="names" @note="onNote" />
       <RelationsPanel v-if="showRelations" :rows="store.relations" />
-      <NotebookPanel v-if="showNotebook && store.chapter.notebook" :entries="nbEntries" :plans="nbPlans" :places="store.chapter.map ?? []" :counts="nbCounts" :records="nbRecords" :held="held" @close="showNotebook = false" />
+      <NotebookPanel v-if="showNotebook && store.chapter.notebook" :entries="nbEntries" :plans="nbPlans" :places="mapPlaces ?? []" :counts="nbCounts" :records="nbRecords" :held="held" @close="showNotebook = false" />
       <EvidencePanel v-if="showEvidence" :evidence="store.collected.evidence" :testimony="store.collected.testimony" :conclusions="store.collected.conclusions" :folded="store.collected.folded" :info="store.recordInfo" @close="showEvidence = false" />
       <FeedToasts :items="store.feed" :names="stageNames" @dismiss="store.dismissFeed($event)" />
       <EvidencePopup v-if="store.popup" :item="store.popup" @close="store.dismissPopup()" />
